@@ -1,0 +1,22 @@
+{
+  "name": "@astrake/lumora-ui",
+  "version": "0.1.0",
+  "description": "Headless structural layout and UI framework for Vue 3",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./layout": "./src/layout/index.ts",
+    "./shell": "./src/shell/index.ts",
+    "./components": "./src/components/index.ts",
+    "./composables": "./src/composables/index.ts",
+    "./skins": "./src/skins/index.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  }
+}

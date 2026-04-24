@@ -1,0 +1,1 @@
+export { defaultSkin } from "./default";
