@@ -4,6 +4,15 @@
 
 ---
 
+## [0.1.5] — 2026-04-25
+
+### Fixed
+
+- ci workflow errors — npm publish auth and correct artifact path (`af81e69`)
+
+
+---
+
 ## [0.1.4] — 2026-04-25
 
 ### Fixed
