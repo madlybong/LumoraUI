@@ -1,10 +1,20 @@
 # Changelog
 
+## Unreleased
+
+---
+
+## [0.1.3] — 2026-04-25
+
+### Maintenance
+
+- fix CI pipeline failures (`cde8248`)
+- verify automated release pipeline (`c153464`)
+
 All notable changes to `@astrake/lumora-ui` are documented here.
 
 Format: [Keep a Changelog](https://keepachangelog.com/) · Commits: [Conventional Commits](https://www.conventionalcommits.org/)
 
-## Unreleased
 
 ---
 
