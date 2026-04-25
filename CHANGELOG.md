@@ -4,6 +4,15 @@
 
 ---
 
+## [0.1.6] — 2026-04-25
+
+### Maintenance
+
+- bump version to 0.1.6 - add LuForm validation orchestrator (`1f11734`)
+
+
+---
+
 ## [0.1.6] — 2026-04-26
 
 ### Added
