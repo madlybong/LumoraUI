@@ -4,12 +4,22 @@
 
 ---
 
+## [0.1.6] — 2026-04-26
+
+### Added
+- `LuForm` — headless validation orchestrator component with slot-based API
+- `LuForm.types.ts` — `LuFormRules`, `LuFormErrors`, `LuFormValidator`, `LuFormContext` types
+- Form context integration for `LuInput`, `LuSelect`, `LuSwitch` — `name`, `error` props; register/unregister lifecycle
+- `LuFormContextKey` injection key (internal Symbol) for child-field coordination
+- 10 vitest test cases covering submit, validation, reset, blur, disabled, and programmatic API
+
+---
+
 ## [0.1.5] — 2026-04-25
 
 ### Fixed
 
 - ci workflow errors — npm publish auth and correct artifact path (`af81e69`)
-
 
 ---
 

@@ -20,7 +20,7 @@ const options = [
   { value: "dark", label: "Dark" },
 ];
 
-const onChange = (val: string) => {
+const onChange = (val: string | number) => {
   setMode(val as ThemeMode);
 };
 </script>

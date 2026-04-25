@@ -25,3 +25,5 @@ export { default as LuTableBody } from "./LuTableBody.vue";
 export { default as LuTableRow } from "./LuTableRow.vue";
 export { default as LuTableHeadCell } from "./LuTableHeadCell.vue";
 export { default as LuTableCell } from "./LuTableCell.vue";
+export { default as LuForm } from "./LuForm.vue";
+export type { LuFormRules, LuFormErrors, LuFormValidator, LuFormContext } from "./LuForm.types";
