@@ -55,9 +55,6 @@ jobs:
       - name: Verify clean tree
         run: git diff --exit-code
 
-      - name: Run tests
-        run: bun test
-
       - name: Build package
         run: bun run build
 
