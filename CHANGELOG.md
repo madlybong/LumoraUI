@@ -4,6 +4,15 @@
 
 ---
 
+## [0.1.4] — 2026-04-25
+
+### Fixed
+
+- prepack hook to include README and CHANGELOG in npm tarball (`e69bdfb`)
+
+
+---
+
 ## [0.1.3] — 2026-04-25
 
 ### Maintenance
