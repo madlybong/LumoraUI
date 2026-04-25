@@ -1,7 +1,8 @@
 {
   "name": "@astrake/lumora-ui",
   "version": "0.1.0",
-  "description": "Headless structural layout and UI framework for Vue 3",
+  "description": "Headless Vue 3 component framework for three surface targets — Mobile, Desktop, and Embedded — with a unified --lu-* design token system.",
+  "author": "Anuvab Chakraborty (https://github.com/madlybong)",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -12,9 +13,40 @@
     "./composables": "./src/composables/index.ts",
     "./skins": "./src/skins/index.ts"
   },
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui",
+    "components",
+    "mobile",
+    "desktop",
+    "embedded",
+    "headless",
+    "design-tokens",
+    "lumora",
+    "astrake",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madlybong/LumoraUI.git"
+  },
+  "homepage": "https://ui.lumora.astrake.com",
+  "bugs": {
+    "url": "https://github.com/madlybong/LumoraUI/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/madlybong"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "bun run ../../tools/build.ts",
+    "check": "vue-tsc -p ./tsconfig.json",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "vue": "^3.5.0"

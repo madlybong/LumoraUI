@@ -1,59 +1,78 @@
-# LumoraUI AI Agent Guide
+# Lumora UI Agent Guide
 
-## Purpose
+This is the short operating guide for AI coding agents working in this repository.
 
-This document helps coding agents understand the structural, headless, zero-CSS philosophy of `@astrake/lumora-ui`.
+## Mission
 
-## Principles
+`@astrake/lumora-ui` is a headless Vue 3 component library with three surface targets.
+Keep the repo aligned with this model:
 
-1. **Zero CSS**: No stylesheet ships with any component. Components have no visual output by default.
-2. **Structural purity**: Components enforce semantic HTML structure and layout contracts, never appearance.
-3. **Zero-Raw-HTML Constitution**: Consumers of the framework MUST strive to eliminate raw HTML tags (`<div>`, `<span>`, `<a>`, `<table>`, etc.) from their view layer, replacing them with 100% canonical `Lu*` primitives.
-4. **Individually importable**: Every component tree-shakes cleanly. One-line usage.
-5. **Skin-external**: Appearance is applied via CSS classes (Tailwind or custom) passed globally through the plugin init (`app.use(createLumoraUI({ skin }))`). View layers should not contain hardcoded Tailwind classes; styling should be managed via the `variant` prop.
-6. **WPF/Qt layout model**: Layout primitives mirror docking, stacking, splitting, and grid patterns from native desktop toolkits.
-7. **Enterprise shells**: Pre-built application shell layouts for Mobile, Desktop, and Embedded.
+- one published package: `@astrake/lumora-ui`
+- one showcase app: `apps/showcase`
+- three surface namespaces: `LuM*` (mobile), `LuD*` (desktop), `LuE*` (embedded)
+- one shared primitive layer: `Lu*`
+- one token system: `--lu-*` CSS custom properties
 
-## The Zero-Raw-HTML Constitution
+## First places to read
 
-When building applications or documentation with LumoraUI, coding agents must adhere to the following mapping rules to ensure strict design system compliance:
+- `README.md`
+- `docs/PROJECT.md`
+- `docs/ARCHITECTURE.md`
+- `docs/AI_AGENT_GUIDE.md`
+- `docs/DEVELOPMENT.md`
+- `packages/core/src/types.ts`
+- `packages/core/src/index.ts`
+- `packages/core/src/skins/index.ts`
 
-| Raw HTML Element | LumoraUI Canonical Primitive | Usage Notes |
-| :--- | :--- | :--- |
-| `<div>` (flex/grid) | `LuStack` / `LuGrid` / `LuDock` | Always prefer `LuStack` for linear 1D flex layouts. |
-| `<div>` (container) | `LuCard` / `LuFill` | `LuCard` provides a generic surface container. `LuFill` is for greedy flex containers. |
-| `<p>`, `<span>`, `<h1>` | `LuText` | Use the `as` prop to dictate the semantic tag (`as="h1"`), and `variant` to dictate styling. |
-| `<a>`, `<router-link>` | `LuLink` | Polymorphic anchor that intelligently maps to `RouterLink` if `to` is provided, or `<a>` if `href` is used. |
-| `<hr>` | `LuDivider` | Supports horizontal and vertical orientations. |
-| `<table>`, `<tr>`, `<td>` | `LuTable` Suite | Use `LuTable`, `LuTableHead`, `LuTableBody`, `LuTableRow`, `LuTableHeadCell`, `LuTableCell`. |
-| `<button>` | `LuButton` | Supports standard button behavior, and `as` polymorphic rendering. |
-| *Header Blocks* | `LuPageHeader` | For standardized title + subtitle combinations. |
+## Repo map
 
-## Package Architecture
+- `packages/core/src/tokens/` — CSS custom property definitions (`--lu-*`)
+- `packages/core/src/shared/` — cross-surface primitives (`LuIcon`, `LuSpinner`, `LuBadge`, `LuPortal`)
+- `packages/core/src/mobile/` — Mobile components (`LuM*`)
+- `packages/core/src/desktop/` — Desktop components (`LuD*`)
+- `packages/core/src/embedded/` — Embedded components (`LuE*`)
+- `packages/core/src/shell/` — shell layout components with named-slot architecture
+- `packages/core/src/composables/` — shared Vue composables
+- `packages/core/src/skins/` — skin configuration system
+- `apps/showcase/` — Vite + Vue 3 reference app
+- `tools/` — build, typecheck, version sync, changelog scripts
+- `.github/workflows/` — `ci.yml`, `release.yml`, `version-check.yml`, `codeql.yml`
 
-- `packages/core/` (published as `@astrake/lumora-ui`)
-  - Subpaths: `.`, `./layout`, `./shell`, `./components`, `./skins`
-  - `src/skins/default.ts` contains the Tailwind default skin string map.
-- `apps/showcase/` (Vite + Vue 3 reference app)
+## Working rules
 
-## Component Contract
+- Keep components headless — structure and behavior only; no opinionated visual styles.
+- Respect the surface isolation boundary — no cross-surface imports.
+- All tokens must use the `--lu-*` namespace.
+- Skin configuration drives theming — do not hard-code colors in components.
+- Keep the public API surface minimal per surface target.
+- Use conventional commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.) so the changelog tool works correctly.
+- Add tests for any new component behavior.
+- Update docs in the same change.
 
-Do not write `<style>` blocks in Vue SFCs within this package.
-Resolve skins using `useLumoraConfig()`.
+## Release workflow
 
-```vue
-<template>
-  <div v-bind="$attrs" :class="skin">
-    <slot />
-  </div>
-</template>
+To release a new version:
 
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useLumoraConfig } from '../context'
+1. Update `VERSION` file.
+2. Run `bun run release:prep` (syncs versions + generates changelog).
+3. Commit: `git commit -am "chore(release): bump version to X.Y.Z"`.
+4. Push to `main` — the release workflow fires automatically.
 
-const props = defineProps<{ variant?: string }>()
-const { resolveSkin } = useLumoraConfig()
-const skin = computed(() => resolveSkin('ComponentName', props.variant))
-</script>
-```
+Do **not** manually create npm packages or GitHub releases — automation handles this.
+
+## What "done" looks like
+
+- `bun run check` passes (`vue-tsc`)
+- `bun test` passes
+- `bun run build` passes (three Vite entry points)
+- docs match the current component API
+- `bun run version:check` produces a clean `git diff`
+
+## Common mistakes to avoid
+
+- Adding raw HTML in components — use semantic primitives instead
+- Hard-coding color values — use `--lu-color-*` tokens
+- Adding Desktop imports into Mobile components or vice versa
+- Tracking build artifacts (`dist/`, `*.tgz`, `*.tsbuildinfo`)
+- Writing non-conventional commits that break changelog grouping
+- Modifying `packages/core/package.json` version directly — edit `VERSION` file only

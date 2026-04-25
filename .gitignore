@@ -9,7 +9,6 @@ lerna-debug.log*
 
 # Diagnostics
 .clinic
-.vscode/
 
 # Node
 node_modules
@@ -17,17 +16,24 @@ dist
 dist-ssr
 *.local
 
+# Build artifacts
+*.tsbuildinfo
+*.tgz
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
 # Editor directories and files
+.vscode/
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# Vite
-*.tsbuildinfo
 
 # Bun
 .bun
@@ -38,4 +44,5 @@ dist-ssr
 coverage/
 
 # OS metadata
+.DS_Store
 Thumbs.db
