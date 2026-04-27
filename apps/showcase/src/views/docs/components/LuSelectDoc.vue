@@ -1,13 +1,13 @@
 <template>
   <LuPageHeader title="LuSelect" description="Displays a native HTML select dropdown." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Usage" 
     description="Pass an array of options with value/label pairs."
     :code="exampleCode"
   >
     <template #preview>
-      <div class="w-full max-w-xs">
+      <LuStack   >
         <LuSelect 
           v-model="selected" 
           :options="[
@@ -16,20 +16,19 @@
             { value: 'blueberry', label: 'Blueberry' }
           ]" 
         />
-      </div>
+      </LuStack>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-16">
-    <LuText as="h2" variant="section-title" class="mb-6">Props API</LuText>
+  <LuStack direction="vertical" >
+    <LuText as="h2" variant="default" >Props API</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuSelect, LuPageHeader, LuStack, LuText } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuSelect, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const selected = ref('apple');

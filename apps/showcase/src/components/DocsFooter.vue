@@ -1,35 +1,40 @@
 <template>
-  <LuCard as="footer" class="mt-20 pt-8 pb-12 border-t border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row items-start justify-between gap-8 text-sm text-zinc-500 dark:text-zinc-400">
-    <LuStack direction="vertical" class="gap-2">
-      <LuStack direction="horizontal" class="items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-        <LuIcon name="layout-grid" class="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-        Lumora UI
-      </LuStack>
-      <LuText as="p" class="text-xs max-w-xs">A headless, zero-CSS framework for building ambitious web interfaces.</LuText>
-    </LuStack>
-    
-    <LuStack direction="vertical" class="gap-2">
-      <LuText class="font-semibold text-zinc-900 dark:text-zinc-100 text-xs tracking-wider uppercase mb-1">Resources</LuText>
-      <LuLink href="https://github.com/madlybong/lumora-ui" target="_blank" variant="footer-link">
-        <LuIcon name="github" class="w-3.5 h-3.5" /> Source Code
-      </LuLink>
-      <LuLink href="#" variant="footer-link">
-        <LuIcon name="bug" class="w-3.5 h-3.5" /> Report an Issue
-      </LuLink>
-    </LuStack>
+  <LuStack direction="vertical" gap="8">
+    <LuDivider />
+    <LuCard as="footer" variant="footer">
+      <LuGrid variant="responsive-3" gap="8">
+        <LuStack direction="vertical" gap="2">
+          <LuStack direction="horizontal" align="center" gap="2">
+            <LuIcon name="layout-grid" class="h-5 w-5" />
+            <LuText variant="label">Lumora UI</LuText>
+          </LuStack>
+          <LuText as="p" variant="muted" class="text-sm">A headless, zero-CSS framework for building ambitious web interfaces.</LuText>
+        </LuStack>
+        
+        <LuStack direction="vertical" gap="2">
+          <LuText variant="label">Resources</LuText>
+          <LuLink href="https://github.com/madlybong/lumora-ui" target="_blank" variant="nav" class="flex items-center gap-2">
+            <LuIcon name="github" class="h-4 w-4" /> Source Code
+          </LuLink>
+          <LuLink href="#" variant="nav" class="flex items-center gap-2">
+            <LuIcon name="bug" class="h-4 w-4" /> Report an Issue
+          </LuLink>
+        </LuStack>
 
-    <LuStack direction="vertical" class="gap-2 md:items-end">
-      <LuText class="font-semibold text-zinc-900 dark:text-zinc-100 text-xs tracking-wider uppercase mb-1">Legal</LuText>
-      <LuText>© 2025 Astrake · MIT License</LuText>
-      <LuStack direction="horizontal" class="items-center gap-2">
-        Version <LuBadge variant="docs-version">{{ version }}</LuBadge>
-      </LuStack>
-    </LuStack>
-  </LuCard>
+        <LuStack direction="vertical" gap="2">
+          <LuText variant="label">Legal</LuText>
+          <LuText variant="muted" class="text-sm">© 2025 Astrake · MIT License</LuText>
+          <LuStack direction="horizontal" align="center" gap="2">
+            <LuText variant="muted" class="text-sm">Version</LuText> <LuBadge variant="default">{{ version }}</LuBadge>
+          </LuStack>
+        </LuStack>
+      </LuGrid>
+    </LuCard>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuIcon, LuBadge, LuCard, LuStack, LuText, LuLink } from '@astrake/lumora-ui';
+import { LuIcon, LuBadge, LuCard, LuStack, LuText, LuLink, LuGrid, LuDivider } from '@astrake/lumora-ui';
 
 // @ts-ignore
 const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';

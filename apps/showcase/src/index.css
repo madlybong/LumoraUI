@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../../../packages/core/src";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Geist", "Inter", "ui-sans-serif", "system-ui", "sans-serif";
+}
 
 @layer base {
-  html, body {
-    @apply m-0 p-0 font-sans antialiased bg-zinc-50 text-zinc-900;
+  html {
+    color-scheme: light;
   }
-  
-  html.dark body {
-    @apply bg-zinc-950 text-zinc-300;
+  html.dark {
+    color-scheme: dark;
+  }
+  html, body {
+    @apply m-0 p-0 font-sans antialiased;
   }
 
   /* Custom scrollbar for webkit */
@@ -23,14 +31,23 @@
     @apply bg-transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full border-[2px] border-solid border-transparent bg-clip-padding;
+    @apply bg-zinc-300 rounded-full border-[2px] border-solid border-transparent bg-clip-padding;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-zinc-400 dark:bg-zinc-600;
+    @apply bg-zinc-400;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
   }
   
   ::selection {
-    @apply bg-violet-200 text-violet-900 dark:bg-violet-900/50 dark:text-violet-100;
+    @apply bg-violet-200 text-violet-900;
+  }
+  .dark ::selection {
+    @apply bg-violet-900/50 text-violet-100;
   }
 }
 
@@ -42,4 +59,11 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+/* Safelist equivalents for dynamic colors used in showcase */
+.safelist-colors {
+  @apply text-violet-100 text-violet-200 text-violet-300 text-violet-400 text-violet-500 text-violet-600 text-violet-700 text-violet-800 text-violet-900;
+  @apply bg-violet-100 bg-violet-200 bg-violet-300 bg-violet-400 bg-violet-500 bg-violet-600 bg-violet-700 bg-violet-800 bg-violet-900;
+  display: none;
 }

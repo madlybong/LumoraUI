@@ -16,6 +16,6 @@ import { useLumoraConfig } from "../../context";
 const props = defineProps<{ variant?: string }>();
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuMobileShell", props.variant) || "flex flex-col h-full w-full overflow-hidden bg-white relative");
-const contentSkin = computed(() => resolveSkin("LuMobileShellContent") || "flex flex-1 flex-col overflow-y-auto relative");
+const resolvedSkin = computed(() => resolveSkin("LuMobileShell", props.variant));
+const contentSkin = computed(() => resolveSkin("LuMobileShellContent"));
 </script>

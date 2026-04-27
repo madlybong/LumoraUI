@@ -1,48 +1,49 @@
 <template>
-  <div class="relative w-full" ref="searchContainer">
-    <LuStack direction="horizontal" class="relative items-center">
-      <LuIcon name="search" class="absolute left-2.5 w-4 h-4 text-zinc-400" />
-      <LuInput 
-        v-model="query"
-        variant="docs-search" 
-        placeholder="Search documentation..." 
-        @focus="isFocused = true"
-      />
-    </LuStack>
+  <LuStack direction="vertical" ref="searchContainer">
+    <LuInput 
+      v-model="query"
+      variant="default" 
+      placeholder="Search documentation..." 
+      @focus="isFocused = true"
+    >
+      <template #prepend>
+        <LuIcon name="search" class="w-4 h-4" />
+      </template>
+    </LuInput>
 
     <!-- Dropdown Results -->
     <LuCard 
       v-if="isFocused && query.length > 0" 
-      variant="search-results"
+      variant="default"
     >
-      <div v-if="results.length === 0" class="px-4 py-6 text-center text-sm text-zinc-500">
-        No results found for "<LuText as="span" class="text-zinc-900 dark:text-zinc-100 font-medium">{{ query }}</LuText>"
-      </div>
-      <LuStack v-else direction="vertical" class="py-2">
+      <LuStack direction="horizontal" v-if="results.length === 0" >
+        No results found for "<LuText as="span" >{{ query }}</LuText>"
+      </LuStack>
+      <LuStack v-else direction="vertical" >
         <template v-for="result in results" :key="result.item.path || result.item.label">
           <LuLink 
             v-if="!result.item.external && result.item.path"
             :to="result.item.path"
-            class="flex flex-col px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors cursor-pointer"
+            
             @click="selectItem"
           >
-            <LuText variant="search-section">{{ result.section }}</LuText>
-            <LuText variant="search-label">{{ result.item.label }}</LuText>
+            <LuText variant="default">{{ result.section }}</LuText>
+            <LuText variant="default">{{ result.item.label }}</LuText>
           </LuLink>
           <LuLink 
             v-else-if="result.item.external && result.item.path"
             :href="result.item.path"
             target="_blank"
-            class="flex flex-col px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors cursor-pointer"
+            
             @click="selectItem"
           >
-            <LuText variant="search-section">{{ result.section }} <LuIcon name="arrow-up-right" class="inline w-3 h-3" /></LuText>
-            <LuText variant="search-label">{{ result.item.label }}</LuText>
+            <LuText variant="default">{{ result.section }} <LuIcon name="arrow-up-right"  /></LuText>
+            <LuText variant="default">{{ result.item.label }}</LuText>
           </LuLink>
         </template>
       </LuStack>
     </LuCard>
-  </div>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
@@ -53,7 +54,7 @@ import { useNavTree } from '../composables/useNavTree';
 const { navTree } = useNavTree();
 const query = ref('');
 const isFocused = ref(false);
-const searchContainer = ref<HTMLElement | null>(null);
+const searchContainer = ref<{ $el: HTMLElement } | null>(null);
 
 // Flatten the tree for searching
 const searchableItems = computed(() => {
@@ -83,7 +84,7 @@ const selectItem = () => {
 
 // Handle clicking outside to close
 const handleClickOutside = (event: MouseEvent) => {
-  if (searchContainer.value && !searchContainer.value.contains(event.target as Node)) {
+  if (searchContainer.value && !searchContainer.value.$el.contains(event.target as Node)) {
     isFocused.value = false;
   }
 };

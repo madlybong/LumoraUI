@@ -1,7 +1,7 @@
 <template>
-  <LuCard class="w-full h-full relative" :style="wrapperStyle">
+  <LuCard  :style="wrapperStyle">
     <LuCard 
-      class="border border-zinc-200 rounded-lg shadow-sm overflow-hidden bg-white mx-auto transform-origin-top"
+      
       :style="frameStyle"
     >
       <slot />
@@ -34,7 +34,7 @@ const frameStyle = computed(() => {
     width: typeof props.width === 'number' ? `${props.width}px` : props.width,
     height: typeof props.height === 'number' ? `${props.height}px` : props.height,
     transform: props.scale && props.scale !== 1 ? `scale(${props.scale})` : 'none',
-    transformOrigin: 'top center',
+    transformOrigin: 'top left',
   };
 });
 </script>

@@ -1,5 +1,23 @@
 <template>
+  <div class="relative w-full" v-if="$slots.prepend || $slots.append">
+    <div v-if="$slots.prepend" :class="prependSkin">
+      <slot name="prepend" />
+    </div>
+    <input
+      v-bind="$attrs"
+      :class="[resolvedSkin, $slots.prepend && 'pl-9', $slots.append && 'pr-9']"
+      :value="modelValue"
+      :name="name"
+      :disabled="formContext?.disabled.value"
+      @input="onInput"
+      @blur="onBlur"
+    />
+    <div v-if="$slots.append" :class="appendSkin">
+      <slot name="append" />
+    </div>
+  </div>
   <input
+    v-else
     v-bind="$attrs"
     :class="resolvedSkin"
     :value="modelValue"
@@ -29,6 +47,8 @@ const emit = defineEmits<{
 
 const { resolveSkin } = useLumoraConfig();
 const resolvedSkin = computed(() => resolveSkin("LuInput", props.variant));
+const prependSkin = computed(() => resolveSkin("LuInputPrepend", props.variant));
+const appendSkin = computed(() => resolveSkin("LuInputAppend", props.variant));
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);

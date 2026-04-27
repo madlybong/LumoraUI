@@ -1,44 +1,92 @@
 <template>
   <LuPageHeader title="Desktop Shell" description="A comprehensive application shell designed for desktop web applications, featuring topbars, rails, sidebars, and status bars." />
 
-  <PreviewBlock 
-    title="Anatomy" 
-    description="The shell provides 5 named slots: topbar, rail, sidebar, content, and statusbar."
+  <LuCodeBlock variant="preview" 
+    title="Desktop Shell Structure" 
+    description="The standard layout for desktop applications."
     :code="exampleCode"
   >
     <template #preview>
-      <PreviewFrame width="800px" height="600px" :scale="0.6">
-        <div class="w-full h-full border-4 border-zinc-200 dark:border-zinc-800 rounded overflow-hidden shadow-xl">
-          <iframe src="/demo/desktop" class="w-full h-full border-0 pointer-events-none"></iframe>
-        </div>
-      </PreviewFrame>
+      <div class="h-[400px] w-full border border-gray-300 dark:border-gray-700 rounded-xl overflow-hidden mx-auto shadow-xl flex bg-white dark:bg-gray-950">
+        <LuDesktopShell>
+          <template #topbar>
+            <LuDesktopTopBar>
+              <LuStack direction="horizontal" align="center" gap="4">
+                <LuIcon name="layout" />
+                <LuText variant="section-title">My App</LuText>
+              </LuStack>
+              <LuStack direction="horizontal" align="center" gap="4">
+                <LuButton variant="ghost" class="p-2"><LuIcon name="bell" /></LuButton>
+                <LuAvatar variant="sm" fallback="U" />
+              </LuStack>
+            </LuDesktopTopBar>
+          </template>
+          
+          <template #rail>
+            <LuDesktopRailBar>
+              <LuDesktopRailItem active>
+                <template #icon><LuIcon name="home" /></template>
+                Home
+              </LuDesktopRailItem>
+              <LuDesktopRailItem>
+                <template #icon><LuIcon name="users" /></template>
+                Users
+              </LuDesktopRailItem>
+              <LuDesktopRailItem>
+                <template #icon><LuIcon name="settings" /></template>
+                Settings
+              </LuDesktopRailItem>
+            </LuDesktopRailBar>
+          </template>
+
+          <template #sidebar>
+            <LuDesktopSidebar>
+              <LuStack direction="vertical" gap="2" class="p-4">
+                <LuText variant="label">Navigation</LuText>
+                <LuButton variant="ghost" class="justify-start">Dashboard</LuButton>
+                <LuButton variant="ghost" class="justify-start">Analytics</LuButton>
+                <LuButton variant="ghost" class="justify-start">Reports</LuButton>
+              </LuStack>
+            </LuDesktopSidebar>
+          </template>
+
+          <template #content>
+            <LuFill class="bg-gray-50 p-6 dark:bg-gray-900 overflow-y-auto">
+              <LuStack direction="vertical" gap="4">
+                <LuCard>
+                  <LuText variant="section-title">Main Content Area</LuText>
+                  <LuText variant="body" class="mt-2">This is where the primary application content is rendered.</LuText>
+                </LuCard>
+              </LuStack>
+            </LuFill>
+          </template>
+          
+          <template #statusbar>
+            <LuDesktopStatusBar>
+              <LuText variant="muted">System Status: Online</LuText>
+              <LuText variant="muted">v1.0.0</LuText>
+            </LuDesktopStatusBar>
+          </template>
+        </LuDesktopShell>
+      </div>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <div class="mt-8 flex justify-center">
-    <a href="/demo/desktop" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium text-sm hover:bg-indigo-700 transition-colors inline-flex items-center gap-2">
-      Open Live Demo
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-
-  <div class="mt-16">
-    <h2 class="text-xl font-semibold mb-6 dark:text-white">Components in this Shell</h2>
-    <ul class="list-disc pl-5 space-y-2 text-zinc-700 dark:text-zinc-300">
-      <li><code>LuDesktopShell</code> — The root container defining the CSS Grid/Flex layout</li>
-      <li><code>LuDesktopTopBar</code> — The horizontal header</li>
-      <li><code>LuDesktopRailBar</code> — The collapsible mini-sidebar for primary navigation</li>
-      <li><code>LuDesktopRailItem</code> — Items within the rail bar</li>
-      <li><code>LuDesktopSidebar</code> — The secondary navigation/context sidebar</li>
-      <li><code>LuDesktopStatusBar</code> — The bottom footer area</li>
-    </ul>
-  </div>
+  <LuStack direction="vertical" gap="4" class="mt-8">
+    <LuText as="h2" variant="default">Components in this Shell</LuText>
+    <LuStack as="ul" direction="vertical" gap="2">
+      <LuText as="li" variant="default"><code>LuDesktopShell</code> — The root container defining the CSS Grid/Flex layout</LuText>
+      <LuText as="li" variant="default"><code>LuDesktopTopBar</code> — The horizontal header</LuText>
+      <LuText as="li" variant="default"><code>LuDesktopRailBar</code> — The collapsible mini-sidebar for primary navigation</LuText>
+      <LuText as="li" variant="default"><code>LuDesktopRailItem</code> — Items within the rail bar</LuText>
+      <LuText as="li" variant="default"><code>LuDesktopSidebar</code> — The secondary navigation/context sidebar</LuText>
+      <LuText as="li" variant="default"><code>LuDesktopStatusBar</code> — The bottom footer area</LuText>
+    </LuStack>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
-import PreviewFrame from '../../../components/PreviewFrame.vue';
+import { LuPageHeader, LuStack, LuText, LuDesktopShell, LuDesktopTopBar, LuDesktopRailBar, LuDesktopRailItem, LuDesktopSidebar, LuDesktopStatusBar, LuButton, LuIcon, LuAvatar, LuCard, LuFill , LuCodeBlock } from '@astrake/lumora-ui';
 
 const exampleCode = `<LuDesktopShell>
   <template #topbar>
@@ -56,7 +104,7 @@ const exampleCode = `<LuDesktopShell>
   </template>
 
   <template #content>
-    <main>Main application content goes here</main>
+    <LuStack as="main" direction="vertical">Main application content goes here</LuStack>
   </template>
   
   <template #statusbar>

@@ -1,5 +1,7 @@
 import { inject, isRef, type InjectionKey, type Component } from "vue";
 import type { LumoraUIConfig, SkinMap } from "./types";
+import { extendSkin, cn } from "./utils";
+import { defaultSkin } from "./skins/default";
 
 export const LumoraUIConfigKey: InjectionKey<LumoraUIConfig> = Symbol("LumoraUIConfig");
 
@@ -7,11 +9,11 @@ export function useLumoraConfig() {
   const config = inject(LumoraUIConfigKey, {});
 
   const resolveSkin = (componentName: string, variant?: string): string => {
-    if (!config.skin) return "";
+    // Unwrap the user's skin map if it's a ref
+    const userSkinMap = isRef(config.skin) ? config.skin.value : (config.skin || {});
     
-    // Unwrap the skin map if it's a ref
-    const skinMap = isRef(config.skin) ? config.skin.value : config.skin;
-    if (!skinMap) return "";
+    // The base structural skin merged with any consumer overrides
+    const skinMap = extendSkin(defaultSkin, userSkinMap);
 
     const componentSkin = skinMap[componentName];
     if (!componentSkin) return "";
@@ -24,7 +26,8 @@ export function useLumoraConfig() {
       classes.push(componentSkin[variant] as string);
     }
 
-    return classes.join(" ");
+    // Use cn() so that variant classes intelligently override default classes
+    return cn(classes);
   };
 
   const resolveIcon = (name: string, size?: number): Component | null => {

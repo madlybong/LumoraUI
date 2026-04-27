@@ -32,18 +32,36 @@ export const navTree: NavSection[] = [
   {
     title: 'Components',
     items: [
+      { label: 'LuAlert', path: '/docs/components/alert' },
       { label: 'LuAvatar', path: '/docs/components/avatar' },
       { label: 'LuBadge', path: '/docs/components/badge' },
+      { label: 'LuBreadcrumb', path: '/docs/components/breadcrumb' },
       { label: 'LuButton', path: '/docs/components/button' },
+      { label: 'LuCard', path: '/docs/components/card' },
+      { label: 'LuCheckbox', path: '/docs/components/checkbox' },
       { label: 'LuCollapsible', path: '/docs/components/collapsible' },
+      { label: 'LuDivider', path: '/docs/components/divider' },
+      { label: 'LuMenu', path: '/docs/components/dropdown' },
+      { label: 'LuForm', path: '/docs/components/form' },
       { label: 'LuIcon', path: '/docs/components/icon' },
       { label: 'LuInput', path: '/docs/components/input' },
+      { label: 'LuLink', path: '/docs/components/link' },
+      { label: 'LuModal', path: '/docs/components/modal' },
+      { label: 'LuPageHeader', path: '/docs/components/page-header' },
+      { label: 'LuPagination', path: '/docs/components/pagination' },
       { label: 'LuProgressBar', path: '/docs/components/progress-bar' },
+      { label: 'LuRadio', path: '/docs/components/radio' },
       { label: 'LuSelect', path: '/docs/components/select' },
+      { label: 'LuSkeleton', path: '/docs/components/skeleton' },
+      { label: 'LuSpinner', path: '/docs/components/spinner' },
       { label: 'LuSwitch', path: '/docs/components/switch' },
+      { label: 'LuTable', path: '/docs/components/table' },
       { label: 'LuTabs', path: '/docs/components/tabs' },
+      { label: 'LuTag', path: '/docs/components/tag' },
       { label: 'LuText', path: '/docs/components/text' },
+      { label: 'LuTextarea', path: '/docs/components/textarea' },
       { label: 'LuThemeSwitch', path: '/docs/components/theme-switch' },
+      { label: 'LuToggleGroup', path: '/docs/components/toggle-group' },
       { label: 'LuTooltip', path: '/docs/components/tooltip' },
     ]
   },
@@ -54,15 +72,7 @@ export const navTree: NavSection[] = [
       { label: 'Mobile Shell', path: '/docs/shells/mobile' },
       { label: 'Embedded Shell', path: '/docs/shells/embedded' },
     ]
-  },
-  {
-    title: 'Live Demos',
-    items: [
-      { label: 'Desktop Demo ↗', path: '/demo/desktop', external: true },
-      { label: 'Mobile Demo ↗', path: '/demo/mobile', external: true },
-      { label: 'Embedded Demo ↗', path: '/demo/embedded', external: true },
-    ]
-  },
+  }
 ];
 
 export function useNavTree() {

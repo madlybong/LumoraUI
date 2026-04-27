@@ -1,67 +1,66 @@
 <template>
   <LuPageHeader title="LuTabs" description="A set of layered sections of content—known as tab panels—that are displayed one at a time." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Usage" 
     description="Combines LuTabs, LuTabList, LuTab, and LuTabPanel."
     :code="exampleCode"
   >
     <template #preview>
-      <div class="w-full max-w-md">
-        <LuTabs v-model="activeTab" class="w-full">
-          <LuTabList class="flex w-full bg-zinc-100 dark:bg-zinc-800/50 p-1 rounded-md mb-4">
-            <LuTab value="account" class="flex-1 py-1.5 text-sm font-medium rounded transition-colors text-zinc-600 dark:text-zinc-400">Account</LuTab>
-            <LuTab value="password" class="flex-1 py-1.5 text-sm font-medium rounded transition-colors text-zinc-600 dark:text-zinc-400">Password</LuTab>
-            <LuTab value="settings" class="flex-1 py-1.5 text-sm font-medium rounded transition-colors text-zinc-600 dark:text-zinc-400">Settings</LuTab>
+      <LuStack   >
+        <LuTabs v-model="activeTab" >
+          <LuTabList >
+            <LuTab value="account" >Account</LuTab>
+            <LuTab value="password" >Password</LuTab>
+            <LuTab value="settings" >Settings</LuTab>
           </LuTabList>
           
-          <LuTabPanel value="account" class="p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <h3 class="font-medium mb-1">Account Info</h3>
-            <p class="text-sm text-zinc-500">Make changes to your account here.</p>
+          <LuTabPanel value="account" >
+            <h3 >Account Info</h3>
+            <p >Make changes to your account here.</p>
           </LuTabPanel>
-          <LuTabPanel value="password" class="p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <h3 class="font-medium mb-1">Password</h3>
-            <p class="text-sm text-zinc-500">Change your password here.</p>
+          <LuTabPanel value="password" >
+            <h3 >Password</h3>
+            <p >Change your password here.</p>
           </LuTabPanel>
-          <LuTabPanel value="settings" class="p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-            <h3 class="font-medium mb-1">Settings</h3>
-            <p class="text-sm text-zinc-500">Manage your notification settings.</p>
+          <LuTabPanel value="settings" >
+            <h3 >Settings</h3>
+            <p >Manage your notification settings.</p>
           </LuTabPanel>
         </LuTabs>
-      </div>
+      </LuStack>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <div class="mt-16">
-    <h2 class="text-xl font-semibold mb-6 dark:text-white">Props API</h2>
+  <LuStack   >
+    <h2 >Props API</h2>
     
-    <h3 class="text-lg font-medium mb-4 dark:text-zinc-200">LuTabs</h3>
-    <PropTable :props-list="tabsProps" class="mb-8" />
+    <h3 >LuTabs</h3>
+    <PropTable :props-list="tabsProps"  />
     
-    <h3 class="text-lg font-medium mb-4 dark:text-zinc-200">LuTab & LuTabPanel</h3>
+    <h3 >LuTab & LuTabPanel</h3>
     <PropTable :props-list="itemProps" />
-  </div>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuTabs, LuTabList, LuTab, LuTabPanel, LuPageHeader } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuTabs, LuTabList, LuTab, LuTabPanel, LuPageHeader, LuCodeBlock, LuStack } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const activeTab = ref('account');
 
 const exampleCode = `<template>
   <LuTabs v-model="activeTab">
-    <LuTabList class="flex p-1 bg-zinc-100 rounded-md mb-4">
-      <LuTab value="account" class="flex-1 rounded">Account</LuTab>
-      <LuTab value="password" class="flex-1 rounded">Password</LuTab>
+    <LuTabList >
+      <LuTab value="account" >Account</LuTab>
+      <LuTab value="password" >Password</LuTab>
     </LuTabList>
     
-    <LuTabPanel value="account" class="p-4 border rounded">
+    <LuTabPanel value="account" >
       Account panel content...
     </LuTabPanel>
-    <LuTabPanel value="password" class="p-4 border rounded">
+    <LuTabPanel value="password" >
       Password panel content...
     </LuTabPanel>
   </LuTabs>

@@ -6,6 +6,7 @@ import * as LucideIcons from 'lucide-vue-next'
 // We will dynamically provide the skin in App.vue, but we still install the plugin
 import { router } from './router'
 import './index.css'
+import '@astrake/lumora-ui/style'
 
 import App from './App.vue'
 

@@ -1,17 +1,27 @@
 <template>
-  <div v-bind="$attrs" :class="resolvedSkin">
+  <component :is="as" v-bind="$attrs" :class="resolvedSkin">
     <slot />
-  </div>
+  </component>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import { useLumoraConfig } from "../context";
+import { resolveLayoutProps, cn } from "../utils";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   variant?: string;
-}>();
+  as?: string;
+  width?: string;
+  height?: string;
+  padding?: string | number;
+}>(), {
+  as: 'div'
+});
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuFill", props.variant));
+const resolvedSkin = computed(() => cn(
+  resolveSkin("LuFill", props.variant),
+  resolveLayoutProps(props)
+));
 </script>

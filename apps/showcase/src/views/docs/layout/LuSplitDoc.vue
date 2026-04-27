@@ -1,51 +1,50 @@
 <template>
   <LuPageHeader title="LuSplit" description="A resizable split container. Equivalent to Windows Forms' SplitContainer." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Horizontal Split" 
     description="Divides space horizontally. The left pane has a default size, and the right pane flexes to fill."
     :code="splitCode"
   >
     <template #preview>
-      <PreviewFrame width="500px" height="250px" class="bg-white border border-zinc-200">
-        <LuSplit direction="horizontal" class="h-full w-full">
-          <LuSplitPane :default-size="150" class="bg-indigo-50 p-4 border-r border-indigo-200">
+      <PreviewFrame width="500px" height="250px" >
+        <LuSplit direction="horizontal" >
+          <LuSplitPane :default-size="150" >
             Fixed Pane (150px)
           </LuSplitPane>
           <LuSplitResizer />
-          <LuSplitPane class="bg-zinc-50 p-4">
+          <LuSplitPane >
             Flexible Pane (Fill)
           </LuSplitPane>
         </LuSplit>
       </PreviewFrame>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <div class="mt-16">
-    <h2 class="text-xl font-semibold mb-6">Props API</h2>
+  <LuStack   >
+    <h2 >Props API</h2>
     
-    <h3 class="text-lg font-medium mb-4">LuSplit</h3>
-    <PropTable :props-list="splitProps" class="mb-8" />
+    <h3 >LuSplit</h3>
+    <PropTable :props-list="splitProps"  />
     
-    <h3 class="text-lg font-medium mb-4">LuSplitPane</h3>
+    <h3 >LuSplitPane</h3>
     <PropTable :props-list="paneProps" />
-  </div>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuSplit, LuSplitPane, LuSplitResizer, LuPageHeader } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuSplit, LuSplitPane, LuSplitResizer, LuPageHeader, LuStack , LuCodeBlock } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 
-const splitCode = `<LuSplit direction="horizontal" class="h-full w-full">
-  <LuSplitPane :default-size="150" class="bg-indigo-50">
+const splitCode = `<LuSplit direction="horizontal" >
+  <LuSplitPane :default-size="150" >
     Fixed Pane (150px)
   </LuSplitPane>
   
   <LuSplitResizer />
   
-  <LuSplitPane class="bg-zinc-50">
+  <LuSplitPane >
     Flexible Pane (Fill)
   </LuSplitPane>
 </LuSplit>`;

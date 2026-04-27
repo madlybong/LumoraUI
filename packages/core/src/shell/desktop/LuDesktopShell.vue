@@ -19,7 +19,7 @@ import { useLumoraConfig } from "../../context";
 const props = defineProps<{ variant?: string }>();
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuDesktopShell", props.variant) || "flex flex-col h-screen w-screen overflow-hidden bg-white");
-const contentWrapperSkin = computed(() => resolveSkin("LuDesktopShellContentWrapper") || "flex flex-1 overflow-hidden");
-const mainContentSkin = computed(() => resolveSkin("LuDesktopShellMainContent") || "flex flex-1 flex-col overflow-hidden relative");
+const resolvedSkin = computed(() => resolveSkin("LuDesktopShell", props.variant));
+const contentWrapperSkin = computed(() => resolveSkin("LuDesktopShellContentWrapper"));
+const mainContentSkin = computed(() => resolveSkin("LuDesktopShellMainContent"));
 </script>

@@ -14,5 +14,7 @@ const props = defineProps<{
 }>();
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuDockItem", props.dock ?? props.variant));
+const resolvedSkin = computed(() => [
+  resolveSkin("LuDockItem", props.dock ?? props.variant)
+]);
 </script>

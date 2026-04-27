@@ -1,61 +1,79 @@
 <template>
   <LuPageHeader title="Mobile Shell" description="An application shell tailored for mobile devices and PWAs, featuring top headers, bottom navigation bars, and safe-area insets." />
 
-  <PreviewBlock 
-    title="Anatomy" 
-    description="The shell provides 4 named slots: header, content, navbar, and drawer."
+  <LuCodeBlock variant="preview" 
+    title="Mobile Shell Structure" 
+    description="The standard layout for mobile applications."
     :code="exampleCode"
   >
     <template #preview>
-      <PreviewFrame width="375px" height="812px" :scale="0.5">
-        <div class="w-[375px] h-[812px] bg-white dark:bg-zinc-950 rounded-[2.5rem] border-[8px] border-zinc-900 overflow-hidden shadow-xl mx-auto">
-          <iframe src="/demo/mobile" class="w-full h-full border-0 pointer-events-none"></iframe>
-        </div>
-      </PreviewFrame>
+      <div class="h-[400px] w-[300px] border border-gray-300 dark:border-gray-700 rounded-3xl overflow-hidden mx-auto shadow-xl flex bg-white dark:bg-gray-950">
+        <LuMobileShell variant="default">
+          <template #header>
+            <LuMobileHeader variant="default">
+              <template #left><LuButton variant="ghost" class="p-2"><LuIcon name="menu" /></LuButton></template>
+              <LuText variant="section-title">Home</LuText>
+              <template #right><LuButton variant="ghost" class="p-2"><LuIcon name="bell" /></LuButton></template>
+            </LuMobileHeader>
+          </template>
+
+          <template #content>
+            <LuFill class="bg-gray-50 p-4 dark:bg-gray-900 overflow-y-auto">
+              <LuStack direction="vertical">
+                <LuCard variant="default"><LuText>Content area</LuText></LuCard>
+                <LuCard variant="default"><LuText>More content</LuText></LuCard>
+              </LuStack>
+            </LuFill>
+          </template>
+          
+          <template #navbar>
+            <LuMobileNavBar variant="default">
+              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="home" /><LuText class="text-[10px]">Home</LuText></LuButton>
+              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="search" /><LuText class="text-[10px]">Search</LuText></LuButton>
+              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="user" /><LuText class="text-[10px]">Profile</LuText></LuButton>
+            </LuMobileNavBar>
+          </template>
+        </LuMobileShell>
+      </div>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <div class="mt-8 flex justify-center">
-    <a href="/demo/mobile" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium text-sm hover:bg-indigo-700 transition-colors inline-flex items-center gap-2">
-      Open Live Demo
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-
-  <div class="mt-16">
-    <h2 class="text-xl font-semibold mb-6 dark:text-white">Components in this Shell</h2>
-    <ul class="list-disc pl-5 space-y-2 text-zinc-700 dark:text-zinc-300">
-      <li><code>LuMobileShell</code> — The root container that handles safe-area padding</li>
-      <li><code>LuMobileHeader</code> — The top app bar</li>
-      <li><code>LuMobileNavBar</code> — The bottom tab navigation bar</li>
-    </ul>
-  </div>
+  <LuStack direction="vertical" class="mt-8">
+    <LuText as="h2" variant="section-title">Components in this Shell</LuText>
+    <LuStack as="ul" direction="vertical">
+      <LuText as="li" variant="body"><code>LuMobileShell</code> — The root container that handles safe-area padding</LuText>
+      <LuText as="li" variant="body"><code>LuMobileHeader</code> — The top app bar</LuText>
+      <LuText as="li" variant="body"><code>LuMobileNavBar</code> — The bottom tab navigation bar</LuText>
+    </LuStack>
+  </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
-import PreviewFrame from '../../../components/PreviewFrame.vue';
+import { LuPageHeader, LuStack, LuText, LuMobileShell, LuMobileHeader, LuMobileNavBar, LuButton, LuIcon, LuFill, LuCard , LuCodeBlock } from '@astrake/lumora-ui';
 
 const exampleCode = `<LuMobileShell>
   <template #header>
     <LuMobileHeader>
-      <span>App Title</span>
+      <template #left><LuButton variant="ghost"><LuIcon name="menu" /></LuButton></template>
+      <LuText variant="section-title">Home</LuText>
+      <template #right><LuButton variant="ghost"><LuIcon name="bell" /></LuButton></template>
     </LuMobileHeader>
   </template>
 
   <template #content>
-    <main>Scrollable main content goes here</main>
+    <LuFill>
+      <LuStack direction="vertical">
+        <LuCard>Content area</LuCard>
+      </LuStack>
+    </LuFill>
   </template>
   
   <template #navbar>
     <LuMobileNavBar>
-      <!-- Bottom tab buttons -->
+      <LuButton variant="ghost">Home</LuButton>
+      <LuButton variant="ghost">Search</LuButton>
+      <LuButton variant="ghost">Profile</LuButton>
     </LuMobileNavBar>
-  </template>
-  
-  <template #drawer>
-    <!-- Slide-over drawer menu if needed -->
   </template>
 </LuMobileShell>`;
 </script>

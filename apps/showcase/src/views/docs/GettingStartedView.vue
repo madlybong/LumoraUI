@@ -1,65 +1,66 @@
 <template>
-  <LuStack direction="vertical" class="prose prose-zinc dark:prose-invert max-w-none">
-    <LuText as="h1" variant="page-title" class="mb-6">Getting Started</LuText>
-    
-    <LuText as="p" variant="body" class="mb-8">
-      Lumora UI is a structural layout and component framework for Vue 3. It ships with absolutely zero CSS,
-      providing durable layout primitives and application shells that you can skin with Tailwind CSS or your own custom stylesheets.
-    </LuText>
+  <LuStack direction="vertical" gap="8">
+    <LuPageHeader title="Getting Started" description="Lumora UI is a structural layout and component framework for Vue 3. It provides durable layout primitives and application shells that use standard Tailwind CSS v4 out of the box. You can easily extend or override the default styling using the reactive Skin engine." />
 
-    <LuText as="h2" variant="section-title" class="mt-12 mb-4">1. Installation</LuText>
-    <LuCard class="relative group mb-8">
-      <CodeBlock :code="installCode" lang="bash" class="rounded-lg shadow-sm" />
-    </LuCard>
+    <LuStack direction="vertical" gap="4">
+      <LuText as="h2" variant="section-title">1. Installation</LuText>
+      <LuCodeBlock :code="installCode" lang="bash" />
+    </LuStack>
 
-    <LuText as="h2" variant="section-title" class="mt-12 mb-4">2. Setup the Vue Plugin</LuText>
-    <LuText as="p" variant="body" class="mb-8">
-      Initialize the plugin in your main entry file. This is where you inject your skin mapping and pluggable icon library.
-    </LuText>
-    <LuCard class="relative group mb-8">
-      <CodeBlock :code="setupCode" lang="ts" class="rounded-lg shadow-sm" />
-    </LuCard>
+    <LuStack direction="vertical" gap="4">
+      <LuText as="h2" variant="section-title">2. Setup the Vue Plugin</LuText>
+      <LuText as="p" variant="body">
+        Initialize the plugin in your main entry file. This is where you inject your skin overrides and pluggable icon library. Any skin classes you provide will automatically merge with the default Tailwind v4 structure using <LuText as="code" variant="code">tailwind-merge</LuText>.
+      </LuText>
+      <LuCodeBlock :code="setupCode" lang="ts" />
+    </LuStack>
 
-    <LuText as="h2" variant="section-title" class="mt-12 mb-4">3. Import and use</LuText>
-    <LuText as="p" variant="body" class="mb-8">
-      Components are designed to be imported individually. They tree-shake perfectly.
-    </LuText>
-    <LuCard class="relative group mb-8">
-      <CodeBlock :code="usageCode" lang="vue" class="rounded-lg shadow-sm" />
-    </LuCard>
+    <LuStack direction="vertical" gap="4">
+      <LuText as="h2" variant="section-title">3. Import and use</LuText>
+      <LuText as="p" variant="body">
+        Components are designed to be imported individually. They tree-shake perfectly.
+      </LuText>
+      <LuCodeBlock :code="usageCode" lang="vue" />
+    </LuStack>
 
   </LuStack>
 </template>
 
 <script setup lang="ts">
-import CodeBlock from '../../components/CodeBlock.vue';
-import { LuStack, LuText, LuCard } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuCard, LuPageHeader , LuCodeBlock } from '@astrake/lumora-ui';
 
-const installCode = `npm install @astrake/lumora-ui`;
+const installCode = `npm install @astrake/lumora-ui tailwindcss@^4.0.0`;
 
 const setupCode = `import { createApp } from 'vue'
-import { createLumoraUI, type IconResolver } from '@astrake/lumora-ui';
-import { defaultSkin } from '@astrake/lumora-ui/skins'
+import { createLumoraUI, type IconResolver, type SkinMap } from '@astrake/lumora-ui';
 import * as LucideIcons from 'lucide-vue-next'
 import App from './App.vue'
 
 const app = createApp(App)
 
-// 1. Setup your icon resolver (optional but recommended)
+// 1. (Optional) Create your custom skin overrides. 
+// These automatically merge with the Tailwind v4 base skin!
+const mySkin: SkinMap = {
+  LuButton: {
+    primary: "bg-purple-600  "
+  }
+};
+
+// 2. Setup your icon resolver (optional but recommended)
 const iconResolver: IconResolver = (name, size = 18) => {
   const pascal = name.replace(/(^|-)(\w)/g, (_, __, c) => c.toUpperCase());
   return (LucideIcons as Record<string, any>)[pascal] ?? null;
 };
 
-// 2. Inject the default Tailwind skin and your icons
-app.use(createLumoraUI({ skin: defaultSkin, icons: iconResolver }))
+// 3. Inject the UI plugin
+app.use(createLumoraUI({ skin: mySkin, icons: iconResolver }))
 
 app.mount('#app')`;
 
 const usageCode = `<template>
-  <LuStack direction="vertical" class="gap-4 p-6">
+  <LuStack direction="vertical" >
     <LuInput v-model="name" placeholder="Enter name" />
-    <LuButton variant="primary" @click="save">Save</LuButton>
+    <LuButton variant="default" @click="save">Save</LuButton>
   </LuStack>
 </template>
 

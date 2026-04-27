@@ -1,6 +1,6 @@
 export * from "./types";
-export * from "./context";
-export * from "./plugin";
+export { useLumoraConfig, LumoraUIConfigKey } from "./context";
+export { createLumoraUI } from "./plugin";
 
 export * from "./layout/index";
 export * from "./shell/index";

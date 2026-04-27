@@ -1,60 +1,59 @@
 <template>
   <LuPageHeader title="LuStack" description="A flexible container for stacking elements either vertically or horizontally. Equivalent to WPF's StackPanel." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Vertical Stack" 
     description="Stacks children from top to bottom."
     :code="verticalCode"
   >
     <template #preview>
-      <PreviewFrame width="300px" class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-4 rounded-xl shadow-sm">
-        <LuStack direction="vertical" class="gap-2">
-          <LuCard variant="demo-box">Item 1</LuCard>
-          <LuCard variant="demo-box">Item 2</LuCard>
-          <LuCard variant="demo-box">Item 3</LuCard>
+      <PreviewFrame width="300px" >
+        <LuStack direction="vertical" gap="4">
+          <LuCard variant="default">Item 1</LuCard>
+          <LuCard variant="default">Item 2</LuCard>
+          <LuCard variant="default">Item 3</LuCard>
         </LuStack>
       </PreviewFrame>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Horizontal Stack" 
     description="Stacks children from left to right."
     :code="horizontalCode"
   >
     <template #preview>
-      <PreviewFrame width="400px" class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-4 rounded-xl shadow-sm">
-        <LuStack direction="horizontal" class="gap-2">
-          <LuCard variant="demo-box">Item 1</LuCard>
-          <LuCard variant="demo-box">Item 2</LuCard>
-          <LuCard variant="demo-box">Item 3</LuCard>
+      <PreviewFrame width="400px" >
+        <LuStack direction="horizontal" gap="4">
+          <LuCard variant="default">Item 1</LuCard>
+          <LuCard variant="default">Item 2</LuCard>
+          <LuCard variant="default">Item 3</LuCard>
         </LuStack>
       </PreviewFrame>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-16">
-    <LuText as="h2" variant="section-title" class="mb-6">Props API</LuText>
+  <LuStack direction="vertical" >
+    <LuText as="h2" variant="default" >Props API</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuStack, LuPageHeader, LuText } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuStack, LuPageHeader, LuText, LuCodeBlock, LuCard } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 
-const verticalCode = `<LuStack direction="vertical" class="gap-2">
-  <div class="bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 1</div>
-  <div class="bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 2</div>
-  <div class="bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 3</div>
+const verticalCode = `<LuStack direction="vertical" gap="4">
+  <LuStack   >Item 1</LuStack>
+  <LuStack   >Item 2</LuStack>
+  <LuStack   >Item 3</LuStack>
 </LuStack>`;
 
-const horizontalCode = `<LuStack direction="horizontal" class="gap-2">
-  <div class="flex-1 bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 1</div>
-  <div class="flex-1 bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 2</div>
-  <div class="flex-1 bg-zinc-100 border border-zinc-200 rounded-lg p-2 text-center text-zinc-600">Item 3</div>
+const horizontalCode = `<LuStack direction="horizontal" gap="4">
+  <LuStack   >Item 1</LuStack>
+  <LuStack   >Item 2</LuStack>
+  <LuStack   >Item 3</LuStack>
 </LuStack>`;
 
 const propsData = [

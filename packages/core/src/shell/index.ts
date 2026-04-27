@@ -6,5 +6,8 @@ export { default as LuDesktopSidebar } from "./desktop/LuDesktopSidebar.vue";
 export { default as LuDesktopStatusBar } from "./desktop/LuDesktopStatusBar.vue";
 
 export { default as LuMobileShell } from "./mobile/LuMobileShell.vue";
-
+export { default as LuMobileHeader } from "./mobile/LuMobileHeader.vue";
+export { default as LuMobileNavBar } from "./mobile/LuMobileNavBar.vue";
 export { default as LuEmbeddedShell } from "./embedded/LuEmbeddedShell.vue";
+export { default as LuEmbeddedTopBar } from "./embedded/LuEmbeddedTopBar.vue";
+export { default as LuEmbeddedStatusBar } from "./embedded/LuEmbeddedStatusBar.vue";

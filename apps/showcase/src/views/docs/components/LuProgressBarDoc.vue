@@ -1,56 +1,59 @@
 <template>
   <LuPageHeader title="LuProgressBar" description="Displays an indicator showing the completion progress of a task." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Usage" 
     description="Pass a value between 0 and max (default 100)."
     :code="exampleCode"
   >
     <template #preview>
-      <div class="w-full max-w-sm space-y-6">
-        <div>
-          <div class="flex justify-between mb-1 text-xs text-zinc-500">
-            <span>Downloading...</span>
-            <span>40%</span>
-          </div>
-          <LuProgressBar :value="40" class="h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden" variant="primary" />
-        </div>
+      <LuStack direction="vertical" gap="6" class="w-full max-w-md">
+        <LuStack direction="vertical" gap="2" class="w-full">
+          <LuStack direction="horizontal" justify="between" class="w-full">
+            <LuText as="span" variant="muted">Downloading...</LuText>
+            <LuText as="span" variant="muted">40%</LuText>
+          </LuStack>
+          <LuProgressBar :value="40" variant="primary" />
+        </LuStack>
         
-        <div>
-          <div class="flex justify-between mb-1 text-xs text-zinc-500">
-            <span>Complete</span>
-            <span>100%</span>
-          </div>
-          <LuProgressBar :value="100" class="h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden" variant="success" />
-        </div>
-      </div>
+        <LuStack direction="vertical" gap="2" class="w-full">
+          <LuStack direction="horizontal" justify="between" class="w-full">
+            <LuText as="span" variant="muted">Complete</LuText>
+            <LuText as="span" variant="muted">100%</LuText>
+          </LuStack>
+          <LuProgressBar :value="100" variant="success" />
+        </LuStack>
+      </LuStack>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-16">
-    <LuText as="h2" variant="section-title" class="mb-6">Props API</LuText>
+  <LuStack direction="vertical" >
+    <LuText as="h2" variant="default" >Props API</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuProgressBar, LuPageHeader, LuStack, LuText } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuProgressBar, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
-const exampleCode = `<div class="space-y-6">
-  <LuProgressBar 
-    :value="40" 
-    class="h-2 rounded-full overflow-hidden bg-zinc-100" 
-    variant="primary" 
-  />
+const exampleCode = `<LuStack direction="vertical" gap="6" class="w-full max-w-md">
+  <LuStack direction="vertical" gap="2" class="w-full">
+    <LuStack direction="horizontal" justify="between" class="w-full">
+      <LuText as="span" variant="muted">Downloading...</LuText>
+      <LuText as="span" variant="muted">40%</LuText>
+    </LuStack>
+    <LuProgressBar :value="40" variant="primary" />
+  </LuStack>
   
-  <LuProgressBar 
-    :value="100" 
-    class="h-2 rounded-full overflow-hidden bg-zinc-100" 
-    variant="success" 
-  />
-</div>`;
+  <LuStack direction="vertical" gap="2" class="w-full">
+    <LuStack direction="horizontal" justify="between" class="w-full">
+      <LuText as="span" variant="muted">Complete</LuText>
+      <LuText as="span" variant="muted">100%</LuText>
+    </LuStack>
+    <LuProgressBar :value="100" variant="success" />
+  </LuStack>
+</LuStack>`;
 
 const propsData = [
   { name: 'value', type: 'number', description: 'The progress value.' },

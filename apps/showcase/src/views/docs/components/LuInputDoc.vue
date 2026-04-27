@@ -1,28 +1,27 @@
 <template>
   <LuPageHeader title="LuInput" description="A foundational input element. Renders a native HTML <code>&lt;input&gt;</code> element that supports <code>v-model</code>." />
 
-  <PreviewBlock 
+  <LuCodeBlock variant="preview" 
     title="Basic Usage" 
     description="Standard text input."
     :code="basicCode"
   >
     <template #preview>
-      <div class="w-full max-w-sm">
+      <LuStack   >
         <LuInput v-model="val" placeholder="Enter your email..." />
-      </div>
+      </LuStack>
     </template>
-  </PreviewBlock>
+  </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-16">
-    <LuText as="h2" variant="section-title" class="mb-6">Props API</LuText>
+  <LuStack direction="vertical" >
+    <LuText as="h2" variant="default" >Props API</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuInput, LuPageHeader, LuStack, LuText } from '@astrake/lumora-ui';
-import PreviewBlock from '../../../components/PreviewBlock.vue';
+import { LuInput, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const val = ref('');

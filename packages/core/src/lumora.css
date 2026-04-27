@@ -1,0 +1,16 @@
+/* LumoraUI structural baseline — Tailwind v4 Escape Hatch, v0.1.7+ */
+/* Consumers MUST import this: import '@astrake/lumora-ui/style' */
+
+/* 
+  With the transition to Tailwind v4 as the native design engine, 
+  all structural layout classes (e.g., .lu-button, .lu-stack) have been removed.
+  Layout structure is now provided by the defaultSkin (`default.ts`) out of the box.
+
+  This file serves as an escape hatch for:
+  1. Complex [data-state="..."] selector combinations.
+  2. Webkit scrollbar pseudoclasses.
+  3. Keyframe animations that Tailwind v4 cannot natively express.
+*/
+
+/* Example: Webkit Scrollbar overrides can go here */
+

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, inject, ref, unref, type Ref } from "vue";
 import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
@@ -15,13 +15,13 @@ const props = defineProps<{
   variant?: string;
 }>();
 
-const direction = inject<"horizontal" | "vertical">("lu-split-direction", "horizontal");
+const direction = inject<Ref<"horizontal" | "vertical"> | "horizontal">("lu-split-direction", "horizontal");
 const size = ref(props.defaultSize);
 
 const style = computed(() => {
   if (size.value === undefined) return { flex: "1 1 0%" };
   const dim = `${size.value}px`;
-  return direction === "horizontal"
+  return unref(direction) === "horizontal"
     ? { width: dim, flex: `0 0 ${dim}` }
     : { height: dim, flex: `0 0 ${dim}` };
 });

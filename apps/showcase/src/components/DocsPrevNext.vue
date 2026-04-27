@@ -1,37 +1,33 @@
 <template>
-  <LuStack direction="horizontal" class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 items-center justify-between gap-4">
-    <LuLink 
-      v-if="prev" 
-      :to="prev.path!" 
-      class="flex flex-col items-start w-full sm:w-1/2 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-violet-500 dark:hover:border-violet-500 hover:bg-violet-50/30 dark:hover:bg-violet-500/5 transition-all group"
-    >
-      <LuText as="span" class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-1 flex items-center gap-1.5 uppercase tracking-wider">
-        <LuIcon name="arrow-left" class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-        Previous
-      </LuText>
-      <LuText as="span" class="font-medium text-violet-700 dark:text-violet-400">{{ prev.label }}</LuText>
-    </LuLink>
-    <LuFill v-else class="hidden sm:block sm:w-1/2" />
+  <LuStack direction="horizontal" justify="between" gap="4">
+    <LuCard v-if="prev" as="div" variant="panel" class="flex-1 flex">
+      <LuLink :to="prev.path!" variant="nav" class="flex flex-col items-start gap-1 p-4 w-full h-full">
+        <LuText as="span" variant="muted" class="flex items-center gap-1 text-sm">
+          <LuIcon name="arrow-left" class="h-4 w-4" />
+          Previous
+        </LuText>
+        <LuText as="span" variant="default" class="font-medium">{{ prev.label }}</LuText>
+      </LuLink>
+    </LuCard>
+    <div v-else class="flex-1"></div>
 
-    <LuLink 
-      v-if="next" 
-      :to="next.path!" 
-      class="flex flex-col items-end text-right w-full sm:w-1/2 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-violet-500 dark:hover:border-violet-500 hover:bg-violet-50/30 dark:hover:bg-violet-500/5 transition-all group"
-    >
-      <LuText as="span" class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-1 flex items-center gap-1.5 uppercase tracking-wider">
-        Next
-        <LuIcon name="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-      </LuText>
-      <LuText as="span" class="font-medium text-violet-700 dark:text-violet-400">{{ next.label }}</LuText>
-    </LuLink>
-    <LuFill v-else class="hidden sm:block sm:w-1/2" />
+    <LuCard v-if="next" as="div" variant="panel" class="flex-1 flex text-right">
+      <LuLink :to="next.path!" variant="nav" class="flex flex-col items-end gap-1 p-4 w-full h-full">
+        <LuText as="span" variant="muted" class="flex items-center justify-end gap-1 text-sm">
+          Next
+          <LuIcon name="arrow-right" class="h-4 w-4" />
+        </LuText>
+        <LuText as="span" variant="default" class="font-medium">{{ next.label }}</LuText>
+      </LuLink>
+    </LuCard>
+    <div v-else class="flex-1"></div>
   </LuStack>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { LuIcon, LuStack, LuLink, LuText, LuFill } from '@astrake/lumora-ui';
+import { LuIcon, LuStack, LuLink, LuText, LuCard } from '@astrake/lumora-ui';
 import { useNavTree } from '../composables/useNavTree';
 
 const route = useRoute();

@@ -2,106 +2,122 @@
 
 ## Purpose
 
-This document helps coding agents make aligned changes without re-deriving the current
-framework direction or violating the headless / surface-isolated architecture.
+This document helps agents making changes **inside the framework repository** stay aligned
+with the architectural direction. For building **consumer apps**, see `docs/CONSUMER_GUIDE.md`.
 
-## High-confidence facts
+---
 
-- The active workspace is intentionally surface-isolated.
-- The only published package is `packages/core`, published as `@astrake/lumora-ui`.
-- The only reference app is `apps/showcase`.
-- The framework is headless-first: components own structure and behavior only.
-- Visual styling is entirely the consumer's responsibility via `--lu-*` CSS tokens.
-- Surface isolation is a hard boundary: Mobile, Desktop, and Embedded do not import each other.
+## Framework Identity
 
-## Architectural intent
+`@astrake/lumora-ui` is a **headless Vue 3 component library** with three strictly isolated
+surface targets:
 
-Optimize for:
+| Surface | Components | Shell |
+|---|---|---|
+| **Desktop** | `LuDesktop*` | `LuDesktopShell` |
+| **Mobile** | `LuMobile*` | `LuMobileShell` |
+| **Embedded** | `LuEmbedded*` | `LuEmbeddedShell` |
 
-- A slim, headless primitive layer per surface.
-- Token-driven theming with no class-level theming.
-- Three independent entry points — consumers bundle only what they need.
-- Named-slot shell architecture for layout composition.
-- Full TypeScript + Vue 3 Composition API correctness.
-- Docs that match the current component API at all times.
+Shared/cross-surface primitives: `LuButton`, `LuInput`, `LuSelect`, `LuSwitch`, `LuIcon`, `LuForm`, layout primitives.
 
-## Where changes should go
+---
 
-- New or changed component behavior → `packages/core/src/{mobile,desktop,embedded,shared}/`
-- New or changed tokens → `packages/core/src/tokens/`
-- New or changed skin shape → `packages/core/src/skins/`
-- New or changed composables → `packages/core/src/composables/`
-- Shell layout changes → `packages/core/src/shell/`
-- Public type contract changes → `packages/core/src/types.ts`
-- Usage examples → `apps/showcase/src/views/`
-- Build and verification → `tools/`
+## Architecture
 
-## Change heuristics
+### How Theming Works
 
-- If a capability changes the public component API, update `types.ts` and the component's
-  `defineProps` / `defineEmits` first.
-- If a capability adds a new token, add it in `tokens/` with a default value, then use it
-  in the component. Do not hard-code values in component styles.
-- If a capability is surface-specific, it belongs in that surface's directory only.
-- If a capability applies to all surfaces, it belongs in `shared/` or `composables/`.
-- If a capability would force cross-surface imports, it violates the architecture — pause and refactor.
+1. Consumer defines a `SkinMap` (plain TypeScript object mapping component names to class strings)
+2. Plugin installs the skin: `app.use(createLumoraUI({ skin: mySkin }))` → `shallowReactive(config)` → `app.provide()`
+3. Each component calls `const { resolveSkin } = useLumoraConfig()` → `inject(LumoraUIConfigKey)`
+4. `resolveSkin("LuButton", "primary")` returns `skinMap.LuButton.default + skinMap.LuButton.primary`
+5. Fallback if no skin: `resolveSkin("LuButton") || "lu-button"` — uses framework CSS class from `lumora.css`
 
-## Safe extension patterns
+### `lu-*` CSS Namespace
 
-### Adding a component to a surface
+All structural/layout CSS shipped by the framework uses the `lu-` prefix. Defined in `src/lumora.css`.
 
-1. Create the `.vue` file in the correct surface directory.
-2. Export it from `src/{surface}/index.ts`.
-3. Ensure it uses only `--lu-*` tokens for any inline style values.
-4. Add usage to `apps/showcase`.
-5. Add Vitest tests.
-6. Update docs.
+**Invariant:** Every `lu-xyz` class reference in a component **must** have a corresponding `.lu-xyz { }` rule in `lumora.css`. This is a hard rule — violations mean invisible/broken layouts for consumers who don't use Tailwind.
 
-### Adding a design token
+### Skin values win over `lu-*` fallbacks
 
-1. Add the token to `src/tokens/` with a sensible default.
-2. Add surface-specific overrides where needed (e.g., Embedded overrides for performance).
-3. Use the token in any component that needs it.
-4. Document the token in `docs/ARCHITECTURE.md`.
+```ts
+// Component pattern — skin overrides structural default
+const resolvedSkin = computed(() => resolveSkin("LuDesktopTopBar", props.variant) || "lu-desktop-top-bar")
+// OR for classes that always apply alongside skin:
+const resolvedSkin = computed(() => [resolveSkin("LuFill", props.variant), "lu-fill"])
+```
 
-### Adding a composable
+---
 
-1. Add it to `src/composables/`.
-2. Export from `src/composables/index.ts`.
-3. Verify it works independently of any specific surface.
-4. Add tests and update docs.
+## High-Confidence Facts
 
-### Updating a skin
+- Active workspace is intentionally surface-isolated.
+- Only published package: `packages/core` as `@astrake/lumora-ui`.
+- Only reference app: `apps/showcase`.
+- Framework is headless-first: components own structure and behavior only.
+- Visual styling is entirely the consumer's responsibility via the skin system.
+- Surface isolation is a hard boundary — Mobile, Desktop, and Embedded never import each other.
+- The plugin config (`LumoraUIConfig`) is `shallowReactive` — mutations to `config.skin` are reactive.
+- The `tailwind.ts` helper exports `getLumoraSourceDir()` for Tailwind v4 `@source` directive support.
 
-1. Update the skin type in `src/skins/index.ts`.
-2. Verify `LumoraUI` plugin applies it correctly.
-3. Update the showcase to demonstrate the updated skin.
+---
 
-## Known current limitations
+## Current Limitations
 
-- Desktop and Embedded surfaces are still in active development.
 - No WCAG accessibility audit has been performed.
-- Motion tokens are defined but not yet fully integrated.
-- The showcase app is a demo only — the full docs site is planned at `https://ui.lumora.astrake.com`.
+- Motion tokens (`--lu-motion-*`) are partially defined but not fully integrated.
+- Mobile-specific components beyond `LuMobileShell` are limited.
+- The full docs site at `https://ui.lumora.astrake.com` is planned but not live.
 
-## Safe-change checklist
+---
 
-- Does the change stay within the correct surface boundary?
-- Does the change use `--lu-*` tokens for all visual values?
-- Does the change keep the public API minimal?
-- Does the change keep docs, tests, and showcase aligned?
-- Did you avoid cross-surface imports?
+## Where Changes Go
 
-## Validation commands
+| Type of Change | Location |
+|---|---|
+| New/changed component behavior | `packages/core/src/components/` or surface shell dir |
+| New layout primitive | `packages/core/src/layout/` |
+| New `lu-*` CSS class | `packages/core/src/lumora.css` |
+| New/changed skin types | `packages/core/src/types.ts` |
+| New/changed composable | `packages/core/src/composables/` |
+| Usage examples | `apps/showcase/src/views/` |
+| Build/tooling | `tools/` |
+
+---
+
+## Safe Extension Patterns
+
+### Adding a new component
+
+1. Create `.vue` file in correct surface or `components/` dir.
+2. Export from `src/components/index.ts` (or shell index).
+3. Use `resolveSkin("ComponentName") || "lu-component-class"` pattern.
+4. Define `.lu-component-class {}` structural CSS in `lumora.css`.
+5. Add showcase demo.
+6. Add Vitest tests.
+
+### Adding a structural CSS class
+
+1. Add to `src/lumora.css` under the correct surface section.
+2. Use the `lu-` prefix.
+3. Reference it in the component as a fallback.
+
+---
+
+## Validation Commands
 
 ```bash
 bun run check       # vue-tsc typecheck
-bun test            # Vitest test suite
-bun run build       # Vite library build (three entry points)
+bun test            # Vitest (run via: bun run test)
+bun run build       # Full build: types + Vite showcase
 ```
 
-For the showcase app:
+---
 
-```bash
-bun run dev         # starts apps/showcase dev server
-```
+## Safe-Change Checklist
+
+- Does the component use `lu-*` classes as structural fallback (not Tailwind)?
+- Is every `lu-*` class referenced in the component also defined in `lumora.css`?
+- Does the change stay within the correct surface boundary?
+- Does the change avoid hard-coded colors or decorative styles?
+- Did you update docs and tests?

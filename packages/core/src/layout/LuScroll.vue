@@ -13,5 +13,7 @@ const props = defineProps<{
 }>();
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuScroll", props.variant));
+const resolvedSkin = computed(() => [
+  resolveSkin("LuScroll", props.variant)
+]);
 </script>

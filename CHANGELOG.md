@@ -4,12 +4,48 @@
 
 ---
 
+## [0.2.0] — 2026-04-27
+
+### Added
+- `LuCodeBlock` — Native Shiki-powered syntax highlighter with `default` and `preview` variants (supporting `tabbed` and `split` layouts).
+- `LuToggleGroup` & `LuToggleButton` — New layout primitives for grouped button selections.
+- `LuMenu` — Refactored and renamed from legacy `LuDropdown` to align with the core primitives naming convention.
+- New showcase documentation dedicated to Toggle Group and components.
+
+### Fixed
+- WPF-like edge-docking regressions in `LuDock` via a newly implemented programmatic render function.
+- Reactivity bugs in `LuSplit` (`LuSplitPane`, `LuSplitResizer`) failing to unwrap injected `direction` refs.
+- Missing `LuSplit` component skins.
+- Various visual hierarchy issues in documentation via typography `LuText` adjustments.
+
+### Changed
+- **Zero-Raw-HTML Adherence**: Removed all raw DOM nodes (`div`, `span`, etc.) and `PreviewBlock` from the showcase application in favor of 100% native `Lu*` primitives. 
+- Integrated Shiki to `@astrake/lumora-ui` core package dependencies.
+
+---
+
+## [0.1.7] — 2026-04-26
+
+### Breaking Changes (structurally additive — no API surface removed)
+- Framework now ships `lumora.css` — consumers must add `import '@astrake/lumora-ui/style'` to their app entry
+
+### Fixed
+- Shell components (`LuDesktopShell`, `LuMobileShell`, `LuEmbeddedShell`) no longer require Tailwind CSS to be configured for `node_modules` — structural layout is now framework-owned CSS
+- Layout primitives (`LuDock`, `LuStack`, `LuFill`, `LuScroll`, `LuGrid`, etc.) structural classes are now framework-owned, not Tailwind fallbacks
+- `LuDesktopRailItem` icon and label structural defaults are now framework-owned
+- Plugin config is now `shallowReactive` — dynamic skin switching and `config.skin = newSkin` mutations now correctly trigger reactive re-renders in all components
+
+### Added
+- `lumora.css` — zero-dependency CSS baseline for all structural/layout defaults; exported at `@astrake/lumora-ui/style`
+- `tailwindContent()` helper exported at `@astrake/lumora-ui/tailwind` — resolves correct `node_modules` source glob for Tailwind `content` config
+
+---
+
 ## [0.1.6] — 2026-04-25
 
 ### Maintenance
 
 - bump version to 0.1.6 - add LuForm validation orchestrator (`1f11734`)
-
 
 ---
 

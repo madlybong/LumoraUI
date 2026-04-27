@@ -3,13 +3,13 @@
     role="switch"
     type="button"
     :name="name"
-    :aria-checked="modelValue"
+    :aria-checked="isChecked"
     :disabled="mergedDisabled"
-    :class="[resolvedSkin, modelValue ? activeSkin : '']"
+    :class="cn(resolvedSkin, isChecked ? activeSkin : '')"
     @click="toggle"
     @blur="onBlur"
   >
-    <span :class="[thumbSkin, modelValue ? thumbActiveSkin : '']" />
+    <span :class="cn(thumbSkin, isChecked ? thumbActiveSkin : '')" />
   </button>
 </template>
 
@@ -17,6 +17,7 @@
 import { computed, inject, onMounted, onUnmounted, ref } from "vue";
 import { useLumoraConfig } from "../context";
 import { LuFormContextKey } from "./LuForm.types";
+import { cn } from "../utils";
 
 const props = defineProps<{
   modelValue?: boolean;
@@ -34,19 +35,20 @@ const emit = defineEmits<{
 const { resolveSkin } = useLumoraConfig();
 
 const resolvedSkin = computed(() => resolveSkin("LuSwitch", props.variant));
-const activeSkin = computed(() => resolveSkin("LuSwitch", "active"));
+const activeSkin = computed(() => resolveSkin("LuSwitch", "checked"));
 
 const thumbSkin = computed(() => resolveSkin("LuSwitchThumb", props.variant));
-const thumbActiveSkin = computed(() => resolveSkin("LuSwitchThumb", "active"));
+const thumbActiveSkin = computed(() => resolveSkin("LuSwitchThumb", "checked"));
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<boolean | undefined>(props.modelValue);
+const isChecked = computed(() => props.modelValue !== undefined ? props.modelValue : !!internalValue.value);
 
 const mergedDisabled = computed(() => props.disabled || formContext?.disabled.value);
 
 const toggle = () => {
   if (mergedDisabled.value) return;
-  const newValue = !props.modelValue;
+  const newValue = !isChecked.value;
   internalValue.value = newValue;
   emit("update:modelValue", newValue);
 };
