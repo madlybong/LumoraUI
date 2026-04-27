@@ -6,6 +6,15 @@
 
 ## [0.2.0] — 2026-04-27
 
+### Maintenance
+
+- bump version to 0.2.0 (`d52e5c1`)
+
+
+---
+
+## [0.2.0] — 2026-04-27
+
 ### Added
 - `LuCodeBlock` — Native Shiki-powered syntax highlighter with `default` and `preview` variants (supporting `tabbed` and `split` layouts).
 - `LuToggleGroup` & `LuToggleButton` — New layout primitives for grouped button selections.
