@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+---
+
+## [0.2.1] — 2026-05-11
+
+### Other
+
+- v0.2.1 - fix source shipping and internal type noise (`dda1d11`)
+
 ## [0.2.1] — 2026-05-12
 
 ### Fixed
