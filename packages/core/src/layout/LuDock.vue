@@ -1,5 +1,6 @@
 <script lang="ts">
-import { h, defineComponent, computed, Fragment, VNode, Comment } from "vue";
+import { h, defineComponent, computed, Fragment, Comment } from "vue";
+import type { VNode } from "vue";
 import { useLumoraConfig } from "../context";
 
 export default defineComponent({

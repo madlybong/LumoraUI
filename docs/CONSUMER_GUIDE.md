@@ -117,7 +117,7 @@ The framework's structural CSS (`lumora.css`) is Tailwind-independent. However, 
 **skin class strings** (the values in `SkinMap`) can be Tailwind utility classes.
 
 If you use Tailwind v4 with `@tailwindcss/vite`, you must tell Tailwind to scan
-the framework source so your skin classes are generated correctly.
+the framework package so your skin classes are generated correctly.
 
 ### In your CSS entry file:
 
@@ -125,7 +125,7 @@ the framework source so your skin classes are generated correctly.
 @import "tailwindcss";
 
 /* Tell Tailwind v4 to scan lumora-ui source for any classes used in skins */
-@source "../../node_modules/@astrake/lumora-ui/src";
+@source "../../node_modules/@astrake/lumora-ui";
 ```
 
 The `@source` path is relative to your CSS file. Adjust as needed.
@@ -136,7 +136,7 @@ The `@source` path is relative to your CSS file. Adjust as needed.
 // vite.config.ts — NOT needed for @source directive, but useful for debugging
 import { getLumoraSourceDir } from '@astrake/lumora-ui/tailwind'
 console.log(getLumoraSourceDir(import.meta.url))
-// → /absolute/path/to/node_modules/@astrake/lumora-ui/src
+// → /absolute/path/to/node_modules/@astrake/lumora-ui
 ```
 
 > [!WARNING]

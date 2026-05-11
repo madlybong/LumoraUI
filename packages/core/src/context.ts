@@ -1,5 +1,5 @@
 import { inject, isRef, type InjectionKey, type Component } from "vue";
-import type { LumoraUIConfig, SkinMap } from "./types";
+import type { LumoraUIConfig } from "./types";
 import { extendSkin, cn } from "./utils";
 import { defaultSkin } from "./skins/default";
 

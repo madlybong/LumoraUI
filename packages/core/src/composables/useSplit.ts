@@ -1,9 +1,9 @@
 import { ref, type Ref } from "vue";
 
 export function useSplit(
-  containerRef: Ref<HTMLElement | null>,
-  direction: "horizontal" | "vertical" = "horizontal",
-  onResize?: (sizes: number[]) => void
+  _containerRef: Ref<HTMLElement | null>,
+  _direction: "horizontal" | "vertical" = "horizontal",
+  _onResize?: (sizes: number[]) => void
 ) {
   const isDragging = ref(false);
 

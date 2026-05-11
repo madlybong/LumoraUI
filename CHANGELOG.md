@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## [0.2.1] — 2026-05-12
+
+### Fixed
+- Package publishing now ships compiled `dist` outputs (`.js` + `.d.ts`) and exports no longer point to raw `src/*.ts` entrypoints, preventing downstream strict TypeScript checks from surfacing Lumora internals.
+- Cleaned internal type noise in core source (`unused imports/params`, `type`-only `VNode` import) so workspace `vue-tsc` checks remain clean.
 
 ---
 

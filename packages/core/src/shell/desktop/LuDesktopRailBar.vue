@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, ref } from "vue";
 import { useLumoraConfig } from "../../context";
 
 const props = defineProps<{ variant?: string; expanded?: boolean; expandOnHover?: boolean }>();

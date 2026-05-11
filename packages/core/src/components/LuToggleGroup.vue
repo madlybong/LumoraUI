@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, type Ref } from "vue";
+import { computed, provide } from "vue";
 import { useLumoraConfig } from "../context";
 
 const props = defineProps<{

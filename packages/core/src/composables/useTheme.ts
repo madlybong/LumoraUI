@@ -1,4 +1,4 @@
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed } from "vue";
 
 export type ThemeMode = "system" | "light" | "dark";
 export type ResolvedTheme = "light" | "dark";

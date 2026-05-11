@@ -4,6 +4,9 @@ import { join } from "path";
 const workspaceRoot = join(import.meta.dir, "..");
 
 async function check() {
+  console.log("Preparing @astrake/lumora-ui type declarations...");
+  await $`bun run build:types`.cwd(join(workspaceRoot, "packages", "core"));
+
   console.log("Running vue-tsc check on packages/core...");
   await $`bun run vue-tsc --noEmit -p tsconfig.json`.cwd(join(workspaceRoot, "packages", "core"));
 

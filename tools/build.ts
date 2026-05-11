@@ -7,10 +7,8 @@ const showcaseDir = join(workspaceRoot, "apps", "showcase");
 
 async function build() {
   console.log("Building @astrake/lumora-ui...");
-  // For a real package, you'd use vite library mode or tsup here
-  // We'll just run vue-tsc for now to verify types since we're unbundled pure source
-  await $`bun run vue-tsc --project tsconfig.json`.cwd(coreDir);
-  console.log("Core types checked successfully.");
+  await $`bun run build`.cwd(coreDir);
+  console.log("Core package built successfully.");
 
   console.log("Building showcase app...");
   await $`bun run build`.cwd(showcaseDir);
