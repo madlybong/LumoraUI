@@ -52,10 +52,12 @@ import LuEmbeddedShellDoc from '../views/docs/shells/LuEmbeddedShellDoc.vue';
 
 // Demos removed
 
+import HomeView from '../views/HomeView.vue';
+
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/docs/getting-started' },
+    { path: '/', component: HomeView },
     { path: '/docs', redirect: '/docs/getting-started' },
     { path: '/docs/getting-started', component: GettingStartedView },
     

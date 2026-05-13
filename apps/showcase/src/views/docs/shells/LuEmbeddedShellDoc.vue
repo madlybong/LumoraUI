@@ -7,14 +7,14 @@
     :code="exampleCode"
   >
     <template #preview>
-      <div class="h-[400px] w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden mx-auto shadow-xl flex bg-black">
-        <LuEmbeddedShell variant="default" class="bg-gray-950 text-white w-full h-full">
+      <div class="h-[400px] w-full border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden mx-auto shadow-xl flex bg-black">
+        <LuEmbeddedShell variant="default" class="bg-zinc-950 text-white w-full h-full">
           <template #topbar>
             <LuEmbeddedTopBar variant="default">
               <template #left>
                 <LuStack direction="horizontal" class="items-center"><LuIcon name="car" /><LuText>Model 3</LuText></LuStack>
               </template>
-              <LuText class="font-semibold tracking-widest text-gray-400">P R N D</LuText>
+              <LuText class="font-semibold tracking-widest text-zinc-400">P R N D</LuText>
               <template #right>
                 <LuStack direction="horizontal" class="items-center"><LuText>72°</LuText><LuIcon name="battery-full" /></LuStack>
               </template>
@@ -24,7 +24,7 @@
           <template #content>
             <LuFill class="p-6">
               <LuStack direction="horizontal" class="h-full w-full justify-center items-center">
-                <LuText class="text-4xl font-light text-gray-500">Visualization Map</LuText>
+                <LuText class="text-4xl font-light text-zinc-500">Visualization Map</LuText>
               </LuStack>
             </LuFill>
           </template>
@@ -33,10 +33,10 @@
             <LuEmbeddedStatusBar variant="default">
               <template #left>
                 <LuStack direction="horizontal" class="items-center w-full justify-between px-10">
-                  <LuIcon name="fan" class="text-gray-400 cursor-pointer hover:text-white" />
-                  <LuIcon name="music" class="text-gray-400 cursor-pointer hover:text-white" />
-                  <LuIcon name="phone" class="text-gray-400 cursor-pointer hover:text-white" />
-                  <LuIcon name="camera" class="text-gray-400 cursor-pointer hover:text-white" />
+                  <LuIcon name="fan" class="text-zinc-400 cursor-pointer hover:text-white" />
+                  <LuIcon name="music" class="text-zinc-400 cursor-pointer hover:text-white" />
+                  <LuIcon name="phone" class="text-zinc-400 cursor-pointer hover:text-white" />
+                  <LuIcon name="camera" class="text-zinc-400 cursor-pointer hover:text-white" />
                 </LuStack>
               </template>
             </LuEmbeddedStatusBar>

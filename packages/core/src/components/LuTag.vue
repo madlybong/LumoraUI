@@ -1,15 +1,15 @@
 <template>
   <span :class="resolvedSkin">
     <slot />
-    <button
+    <LuButton
       v-if="closable"
-      type="button"
+      variant="icon"
       :class="resolvedCloseButtonSkin"
       @click.stop="emit('close')"
       aria-label="Remove"
     >
       <LuIcon name="x" :class="resolvedIconSkin" />
-    </button>
+    </LuButton>
   </span>
 </template>
 
@@ -17,6 +17,7 @@
 import { computed } from "vue";
 import { useLumoraConfig } from "../context";
 import LuIcon from "./LuIcon.vue";
+import LuButton from "./LuButton.vue";
 
 const props = defineProps<{
   variant?: string;

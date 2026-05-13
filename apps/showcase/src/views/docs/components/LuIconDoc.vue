@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuIcon" description="A simple wrapper for icons. It applies the skin class and aria-hidden='true'." />
 
   <LuCodeBlock variant="preview" 
@@ -14,10 +14,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

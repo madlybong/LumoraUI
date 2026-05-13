@@ -8,6 +8,7 @@
 import { computed, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import DocsLayout from './layouts/DocsLayout.vue';
+import HomeLayout from './layouts/HomeLayout.vue';
 import { useThemeStore } from './stores/useThemeStore';
 import { useTheme } from '@astrake/lumora-ui/composables';
 
@@ -32,6 +33,9 @@ watch(() => themeStore.resolved, (theme) => {
 const layoutConfig = computed(() => {
   if (route.path.startsWith('/demo')) {
     return { component: 'div', class: 'h-screen w-screen overflow-hidden' };
+  }
+  if (route.path === '/') {
+    return { component: HomeLayout, class: '' };
   }
   return { component: DocsLayout, class: '' };
 });

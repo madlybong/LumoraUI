@@ -1,13 +1,13 @@
 <template>
-  <LuStack direction="vertical" gap="8">
+  <LuStack direction="vertical" class="gap-10">
     <LuPageHeader title="Getting Started" description="Lumora UI is a structural layout and component framework for Vue 3. It provides durable layout primitives and application shells that use standard Tailwind CSS v4 out of the box. You can easily extend or override the default styling using the reactive Skin engine." />
 
-    <LuStack direction="vertical" gap="4">
+    <LuStack direction="vertical" class="gap-5">
       <LuText as="h2" variant="section-title">1. Installation</LuText>
       <LuCodeBlock :code="installCode" lang="bash" />
     </LuStack>
 
-    <LuStack direction="vertical" gap="4">
+    <LuStack direction="vertical" class="gap-5">
       <LuText as="h2" variant="section-title">2. Setup the Vue Plugin</LuText>
       <LuText as="p" variant="body">
         Initialize the plugin in your main entry file. This is where you inject your skin overrides and pluggable icon library. Any skin classes you provide will automatically merge with the default Tailwind v4 structure using <LuText as="code" variant="code">tailwind-merge</LuText>.
@@ -15,7 +15,7 @@
       <LuCodeBlock :code="setupCode" lang="ts" />
     </LuStack>
 
-    <LuStack direction="vertical" gap="4">
+    <LuStack direction="vertical" class="gap-5">
       <LuText as="h2" variant="section-title">3. Import and use</LuText>
       <LuText as="p" variant="body">
         Components are designed to be imported individually. They tree-shake perfectly.

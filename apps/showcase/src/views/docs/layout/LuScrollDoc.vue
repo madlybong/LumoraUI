@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuScroll" description="A container that handles overflow by providing a scrollable area." />
 
   <LuCodeBlock variant="preview" 
@@ -10,7 +10,7 @@
       <PreviewFrame width="300px" height="200px" >
         <LuScroll>
           <LuStack direction="vertical" gap="2" class="p-4">
-            <LuStack v-for="i in 10" :key="i" class="p-4 border border-gray-200 dark:border-gray-800 rounded-lg shrink-0">
+            <LuStack v-for="i in 10" :key="i" class="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg shrink-0">
               Item {{ i }}
             </LuStack>
           </LuStack>
@@ -28,7 +28,7 @@
       <PreviewFrame width="300px" height="150px" >
         <LuScroll variant="horizontal">
           <LuStack direction="horizontal" gap="4" class="p-4">
-            <LuStack v-for="i in 10" :key="i" class="p-8 border border-gray-200 dark:border-gray-800 rounded-lg shrink-0 w-32 items-center justify-center">
+            <LuStack v-for="i in 10" :key="i" class="p-8 border border-zinc-200 dark:border-zinc-800 rounded-lg shrink-0 w-32 items-center justify-center">
               Card {{ i }}
             </LuStack>
           </LuStack>
@@ -37,10 +37,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

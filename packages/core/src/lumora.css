@@ -14,3 +14,35 @@
 
 /* Example: Webkit Scrollbar overrides can go here */
 
+.lu-collapsible-enter-active,
+.lu-collapsible-leave-active {
+  display: grid;
+  transition: grid-template-rows 200ms ease;
+}
+.lu-collapsible-enter-from,
+.lu-collapsible-leave-to {
+  grid-template-rows: 0fr;
+}
+.lu-collapsible-enter-to,
+.lu-collapsible-leave-from {
+  grid-template-rows: 1fr;
+}
+
+:root {
+  --lu-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lu-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.lu-fade-in {
+  animation: lu-fade-in 130ms var(--lu-ease-spring) forwards;
+}

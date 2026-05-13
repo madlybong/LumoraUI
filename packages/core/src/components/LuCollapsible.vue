@@ -1,11 +1,15 @@
 <template>
   <div v-bind="$attrs" :class="wrapperSkin">
-    <button :class="triggerSkin" @click="toggle">
+    <button type="button" :class="triggerSkin" @click="toggle">
       <slot name="trigger" :isOpen="isOpen" />
     </button>
-    <div v-show="isOpen" :class="contentSkin">
-      <slot name="content" />
-    </div>
+    <transition name="lu-collapsible">
+      <div v-show="isOpen" :class="contentSkin.wrapper">
+        <div :class="contentSkin.inner">
+          <slot name="content" />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -30,5 +34,8 @@ const toggle = () => {
 const { resolveSkin } = useLumoraConfig();
 const wrapperSkin = computed(() => resolveSkin("LuCollapsible", props.variant));
 const triggerSkin = computed(() => resolveSkin("LuCollapsibleTrigger", props.variant));
-const contentSkin = computed(() => resolveSkin("LuCollapsibleContent", props.variant));
+const contentSkin = computed(() => ({
+  wrapper: resolveSkin("LuCollapsibleContent", props.variant),
+  inner: resolveSkin("LuCollapsibleContent", "inner")
+}));
 </script>

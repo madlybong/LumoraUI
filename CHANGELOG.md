@@ -1,8 +1,47 @@
 # Changelog
 
-## [0.2.1] — 2026-05-12
+## [0.2.2] — 2026-05-14
 
 ### Fixed
+
+- **`LuButton`** — `to` and `href` declared props are now explicitly re-bound on the dynamic
+  `<component>`, fixing Vue Router console warnings (`Missing required prop: "to"`) when rendering
+  as `RouterLink` with `inheritAttrs: false`.
+- **`LuTab` active indicator** — Changed `border-rose-500` → `border-b-rose-500` so the bottom
+  underline correctly overrides the `border-transparent` default in light mode (was invisible).
+- **`LuToggleButton` active skin** — `activeSkin` resolver is now variant-aware: resolves
+  `${variant}-active` (e.g. `ghost-active`) before falling back to the generic `active` skin key.
+- **`LuCodeBlock` copy button** — Hover style uses `hover:bg-white/10 hover:text-zinc-100`
+  (alpha overlay) instead of the mode-sensitive `hover:bg-zinc-700 hover:text-white`, ensuring
+  icon visibility on the always-dark `#282c34` code header in both light and dark themes.
+- **`LuCollapsibleTrigger` default skin** — Removed hard-coded sidebar typography
+  (`text-[10px] uppercase tracking-widest text-zinc-400`). The skin is now a generic neutral
+  trigger container; label typography is delegated to slot content via `LuText variant="label"`.
+- **Tab list borders** — `LuTabList` default and `card-header` variants changed from
+  `dark:border-zinc-800` → `dark:border-zinc-700`, normalising separator visual weight across modes.
+- **Showcase build** — `apps/showcase/vite.config.ts` now uses an ordered alias array covering all
+  `@astrake/lumora-ui` sub-path exports (`/style`, `/composables`, `/layout`, `/shell`,
+  `/components`, `/skins`), fixing standalone `bun run build` without pre-built core artifacts.
+
+### Added
+
+- **`LuToggleGroup ghost` variant** — Removes the segmented-control background container for use
+  in minimal topbar / toolbar contexts.
+- **`LuToggleButton ghost` + `ghost-active` variants** — Subtle icon-button states with an elevated
+  `ring` on the active element; consumed by the documentation `ThemeToggle` topbar widget.
+
+### Refactored (Showcase)
+
+- **`DocsSearch`** — Rebuilt as a floating dropdown (`absolute top-full z-50`) with styled result
+  rows: muted section caption, bold item label, per-row hover highlight, Escape-key dismiss, and
+  external-link icon indicator.
+- **`DocsSidebar`** — Removed redundant nested `LuStack` wrappers inside the `#trigger` slot that
+  created double padding and triple hover-layer stacking in dark mode.
+
+---
+
+
+## [0.2.1] — 2026-05-12
 - Package publishing now ships compiled `dist` outputs (`.js` + `.d.ts`) and exports no longer point to raw `src/*.ts` entrypoints, preventing downstream strict TypeScript checks from surfacing Lumora internals.
 - Cleaned internal type noise in core source (`unused imports/params`, `type`-only `VNode` import) so workspace `vue-tsc` checks remain clean.
 

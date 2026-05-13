@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useLumoraConfig } from "../context";
-import { resolveLayoutProps, cn } from "../utils";
 
 const props = withDefaults(defineProps<{
   cols?: number;
@@ -16,10 +15,6 @@ const props = withDefaults(defineProps<{
   lgCols?: number;
   variant?: string;
   as?: string;
-  gap?: string | number;
-  padding?: string | number;
-  align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
-  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 }>(), {
   as: 'div'
 });
@@ -33,11 +28,10 @@ const colsClass = computed(() => {
 });
 
 const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => cn(
+const resolvedSkin = computed(() => [
   resolveSkin("LuGrid", props.variant),
-  resolveLayoutProps(props),
   colsClass.value
-));
+].filter(Boolean).join(" "));
 
 const gridStyle = computed(() => 
   props.cols ? { gridTemplateColumns: `repeat(${props.cols}, minmax(0, 1fr))` } : {}

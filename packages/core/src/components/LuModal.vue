@@ -1,21 +1,21 @@
 <template>
   <Teleport to="body">
     <transition
-      enter-active-class="transition ease-out duration-200"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition ease-in duration-150"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
+      :enter-active-class="resolvedOverlayTransitionSkin.enterActive"
+      :enter-from-class="resolvedOverlayTransitionSkin.enterFrom"
+      :enter-to-class="resolvedOverlayTransitionSkin.enterTo"
+      :leave-active-class="resolvedOverlayTransitionSkin.leaveActive"
+      :leave-from-class="resolvedOverlayTransitionSkin.leaveFrom"
+      :leave-to-class="resolvedOverlayTransitionSkin.leaveTo"
     >
       <div v-if="modelValue" :class="resolvedOverlaySkin" @click="handleOverlayClick" aria-modal="true" role="dialog" tabindex="-1">
         <transition
-          enter-active-class="transition ease-out duration-200"
-          enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-          leave-active-class="transition ease-in duration-150"
-          leave-from-class="opacity-100 translate-y-0 sm:scale-100"
-          leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          :enter-active-class="resolvedContentTransitionSkin.enterActive"
+          :enter-from-class="resolvedContentTransitionSkin.enterFrom"
+          :enter-to-class="resolvedContentTransitionSkin.enterTo"
+          :leave-active-class="resolvedContentTransitionSkin.leaveActive"
+          :leave-from-class="resolvedContentTransitionSkin.leaveFrom"
+          :leave-to-class="resolvedContentTransitionSkin.leaveTo"
           appear
         >
           <div v-if="modelValue" :class="resolvedSkin" @click.stop>
@@ -23,9 +23,9 @@
               <slot name="header">
                 <LuText variant="section-title">{{ title }}</LuText>
               </slot>
-              <button v-if="closable" type="button" :class="resolvedCloseButtonSkin" @click="close" aria-label="Close modal">
+              <LuButton v-if="closable" variant="icon" :class="resolvedCloseButtonSkin" @click="close" aria-label="Close modal">
                 <LuIcon name="x" class="h-5 w-5" />
-              </button>
+              </LuButton>
             </div>
             
             <div :class="resolvedContentSkin">
@@ -47,6 +47,7 @@ import { computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { useLumoraConfig } from "../context";
 import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
+import LuButton from "./LuButton.vue";
 
 const props = withDefaults(defineProps<{
   modelValue: boolean;
@@ -72,6 +73,24 @@ const resolvedHeaderSkin = computed(() => resolveSkin("LuModalHeader", props.var
 const resolvedContentSkin = computed(() => resolveSkin("LuModalContent", props.variant));
 const resolvedFooterSkin = computed(() => resolveSkin("LuModalFooter", props.variant));
 const resolvedCloseButtonSkin = computed(() => resolveSkin("LuModalCloseButton", props.variant));
+
+const resolvedOverlayTransitionSkin = computed(() => ({
+  enterActive: resolveSkin("LuModalTransitionOverlay", "enterActive"),
+  enterFrom: resolveSkin("LuModalTransitionOverlay", "enterFrom"),
+  enterTo: resolveSkin("LuModalTransitionOverlay", "enterTo"),
+  leaveActive: resolveSkin("LuModalTransitionOverlay", "leaveActive"),
+  leaveFrom: resolveSkin("LuModalTransitionOverlay", "leaveFrom"),
+  leaveTo: resolveSkin("LuModalTransitionOverlay", "leaveTo"),
+}));
+
+const resolvedContentTransitionSkin = computed(() => ({
+  enterActive: resolveSkin("LuModalTransitionContent", "enterActive"),
+  enterFrom: resolveSkin("LuModalTransitionContent", "enterFrom"),
+  enterTo: resolveSkin("LuModalTransitionContent", "enterTo"),
+  leaveActive: resolveSkin("LuModalTransitionContent", "leaveActive"),
+  leaveFrom: resolveSkin("LuModalTransitionContent", "leaveFrom"),
+  leaveTo: resolveSkin("LuModalTransitionContent", "leaveTo"),
+}));
 
 const close = () => {
   if (props.closable) {

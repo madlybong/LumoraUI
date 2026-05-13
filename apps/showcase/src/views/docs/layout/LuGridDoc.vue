@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuGrid" description="A primitive that maps to CSS Grid. It provides a structural foundation for 2D layouts." />
 
   <LuCodeBlock variant="preview" 
@@ -9,7 +9,7 @@
     <template #preview>
       <LuStack class="w-full">
         <LuGrid class="grid-cols-3 gap-4 w-full max-w-lg mx-auto">
-          <LuStack v-for="i in 6" :key="i" class="p-6 border border-gray-200 dark:border-gray-800 rounded-xl bg-gray-50 dark:bg-gray-900 items-center justify-center shadow-sm">
+          <LuStack v-for="i in 6" :key="i" class="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900 items-center justify-center shadow-sm">
             Cell {{ i }}
           </LuStack>
         </LuGrid>
@@ -17,10 +17,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

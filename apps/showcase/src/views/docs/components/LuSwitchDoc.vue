@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuSwitch" description="A control that allows the user to toggle between checked and not checked." />
 
   <LuCodeBlock variant="preview" 
@@ -20,10 +20,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">
@@ -37,7 +34,6 @@ const exampleCode = `<template>
   <LuStack   >
     <LuText as="span" >Notifications</LuText>
     <LuSwitch v-model="isOn" />
-  </LuStack>
 </template>
 
 <script setup>

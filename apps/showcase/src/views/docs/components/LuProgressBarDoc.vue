@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuProgressBar" description="Displays an indicator showing the completion progress of a task." />
 
   <LuCodeBlock variant="preview" 
@@ -27,10 +27,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

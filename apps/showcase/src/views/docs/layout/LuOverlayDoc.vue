@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuOverlay" description="A container that absolutely positions itself to fill its closest relative parent. Useful for modals, dialogs, or loading states." />
 
   <LuCodeBlock variant="preview" 
@@ -9,7 +9,7 @@
     <template #preview>
       <PreviewFrame width="400px" height="200px" >
         <LuStack   >
-          <p >This is the underlying content. It is obscured by the overlay.</p>
+          <LuText as="p" variant="body">This is the underlying content. It is obscured by the overlay.</LuText>
           
           <LuOverlay >
             <LuStack   >
@@ -21,10 +21,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuSplit" description="A resizable split container. Equivalent to Windows Forms' SplitContainer." />
 
   <LuCodeBlock variant="preview" 
@@ -21,19 +21,13 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack   >
-    <h2 >Props API</h2>
+  <PropTable title="LuSplit" :props-list="splitProps"  />
     
-    <h3 >LuSplit</h3>
-    <PropTable :props-list="splitProps"  />
-    
-    <h3 >LuSplitPane</h3>
-    <PropTable :props-list="paneProps" />
-  </LuStack>
+    <PropTable title="LuSplitPane" :props-list="paneProps" />
 </template>
 
 <script setup lang="ts">
-import { LuSplit, LuSplitPane, LuSplitResizer, LuPageHeader, LuStack , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuSplit, LuSplitPane, LuSplitResizer, LuPageHeader, LuStack , LuCodeBlock, LuText } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 

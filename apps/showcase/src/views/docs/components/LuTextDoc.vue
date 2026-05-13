@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuText" description="A polymorphic component for rendering text with semantic HTML tags." />
 
   <LuCodeBlock variant="preview" 
@@ -15,10 +15,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

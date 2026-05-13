@@ -7,7 +7,7 @@
     :code="exampleCode"
   >
     <template #preview>
-      <div class="h-[400px] w-full border border-gray-300 dark:border-gray-700 rounded-xl overflow-hidden mx-auto shadow-xl flex bg-white dark:bg-gray-950">
+      <div class="h-[400px] w-full border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden mx-auto shadow-xl flex bg-white dark:bg-zinc-950">
         <LuDesktopShell>
           <template #topbar>
             <LuDesktopTopBar>
@@ -51,7 +51,7 @@
           </template>
 
           <template #content>
-            <LuFill class="bg-gray-50 p-6 dark:bg-gray-900 overflow-y-auto">
+            <LuFill class="bg-zinc-50 p-6 dark:bg-zinc-900 overflow-y-auto">
               <LuStack direction="vertical" gap="4">
                 <LuCard>
                   <LuText variant="section-title">Main Content Area</LuText>

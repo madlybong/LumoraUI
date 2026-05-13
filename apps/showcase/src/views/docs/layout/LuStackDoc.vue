@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuStack" description="A flexible container for stacking elements either vertically or horizontally. Equivalent to WPF's StackPanel." />
 
   <LuCodeBlock variant="preview" 
@@ -33,10 +33,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

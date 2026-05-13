@@ -1,8 +1,8 @@
 <template>
-  <div v-bind="$attrs" :class="resolvedSkin.container">
+  <div v-bind="$attrs" :class="resolvedSkin.wrapper">
     <div v-if="title || description" :class="resolvedSkin.header">
-      <h3 v-if="title" :class="resolvedSkin.title">{{ title }}</h3>
-      <p v-if="description" :class="resolvedSkin.description">{{ description }}</p>
+      <LuText v-if="title" variant="section-title" :class="resolvedSkin.title">{{ title }}</LuText>
+      <LuText v-if="description" variant="body" :class="resolvedSkin.description">{{ description }}</LuText>
     </div>
 
     <template v-if="variant === 'preview'">
@@ -22,9 +22,9 @@
           <div v-if="activeTab === 'code'" :class="resolvedSkin.codeArea">
             <div :class="resolvedSkin.codeHeader">
               <div :class="resolvedSkin.badge">{{ lang }}</div>
-              <button @click="copyCode" :class="resolvedSkin.copyButton" aria-label="Copy code">
+              <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
                 <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
-              </button>
+              </LuButton>
             </div>
             <div :class="resolvedSkin.codeContent" v-html="html"></div>
           </div>
@@ -38,9 +38,9 @@
             <div :class="resolvedSkin.splitCodeArea">
               <div :class="resolvedSkin.codeHeader">
                 <div :class="resolvedSkin.badge">{{ lang }}</div>
-                <button @click="copyCode" :class="resolvedSkin.copyButton" aria-label="Copy code">
+                <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
                   <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
-                </button>
+                </LuButton>
               </div>
               <div :class="resolvedSkin.codeContent" v-html="html"></div>
             </div>
@@ -54,9 +54,9 @@
         <div :class="resolvedSkin.codeArea">
           <div :class="resolvedSkin.codeHeader">
             <div :class="resolvedSkin.badge">{{ lang }}</div>
-            <button @click="copyCode" :class="resolvedSkin.copyButton" aria-label="Copy code">
+            <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
               <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
-            </button>
+            </LuButton>
           </div>
           <div :class="resolvedSkin.codeContent" v-html="html"></div>
         </div>
@@ -65,32 +65,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { createHighlighter, type Highlighter } from 'shiki';
-
-let globalHighlighter: Highlighter | null = null;
-let highlighterPromise: Promise<Highlighter> | null = null;
-
-async function getHighlighter() {
-  if (globalHighlighter) return globalHighlighter;
-  if (!highlighterPromise) {
-    highlighterPromise = createHighlighter({
-      themes: ['one-dark-pro'],
-      langs: ['bash', 'vue', 'ts', 'html', 'css', 'json']
-    });
-  }
-  globalHighlighter = await highlighterPromise;
-  return globalHighlighter;
-}
-</script>
-
 <script setup lang="ts">
 import { ref, watch, onMounted, computed } from "vue";
+import { getHighlighter } from "../composables/useShiki";
 import { useLumoraConfig } from "../context";
 import LuTabs from "./LuTabs.vue";
 import LuTabList from "./LuTabList.vue";
 import LuTab from "./LuTab.vue";
 import LuIcon from "./LuIcon.vue";
+import LuText from "./LuText.vue";
+import LuButton from "./LuButton.vue";
 
 const props = withDefaults(defineProps<{
   code: string;
@@ -108,19 +92,19 @@ const props = withDefaults(defineProps<{
 const { resolveSkin } = useLumoraConfig();
 const resolvedSkin = computed(() => {
   return {
-    container: resolveSkin("LuCodeBlock", "container"),
-    header: resolveSkin("LuCodeBlock", "header"),
-    title: resolveSkin("LuCodeBlock", "title"),
-    description: resolveSkin("LuCodeBlock", "description"),
-    card: resolveSkin("LuCodeBlock", "card"),
-    previewArea: resolveSkin("LuCodeBlock", "previewArea"),
-    codeArea: resolveSkin("LuCodeBlock", "codeArea"),
-    splitCodeArea: resolveSkin("LuCodeBlock", "splitCodeArea"),
-    splitContainer: resolveSkin("LuCodeBlock", "splitContainer"),
-    codeHeader: resolveSkin("LuCodeBlock", "codeHeader"),
-    badge: resolveSkin("LuCodeBlock", "badge"),
-    copyButton: resolveSkin("LuCodeBlock", "copyButton"),
-    codeContent: resolveSkin("LuCodeBlock", "codeContent"),
+    wrapper: resolveSkin("LuCodeBlockWrapper", props.variant),
+    header: resolveSkin("LuCodeBlockHeader", props.variant),
+    title: resolveSkin("LuCodeBlockTitle", props.variant),
+    description: resolveSkin("LuCodeBlockDescription", props.variant),
+    card: resolveSkin("LuCodeBlockCard", props.variant),
+    previewArea: resolveSkin("LuCodeBlockPreviewArea", props.variant),
+    codeArea: resolveSkin("LuCodeBlockCodeArea", props.variant),
+    splitCodeArea: resolveSkin("LuCodeBlockSplitArea", props.variant),
+    splitContainer: resolveSkin("LuCodeBlockSplitContainer", props.variant),
+    codeHeader: resolveSkin("LuCodeBlockCodeHeader", props.variant),
+    badge: resolveSkin("LuCodeBlockBadge", props.variant),
+    copyButton: resolveSkin("LuCodeBlockCopyButton", props.variant),
+    codeContent: resolveSkin("LuCodeBlockCodeContent", props.variant),
   };
 });
 

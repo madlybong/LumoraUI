@@ -10,10 +10,10 @@
 
     <template #content>
       <LuScroll>
-        <LuStack as="main" variant="container" padding="8">
-          <LuFill>
+        <LuStack as="main" variant="container">
+          <div class="flex flex-col gap-8 flex-1">
             <router-view />
-          </LuFill>
+          </div>
           <DocsPrevNext />
           <DocsFooter />
         </LuStack>
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuDesktopShell, LuScroll, LuStack, LuFill } from '@astrake/lumora-ui';
+import { LuDesktopShell, LuScroll, LuStack } from '@astrake/lumora-ui';
 import DocsTopBar from '../components/DocsTopBar.vue';
 import DocsSidebar from '../components/DocsSidebar.vue';
 import DocsPrevNext from '../components/DocsPrevNext.vue';

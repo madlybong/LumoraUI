@@ -1,33 +1,41 @@
 <template>
   <LuStack direction="horizontal" justify="between" gap="4">
-    <LuCard v-if="prev" as="div" variant="panel" class="flex-1 flex">
-      <LuLink :to="prev.path!" variant="nav" class="flex flex-col items-start gap-1 p-4 w-full h-full">
-        <LuText as="span" variant="muted" class="flex items-center gap-1 text-sm">
-          <LuIcon name="arrow-left" class="h-4 w-4" />
-          Previous
-        </LuText>
-        <LuText as="span" variant="default" class="font-medium">{{ prev.label }}</LuText>
-      </LuLink>
-    </LuCard>
-    <div v-else class="flex-1"></div>
+    <!-- Previous -->
+    <LuButton
+      v-if="prev"
+      variant="secondary"
+      :to="prev.path!"
+      class="flex-1 h-auto py-3 px-4 flex flex-col items-start gap-0.5 whitespace-normal text-left"
+    >
+      <LuStack direction="horizontal" align="center" gap="1" class="text-xs opacity-60 font-normal">
+        <LuIcon name="arrow-left" class="h-3.5 w-3.5" />
+        Previous
+      </LuStack>
+      <span class="text-sm font-semibold">{{ prev.label }}</span>
+    </LuButton>
+    <div v-else class="flex-1" />
 
-    <LuCard v-if="next" as="div" variant="panel" class="flex-1 flex text-right">
-      <LuLink :to="next.path!" variant="nav" class="flex flex-col items-end gap-1 p-4 w-full h-full">
-        <LuText as="span" variant="muted" class="flex items-center justify-end gap-1 text-sm">
-          Next
-          <LuIcon name="arrow-right" class="h-4 w-4" />
-        </LuText>
-        <LuText as="span" variant="default" class="font-medium">{{ next.label }}</LuText>
-      </LuLink>
-    </LuCard>
-    <div v-else class="flex-1"></div>
+    <!-- Next -->
+    <LuButton
+      v-if="next"
+      variant="secondary"
+      :to="next.path!"
+      class="flex-1 h-auto py-3 px-4 flex flex-col items-end gap-0.5 whitespace-normal text-right"
+    >
+      <LuStack direction="horizontal" align="center" gap="1" class="text-xs opacity-60 font-normal">
+        Next
+        <LuIcon name="arrow-right" class="h-3.5 w-3.5" />
+      </LuStack>
+      <span class="text-sm font-semibold">{{ next.label }}</span>
+    </LuButton>
+    <div v-else class="flex-1" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { LuIcon, LuStack, LuLink, LuText, LuCard } from '@astrake/lumora-ui';
+import { LuIcon, LuStack, LuButton } from '@astrake/lumora-ui';
 import { useNavTree } from '../composables/useNavTree';
 
 const route = useRoute();

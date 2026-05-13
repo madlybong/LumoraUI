@@ -1,10 +1,11 @@
 <template>
-  <LuStack direction="vertical" ref="searchContainer">
+  <LuStack direction="vertical" ref="searchContainer" class="relative">
     <LuInput 
       v-model="query"
       variant="default" 
       placeholder="Search documentation..." 
       @focus="isFocused = true"
+      @keydown.escape="isFocused = false"
     >
       <template #prepend>
         <LuIcon name="search" class="w-4 h-4" />
@@ -12,43 +13,41 @@
     </LuInput>
 
     <!-- Dropdown Results -->
-    <LuCard 
-      v-if="isFocused && query.length > 0" 
-      variant="default"
+    <div
+      v-if="isFocused && query.length > 0"
+      class="absolute top-full left-0 right-0 mt-1.5 z-50 overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
     >
-      <LuStack direction="horizontal" v-if="results.length === 0" >
-        No results found for "<LuText as="span" >{{ query }}</LuText>"
-      </LuStack>
-      <LuStack v-else direction="vertical" >
-        <template v-for="result in results" :key="result.item.path || result.item.label">
-          <LuLink 
-            v-if="!result.item.external && result.item.path"
-            :to="result.item.path"
-            
+      <!-- No results -->
+      <div v-if="results.length === 0" class="px-4 py-3 text-sm text-zinc-500 dark:text-zinc-400">
+        No results for "<span class="font-medium text-zinc-900 dark:text-zinc-100">{{ query }}</span>"
+      </div>
+
+      <!-- Result list -->
+      <ul v-else class="max-h-72 overflow-y-auto p-1.5 flex flex-col gap-0.5">
+        <li v-for="result in results" :key="result.item.path || result.item.label">
+          <component
+            :is="result.item.path && !result.item.external ? 'RouterLink' : 'a'"
+            v-bind="result.item.external ? { href: result.item.path, target: '_blank' } : { to: result.item.path }"
+            class="flex flex-col gap-0.5 px-3 py-2 rounded-lg cursor-pointer transition-colors duration-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 group"
             @click="selectItem"
           >
-            <LuText variant="default">{{ result.section }}</LuText>
-            <LuText variant="default">{{ result.item.label }}</LuText>
-          </LuLink>
-          <LuLink 
-            v-else-if="result.item.external && result.item.path"
-            :href="result.item.path"
-            target="_blank"
-            
-            @click="selectItem"
-          >
-            <LuText variant="default">{{ result.section }} <LuIcon name="arrow-up-right"  /></LuText>
-            <LuText variant="default">{{ result.item.label }}</LuText>
-          </LuLink>
-        </template>
-      </LuStack>
-    </LuCard>
+            <span class="text-[11px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-500 dark:group-hover:text-zinc-400">
+              {{ result.section }}
+            </span>
+            <span class="text-sm font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 flex items-center gap-1">
+              {{ result.item.label }}
+              <LuIcon v-if="result.item.external" name="arrow-up-right" class="w-3 h-3 opacity-60" />
+            </span>
+          </component>
+        </li>
+      </ul>
+    </div>
   </LuStack>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { LuInput, LuIcon, LuStack, LuCard, LuLink, LuText } from '@astrake/lumora-ui';
+import { LuInput, LuIcon, LuStack } from '@astrake/lumora-ui';
 import { useNavTree } from '../composables/useNavTree';
 
 const { navTree } = useNavTree();
@@ -70,9 +69,8 @@ const searchableItems = computed(() => {
 const results = computed(() => {
   if (!query.value.trim()) return [];
   const q = query.value.toLowerCase();
-  
-  return searchableItems.value.filter(entry => 
-    entry.item.label.toLowerCase().includes(q) || 
+  return searchableItems.value.filter(entry =>
+    entry.item.label.toLowerCase().includes(q) ||
     entry.section.toLowerCase().includes(q)
   );
 });
@@ -89,11 +87,6 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 };
 
-onMounted(() => {
-  document.addEventListener('mousedown', handleClickOutside);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('mousedown', handleClickOutside);
-});
+onMounted(() => { document.addEventListener('mousedown', handleClickOutside); });
+onUnmounted(() => { document.removeEventListener('mousedown', handleClickOutside); });
 </script>

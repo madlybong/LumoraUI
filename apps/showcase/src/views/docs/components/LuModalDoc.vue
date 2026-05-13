@@ -10,10 +10,10 @@
 
         <LuModal v-model="isOpen" title="Edit profile">
           <LuText variant="muted" class="mb-4">Make changes to your profile here. Click save when you're done.</LuText>
-          <div class="space-y-4 py-4">
+          <LuStack direction="vertical" class="gap-4 py-4">
             <LuInput placeholder="Name" />
             <LuInput placeholder="Username" />
-          </div>
+          </LuStack>
           <template #footer>
             <LuButton variant="primary" @click="isOpen = false">Save changes</LuButton>
           </template>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuCard, LuButton, LuModal, LuText, LuInput , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuCard, LuButton, LuModal, LuText, LuInput, LuStack, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const isOpen = ref(false);

@@ -16,36 +16,30 @@
           </LuTabList>
           
           <LuTabPanel value="account" >
-            <h3 >Account Info</h3>
-            <p >Make changes to your account here.</p>
+            <LuText as="h3" variant="section-title" class="mb-2">Account Info</LuText>
+            <LuText as="p" variant="body">Make changes to your account here.</LuText>
           </LuTabPanel>
           <LuTabPanel value="password" >
-            <h3 >Password</h3>
-            <p >Change your password here.</p>
+            <LuText as="h3" variant="section-title" class="mb-2">Password</LuText>
+            <LuText as="p" variant="body">Change your password here.</LuText>
           </LuTabPanel>
           <LuTabPanel value="settings" >
-            <h3 >Settings</h3>
-            <p >Manage your notification settings.</p>
+            <LuText as="h3" variant="section-title" class="mb-2">Settings</LuText>
+            <LuText as="p" variant="body">Manage your notification settings.</LuText>
           </LuTabPanel>
         </LuTabs>
       </LuStack>
     </template>
   </LuCodeBlock>
 
-  <LuStack   >
-    <h2 >Props API</h2>
-    
-    <h3 >LuTabs</h3>
-    <PropTable :props-list="tabsProps"  />
-    
-    <h3 >LuTab & LuTabPanel</h3>
-    <PropTable :props-list="itemProps" />
-  </LuStack>
+  <PropTable title="LuTabs" :props-list="tabsProps" />
+
+  <PropTable title="LuTab & LuTabPanel" :props-list="itemProps" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuTabs, LuTabList, LuTab, LuTabPanel, LuPageHeader, LuCodeBlock, LuStack } from '@astrake/lumora-ui';
+import { LuTabs, LuTabList, LuTab, LuTabPanel, LuPageHeader, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const activeTab = ref('account');

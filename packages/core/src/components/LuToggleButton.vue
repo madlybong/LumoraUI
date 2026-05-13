@@ -31,5 +31,10 @@ const onClick = () => {
 
 const { resolveSkin } = useLumoraConfig();
 const resolvedSkin = computed(() => resolveSkin("LuToggleButton", props.variant));
-const activeSkin = computed(() => resolveSkin("LuToggleButton", "active"));
+const activeSkin = computed(() => {
+  const activeVariant = props.variant ? `${props.variant}-active` : "active";
+  const skin = resolveSkin("LuToggleButton", activeVariant);
+  // Fallback to standard 'active' if the variant-specific active skin isn't defined
+  return skin || resolveSkin("LuToggleButton", "active");
+});
 </script>

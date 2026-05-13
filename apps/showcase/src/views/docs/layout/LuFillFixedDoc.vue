@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuFill & LuFixed" description="Layout modifiers that dictate how elements consume space within a Flex or Grid container.
       <code>LuFill</code> expands to consume available space. <code>LuFixed</code> prevents an element from shrinking." />
 
@@ -21,10 +21,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

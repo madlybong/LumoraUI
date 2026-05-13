@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuDock & LuDockItem" description="A layout primitive that docks child elements to the edges of the container. 
       The final item (which should not be a LuDockItem) fills the remaining center space.
       Equivalent to WPF's DockPanel." />
@@ -23,15 +23,11 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack   >
-    <h2 >Props API</h2>
-    <h3 >LuDockItem</h3>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable title="LuDockItem" :props-list="propsData" />
 </template>
 
 <script setup lang="ts">
-import { LuDock, LuDockItem, LuPageHeader, LuCodeBlock, LuStack } from '@astrake/lumora-ui';
+import { LuDock, LuDockItem, LuPageHeader, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuToggleGroup" description="A set of two-state buttons that can be toggled on or off." />
 
   <LuCodeBlock variant="preview" 
@@ -23,15 +23,11 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" gap="4" class="mt-8">
-    <LuText as="h2" variant="section-title">Props API</LuText>
-    
-    <LuText as="h3" variant="section-title" class="mt-4">LuToggleGroup</LuText>
+  <LuText as="h3" variant="section-title" class="mt-4">LuToggleGroup</LuText>
     <PropTable :props-list="groupPropsData" />
     
     <LuText as="h3" variant="section-title" class="mt-4">LuToggleButton</LuText>
     <PropTable :props-list="buttonPropsData" />
-  </LuStack>
 </template>
 
 <script setup lang="ts">

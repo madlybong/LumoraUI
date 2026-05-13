@@ -1,11 +1,11 @@
 <template>
   <LuCard  :style="wrapperStyle">
-    <LuCard 
-      
+    <div
+      class="flex items-center justify-center overflow-hidden bg-zinc-50 dark:bg-zinc-800/70 rounded-lg transition-colors"
       :style="frameStyle"
     >
       <slot />
-    </LuCard>
+    </div>
   </LuCard>
 </template>
 

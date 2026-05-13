@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuTooltip" description="A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it." />
 
   <LuCodeBlock variant="preview" 
@@ -22,10 +22,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

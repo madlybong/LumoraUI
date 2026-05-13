@@ -1,7 +1,7 @@
 <template>
   <div v-bind="$attrs" :class="containerSkin" @mouseenter="onEnter" @mouseleave="onLeave">
     <slot name="trigger" />
-    <div v-if="isVisible" :class="contentSkin">
+    <div v-show="isVisible" :class="contentSkin">
       <slot name="content" />
     </div>
   </div>

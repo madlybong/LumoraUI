@@ -1,8 +1,13 @@
 <template>
   <component
     :is="componentType"
-    v-bind="bindingProps"
-    :class="resolvedSkin"
+    v-bind="$attrs"
+    :to="to"
+    :href="href"
+    :type="componentType === 'button' ? type : undefined"
+    :disabled="componentType === 'button' ? disabled : undefined"
+    :aria-disabled="disabled ? 'true' : undefined"
+    :class="[resolvedSkin, { 'pointer-events-none': disabled && componentType !== 'button' }]"
     @click="emit('click', $event)"
   >
     <slot />
@@ -10,8 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, resolveComponent, useAttrs } from "vue";
+import { computed, resolveComponent } from "vue";
 import { useLumoraConfig } from "../context";
+
+defineOptions({ inheritAttrs: false });
 
 const props = defineProps<{
   type?: "button" | "submit" | "reset";
@@ -34,23 +41,6 @@ const componentType = computed(() => {
   }
   if (props.href) return "a";
   return "button";
-});
-
-const bindingProps = computed(() => {
-  const p: any = { ...props, ...useAttrs() };
-  delete p.variant;
-  delete p.as;
-  
-  if (componentType.value !== 'button') {
-    delete p.type;
-  }
-  if (props.disabled && componentType.value !== 'button') {
-    // Buttons can be natively disabled, but links cannot easily.
-    // However, if disabled is true, we keep it so CSS can style it.
-    // To prevent click navigation on disabled links, we would need to handle the click event.
-    // For now, we pass it down so styling works.
-  }
-  return p;
 });
 
 const { resolveSkin } = useLumoraConfig();

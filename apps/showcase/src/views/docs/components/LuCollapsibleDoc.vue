@@ -7,16 +7,14 @@
     :code="exampleCode"
   >
     <template #preview>
-      <LuStack   >
-        <LuCollapsible >
+      <LuStack class="w-full max-w-sm">
+        <LuCollapsible>
           <template #trigger="{ isOpen }">
-            <LuStack   >
-              <LuText as="span" >Section Title</LuText>
-              <LuIcon name="chevron-down" />
-            </LuStack>
+            <span>Section Title</span>
+            <LuIcon name="chevron-down" class="w-4 h-4 ml-auto transition-transform duration-200" :class="{ 'rotate-180': isOpen }" />
           </template>
           <template #content>
-            <LuStack   >
+            <LuStack class="px-2 py-3 text-sm text-zinc-500 dark:text-zinc-400">
               This is the collapsible content. It can contain any elements or components.
             </LuStack>
           </template>
@@ -25,10 +23,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

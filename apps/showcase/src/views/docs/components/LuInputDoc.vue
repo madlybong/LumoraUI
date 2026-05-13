@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <LuPageHeader title="LuInput" description="A foundational input element. Renders a native HTML <code>&lt;input&gt;</code> element that supports <code>v-model</code>." />
 
   <LuCodeBlock variant="preview" 
@@ -13,10 +13,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" >
-    <LuText as="h2" variant="default" >Props API</LuText>
-    <PropTable :props-list="propsData" />
-  </LuStack>
+  <PropTable :props-list="propsData" />
 </template>
 
 <script setup lang="ts">

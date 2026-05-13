@@ -58,8 +58,14 @@ jobs:
       - name: Build package
         run: bun run build
 
-      - name: Generate changelog
-        run: bun run changelog
+      - name: Generate changelog (skip if already authored)
+        run: |
+          VERSION=$(cat VERSION | tr -d '[:space:]')
+          if grep -q "## \[$VERSION\]" CHANGELOG.md; then
+            echo "✓ CHANGELOG entry for v$VERSION already present — skipping auto-generation"
+          else
+            bun run changelog
+          fi
 
       - name: Extract version
         id: ver
