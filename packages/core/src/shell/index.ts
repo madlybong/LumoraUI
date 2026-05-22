@@ -11,3 +11,14 @@ export { default as LuMobileNavBar } from "./mobile/LuMobileNavBar.vue";
 export { default as LuEmbeddedShell } from "./embedded/LuEmbeddedShell.vue";
 export { default as LuEmbeddedTopBar } from "./embedded/LuEmbeddedTopBar.vue";
 export { default as LuEmbeddedStatusBar } from "./embedded/LuEmbeddedStatusBar.vue";
+
+// ── v0.5.0: Embedded POS suite ───────────────────────────────────────────────
+export { default as LuEmbeddedPOSLayout } from "./embedded/LuEmbeddedPOSLayout.vue";
+export { default as LuEmbeddedBarcodeInput } from "./embedded/LuEmbeddedBarcodeInput.vue";
+export { default as LuEmbeddedPOSItemList } from "./embedded/LuEmbeddedPOSItemList.vue";
+export type { POSLineItem as LuPOSLineItem } from "./embedded/LuEmbeddedPOSItemList.vue";
+export { default as LuEmbeddedPOSSummary } from "./embedded/LuEmbeddedPOSSummary.vue";
+export type { POSSummaryLine as LuPOSSummaryLine } from "./embedded/LuEmbeddedPOSSummary.vue";
+export { default as LuEmbeddedPOSPayment } from "./embedded/LuEmbeddedPOSPayment.vue";
+export type { PaymentMethod as LuPaymentMethod } from "./embedded/LuEmbeddedPOSPayment.vue";
+

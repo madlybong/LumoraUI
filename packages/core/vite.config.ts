@@ -24,7 +24,7 @@ export default defineConfig({
     },
     rollupOptions: {
       input: entries,
-      external: ["vue", "shiki", "clsx", "tailwind-merge", /^node:/],
+      external: ["vue", "shiki", "clsx", "tailwind-merge", "vue-echarts", /^@tiptap\//, /^echarts/, /^node:/],
       output: {
         format: "es",
         entryFileNames: "[name].js",

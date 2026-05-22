@@ -297,6 +297,16 @@ export const componentsSkin: SkinMap = {
     "muted": "text-xs text-zinc-400 dark:text-zinc-600",
     "code": "font-mono text-[0.8125rem] border border-zinc-200 bg-zinc-100/60 text-zinc-700 px-1 py-px rounded dark:border-zinc-700 dark:bg-zinc-800/50 dark:text-zinc-300",
     "brand-label": "text-sm font-semibold text-zinc-900 dark:text-zinc-50",
+    // Skin v2 — new variants
+    "metric-large": "text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 tabular-nums",
+    "metric-delta": "text-sm font-semibold tabular-nums",
+    "metric-delta-up": "text-sm font-semibold text-emerald-600 dark:text-emerald-400 tabular-nums",
+    "metric-delta-down": "text-sm font-semibold text-rose-600 dark:text-rose-400 tabular-nums",
+    "timeline-date": "text-xs font-medium text-zinc-500 dark:text-zinc-400",
+    "caption": "text-xs text-zinc-400 dark:text-zinc-500 leading-relaxed",
+    "grid-header": "text-[11px] font-semibold uppercase tracking-[0.06em] text-zinc-500 dark:text-zinc-400",
+    "overline": "text-[10px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-zinc-500",
+    "display": "text-4xl sm:text-5xl font-bold tracking-[-0.03em] leading-none text-zinc-950 dark:text-white",
   },
   LuPageHeader: {
     default: "pt-2 pb-8 border-b border-zinc-100 dark:border-zinc-800",
@@ -324,4 +334,508 @@ export const componentsSkin: SkinMap = {
   LuCodeBlockBadge: { default: "text-xs font-mono font-medium text-zinc-400 uppercase tracking-widest" },
   LuCodeBlockCopyButton: { default: "text-zinc-400 hover:text-zinc-100 hover:bg-white/10 transition-colors duration-150 p-1.5 rounded-md focus:outline-none" },
   LuCodeBlockCodeContent: { default: "p-4 overflow-x-auto text-sm bg-[#282c34] [&>pre]:!bg-transparent [&>pre]:!m-0 [&>pre]:!p-0" },
+
+  // ─── v0.3.0: LuDataGrid ───────────────────────────────────────────────────
+  LuDataGrid: {
+    default: "w-full text-sm",
+  },
+  LuDataGridContainer: {
+    default: "lu-data-grid-container relative w-full overflow-hidden rounded-xl border border-zinc-200/80 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900",
+  },
+  LuDataGridToolbar: {
+    default: "flex items-center justify-between gap-3 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800",
+  },
+  LuDataGridScrollArea: {
+    default: "lu-data-grid-scroll lu-scrollbar-thin",
+  },
+  LuDataGridTable: {
+    default: "lu-data-grid-table w-full caption-bottom text-sm",
+  },
+  LuDataGridHead: {
+    default: "border-b border-zinc-200 dark:border-zinc-800",
+  },
+  LuDataGridHeaderRow: {
+    default: "",
+  },
+  LuDataGridHeaderCell: {
+    default: "h-11 px-4 text-left align-middle whitespace-nowrap select-none",
+    sortable: "cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors",
+  },
+  LuDataGridBody: {
+    default: "[&_tr:last-child]:border-0",
+  },
+  LuDataGridRow: {
+    default: "border-b border-zinc-100 transition-colors hover:bg-zinc-50/80 data-[selected=true]:bg-rose-50/50 dark:border-zinc-800 dark:hover:bg-zinc-800/50 dark:data-[selected=true]:bg-rose-950/20",
+  },
+  LuDataGridCell: {
+    default: "px-4 py-3 align-middle",
+    editing: "p-1",
+  },
+  LuDataGridCheckboxCell: {
+    default: "px-3 align-middle w-10",
+  },
+  LuDataGridGroupRow: {
+    default: "border-b border-zinc-100 bg-zinc-50/80 dark:border-zinc-800 dark:bg-zinc-800/40",
+  },
+  LuDataGridGroupCell: {
+    default: "px-4 py-2 align-middle font-medium text-sm text-zinc-600 dark:text-zinc-400",
+  },
+  LuDataGridEmpty: {
+    default: "flex flex-col items-center justify-center gap-3 py-16 text-center",
+  },
+  LuDataGridFooter: {
+    default: "flex items-center justify-between px-4 py-3 border-t border-zinc-100 dark:border-zinc-800",
+  },
+  LuDataGridCards: {
+    default: "lu-data-grid-cards flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800",
+  },
+  LuDataGridCard: {
+    default: "flex flex-col gap-2 px-4 py-3",
+  },
+  LuDataGridColumnMenu: {
+    default: "absolute z-50 min-w-[160px] rounded-xl border border-zinc-200/80 bg-white/95 backdrop-blur-sm p-1 shadow-lg lu-slide-down dark:border-zinc-700/80 dark:bg-zinc-900/95",
+  },
+  LuDataGridSortIcon: {
+    default: "ml-1.5 inline-flex text-zinc-400 dark:text-zinc-500",
+    asc: "text-zinc-700 dark:text-zinc-300",
+    desc: "text-zinc-700 dark:text-zinc-300",
+  },
+
+  // ─── v0.3.0: LuChart components ───────────────────────────────────────────
+  LuBarChart: {
+    default: "w-full",
+  },
+  LuLineChart: {
+    default: "w-full",
+  },
+  LuDoughnutChart: {
+    default: "w-full",
+  },
+  LuSparkline: {
+    default: "inline-block",
+  },
+  LuGaugeChart: {
+    default: "w-full",
+  },
+  LuChartContainer: {
+    default: "relative w-full rounded-xl border border-zinc-200/80 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900",
+  },
+  LuChartLegend: {
+    default: "flex flex-wrap items-center gap-3 mt-3 text-xs text-zinc-500 dark:text-zinc-400",
+  },
+  LuChartLegendItem: {
+    default: "flex items-center gap-1.5",
+  },
+  LuChartLegendDot: {
+    default: "w-2.5 h-2.5 rounded-full shrink-0",
+  },
+
+  // ─── v0.3.0: LuFileUpload ─────────────────────────────────────────────────
+  LuFileUpload: {
+    default: "flex flex-col gap-3",
+  },
+  LuFileUploadDropzone: {
+    default: "relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-zinc-300 bg-zinc-50/50 px-6 py-10 text-center transition-colors cursor-pointer hover:border-rose-400 hover:bg-rose-50/30 dark:border-zinc-700 dark:bg-zinc-900/50 dark:hover:border-rose-500 dark:hover:bg-rose-950/20",
+    active: "border-rose-400 bg-rose-50/50 dark:border-rose-500 dark:bg-rose-950/20",
+  },
+  LuFileUploadInput: {
+    default: "absolute inset-0 opacity-0 cursor-pointer",
+  },
+  LuFileUploadIcon: {
+    default: "text-zinc-400 dark:text-zinc-500",
+  },
+  LuFileUploadHint: {
+    default: "text-xs text-zinc-400 dark:text-zinc-500",
+  },
+  LuFileUploadList: {
+    default: "flex flex-col gap-2",
+  },
+  LuFileUploadItem: {
+    default: "flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-900",
+  },
+  LuFileUploadItemIcon: {
+    default: "shrink-0 text-zinc-400 dark:text-zinc-500",
+  },
+  LuFileUploadItemName: {
+    default: "flex-1 min-w-0 truncate text-sm text-zinc-700 dark:text-zinc-300",
+  },
+  LuFileUploadItemSize: {
+    default: "text-xs text-zinc-400 dark:text-zinc-500 shrink-0",
+  },
+  LuFileUploadItemRemove: {
+    default: "shrink-0 text-zinc-400 hover:text-rose-500 transition-colors cursor-pointer dark:text-zinc-500 dark:hover:text-rose-400",
+  },
+
+  // ─── v0.3.0: LuMediaGallery ───────────────────────────────────────────────
+  LuMediaGallery: {
+    default: "grid gap-2",
+  },
+  LuMediaGalleryItem: {
+    default: "relative group overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800 aspect-square cursor-pointer",
+  },
+  LuMediaGalleryItemImage: {
+    default: "w-full h-full object-cover transition-transform duration-200 group-hover:scale-105",
+  },
+  LuMediaGalleryItemOverlay: {
+    default: "absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100",
+  },
+  LuMediaGalleryItemBadge: {
+    default: "absolute top-1.5 right-1.5",
+  },
+
+  // ─── v0.3.0: LuLightbox (internal) ────────────────────────────────────────
+  LuLightbox: {
+    default: "fixed inset-0 z-[100] flex items-center justify-center",
+  },
+  LuLightboxOverlay: {
+    default: "absolute inset-0 bg-black/80 backdrop-blur-sm",
+  },
+  LuLightboxContent: {
+    default: "relative z-10 max-w-[90vw] max-h-[90vh] flex items-center justify-center",
+  },
+  LuLightboxImage: {
+    default: "max-w-full max-h-[90vh] rounded-lg object-contain shadow-2xl",
+  },
+  LuLightboxNav: {
+    default: "absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-colors cursor-pointer",
+    prev: "left-4",
+    next: "right-4",
+  },
+  LuLightboxClose: {
+    default: "absolute top-4 right-4 z-20 flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-colors cursor-pointer",
+  },
+  LuLightboxCaption: {
+    default: "absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-sm text-white/80",
+  },
+
+  // ─── v0.3.0: LuTimeline ───────────────────────────────────────────────────
+  LuTimeline: {
+    default: "flex flex-col",
+  },
+  LuTimelineItem: {
+    default: "relative flex gap-4 pb-8 last:pb-0",
+  },
+  LuTimelineDotWrapper: {
+    default: "relative flex flex-col items-center shrink-0",
+  },
+  LuTimelineDot: {
+    default: "flex items-center justify-center w-8 h-8 rounded-full border-2 border-zinc-200 bg-white text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400",
+    success: "border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400",
+    warning: "border-amber-200 bg-amber-50 text-amber-600 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-400",
+    danger: "border-rose-200 bg-rose-50 text-rose-600 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-400",
+    info: "border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-400",
+  },
+  LuTimelineConnector: {
+    default: "lu-timeline-connector flex-1 w-0.5 bg-zinc-200 mt-1 dark:bg-zinc-700",
+  },
+  LuTimelineContent: {
+    default: "flex-1 min-w-0 pt-1 pb-2",
+  },
+  LuTimelineDate: {
+    default: "text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-0.5",
+  },
+
+  // ─── v0.3.0: LuFormWizard ─────────────────────────────────────────────────
+  LuFormWizard: {
+    default: "flex flex-col w-full",
+  },
+  LuFormWizardSteps: {
+    default: "relative flex items-center justify-between gap-2 px-2 pb-8",
+  },
+  LuFormWizardStepWrapper: {
+    default: "relative flex flex-col items-center gap-1.5 flex-1",
+  },
+  LuFormWizardStep: {
+    default: "flex items-center justify-center w-9 h-9 rounded-full border-2 border-zinc-300 bg-white text-sm font-medium text-zinc-500 transition-all duration-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400",
+    active: "border-rose-500 bg-rose-50 text-rose-600 dark:border-rose-400 dark:bg-rose-950/30 dark:text-rose-400",
+    completed: "border-emerald-500 bg-emerald-50 text-emerald-600 dark:border-emerald-400 dark:bg-emerald-950/30 dark:text-emerald-400",
+  },
+  LuFormWizardStepLabel: {
+    default: "text-xs text-center text-zinc-500 dark:text-zinc-400 whitespace-nowrap",
+    active: "text-rose-600 font-medium dark:text-rose-400",
+    completed: "text-emerald-600 dark:text-emerald-400",
+  },
+  LuFormWizardStepConnector: {
+    default: "lu-form-wizard-step-connector bg-zinc-200 dark:bg-zinc-700",
+    completed: "bg-emerald-400 dark:bg-emerald-500",
+  },
+  LuFormWizardBody: {
+    default: "flex-1 min-h-0",
+  },
+  LuFormWizardFooter: {
+    default: "flex items-center justify-between gap-3 pt-6 border-t border-zinc-100 mt-6 dark:border-zinc-800",
+  },
+  LuFormWizardError: {
+    default: "text-sm text-rose-600 dark:text-rose-400",
+  },
+
+  // ─── v0.3.0: LuFormField ──────────────────────────────────────────────────
+  LuFormField: {
+    default: "flex flex-col gap-1.5",
+  },
+  LuFormFieldLabel: {
+    default: "text-sm font-medium text-zinc-700 dark:text-zinc-300",
+  },
+  LuFormFieldHint: {
+    default: "text-xs text-zinc-400 dark:text-zinc-500",
+  },
+  LuFormFieldError: {
+    default: "text-xs text-rose-600 dark:text-rose-400",
+  },
+
+  // ─── v0.3.0: LuTree ───────────────────────────────────────────────────────
+  LuTree: {
+    default: "flex flex-col gap-0.5 select-none",
+  },
+  LuTreeNode: {
+    default: "flex flex-col",
+  },
+  LuTreeNodeContent: {
+    default: "relative flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm text-zinc-700 cursor-pointer hover:bg-zinc-100 transition-colors dark:text-zinc-300 dark:hover:bg-zinc-800",
+    selected: "bg-rose-50 text-rose-700 hover:bg-rose-50 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/30",
+    disabled: "opacity-40 pointer-events-none",
+  },
+  LuTreeNodeToggle: {
+    default: "flex items-center justify-center w-5 h-5 shrink-0 text-zinc-400 dark:text-zinc-500",
+  },
+  LuTreeNodeCheckbox: {
+    default: "shrink-0",
+  },
+  LuTreeNodeLabel: {
+    default: "flex-1 min-w-0 truncate",
+  },
+  LuTreeChildren: {
+    default: "ml-5 pl-3 border-l border-zinc-200 mt-0.5 flex flex-col gap-0.5 dark:border-zinc-700",
+  },
+
+  // ─── v0.4.0: LuKanban ─────────────────────────────────────────────────────
+  LuKanban: {
+    default: "w-full",
+  },
+  LuKanbanBoard: {
+    default: "flex gap-4 overflow-x-auto pb-4 lu-scrollbar-thin",
+  },
+  LuKanbanColumn: {
+    default: "flex flex-col gap-3 min-w-[280px] max-w-[320px] shrink-0",
+  },
+  LuKanbanColumnHeader: {
+    default: "flex items-center justify-between gap-2 px-1",
+  },
+  LuKanbanColumnHeaderDot: {
+    default: "w-2 h-2 rounded-full shrink-0",
+  },
+  LuKanbanColumnHeaderTitle: {
+    default: "text-sm font-semibold text-zinc-700 dark:text-zinc-300 flex-1",
+  },
+  LuKanbanColumnHeaderCount: {
+    default: "text-xs text-zinc-400 dark:text-zinc-500 tabular-nums",
+  },
+  LuKanbanColumnBody: {
+    default: "flex flex-col gap-2 min-h-[120px] rounded-xl bg-zinc-50/80 p-2 dark:bg-zinc-800/40",
+  },
+  LuKanbanCard: {
+    default: "rounded-lg border border-zinc-200/80 bg-white p-3 shadow-xs cursor-grab active:cursor-grabbing transition-shadow hover:shadow-sm dark:border-zinc-700 dark:bg-zinc-900",
+    dragging: "shadow-lg opacity-80 rotate-1",
+  },
+
+  // ─── v0.4.0: LuCalendar / LuDateRangePicker ───────────────────────────────
+  LuCalendar: {
+    default: "flex flex-col gap-4",
+  },
+  LuCalendarHeader: {
+    default: "flex items-center justify-between gap-2",
+  },
+  LuCalendarNav: {
+    default: "flex items-center gap-1",
+  },
+  LuCalendarTitle: {
+    default: "text-sm font-semibold text-zinc-900 dark:text-zinc-50",
+  },
+  LuCalendarGrid: {
+    default: "w-full border-collapse",
+  },
+  LuCalendarGridHeader: {
+    default: "text-center",
+  },
+  LuCalendarGridHeaderCell: {
+    default: "pb-2 text-[11px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500",
+  },
+  LuCalendarDay: {
+    default: "relative p-1 text-center",
+  },
+  LuCalendarDayButton: {
+    default: "w-8 h-8 rounded-full text-sm flex items-center justify-center mx-auto hover:bg-zinc-100 transition-colors cursor-pointer dark:hover:bg-zinc-800",
+    today: "font-semibold text-rose-600 dark:text-rose-400",
+    selected: "bg-rose-600 text-white hover:bg-rose-700 dark:bg-rose-500 dark:hover:bg-rose-600",
+    inRange: "bg-rose-50 text-rose-700 rounded-none dark:bg-rose-950/30 dark:text-rose-300",
+    disabled: "opacity-30 pointer-events-none",
+    otherMonth: "text-zinc-300 dark:text-zinc-700",
+  },
+  LuCalendarEventDot: {
+    default: "absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-rose-500",
+  },
+  LuCalendarEvent: {
+    default: "truncate rounded px-1 py-0.5 text-[10px] font-medium cursor-pointer",
+  },
+  LuDateRangePicker: {
+    default: "relative inline-block",
+  },
+  LuDateRangePickerInput: {
+    default: "flex h-9 items-center gap-2 rounded-lg border border-zinc-300 bg-zinc-50 px-3 text-sm text-zinc-900 cursor-pointer hover:border-zinc-400 transition-colors dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50",
+  },
+  LuDateRangePickerDropdown: {
+    default: "absolute z-50 top-full mt-1 rounded-xl border border-zinc-200/80 bg-white shadow-xl p-3 lu-slide-down dark:border-zinc-700/80 dark:bg-zinc-900",
+  },
+  LuDateRangePresets: {
+    default: "flex flex-col gap-1 border-r border-zinc-100 pr-3 mr-3 dark:border-zinc-800",
+  },
+  LuDateRangePreset: {
+    default: "px-3 py-1.5 text-sm rounded-md text-zinc-600 hover:bg-zinc-100 cursor-pointer transition-colors dark:text-zinc-400 dark:hover:bg-zinc-800",
+    active: "bg-rose-50 text-rose-700 hover:bg-rose-50 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/30",
+  },
+
+  // ─── v0.4.0: LuDashboardGrid ──────────────────────────────────────────────
+  LuDashboardGrid: {
+    default: "lu-dashboard-grid w-full",
+  },
+  LuDashboardGridWidget: {
+    default: "relative",
+  },
+  LuDashboardGridWidgetHeader: {
+    default: "flex items-center justify-between gap-2 mb-3",
+  },
+  LuDashboardGridWidgetDragHandle: {
+    default: "text-zinc-300 hover:text-zinc-500 cursor-grab active:cursor-grabbing transition-colors dark:text-zinc-600 dark:hover:text-zinc-400",
+  },
+  LuDashboardGridEditMode: {
+    default: "[&_.lu-dashboard-widget]:ring-2 [&_.lu-dashboard-widget]:ring-rose-300 [&_.lu-dashboard-widget]:ring-offset-1",
+  },
+
+  // ─── v0.4.0: LuCommandPalette ─────────────────────────────────────────────
+  LuCommandPalette: {
+    default: "relative",
+  },
+  LuCommandPaletteOverlay: {
+    default: "lu-command-palette-overlay fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm flex items-start justify-center pt-[15vh] px-4",
+  },
+  LuCommandPaletteDialog: {
+    default: "w-full max-w-xl rounded-2xl border border-zinc-200/80 bg-white shadow-2xl overflow-hidden lu-slide-down dark:border-zinc-700/80 dark:bg-zinc-900",
+  },
+  LuCommandPaletteInputWrapper: {
+    default: "flex items-center gap-3 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800",
+  },
+  LuCommandPaletteInput: {
+    default: "flex-1 bg-transparent text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none dark:text-zinc-50 dark:placeholder:text-zinc-500",
+  },
+  LuCommandPaletteList: {
+    default: "max-h-[360px] overflow-y-auto py-2 lu-scrollbar-thin",
+  },
+  LuCommandPaletteGroup: {
+    default: "px-2 pb-2",
+  },
+  LuCommandPaletteGroupLabel: {
+    default: "px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500",
+  },
+  LuCommandPaletteItem: {
+    default: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-zinc-700 cursor-pointer transition-colors dark:text-zinc-300",
+    active: "bg-rose-50 text-rose-700 dark:bg-rose-950/30 dark:text-rose-300",
+  },
+  LuCommandPaletteItemIcon: {
+    default: "shrink-0 text-zinc-400 dark:text-zinc-500",
+  },
+  LuCommandPaletteEmpty: {
+    default: "flex items-center justify-center py-12 text-sm text-zinc-400 dark:text-zinc-500",
+  },
+  LuCommandPaletteFooter: {
+    default: "flex items-center gap-3 px-4 py-2.5 border-t border-zinc-100 dark:border-zinc-800",
+  },
+  LuCommandPaletteKbd: {
+    default: "inline-flex items-center gap-0.5 rounded border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 text-[10px] font-mono text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400",
+  },
+
+  // ─── v0.4.0: LuRichTextEditor ─────────────────────────────────────────────
+  LuRichTextEditor: {
+    default: "flex flex-col rounded-xl border border-zinc-300 bg-zinc-50 overflow-hidden transition-[border-color] focus-within:border-rose-500 dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-rose-400",
+  },
+  LuRichTextEditorToolbar: {
+    default: "flex items-center gap-0.5 flex-wrap px-2 py-1.5 border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900",
+  },
+  LuRichTextEditorToolbarButton: {
+    default: "flex items-center justify-center w-8 h-8 rounded-md text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 transition-colors cursor-pointer dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200",
+    active: "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50",
+  },
+  LuRichTextEditorToolbarDivider: {
+    default: "w-px h-5 bg-zinc-200 mx-1 dark:bg-zinc-700",
+  },
+  LuRichTextEditorContent: {
+    default: "px-4 py-3 min-h-[120px] text-sm text-zinc-900 leading-relaxed focus:outline-none [&_.ProseMirror]:focus:outline-none [&_.ProseMirror]:min-h-[120px] dark:text-zinc-50",
+  },
+
+  // ─── v0.4.0: LuNotificationCenter ─────────────────────────────────────────
+  LuNotificationCenter: {
+    default: "relative inline-block",
+  },
+  LuNotificationCenterTrigger: {
+    default: "relative flex items-center justify-center w-9 h-9 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 transition-colors dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200",
+  },
+  LuNotificationCenterBadge: {
+    default: "absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-bold leading-none",
+  },
+  LuNotificationCenterPanel: {
+    default: "lu-notification-panel-enter-active absolute right-0 top-full mt-2 w-[380px] max-h-[520px] flex flex-col rounded-2xl border border-zinc-200/80 bg-white shadow-xl overflow-hidden dark:border-zinc-700/80 dark:bg-zinc-900",
+  },
+  LuNotificationCenterHeader: {
+    default: "flex items-center justify-between gap-3 px-4 py-3 border-b border-zinc-100 shrink-0 dark:border-zinc-800",
+  },
+  LuNotificationCenterList: {
+    default: "flex flex-col flex-1 overflow-y-auto divide-y divide-zinc-100 dark:divide-zinc-800 lu-scrollbar-thin",
+  },
+  LuNotificationCenterItem: {
+    default: "flex gap-3 px-4 py-3 cursor-pointer hover:bg-zinc-50 transition-colors dark:hover:bg-zinc-800/60",
+  },
+  LuNotificationCenterItemUnread: {
+    default: "flex gap-3 px-4 py-3 cursor-pointer bg-rose-50/40 hover:bg-rose-50/70 transition-colors dark:bg-rose-950/10 dark:hover:bg-rose-950/20",
+  },
+  LuNotificationCenterUnreadDot: {
+    default: "mt-1.5 w-2 h-2 rounded-full bg-rose-500 shrink-0",
+  },
+  LuNotificationCenterEmpty: {
+    default: "flex flex-col items-center justify-center gap-2 py-12 text-center",
+  },
+  LuNotificationCenterFooter: {
+    default: "shrink-0 flex items-center justify-center px-4 py-2.5 border-t border-zinc-100 dark:border-zinc-800",
+  },
+
+  // ─── v0.5.0: LuEntityCard ─────────────────────────────────────────────────
+  LuEntityCard: {
+    default: "flex flex-col rounded-2xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden dark:border-zinc-800 dark:bg-zinc-900",
+  },
+  LuEntityCardHeader: {
+    default: "flex flex-col sm:flex-row gap-4 p-6 border-b border-zinc-100 dark:border-zinc-800",
+  },
+  LuEntityCardAvatar: {
+    default: "shrink-0",
+  },
+  LuEntityCardMeta: {
+    default: "flex flex-col gap-1 flex-1 min-w-0",
+  },
+  LuEntityCardStats: {
+    default: "grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-100 border-b border-zinc-100 dark:divide-zinc-800 dark:border-zinc-800",
+  },
+  LuEntityCardStat: {
+    default: "flex flex-col gap-0.5 px-4 py-3",
+  },
+  LuEntityCardStatLabel: {
+    default: "text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500",
+  },
+  LuEntityCardStatValue: {
+    default: "text-lg font-semibold text-zinc-900 dark:text-zinc-50 tabular-nums",
+  },
+  LuEntityCardActions: {
+    default: "flex flex-wrap items-center gap-2 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800",
+  },
+  LuEntityCardContent: {
+    default: "flex-1 p-0",
+  },
 };
+

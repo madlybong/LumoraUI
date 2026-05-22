@@ -1,8 +1,8 @@
-/* LumoraUI structural baseline — Tailwind v4 Escape Hatch, v0.1.7+ */
+/* LumoraUI structural baseline — Tailwind v4 Escape Hatch, v0.3.0+ */
 /* Consumers MUST import this: import '@astrake/lumora-ui/style' */
 
-/* 
-  With the transition to Tailwind v4 as the native design engine, 
+/*
+  With the transition to Tailwind v4 as the native design engine,
   all structural layout classes (e.g., .lu-button, .lu-stack) have been removed.
   Layout structure is now provided by the defaultSkin (`default.ts`) out of the box.
 
@@ -10,10 +10,10 @@
   1. Complex [data-state="..."] selector combinations.
   2. Webkit scrollbar pseudoclasses.
   3. Keyframe animations that Tailwind v4 cannot natively express.
+  4. CSS custom property token definitions for semantic pipeline colours.
 */
 
-/* Example: Webkit Scrollbar overrides can go here */
-
+/* ─── Collapsible transition ───────────────────────────────────────────────── */
 .lu-collapsible-enter-active,
 .lu-collapsible-leave-active {
   display: grid;
@@ -28,10 +28,12 @@
   grid-template-rows: 1fr;
 }
 
+/* ─── Easing tokens ────────────────────────────────────────────────────────── */
 :root {
   --lu-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ─── Keyframe animations ──────────────────────────────────────────────────── */
 @keyframes lu-fade-in {
   from {
     opacity: 0;
@@ -46,3 +48,140 @@
 .lu-fade-in {
   animation: lu-fade-in 130ms var(--lu-ease-spring) forwards;
 }
+
+@keyframes lu-slide-down {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lu-slide-down {
+  animation: lu-slide-down 160ms var(--lu-ease-spring) forwards;
+}
+
+@keyframes lu-slide-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lu-slide-up {
+  animation: lu-slide-up 160ms var(--lu-ease-spring) forwards;
+}
+
+/* ─── Semantic pipeline colour tokens (Skin v2) ────────────────────────────── */
+:root {
+  --lu-pipeline-success: #10b981;  /* emerald-500 */
+  --lu-pipeline-warning: #f59e0b;  /* amber-500   */
+  --lu-pipeline-danger:  #f43f5e;  /* rose-500    */
+  --lu-pipeline-info:    #3b82f6;  /* blue-500    */
+}
+
+.dark, [data-theme="dark"] {
+  --lu-pipeline-success: #34d399;  /* emerald-400 */
+  --lu-pipeline-warning: #fbbf24;  /* amber-400   */
+  --lu-pipeline-danger:  #fb7185;  /* rose-400    */
+  --lu-pipeline-info:    #60a5fa;  /* blue-400    */
+}
+
+/* ─── Timeline connector line ──────────────────────────────────────────────── */
+.lu-timeline-item:not(:last-child) > .lu-timeline-connector {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+}
+
+/* ─── DataGrid: column freeze (sticky) support ────────────────────────────── */
+.lu-data-grid-cell--frozen,
+.lu-data-grid-header-cell--frozen {
+  position: sticky;
+  z-index: 2;
+}
+
+/* ─── DataGrid: horizontal scroll wrapper ──────────────────────────────────── */
+.lu-data-grid-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── DataGrid: mobile card collapse (container query) ─────────────────────── */
+@container lu-data-grid (max-width: 600px) {
+  .lu-data-grid-table { display: none; }
+  .lu-data-grid-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+}
+@container lu-data-grid (min-width: 601px) {
+  .lu-data-grid-table { display: table; }
+  .lu-data-grid-cards { display: none; }
+}
+.lu-data-grid-container {
+  container-type: inline-size;
+  container-name: lu-data-grid;
+}
+
+/* ─── FormWizard step connector line ───────────────────────────────────────── */
+.lu-form-wizard-step-connector {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 1rem);
+  right: calc(-50% + 1rem);
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+/* ─── Tree indent guide lines ──────────────────────────────────────────────── */
+.lu-tree-node--guide::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: currentColor;
+  opacity: 0.15;
+}
+
+/* ─── Command palette backdrop ─────────────────────────────────────────────── */
+.lu-command-palette-overlay {
+  animation: lu-fade-in 120ms ease forwards;
+}
+
+/* ─── Notification center panel transition ─────────────────────────────────── */
+.lu-notification-panel-enter-active { animation: lu-slide-down 180ms var(--lu-ease-spring) forwards; }
+.lu-notification-panel-leave-active { animation: lu-slide-down 140ms ease reverse forwards; }
+
+/* ─── Kanban mobile scroll snap ────────────────────────────────────────────── */
+.lu-kanban-mobile-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.lu-kanban-mobile-col {
+  scroll-snap-align: start;
+  flex: 0 0 100%;
+}
+
+/* ─── POS layout: full-screen kiosk ───────────────────────────────────────── */
+.lu-embedded-pos-layout {
+  display: grid;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ─── POS item list: touch scroll ─────────────────────────────────────────── */
+.lu-embedded-pos-item-list {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Dashboard grid ───────────────────────────────────────────────────────── */
+.lu-dashboard-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/* ─── Scrollbar styling (optional, webkit only) ────────────────────────────── */
+.lu-scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+.lu-scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.lu-scrollbar-thin::-webkit-scrollbar-thumb { border-radius: 9999px; background: rgba(0,0,0,0.15); }
+

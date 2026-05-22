@@ -2,6 +2,11 @@
 
 This is the operating guide for AI coding agents working in this repository.
 
+> [!IMPORTANT]
+> **Primary Rulebook**: A comprehensive repository of project constraints, architectural guides, authoring checklists, and test patterns has been established inside the **`.agent/`** directory. Before making any modifications, AI coding agents must read and follow **[`.agent/rules.md`](file:///.agent/rules.md)**.
+
+---
+
 ## Mission
 
 `@astrake/lumora-ui` is a **headless Vue 3 component framework** with three surface targets.
@@ -19,7 +24,7 @@ Keep the repo aligned with this model:
 
 ---
 
-## Current State (v0.2.0+)
+## Current State (v0.2.2+)
 
 | Subsystem | Status |
 |---|---|
@@ -34,57 +39,17 @@ Keep the repo aligned with this model:
 
 ---
 
-## Repo Map
+## Directory Navigation
 
-```
-packages/core/src/
-  plugin.ts          ← Vue plugin — installs shallowReactive config via provide()
-  context.ts         ← useLumoraConfig() — inject + resolveSkin() + resolveIcon()
-  types.ts           ← SkinMap, LumoraUIConfig, IconResolver
-  lumora.css         ← Framework-owned CSS escape hatch (rarely used)
-  tailwind.ts        ← getLumoraSourceDir() for Tailwind v4 @source
-  index.ts           ← Public entry point — all exports
-  components/        ← Shared primitives: LuButton, LuCodeBlock, LuInput, LuToggleGroup, LuIcon...
-  shell/
-    desktop/         ← LuDesktopShell, LuDesktopTopBar, LuDesktopSidebar, LuDesktopRailBar...
-    mobile/          ← LuMobileShell
-    embedded/        ← LuEmbeddedShell
-  layout/            ← LuDock, LuFill, LuFixed, LuScroll, LuStack, LuGrid, LuSplit, LuOverlay
-  composables/       ← useTheme, useRail, useSplit
-  skins/default.ts   ← defaultSkin preset (Tailwind-based, optional)
-apps/showcase/       ← Reference app demonstrating all components
-tools/               ← build.ts, check.ts, version.ts, changelog.ts
-```
+Refer to the targeted guides within `.agent/` depending on your task:
 
----
-
-## Architectural Rules
-
-- **Components are headless.** No opinionated visual styles in `.vue` files. All layout, spacing, and styling flow through the skin string.
-- **`lumora.css` is an escape hatch.** It is reserved for complex CSS that Tailwind utilities cannot handle well (e.g., specific animation keyframes). Do not use it for standard layout.
-- **Surface isolation is absolute.** Desktop components never import Mobile or Embedded, and vice versa.
-- **`resolveSkin()` is the only theming API.** Never hard-code colors or decorative styles in components.
-
----
-
-## Working Rules
-
-- Keep components headless — structure and behavior only; no opinionated visual styles.
-- All structure and visual design must come from the `defaultSkin` via `resolveSkin()`.
-- Respect the surface isolation boundary — no cross-surface imports.
-- Keep the public API surface minimal per surface target.
-- Use conventional commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.).
-- Add tests for any new component behavior.
-- Update docs in the same change.
-
----
-
-## First Places to Read
-
-- `docs/CONSUMER_GUIDE.md` — if you are building a consumer app
-- `packages/core/src/types.ts` — SkinMap, LumoraUIConfig
-- `packages/core/src/context.ts` — resolveSkin() implementation
-- `packages/core/src/skins/default.ts` — The source of truth for all layout and styling
+* 📚 **Global Rulebook**: **[`.agent/rules.md`](file:///.agent/rules.md)** (Headless constraints, Surface isolation boundaries)
+* 🏗️ **Core Architecture**: **[`.agent/architecture.md`](file:///.agent/architecture.md)** (Dynamic skin resolution flow, dynamic merges)
+* 🧩 **Component Checklists**: **[`.agent/component-authoring.md`](file:///.agent/component-authoring.md)** (Step-by-step component creation checklist)
+* 🎨 **Skin Customization**: **[`.agent/skin-authoring.md`](file:///.agent/skin-authoring.md)** (Component variants, class merges)
+* 🧪 **Testing Framework**: **[`.agent/testing.md`](file:///.agent/testing.md)** (Vitest configuration, mount mocks)
+* 📦 **Release Life cycle**: **[`.agent/release.md`](file:///.agent/release.md)** (Bumping versions, synchronization, publishes)
+* 💻 **Reference Previews**: **[`.agent/showcase.md`](file:///.agent/showcase.md)** (Showcase views, local verification server)
 
 ---
 
@@ -100,23 +65,11 @@ Do **not** manually create npm packages or GitHub releases — automation handle
 
 ---
 
-## What "Done" Looks Like
+## Mandatory Verification Command
 
-- `bun run check` passes (`vue-tsc`)
-- `bun test` passes (Vitest)
-- `bun run build` passes (full Vite showcase build)
-- Docs match the current component API
-
----
-
-## Common Mistakes to Avoid
-
-| ❌ Mistake | ✅ Correct |
-|---|---|
-| Hard-coding Tailwind classes in Vue template | All classes must come from `resolveSkin()` |
-| Adding CSS layout rules to `lumora.css` | Define structural layout in `defaultSkin` via Tailwind classes |
-| Using `createRequire` glob pattern for Tailwind v4 | Use `@source` CSS directive |
-| Importing Desktop components into Mobile shell | Respect surface isolation |
-| Tracking build artifacts (`dist/`, `*.tgz`, `*.tsbuildinfo`) | Add to `.gitignore` |
-| Modifying `packages/core/package.json` version directly | Edit `VERSION` file only |
-| Non-conventional commits | Use `feat:`, `fix:`, `docs:`, `chore:` prefixes |
+Before finalizing any changes or declaring a task complete, run and pass this validation suite:
+```bash
+bun run check     # vue-tsc typecheck
+bun test          # Vitest suite runs
+bun run build     # Compiles packages & showcase application
+```

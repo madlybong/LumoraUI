@@ -43,3 +43,44 @@ export { default as LuToggleGroup } from "./LuToggleGroup.vue";
 export { default as LuToggleButton } from "./LuToggleButton.vue";
 export { default as LuCodeBlock } from "./LuCodeBlock.vue";
 export type { LuFormRules, LuFormErrors, LuFormValidator, LuFormContext } from "./LuForm.types";
+
+// ── v0.3.0: Data-rich components ─────────────────────────────────────────────
+export { default as LuDataGrid } from "./LuDataGrid.vue";
+export type { ColumnDef as LuColumnDef, Row as LuRow, DataGridSortState, DataGridCellEditPayload, DataGridPageChangePayload } from "./LuDataGrid.types";
+export { default as LuBarChart } from "./LuBarChart.vue";
+export { default as LuLineChart } from "./LuLineChart.vue";
+export { default as LuDoughnutChart } from "./LuDoughnutChart.vue";
+export { default as LuSparkline } from "./LuSparkline.vue";
+export { default as LuGaugeChart } from "./LuGaugeChart.vue";
+export { default as LuFileUpload } from "./LuFileUpload.vue";
+export type { UploadedFile as LuUploadedFile } from "./LuFileUpload.vue";
+export { default as LuMediaGallery } from "./LuMediaGallery.vue";
+export type { MediaItem as LuMediaItem } from "./LuMediaGallery.vue";
+export { default as LuTimeline } from "./LuTimeline.vue";
+export { default as LuTimelineItem } from "./LuTimelineItem.vue";
+export { default as LuFormField } from "./LuFormField.vue";
+export { default as LuFormWizard } from "./LuFormWizard.vue";
+export type { FormWizardStep as LuFormWizardStep } from "./LuFormWizard.types";
+export { default as LuTree } from "./LuTree.vue";
+export { default as LuTreeNode } from "./LuTreeNode.vue";
+export type { TreeNodeData as LuTreeNodeData } from "./LuTree.types";
+
+// ── v0.4.0: Operational components ───────────────────────────────────────────
+export { default as LuKanban } from "./LuKanban.vue";
+export type { KanbanColumn as LuKanbanColumn, KanbanCard as LuKanbanCard, KanbanMovePayload as LuKanbanMovePayload } from "./LuKanban.types";
+export { default as LuCalendar } from "./LuCalendar.vue";
+export type { CalendarEvent as LuCalendarEvent } from "./LuCalendar.vue";
+export { default as LuDateRangePicker } from "./LuDateRangePicker.vue";
+export type { DateRange as LuDateRange } from "./LuDateRangePicker.vue";
+export { default as LuDashboardGrid } from "./LuDashboardGrid.vue";
+export type { DashboardWidget as LuDashboardWidget } from "./LuDashboardGrid.vue";
+export { default as LuCommandPalette } from "./LuCommandPalette.vue";
+export type { CommandItem as LuCommandItem } from "./LuCommandPalette.vue";
+export { default as LuRichTextEditor } from "./LuRichTextEditor.vue";
+export { default as LuNotificationCenter } from "./LuNotificationCenter.vue";
+export type { NotificationItem as LuNotificationItem } from "./LuNotificationCenter.vue";
+
+// ── v0.5.0: Entity components ─────────────────────────────────────────────────
+export { default as LuEntityCard } from "./LuEntityCard.vue";
+export { default as LuEntityCardStat } from "./LuEntityCardStat.vue";
+

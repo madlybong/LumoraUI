@@ -20,10 +20,10 @@
 
 | Target | Components | Use case |
 |--------|-----------|---------|
-| **Mobile** (`LuM*`) | `LuMButton`, `LuMInput`, `LuMCard`, `LuMList`, `LuMBottomSheet`, `LuMNavBar` | PWA-ready apps — touch targets ≥44px, swipe gestures, bottom nav |
-| **Desktop** (`LuD*`) | `LuDButton`, `LuDInput`, `LuDTable`, `LuDSidebar`, `LuDDropdown`, `LuDModal` | Feature-rich browser / Electron apps — data tables, keyboard shortcuts |
-| **Embedded** (`LuE*`) | `LuEButton`, `LuEDisplay`, `LuEGrid`, `LuEStatusBar`, `LuEAlert`, `LuENumpad` | Kiosk, IoT, in-car screens — fixed viewport, high contrast, minimal JS |
-| **Shared** (`Lu*`) | `LuIcon`, `LuSpinner`, `LuBadge`, `LuPortal` | Cross-surface primitives |
+| **Mobile** (`LuMobile*`) | `LuMobileShell`, `LuMobileHeader`, `LuMobileNavBar` | PWA-ready apps — touch targets ≥44px, swipe gestures, bottom nav |
+| **Desktop** (`LuDesktop*`) | `LuDesktopShell`, `LuDesktopSidebar`, `LuDesktopTopBar` | Feature-rich browser / Electron apps — resizable splits, keyboard shortcuts |
+| **Embedded** (`LuEmbedded*`) | `LuEmbeddedShell`, `LuEmbeddedPOSLayout`, `LuEmbeddedPOSSummary` | Retail POS, Kiosk, IoT, in-car screens — fixed viewport, high contrast, touch-first |
+| **Shared** (`Lu*`) | `LuDataGrid`, `LuKanban`, `LuBarChart`, `LuRichTextEditor`, `LuButton` | Cross-surface primitives, data-rich components, and operational features |
 
 ---
 
@@ -48,13 +48,11 @@ bun add vue@^3.5.0
 ## Usage
 
 ```ts
-// Import all targets
-import { LuIcon, LuSpinner } from "@astrake/lumora-ui"
+// Import shared components and layout primitives
+import { LuButton, LuDataGrid, LuKanban, LuStack } from "@astrake/lumora-ui"
 
-// Import a specific target (recommended for tree-shaking)
-import { LuMButton, LuMCard } from "@astrake/lumora-ui/mobile"
-import { LuDTable, LuDSidebar } from "@astrake/lumora-ui/desktop"
-import { LuEDisplay, LuEGrid } from "@astrake/lumora-ui/embedded"
+// Import surface-specific shells
+import { LuMobileShell, LuDesktopShell, LuEmbeddedShell, LuPOSLayout } from "@astrake/lumora-ui"
 ```
 
 **Register the plugin:**
@@ -94,9 +92,10 @@ Each target root overrides tokens as appropriate (e.g., Embedded reduces shadow 
 | Component framework | Vue 3.5+ (Composition API) |
 | Language | TypeScript 5.9+ |
 | Bundler | Vite (library mode, three entry points) |
+| Interactive Add-ons (Peer) | Apache ECharts, Tiptap, Sortable.js (`vue-draggable-plus`) |
 | Type check | vue-tsc |
 | Tests | Vitest + @vue/test-utils |
-| Package manager | Bun 1.3.12 |
+| Package manager | Bun 1.3+ |
 
 ---
 
@@ -138,7 +137,7 @@ bun run dev        # start the showcase app
 - [Architecture Guide](./docs/ARCHITECTURE.md)
 - [Development Workflow](./docs/DEVELOPMENT.md)
 - [Release Workflow](./docs/RELEASES.md)
-- [AI Agent Guide](./docs/AI_AGENT_GUIDE.md)
+- [AI Agent Knowledge Base](./.agent/README.md)
 - [Legal Notice & Disclaimer](./docs/LEGAL.md)
 
 ---

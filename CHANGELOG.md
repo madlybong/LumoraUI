@@ -1,3 +1,11 @@
+## Unreleased
+
+---
+
+## [0.5.0] — 2026-05-22
+
+_No conventional commits found in this range._
+
 # Changelog
 
 ## [0.2.2] — 2026-05-14

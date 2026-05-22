@@ -46,3 +46,6 @@ coverage/
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# Agent knowledge base (Intentionally committed, do not ignore)
+!.agent/
