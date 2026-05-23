@@ -26,13 +26,14 @@ describe("LuTimeline", () => {
 });
 
 describe("LuTimelineItem", () => {
-  it("renders the date", () => {
+  it("renders the date and title", () => {
     const Wrapper = defineComponent({
       components: { LuTimelineItem },
-      template: `<LuTimelineItem date="May 22, 2026" />`,
+      template: `<LuTimelineItem date="May 22, 2026" title="Event Title" />`,
     });
     const wrapper = mount(Wrapper);
     expect(wrapper.text()).toContain("May 22, 2026");
+    expect(wrapper.text()).toContain("Event Title");
   });
 
   it("renders without errors for success status", () => {
@@ -44,7 +45,7 @@ describe("LuTimelineItem", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("renders multiple timeline items correctly", () => {
+  it("renders multiple timeline items correctly with connector lines", () => {
     const Wrapper = defineComponent({
       components: { LuTimeline, LuTimelineItem },
       template: `
@@ -57,5 +58,21 @@ describe("LuTimelineItem", () => {
     const wrapper = mount(Wrapper);
     expect(wrapper.text()).toContain("Day 1");
     expect(wrapper.text()).toContain("Day 2");
+  });
+
+  it("renders step numbers in numbered variant when index is provided", () => {
+    const Wrapper = defineComponent({
+      components: { LuTimeline, LuTimelineItem },
+      template: `
+        <LuTimeline variant="numbered">
+          <LuTimelineItem :index="1" title="First step" />
+          <LuTimelineItem :index="2" title="Second step" :last="true" />
+        </LuTimeline>
+      `,
+    });
+    const wrapper = mount(Wrapper);
+    expect(wrapper.text()).toContain("1");
+    expect(wrapper.text()).toContain("2");
+    expect(wrapper.text()).toContain("First step");
   });
 });

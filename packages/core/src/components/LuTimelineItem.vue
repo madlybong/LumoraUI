@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { useLumoraConfig } from "../context";
-import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
 
 defineOptions({ name: "LuTimelineItem" });
 
 const props = withDefaults(defineProps<{
+  title?: string;
   date?: string;
+  index?: number;
   status?: "default" | "success" | "warning" | "danger" | "info";
   last?: boolean;
 }>(), {
@@ -17,12 +18,20 @@ const props = withDefaults(defineProps<{
 
 const { resolveSkin } = useLumoraConfig();
 
-const skinItem = computed(() => resolveSkin("LuTimelineItem"));
+// Inject the parent's variant, defaulting to 'default'
+const injectedVariant = inject("LuTimelineVariant", computed(() => "default"));
+
+// Resolve skins dynamically based on the variant and status
+const skinItem = computed(() => resolveSkin("LuTimelineItem", injectedVariant.value));
 const skinDotWrapper = computed(() => resolveSkin("LuTimelineDotWrapper"));
-const skinDot = computed(() => resolveSkin("LuTimelineDot", props.status === "default" ? undefined : props.status));
+const skinDot = computed(() => {
+  const componentName = injectedVariant.value === "compact" ? "LuTimelineDotCompact" : "LuTimelineDot";
+  return resolveSkin(componentName, props.status === "default" ? undefined : props.status);
+});
 const skinConnector = computed(() => resolveSkin("LuTimelineConnector"));
 const skinContent = computed(() => resolveSkin("LuTimelineContent"));
 const skinDate = computed(() => resolveSkin("LuTimelineDate"));
+const skinTitle = computed(() => resolveSkin("LuTimelineTitle"));
 
 const statusIcon: Record<string, string> = {
   success: "check",
@@ -39,7 +48,12 @@ const statusIcon: Record<string, string> = {
     <div :class="skinDotWrapper">
       <div :class="skinDot">
         <slot name="icon">
-          <LuIcon :name="statusIcon[status]" :size="14" />
+          <template v-if="injectedVariant === 'numbered'">
+            <span class="text-xs font-bold leading-none">{{ index }}</span>
+          </template>
+          <template v-else>
+            <LuIcon :name="statusIcon[status]" :size="injectedVariant === 'compact' ? 10 : 14" />
+          </template>
         </slot>
       </div>
       <div v-if="!last" :class="skinConnector" />
@@ -47,7 +61,8 @@ const statusIcon: Record<string, string> = {
 
     <!-- Right column: content -->
     <div :class="skinContent">
-      <LuText v-if="date" :class="skinDate">{{ date }}</LuText>
+      <span v-if="date" :class="skinDate">{{ date }}</span>
+      <div v-if="title" :class="skinTitle">{{ title }}</div>
       <slot />
     </div>
   </div>
