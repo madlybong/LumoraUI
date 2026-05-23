@@ -30,6 +30,23 @@ export const componentsSkin: SkinMap = {
     default: "flex min-h-[72px] w-full rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-rose-400 dark:focus:ring-rose-400",
     error: "flex min-h-[72px] w-full rounded-lg border border-red-500 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 disabled:cursor-not-allowed disabled:opacity-40 dark:border-red-500 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500",
   },
+  LuCheckContainer: {
+    default: "inline-flex items-center gap-3",
+  },
+  LuCheck: {
+    default: "peer relative flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-zinc-300 bg-white ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:focus-visible:ring-rose-400 transition-colors",
+    checked: "bg-rose-600 border-rose-600 text-white dark:bg-rose-500 dark:border-rose-500",
+    indeterminate: "bg-rose-600 border-rose-600 text-white dark:bg-rose-500 dark:border-rose-500",
+  },
+  "LuCheck.error": {
+    default: "border-red-500 focus-visible:ring-red-500 dark:border-red-500 dark:focus-visible:ring-red-400",
+  },
+  LuCheckIcon: {
+    default: "h-3 w-3 text-current",
+  },
+  LuCheckLabel: {
+    default: "text-sm font-medium leading-none text-zinc-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-40 dark:text-zinc-50 cursor-pointer select-none",
+  },
   LuCheckboxContainer: {
     default: "flex items-center space-x-2",
   },
@@ -40,17 +57,23 @@ export const componentsSkin: SkinMap = {
     default: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-40 text-zinc-900 dark:text-zinc-100 cursor-pointer",
   },
   LuRadioGroup: {
-    default: "flex flex-col space-y-2",
-    horizontal: "flex flex-row space-x-4",
+    default: "flex flex-col gap-2",
+    card: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4",
   },
   LuRadioContainer: {
-    default: "flex items-center space-x-2",
+    default: "inline-flex items-center gap-3",
+    card: "relative flex cursor-pointer flex-col rounded-xl border border-zinc-200 bg-white p-4 shadow-sm hover:bg-zinc-50 focus-within:ring-2 focus-within:ring-rose-500 focus-within:ring-offset-2 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900/80 transition-colors dark:focus-within:ring-rose-400 dark:focus-within:ring-offset-zinc-950 has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50/50 dark:has-[:checked]:border-rose-500 dark:has-[:checked]:bg-rose-500/10",
   },
   LuRadio: {
-    default: "h-4 w-4 rounded-full border-zinc-300 text-rose-600 focus:ring-rose-500 disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-900 dark:focus:ring-rose-500",
+    default: "peer relative flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-zinc-300 bg-white ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:focus-visible:ring-rose-400 transition-colors",
+    checked: "border-rose-600 text-rose-600 dark:border-rose-500 dark:text-rose-500",
+  },
+  LuRadioDot: {
+    default: "h-2 w-2 rounded-full fill-current bg-current",
   },
   LuRadioLabel: {
-    default: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-40 text-zinc-900 dark:text-zinc-100 cursor-pointer",
+    default: "text-sm font-medium leading-none text-zinc-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-40 dark:text-zinc-50 cursor-pointer select-none",
+    card: "flex flex-col gap-1 cursor-pointer select-none",
   },
   LuAlert: {
     default: "relative w-full rounded-lg border-l-[3px] border-l-zinc-400 bg-zinc-50 p-4 flex gap-3 text-sm text-zinc-800 dark:border-l-zinc-600 dark:bg-zinc-900 dark:text-zinc-200",
@@ -203,20 +226,60 @@ export const componentsSkin: SkinMap = {
     vertical: "h-full w-px",
   },
   LuSelect: {
-    default: "flex h-9 w-full items-center justify-between rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-900 dark:focus:border-rose-400 dark:focus:ring-rose-400",
+    default: "flex h-9 w-full items-center justify-between rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-700 dark:bg-zinc-900 dark:focus:border-rose-400 dark:focus:ring-rose-400 transition-[border-color,box-shadow] duration-150",
     theme: "w-32",
+  },
+  "LuSelect.error": {
+    default: "border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:border-red-400 dark:focus:ring-red-400",
+  },
+  LuSelectIcon: {
+    default: "h-4 w-4 shrink-0 text-zinc-400 transition-transform duration-200 dark:text-zinc-500",
+    open: "rotate-180",
+  },
+  LuSelectPanel: {
+    default: "absolute z-50 mt-1 max-h-60 overflow-hidden rounded-xl border border-zinc-200/80 bg-white/95 backdrop-blur-sm shadow-lg lu-fade-in dark:border-zinc-700/80 dark:bg-zinc-900/95 dark:shadow-zinc-950/50 flex flex-col",
+  },
+  LuSelectSearch: {
+    default: "flex h-9 w-full rounded-none border-b border-zinc-200 bg-transparent px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none dark:border-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 shrink-0",
+  },
+  LuSelectOptionList: {
+    default: "overflow-y-auto p-1 lu-scrollbar-thin",
+  },
+  LuSelectOption: {
+    default: "relative flex w-full cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors",
+    hover: "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50",
+    active: "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50",
+    selected: "bg-rose-50 text-rose-700 dark:bg-rose-950/30 dark:text-rose-300 font-medium",
+    disabled: "pointer-events-none opacity-40",
+  },
+  LuSelectEmpty: {
+    default: "p-4 text-center text-sm text-zinc-500 dark:text-zinc-400",
+  },
+  LuSelectPlaceholder: {
+    default: "text-zinc-500 dark:text-zinc-400 truncate",
+  },
+  LuSwitchRoot: {
+    default: "inline-flex items-center gap-3 cursor-pointer select-none",
   },
   LuSwitch: {
     default: "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-40 bg-zinc-200 dark:bg-zinc-700 dark:focus-visible:ring-rose-400 dark:focus-visible:ring-offset-zinc-950",
     checked: "bg-rose-600 dark:bg-rose-500",
-    thumb: "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-md ring-0 transition-transform duration-150 dark:bg-white",
-    thumbChecked: "translate-x-5",
-    thumbUnchecked: "translate-x-0",
+    indeterminate: "bg-zinc-300 dark:bg-zinc-600",
+    success: "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-40 bg-zinc-200 dark:bg-zinc-700 dark:focus-visible:ring-emerald-400 dark:focus-visible:ring-offset-zinc-950",
+    "success-checked": "bg-emerald-600 dark:bg-emerald-500",
+    warning: "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-40 bg-zinc-200 dark:bg-zinc-700 dark:focus-visible:ring-amber-400 dark:focus-visible:ring-offset-zinc-950",
+    "warning-checked": "bg-amber-500 dark:bg-amber-400",
+    danger: "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-40 bg-zinc-200 dark:bg-zinc-700 dark:focus-visible:ring-red-400 dark:focus-visible:ring-offset-zinc-950",
+    "danger-checked": "bg-red-600 dark:bg-red-500",
     theme: "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-40 bg-zinc-200 dark:bg-zinc-700 dark:focus-visible:ring-offset-zinc-950",
   },
   LuSwitchThumb: {
-    default: "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-md ring-0 transition-transform duration-150 dark:bg-white",
+    default: "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-md ring-0 transition-transform duration-150 dark:bg-white translate-x-0",
     checked: "translate-x-5",
+    indeterminate: "translate-x-2.5 shadow-none",
+  },
+  LuSwitchLabel: {
+    default: "text-sm font-medium leading-none text-zinc-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-40 dark:text-zinc-50 cursor-pointer select-none",
   },
   LuTable: {
     default: "w-full caption-bottom text-sm",
@@ -326,7 +389,7 @@ export const componentsSkin: SkinMap = {
   LuCodeBlockTitle: { default: "text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50" },
   LuCodeBlockDescription: { default: "text-base text-zinc-600 dark:text-zinc-400" },
   LuCodeBlockCard: { default: "flex flex-col overflow-hidden rounded-xl border border-zinc-200/80 bg-white shadow-sm dark:border-zinc-700 dark:bg-zinc-900" },
-  LuCodeBlockPreviewArea: { default: "flex flex-col p-8 items-center justify-center min-h-[200px] w-full overflow-auto bg-zinc-50 dark:bg-zinc-800/60" },
+  LuCodeBlockPreviewArea: { default: "flex flex-col p-8 items-center justify-center min-h-[200px] w-full overflow-visible bg-zinc-50 dark:bg-zinc-800/60" },
   LuCodeBlockCodeArea: { default: "flex flex-col relative w-full" },
   LuCodeBlockSplitArea: { default: "flex flex-col relative border-t md:border-t-0 md:border-l border-zinc-200 dark:border-zinc-800 w-full md:w-1/2 shrink-0" },
   LuCodeBlockSplitContainer: { default: "flex flex-col md:flex-row min-h-[300px]" },
@@ -406,6 +469,31 @@ export const componentsSkin: SkinMap = {
   LuDataGridEmptyIcon: {
     default: "text-zinc-300 dark:text-zinc-600",
   },
+  LuDataGridSearchInput: {
+    default: "flex h-8 w-56 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-rose-400",
+  },
+  LuDataGridSelectionBar: {
+    default: "flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300",
+  },
+  LuDataGridSelectionBarCount: {
+    default: "font-semibold text-zinc-900 dark:text-zinc-50",
+  },
+  LuDataGridSelectionBarAction: {
+    default: "text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300 cursor-pointer underline underline-offset-2 transition-colors",
+  },
+  LuDataGridFilterRow: {
+    default: "border-b border-zinc-100 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-800/30",
+  },
+  LuDataGridFilterCell: {
+    default: "px-2 py-1.5 align-middle",
+  },
+  LuDataGridFilterInput: {
+    default: "flex h-7 w-full rounded-md border border-zinc-200 bg-white px-2 py-1 text-xs text-zinc-900 placeholder:text-zinc-400 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-rose-400",
+  },
+  LuDataGridFilterSelect: {
+    default: "flex h-7 w-full rounded-md border border-zinc-200 bg-white px-2 py-1 text-xs text-zinc-900 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-400",
+  },
+
 
   // ─── v0.3.0: LuChart components ───────────────────────────────────────────
   LuBarChart: {
@@ -516,29 +604,43 @@ export const componentsSkin: SkinMap = {
 
   // ─── v0.3.0: LuTimeline ───────────────────────────────────────────────────
   LuTimeline: {
-    default: "flex flex-col",
+    default: "relative flex flex-col",
+    compact: "relative flex flex-col",
+    numbered: "relative flex flex-col",
   },
   LuTimelineItem: {
-    default: "relative flex gap-4 pb-8 last:pb-0",
+    default: "relative flex gap-4 pb-10 last:pb-0",
+    compact: "relative flex gap-3 pb-5 last:pb-0",
+    numbered: "relative flex gap-4 pb-10 last:pb-0",
   },
   LuTimelineDotWrapper: {
-    default: "relative flex flex-col items-center shrink-0",
+    default: "flex flex-col items-center w-10 shrink-0",
   },
   LuTimelineDot: {
-    default: "flex items-center justify-center w-8 h-8 rounded-full border-2 border-zinc-200 bg-white text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400",
-    success: "border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400",
-    warning: "border-amber-200 bg-amber-50 text-amber-600 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-400",
-    danger: "border-rose-200 bg-rose-50 text-rose-600 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-400",
-    info: "border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-400",
+    default: "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-zinc-200 bg-white text-zinc-400 shadow-sm dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-500",
+    success: "border-emerald-500 bg-emerald-50 text-emerald-600 dark:border-emerald-500 dark:bg-emerald-950/40 dark:text-emerald-400",
+    warning: "border-amber-400 bg-amber-50 text-amber-600 dark:border-amber-400 dark:bg-amber-950/40 dark:text-amber-400",
+    danger: "border-red-500 bg-red-50 text-red-600 dark:border-red-500 dark:bg-red-950/40 dark:text-red-400",
+    info: "border-blue-500 bg-blue-50 text-blue-600 dark:border-blue-500 dark:bg-blue-950/40 dark:text-blue-400",
+  },
+  LuTimelineDotCompact: {
+    default: "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-zinc-200 bg-white text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900",
+    success: "border-emerald-500 bg-emerald-50 text-emerald-600 dark:border-emerald-500 dark:bg-emerald-950/40 dark:text-emerald-400",
+    warning: "border-amber-400 bg-amber-50 text-amber-600 dark:border-amber-400 dark:bg-amber-950/40 dark:text-amber-400",
+    danger: "border-red-500 bg-red-50 text-red-600 dark:border-red-500 dark:bg-red-950/40 dark:text-red-400",
+    info: "border-blue-500 bg-blue-50 text-blue-600 dark:border-blue-500 dark:bg-blue-950/40 dark:text-blue-400",
   },
   LuTimelineConnector: {
-    default: "lu-timeline-connector flex-1 w-0.5 bg-zinc-200 mt-1 dark:bg-zinc-700",
+    default: "mt-1 flex-1 w-0.5 min-h-[1.5rem] bg-zinc-200 dark:bg-zinc-700",
   },
   LuTimelineContent: {
-    default: "flex-1 min-w-0 pt-1 pb-2",
+    default: "flex flex-col gap-0.5 pt-1.5 min-w-0 flex-1",
   },
   LuTimelineDate: {
-    default: "text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-0.5",
+    default: "text-xs font-medium text-zinc-400 dark:text-zinc-500 tabular-nums mb-0.5",
+  },
+  LuTimelineTitle: {
+    default: "text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-snug",
   },
 
   // ─── v0.3.0: LuFormWizard ─────────────────────────────────────────────────
@@ -549,7 +651,11 @@ export const componentsSkin: SkinMap = {
     default: "relative flex items-center justify-between gap-2 px-2 pb-8",
   },
   LuFormWizardStepWrapper: {
-    default: "relative flex flex-col items-center gap-1.5 flex-1",
+    default: "relative flex flex-1 flex-col items-center gap-2",
+  },
+  LuFormWizardStepConnector: {
+    default: "lu-form-wizard-step-connector bg-zinc-200 dark:bg-zinc-800 transition-colors duration-300",
+    completed: "lu-form-wizard-step-connector bg-rose-500 dark:bg-rose-500 transition-colors duration-300",
   },
   LuFormWizardStep: {
     default: "flex items-center justify-center w-9 h-9 rounded-full border-2 border-zinc-300 bg-white text-sm font-medium text-zinc-500 transition-all duration-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400",
@@ -561,10 +667,7 @@ export const componentsSkin: SkinMap = {
     active: "text-rose-600 font-medium dark:text-rose-400",
     completed: "text-emerald-600 dark:text-emerald-400",
   },
-  LuFormWizardStepConnector: {
-    default: "lu-form-wizard-step-connector bg-zinc-200 dark:bg-zinc-700",
-    completed: "bg-emerald-400 dark:bg-emerald-500",
-  },
+
   LuFormWizardBody: {
     default: "flex-1 min-h-0",
   },
@@ -647,27 +750,34 @@ export const componentsSkin: SkinMap = {
   // ─── v0.4.0: LuCalendar / LuDateRangePicker ───────────────────────────────
   LuCalendar: {
     default: "flex flex-col gap-4",
+    mini: "w-full max-w-[260px] rounded-xl border border-zinc-200/80 bg-white p-3 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 flex flex-col gap-2",
   },
   LuCalendarHeader: {
     default: "flex items-center justify-between gap-2",
+    mini: "flex items-center justify-between px-1 py-1 gap-2",
   },
   LuCalendarNav: {
     default: "flex items-center gap-1",
+    mini: "flex items-center gap-0.5",
   },
   LuCalendarTitle: {
     default: "text-sm font-semibold text-zinc-900 dark:text-zinc-50",
+    mini: "text-xs font-semibold text-zinc-700 dark:text-zinc-200",
   },
   LuCalendarGrid: {
     default: "w-full border-collapse",
+    mini: "w-full border-collapse pb-1",
   },
   LuCalendarGridHeader: {
     default: "text-center",
   },
   LuCalendarGridHeaderCell: {
     default: "pb-2 text-[11px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500",
+    mini: "pb-1 text-[10px] font-medium uppercase text-zinc-400 text-center dark:text-zinc-500",
   },
   LuCalendarDay: {
     default: "relative p-1 text-center",
+    mini: "relative p-0.5 text-center",
   },
   LuCalendarDayButton: {
     default: "w-8 h-8 rounded-full text-sm flex items-center justify-center mx-auto hover:bg-zinc-100 transition-colors cursor-pointer dark:hover:bg-zinc-800",
@@ -677,11 +787,61 @@ export const componentsSkin: SkinMap = {
     disabled: "opacity-30 pointer-events-none",
     otherMonth: "text-zinc-300 dark:text-zinc-700",
   },
+  LuCalendarDayButtonMini: {
+    default: "w-6 h-6 rounded-full text-xs flex items-center justify-center mx-auto hover:bg-zinc-100 transition-colors cursor-pointer dark:hover:bg-zinc-800",
+    today: "font-semibold text-rose-600 dark:text-rose-400",
+    selected: "bg-rose-600 text-white hover:bg-rose-700 dark:bg-rose-500 dark:hover:bg-rose-600",
+    inRange: "bg-rose-50 text-rose-700 rounded-none dark:bg-rose-950/30 dark:text-rose-300",
+    disabled: "opacity-30 pointer-events-none",
+    otherMonth: "text-zinc-300 dark:text-zinc-700",
+  },
   LuCalendarEventDot: {
     default: "absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-rose-500",
+    mini: "absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0.5 h-0.5 rounded-full bg-rose-500",
   },
   LuCalendarEvent: {
     default: "truncate rounded px-1 py-0.5 text-[10px] font-medium cursor-pointer",
+  },
+
+  // ─── v0.4.0: LuPlanner ────────────────────────────────────────────────────
+  LuPlannerContainer: {
+    default: "flex flex-col w-full rounded-xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden dark:border-zinc-800 dark:bg-zinc-900",
+  },
+  LuPlannerHeader: {
+    default: "flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50",
+  },
+  LuPlannerNavButton: {
+    default: "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+  },
+  LuPlannerWeekLabel: {
+    default: "text-sm font-semibold text-zinc-900 dark:text-zinc-50",
+  },
+  LuPlannerGrid: {
+    default: "flex flex-1 overflow-x-auto min-h-[500px]",
+  },
+  LuPlannerTimeGutter: {
+    default: "w-20 shrink-0 border-r border-zinc-200 dark:border-zinc-800 flex flex-col select-none bg-zinc-50/20 dark:bg-zinc-900/10",
+  },
+  LuPlannerTimeCell: {
+    default: "flex flex-col justify-center border-b border-zinc-100/50 dark:border-zinc-800/30",
+  },
+  LuPlannerTimeLabel: {
+    default: "text-[10px] font-medium text-zinc-400 dark:text-zinc-500 tabular-nums uppercase",
+  },
+  LuPlannerDayColumn: {
+    default: "flex-1 min-w-[120px] border-r border-zinc-200 dark:border-zinc-800 last:border-r-0 relative flex flex-col bg-white dark:bg-zinc-900",
+  },
+  LuPlannerDayHeader: {
+    default: "bg-zinc-50/10 dark:bg-zinc-900/10",
+  },
+  LuPlannerDayHeaderToday: {
+    default: "bg-rose-50/10 dark:bg-rose-950/5 border-b-2 border-b-rose-500 dark:border-b-rose-400",
+  },
+  LuPlannerHourCell: {
+    default: "border-b border-zinc-100 dark:border-zinc-800/80 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/20 transition-colors duration-100",
+  },
+  LuPlannerEvent: {
+    default: "absolute left-1 right-1 rounded-lg px-2 py-1.5 text-xs font-semibold cursor-pointer overflow-hidden border-l-4 shadow-sm select-none hover:shadow transition-shadow duration-150",
   },
   LuDateRangePicker: {
     default: "relative inline-block",
