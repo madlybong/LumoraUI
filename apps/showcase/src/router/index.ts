@@ -54,6 +54,15 @@ import LuDateRangePickerDoc from '../views/docs/components/LuDateRangePickerDoc.
 import LuCommandPaletteDoc from '../views/docs/components/LuCommandPaletteDoc.vue';
 import LuRichTextEditorDoc from '../views/docs/components/LuRichTextEditorDoc.vue';
 
+// v0.6.0
+import LuDrawerDoc from '../views/docs/components/LuDrawerDoc.vue';
+import LuListDoc from '../views/docs/components/LuListDoc.vue';
+import LuPopoverDoc from '../views/docs/components/LuPopoverDoc.vue';
+import LuBottomSheetDoc from '../views/docs/components/LuBottomSheetDoc.vue';
+import LuToastDoc from '../views/docs/components/LuToastDoc.vue';
+import LuChipDoc from '../views/docs/components/LuChipDoc.vue';
+import LuAccordionDoc from '../views/docs/components/LuAccordionDoc.vue';
+
 // Layout
 import LuStackDoc from '../views/docs/layout/LuStackDoc.vue';
 import LuDockDoc from '../views/docs/layout/LuDockDoc.vue';
@@ -136,6 +145,15 @@ export const router = createRouter({
     { path: '/docs/components/command-palette', component: LuCommandPaletteDoc },
     { path: '/docs/components/rich-text-editor', component: LuRichTextEditorDoc },
 
+    // v0.6.0
+    { path: '/docs/components/drawer', component: LuDrawerDoc },
+    { path: '/docs/components/list', component: LuListDoc },
+    { path: '/docs/components/popover', component: LuPopoverDoc },
+    { path: '/docs/components/bottom-sheet', component: LuBottomSheetDoc },
+    { path: '/docs/components/toast', component: LuToastDoc },
+    { path: '/docs/components/chip', component: LuChipDoc },
+    { path: '/docs/components/accordion', component: LuAccordionDoc },
+
     { path: '/docs/layout', redirect: '/docs/layout/stack' },
     { path: '/docs/layout/stack', component: LuStackDoc },
     { path: '/docs/layout/dock', component: LuDockDoc },
@@ -156,7 +174,7 @@ export const router = createRouter({
     { path: '/docs/recipes/notification-center', component: NotificationCenterRecipe },
     { path: '/docs/recipes/dashboard-grid', component: DashboardGridRecipe },
     { path: '/docs/recipes/theme-controls', component: ThemeControlsRecipe },
-    { path: '/docs/recipes/embedded-pos', component: EmbeddedPOSRecipe },
+    { path: '/docs/recipes/pos-demo', component: EmbeddedPOSRecipe },
 
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
   ],
