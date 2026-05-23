@@ -16,7 +16,7 @@ const { resolved, setMode } = useTheme();
 
 const isDark = computed(() => resolved.value === "dark");
 
-const onToggle = (val: boolean) => {
+const onToggle = (val: boolean | null) => {
   setMode(val ? "dark" : "light");
 };
 </script>
