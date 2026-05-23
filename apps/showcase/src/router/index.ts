@@ -50,6 +50,7 @@ import LuTreeDoc from '../views/docs/components/LuTreeDoc.vue';
 // v0.4.0
 import LuKanbanDoc from '../views/docs/components/LuKanbanDoc.vue';
 import LuCalendarDoc from '../views/docs/components/LuCalendarDoc.vue';
+import LuCodeBlockDoc from '../views/docs/components/LuCodeBlockDoc.vue';
 import LuDateRangePickerDoc from '../views/docs/components/LuDateRangePickerDoc.vue';
 import LuCommandPaletteDoc from '../views/docs/components/LuCommandPaletteDoc.vue';
 import LuRichTextEditorDoc from '../views/docs/components/LuRichTextEditorDoc.vue';
@@ -141,6 +142,7 @@ export const router = createRouter({
     // v0.4.0
     { path: '/docs/components/kanban', component: LuKanbanDoc },
     { path: '/docs/components/calendar', component: LuCalendarDoc },
+    { path: '/docs/components/code-block', component: LuCodeBlockDoc },
     { path: '/docs/components/date-range-picker', component: LuDateRangePickerDoc },
     { path: '/docs/components/command-palette', component: LuCommandPaletteDoc },
     { path: '/docs/components/rich-text-editor', component: LuRichTextEditorDoc },
