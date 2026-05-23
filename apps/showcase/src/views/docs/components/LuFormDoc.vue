@@ -15,7 +15,7 @@
             <LuSwitch name="accept" />
             
             <template #errors="{ hasErrors }">
-              <LuText v-if="hasErrors" variant="default" style="color: red">Please fix the errors above.</LuText>
+              <LuAlert v-if="hasErrors" variant="danger">Please fix the errors above.</LuAlert>
             </template>
             
             <template #actions="{ submit, reset, pending }">
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuForm, LuInput, LuSelect, LuSwitch, LuButton, LuCard , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuForm, LuInput, LuSelect, LuSwitch, LuButton, LuCard, LuAlert, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const rules = {
@@ -61,7 +61,7 @@ const formCode = `<template>
       <LuSwitch name="accept" />
       
       <template #errors="{ hasErrors }">
-        <LuText v-if="hasErrors" variant="default" style="color: red">Please fix the errors above.</LuText>
+        <LuAlert v-if="hasErrors" variant="danger">Please fix the errors above.</LuAlert>
       </template>
       
       <template #actions="{ submit, reset, pending }">

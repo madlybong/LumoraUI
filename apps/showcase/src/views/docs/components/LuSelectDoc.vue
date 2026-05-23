@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuSelect, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuSelect, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const selected = ref('apple');

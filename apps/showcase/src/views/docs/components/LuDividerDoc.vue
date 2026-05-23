@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuDivider , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuDivider, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const dividerCode = `<template>

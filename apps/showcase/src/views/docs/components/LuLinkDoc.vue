@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuLink , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuLink, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const linkCode = `<template>

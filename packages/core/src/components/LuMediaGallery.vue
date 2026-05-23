@@ -105,7 +105,7 @@ const skinLightboxClose = computed(() => resolveSkin("LuLightboxClose"));
           <button
             v-if="deletable"
             type="button"
-            class="flex items-center justify-center w-7 h-7 rounded-full bg-rose-600 text-white hover:bg-rose-700 transition-colors"
+            :class="resolveSkin('LuMediaGalleryRemoveButton')"
             :aria-label="`Delete ${item.caption ?? item.id}`"
             @click.stop="emit('delete', item)"
           >

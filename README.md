@@ -60,10 +60,11 @@ import { LuMobileShell, LuDesktopShell, LuEmbeddedShell, LuPOSLayout } from "@as
 ```ts
 // main.ts
 import { createApp } from "vue"
-import { LumoraUI } from "@astrake/lumora-ui"
+import { createLumoraUI } from "@astrake/lumora-ui"
+import "@astrake/lumora-ui/style"
 import App from "./App.vue"
 
-createApp(App).use(LumoraUI).mount("#app")
+createApp(App).use(createLumoraUI()).mount("#app")
 ```
 
 ---
@@ -105,14 +106,16 @@ Each target root overrides tokens as appropriate (e.g., Embedded reduces shadow 
 LumoraUI/
 ├── packages/core/        ← @astrake/lumora-ui (published package)
 │   └── src/
-│       ├── tokens/       ← CSS custom properties (--lu-*)
-│       ├── shared/       ← cross-target primitives (Lu*)
-│       ├── mobile/       ← Mobile components (LuM*)
-│       ├── desktop/      ← Desktop components (LuD*)
-│       ├── embedded/     ← Embedded components (LuE*)
+│       ├── components/   ← shared primitives + complex components (Lu*)
+│       ├── layout/       ← layout primitives (LuStack, LuGrid, LuDock, etc.)
+│       ├── shell/        ← surface shells (LuDesktopShell, LuMobileShell, etc.)
+│       ├── composables/  ← shared composition functions
+│       ├── skins/        ← SkinMap default theme
+│       ├── lumora.css    ← structural CSS baseline
 │       └── index.ts
-├── apps/showcase/        ← reference Vite + Vue 3 app
+├── apps/showcase/        ← reference Vite + Vue 3 showcase app
 ├── tools/                ← build, check, version, changelog scripts
+├── .agent/               ← AI agent rules and authoring guides
 └── docs/                 ← architecture, development, releases, legal
 ```
 
@@ -125,7 +128,7 @@ git clone https://github.com/madlybong/LumoraUI.git
 cd LumoraUI
 bun install
 bun run check      # typecheck
-bun test           # run test suite
+bun run test --run # run test suite
 bun run dev        # start the showcase app
 ```
 

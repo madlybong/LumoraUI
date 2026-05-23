@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
-import LuText from "./LuText.vue";
-import LuIcon from "./LuIcon.vue";
+import { useLumoraConfig } from '@astrake/lumora-ui';
+import { LuText } from '@astrake/lumora-ui';
+import { LuIcon } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuDashboardGrid" });
 

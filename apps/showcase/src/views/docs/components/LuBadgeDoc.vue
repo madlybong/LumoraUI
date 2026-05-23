@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuBadge, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuBadge, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuStack   >

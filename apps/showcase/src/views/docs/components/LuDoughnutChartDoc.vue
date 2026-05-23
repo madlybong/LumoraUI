@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuDoughnutChart, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuDoughnutChart, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const datasets = [

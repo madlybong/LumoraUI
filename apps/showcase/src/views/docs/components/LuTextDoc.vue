@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuText, LuPageHeader, LuStack , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuText, LuStack, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuStack direction="vertical" gap="4">

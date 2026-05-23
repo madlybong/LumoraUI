@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuAvatar, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuAvatar, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuStack   >

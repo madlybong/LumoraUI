@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuProgressBar, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuProgressBar, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuStack direction="vertical" gap="6" class="w-full max-w-md">

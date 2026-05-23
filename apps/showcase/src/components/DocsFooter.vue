@@ -61,5 +61,5 @@
 import { LuIcon, LuBadge, LuStack, LuText, LuLink, LuGrid, LuDivider } from '@astrake/lumora-ui';
 
 // @ts-ignore
-const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '?.?.?';
 </script>

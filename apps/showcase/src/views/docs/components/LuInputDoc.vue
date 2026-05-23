@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuInput, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuInput, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const val = ref('');

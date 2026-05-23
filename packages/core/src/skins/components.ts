@@ -771,71 +771,31 @@ export const componentsSkin: SkinMap = {
     default: "px-4 py-3 min-h-[120px] text-sm text-zinc-900 leading-relaxed focus:outline-none [&_.ProseMirror]:focus:outline-none [&_.ProseMirror]:min-h-[120px] dark:text-zinc-50",
   },
 
-  // ─── v0.4.0: LuNotificationCenter ─────────────────────────────────────────
-  LuNotificationCenter: {
-    default: "relative inline-block",
-  },
-  LuNotificationCenterTrigger: {
-    default: "relative flex items-center justify-center w-9 h-9 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 transition-colors dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200",
-  },
-  LuNotificationCenterBadge: {
-    default: "absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-bold leading-none",
-  },
-  LuNotificationCenterPanel: {
-    default: "lu-notification-panel-enter-active absolute right-0 top-full mt-2 w-[380px] max-h-[520px] flex flex-col rounded-2xl border border-zinc-200/80 bg-white shadow-xl overflow-hidden dark:border-zinc-700/80 dark:bg-zinc-900",
-  },
-  LuNotificationCenterHeader: {
-    default: "flex items-center justify-between gap-3 px-4 py-3 border-b border-zinc-100 shrink-0 dark:border-zinc-800",
-  },
-  LuNotificationCenterList: {
-    default: "flex flex-col flex-1 overflow-y-auto divide-y divide-zinc-100 dark:divide-zinc-800 lu-scrollbar-thin",
-  },
-  LuNotificationCenterItem: {
-    default: "flex gap-3 px-4 py-3 cursor-pointer hover:bg-zinc-50 transition-colors dark:hover:bg-zinc-800/60",
-  },
-  LuNotificationCenterItemUnread: {
-    default: "flex gap-3 px-4 py-3 cursor-pointer bg-rose-50/40 hover:bg-rose-50/70 transition-colors dark:bg-rose-950/10 dark:hover:bg-rose-950/20",
-  },
-  LuNotificationCenterUnreadDot: {
-    default: "mt-1.5 w-2 h-2 rounded-full bg-rose-500 shrink-0",
-  },
-  LuNotificationCenterEmpty: {
-    default: "flex flex-col items-center justify-center gap-2 py-12 text-center",
-  },
-  LuNotificationCenterFooter: {
-    default: "shrink-0 flex items-center justify-center px-4 py-2.5 border-t border-zinc-100 dark:border-zinc-800",
-  },
 
-  // ─── v0.5.0: LuEntityCard ─────────────────────────────────────────────────
-  LuEntityCard: {
-    default: "flex flex-col rounded-2xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden dark:border-zinc-800 dark:bg-zinc-900",
+  // ─── v0.5.0: Skin keys for headless contract compliance ──────────────────────
+  LuKanbanAddButton: {
+    default: "flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:text-zinc-200 dark:hover:bg-zinc-700 transition-colors",
   },
-  LuEntityCardHeader: {
-    default: "flex flex-col sm:flex-row gap-4 p-6 border-b border-zinc-100 dark:border-zinc-800",
+  LuKanbanCardTitle: {
+    default: "font-medium text-zinc-800 dark:text-zinc-200 line-clamp-2",
   },
-  LuEntityCardAvatar: {
-    default: "shrink-0",
+  LuKanbanEmptyColumn: {
+    default: "flex items-center justify-center h-20 text-xs text-zinc-400 dark:text-zinc-600 border-2 border-dashed border-zinc-200 dark:border-zinc-700 rounded-lg",
   },
-  LuEntityCardMeta: {
-    default: "flex flex-col gap-1 flex-1 min-w-0",
+  LuMediaGalleryRemoveButton: {
+    default: "flex items-center justify-center w-7 h-7 rounded-full bg-rose-600 text-white hover:bg-rose-700 transition-colors",
   },
-  LuEntityCardStats: {
-    default: "grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-100 border-b border-zinc-100 dark:divide-zinc-800 dark:border-zinc-800",
+  LuChartFallbackText: {
+    default: "text-xs text-zinc-400 dark:text-zinc-500",
   },
-  LuEntityCardStat: {
-    default: "flex flex-col gap-0.5 px-4 py-3",
+  LuCommandPaletteSearchIcon: {
+    default: "text-zinc-400 dark:text-zinc-500 shrink-0",
   },
-  LuEntityCardStatLabel: {
-    default: "text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500",
+  LuCommandPaletteClearIcon: {
+    default: "text-zinc-400 cursor-pointer hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300",
   },
-  LuEntityCardStatValue: {
-    default: "text-lg font-semibold text-zinc-900 dark:text-zinc-50 tabular-nums",
-  },
-  LuEntityCardActions: {
-    default: "flex flex-wrap items-center gap-2 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800",
-  },
-  LuEntityCardContent: {
-    default: "flex-1 p-0",
+  LuCommandPaletteItemLabel: {
+    default: "font-medium",
   },
 };
 

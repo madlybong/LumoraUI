@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuTooltip, LuButton, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuTooltip, LuButton, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuTooltip position="top">

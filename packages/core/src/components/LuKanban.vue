@@ -81,7 +81,7 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
 
           <button
             type="button"
-            class="flex items-center justify-center w-6 h-6 rounded text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:text-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            :class="resolveSkin('LuKanbanAddButton')"
             :aria-label="`Add card to ${column.title}`"
             @click="emit('add-card', column.id)"
           >
@@ -105,7 +105,7 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
             <slot name="card" :card="card" :column="column">
               <!-- Default card body -->
               <div class="flex flex-col gap-2">
-                <LuText variant="body" class="font-medium text-zinc-800 dark:text-zinc-200 line-clamp-2">
+                <LuText variant="body" :class="resolveSkin('LuKanbanCardTitle')">
                   {{ card.title }}
                 </LuText>
 
@@ -130,7 +130,7 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
           <!-- Drop zone hint when empty -->
           <div
             v-if="!column.cards.length"
-            class="flex items-center justify-center h-20 text-xs text-zinc-400 dark:text-zinc-600 border-2 border-dashed border-zinc-200 dark:border-zinc-700 rounded-lg"
+            :class="resolveSkin('LuKanbanEmptyColumn')"
           >
             Empty
           </div>

@@ -76,7 +76,7 @@ import DocsSearch from './DocsSearch.vue';
 const route = useRoute();
 
 // @ts-ignore
-const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '?.?.?';
 
 const openStates = ref<Record<string, boolean>>({});
 

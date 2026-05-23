@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import LuSwitch from "./LuSwitch.vue";
-import { useTheme } from "../composables/useTheme";
+import { LuSwitch } from '@astrake/lumora-ui';
+import { useTheme } from '@astrake/lumora-ui/composables';
 
 const { resolved, setMode } = useTheme();
 

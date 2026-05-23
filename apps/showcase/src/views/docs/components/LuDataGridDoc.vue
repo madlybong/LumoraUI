@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuDataGrid, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuDataGrid, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const columns = [

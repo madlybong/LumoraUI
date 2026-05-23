@@ -1,5 +1,5 @@
-﻿<template>
-  <LuPageHeader title="Theme Controls" description="Pre-wired components that integrate directly with the LumoraUI theme system to toggle between light and dark modes." />
+<template>
+  <LuPageHeader title="Theme Controls Recipe" description="Pre-wired components that integrate directly with the LumoraUI theme system to toggle between light and dark modes." />
 
   <LuCodeBlock variant="preview" 
     title="LuThemeSwitch" 
@@ -7,8 +7,8 @@
     :code="switchCode"
   >
     <template #preview>
-      <LuStack   >
-        <LuText as="span" >Dark Mode</LuText>
+      <LuStack>
+        <LuText as="span">Dark Mode</LuText>
         <LuThemeSwitch />
       </LuStack>
     </template>
@@ -20,7 +20,7 @@
     :code="selectCode"
   >
     <template #preview>
-      <LuStack   >
+      <LuStack>
         <LuThemeSelect />
       </LuStack>
     </template>
@@ -30,12 +30,15 @@
 </template>
 
 <script setup lang="ts">
-import { LuThemeSwitch, LuThemeSelect, LuPageHeader, LuCodeBlock, LuText, LuStack } from '@astrake/lumora-ui';
+import LuThemeSwitch from '../../../recipes/theme-controls/LuThemeSwitch.vue';
+import LuThemeSelect from '../../../recipes/theme-controls/LuThemeSelect.vue';
+import { LuCodeBlock, LuText, LuStack } from '@astrake/lumora-ui';
 
 const switchCode = `<template>
-  <LuStack   >
-    <LuText as="span" >Dark Mode</LuText>
+  <LuStack>
+    <LuText as="span">Dark Mode</LuText>
     <LuThemeSwitch />
+  </LuStack>
 </template>`;
 
 const selectCode = `<template>

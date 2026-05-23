@@ -75,7 +75,7 @@ All commits must strictly follow standard Conventional Commits formatting:
 ### Mandatory Local Verification Checklist
 Before completing any coding task or declaring "Done", you MUST execute and pass the following three validation steps:
 1. **Typecheck**: `bun run check` (runs `vue-tsc` to ensure zero compilation or type errors).
-2. **Unit Tests**: `bun test` (runs all Vitest suites and checks for behavior regression).
+2. **Unit Tests**: `bun run test --run` (runs all Vitest suites through package manager to ensure correct environment).
 3. **Production Build**: `bun run build` (builds packages and verifies showcase app compiles flawlessly).
 
 ---

@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuDock, LuDockItem, LuPageHeader, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
+import { LuDock, LuDockItem, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 

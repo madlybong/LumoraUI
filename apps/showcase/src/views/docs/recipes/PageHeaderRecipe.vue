@@ -1,5 +1,5 @@
 <template>
-  <LuPageHeader title="LuPageHeader" description="A standard header for documentation and content pages." />
+  <LuPageHeader title="Page Header Recipe" description="A standard header for documentation and content pages." />
 
   <LuCodeBlock variant="preview" 
     title="Page Header" 
@@ -8,7 +8,8 @@
   >
     <template #preview>
       <LuCard variant="default" class="w-full">
-        <LuPageHeader title="Settings" description="Manage your account settings and preferences." />
+        <!-- Renders the local recipe component -->
+        <LocalPageHeader title="Settings" description="Manage your account settings and preferences." />
       </LuCard>
     </template>
   </LuCodeBlock>
@@ -20,7 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuCard , LuCodeBlock } from '@astrake/lumora-ui';
+import LocalPageHeader from '../../../recipes/page-header/LuPageHeader.vue';
+import { LuStack, LuText, LuCard, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const headerCode = `<template>

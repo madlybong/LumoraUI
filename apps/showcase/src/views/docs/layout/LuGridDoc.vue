@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuGrid, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuGrid, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuGrid class="grid-cols-3 gap-4">

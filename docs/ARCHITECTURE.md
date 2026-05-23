@@ -32,10 +32,14 @@ Each surface is a separate Vite entry point. Tree-shaking works at the entry-poi
 
 | Import path | Entry file | What it exports |
 |-------------|-----------|----------------|
-| `@astrake/lumora-ui` | `src/index.ts` | All surfaces + shared + plugin |
-| `@astrake/lumora-ui/mobile` | `src/mobile/index.ts` | LuM* components only |
-| `@astrake/lumora-ui/desktop` | `src/desktop/index.ts` | LuD* components only |
-| `@astrake/lumora-ui/embedded` | `src/embedded/index.ts` | LuE* components only |
+| `@astrake/lumora-ui` | `src/index.ts` | All components + plugin + types |
+| `@astrake/lumora-ui/style` | `src/lumora.css` | Structural CSS baseline |
+| `@astrake/lumora-ui/layout` | `src/layout/index.ts` | LuStack, LuGrid, LuSplit, LuDock, etc. |
+| `@astrake/lumora-ui/shell` | `src/shell/index.ts` | LuDesktopShell, LuMobileShell, LuEmbeddedShell, etc. |
+| `@astrake/lumora-ui/components` | `src/components/index.ts` | Lu* shared primitives and complex components |
+| `@astrake/lumora-ui/composables` | `src/composables/index.ts` | Shared composition functions |
+| `@astrake/lumora-ui/skins` | `src/skins/index.ts` | Default skin map and skin types |
+| `@astrake/lumora-ui/tailwind` | `src/tailwind.ts` | `getLumoraSourceDir()` for Tailwind v4 `@source` |
 
 ## Token system (`tokens/`)
 
@@ -49,15 +53,21 @@ applies overrides appropriate for that context.
 
 ## Skin system (`skins/`)
 
-A "skin" is a structured object that overrides `--lu-*` token values at runtime.
-Skins are applied via the `LumoraUI` Vue plugin:
+A "skin" is a `SkinMap` — a flat object whose keys are component names and values are
+variant-to-class-string maps. Skins are injected via the Vue plugin:
 
 ```ts
-app.use(LumoraUI, { skin: myCustomSkin })
+import { createLumoraUI, type SkinMap } from '@astrake/lumora-ui';
+
+const mySkin: SkinMap = {
+  LuButton: { primary: 'bg-purple-600' },
+};
+
+app.use(createLumoraUI({ skin: mySkin }));
 ```
 
-The skin system is deliberately separate from the token file — tokens define the
-shape; skins define the values.
+Components resolve their classes via `useLumoraConfig().resolveSkin(componentName, variant)`.
+Consumer skin values are merged with defaults using `tailwind-merge`.
 
 ## Shell components (`shell/`)
 
@@ -87,12 +97,14 @@ Shared composition functions — e.g., `useLuSkin()`, `useLuBreakpoint()`,
 ## Build pipeline
 
 ```
-tools/build.ts
+vite.config.ts (library mode)
   └── Vite library mode
-        ├── Entry: src/index.ts          → dist/index.{js,d.ts}
-        ├── Entry: src/mobile/index.ts   → dist/mobile.{js,d.ts}
-        ├── Entry: src/desktop/index.ts  → dist/desktop.{js,d.ts}
-        └── Entry: src/embedded/index.ts → dist/embedded.{js,d.ts}
+        ├── Entry: src/index.ts           → dist/index.{js,d.ts}
+        ├── Entry: src/layout/index.ts    → dist/layout/index.{js,d.ts}
+        ├── Entry: src/shell/index.ts     → dist/shell/index.{js,d.ts}
+        ├── Entry: src/components/index.ts → dist/components/index.{js,d.ts}
+        ├── Entry: src/composables/index.ts → dist/composables/index.{js,d.ts}
+        └── Entry: src/skins/index.ts     → dist/skins/index.{js,d.ts}
 ```
 
 Types are generated via `vue-tsc` (`tools/check.ts`).

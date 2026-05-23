@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuTabs, LuTabList, LuTab, LuTabPanel, LuPageHeader, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
+import { LuTabs, LuTabList, LuTab, LuTabPanel, LuCodeBlock, LuStack, LuText } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const activeTab = ref('account');

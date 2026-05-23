@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuCollapsible, LuIcon, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuCollapsible, LuIcon, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const exampleCode = `<LuCollapsible >

@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuButton, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuButton, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const variantsCode = `<template>

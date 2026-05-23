@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuSplit, LuSplitPane, LuSplitResizer, LuPageHeader, LuStack , LuCodeBlock, LuText } from '@astrake/lumora-ui';
+import { LuSplit, LuSplitPane, LuSplitResizer, LuStack, LuCodeBlock, LuText } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 

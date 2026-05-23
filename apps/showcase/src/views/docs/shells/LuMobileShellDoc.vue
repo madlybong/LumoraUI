@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuMobileShell, LuMobileHeader, LuMobileNavBar, LuButton, LuIcon, LuFill, LuCard , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuMobileShell, LuMobileHeader, LuMobileNavBar, LuButton, LuIcon, LuFill, LuCard, LuCodeBlock } from '@astrake/lumora-ui';
 
 const exampleCode = `<LuMobileShell>
   <template #header>

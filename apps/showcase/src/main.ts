@@ -10,8 +10,10 @@ import 'echarts'
 import '@astrake/lumora-ui/style'
 
 import App from './App.vue'
+import LuPageHeader from './recipes/page-header/LuPageHeader.vue'
 
 const app = createApp(App)
+app.component('LuPageHeader', LuPageHeader)
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)

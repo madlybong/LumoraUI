@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuBarChart, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuBarChart, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];

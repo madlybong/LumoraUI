@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuTable, LuTableHead, LuTableBody, LuTableRow, LuTableHeadCell, LuTableCell, LuCard , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuTable, LuTableHead, LuTableBody, LuTableRow, LuTableHeadCell, LuTableCell, LuCard, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const tableCode = `<template>

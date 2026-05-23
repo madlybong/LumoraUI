@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import LuSelect from "./LuSelect.vue";
-import { useTheme, type ThemeMode } from "../composables/useTheme";
+import { LuSelect } from '@astrake/lumora-ui';
+import { useTheme, type ThemeMode } from '@astrake/lumora-ui/composables';
 
 const { mode, setMode } = useTheme();
 

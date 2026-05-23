@@ -27,10 +27,10 @@ bun run check
 Run the full test suite:
 
 ```bash
-bun test
+bun run test --run
 ```
 
-Build the library (Vite library mode — three entry points):
+Build the library:
 
 ```bash
 bun run build
@@ -58,7 +58,7 @@ bun run release:prep
 
 - **TypeScript only** — no plain `.js` files in `packages/core`.
 - **Vue 3 Composition API** — use `<script setup>` for all components.
-- **Headless components** — no hard-coded colors, spacing, or visual styles; use `--lu-*` tokens.
+- **Headless components** — no hard-coded visual styles (colors, borders, shadows, typography) in templates. All opinionated styling goes through `resolveSkin()`. Structural layout classes (flex, gap, grid) are acceptable.
 - **Surface isolation** — `mobile/`, `desktop/`, `embedded/` do not import from each other.
 - **Bun workspace** with two active projects:
   - `packages/core` — the published library
@@ -70,7 +70,7 @@ bun run release:prep
 1. Identify the correct surface: `mobile/`, `desktop/`, `embedded/`, or `shared/`.
 2. Create the `.vue` file with `<script setup lang="ts">`.
 3. Define props with explicit types — no `any`.
-4. Use only `--lu-*` CSS custom properties for styling.
+4. Use `resolveSkin()` for all visual styling — no hard-coded color/typography classes.
 5. Export the component from the surface's `index.ts`.
 6. Add a usage example in `apps/showcase/src/views/`.
 7. Add Vitest unit tests.
@@ -99,7 +99,7 @@ Before closing any work, run:
 
 ```bash
 bun run check
-bun test
+bun run test --run
 bun run build
 ```
 

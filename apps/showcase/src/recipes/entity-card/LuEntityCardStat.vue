@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
-import LuText from "./LuText.vue";
+import { useLumoraConfig } from '@astrake/lumora-ui';
+import { LuText } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEntityCardStat" });
 

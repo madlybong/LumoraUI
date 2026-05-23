@@ -85,7 +85,7 @@ const skinContainer = computed(() => resolveSkin("LuGaugeChart"));
       <VChart :option="option" autoresize />
       <template #fallback>
         <div class="flex items-center justify-center h-full">
-          <span class="text-xs text-zinc-400 dark:text-zinc-500">Loading chart…</span>
+          <span :class="resolveSkin('LuChartFallbackText')">Loading chart…</span>
         </div>
       </template>
     </Suspense>

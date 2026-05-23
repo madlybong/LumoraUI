@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuStack, LuText, LuCard, LuPageHeader , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 
 const installCode = `npm install @astrake/lumora-ui tailwindcss@^4.0.0`;
 

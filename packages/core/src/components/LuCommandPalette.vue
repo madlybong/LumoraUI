@@ -120,7 +120,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
         <div :class="skinDialog">
           <!-- Search input -->
           <div :class="skinInputWrapper">
-            <LuIcon name="search" :size="16" class="text-zinc-400 dark:text-zinc-500 shrink-0" />
+            <LuIcon name="search" :size="16" :class="resolveSkin('LuCommandPaletteSearchIcon')" />
             <input
               v-model="query"
               :class="skinInput"
@@ -134,7 +134,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
               v-if="query"
               name="x"
               :size="14"
-              class="text-zinc-400 cursor-pointer hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+              :class="resolveSkin('LuCommandPaletteClearIcon')"
               @click="query = ''"
             />
           </div>
@@ -160,7 +160,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
                     :class="resolveSkin('LuCommandPaletteItemIcon')"
                   />
                   <div class="flex flex-col flex-1 min-w-0">
-                    <LuText variant="body" class="font-medium">{{ item.label }}</LuText>
+                    <LuText variant="body" :class="resolveSkin('LuCommandPaletteItemLabel')">{{ item.label }}</LuText>
                     <LuText v-if="item.description" variant="caption" class="truncate">{{ item.description }}</LuText>
                   </div>
                   <!-- Keyboard shortcut -->

@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuMediaGallery, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuMediaGallery, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const items = [

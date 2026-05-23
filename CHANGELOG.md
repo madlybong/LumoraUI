@@ -1,5 +1,4 @@
-
----
+# Changelog
 
 ## Unreleased
 
@@ -9,13 +8,10 @@
 
 ### Added
 
-- complete v0.3.0 to v0.5.0 roadmap (`14ec1c8`)
+- **`LuEntityCard` + `LuEntityCardStat`** — Rich entity summary cards with avatar, meta, stats grid, and actions slots.
+- Complete v0.3.0 to v0.5.0 roadmap implementation.
 
-## [0.5.0] — 2026-05-22
-
-_No conventional commits found in this range._
-
-# Changelog
+---
 
 ## [0.2.2] — 2026-05-14
 
@@ -57,19 +53,10 @@ _No conventional commits found in this range._
 
 ---
 
-
 ## [0.2.1] — 2026-05-12
+
 - Package publishing now ships compiled `dist` outputs (`.js` + `.d.ts`) and exports no longer point to raw `src/*.ts` entrypoints, preventing downstream strict TypeScript checks from surfacing Lumora internals.
 - Cleaned internal type noise in core source (`unused imports/params`, `type`-only `VNode` import) so workspace `vue-tsc` checks remain clean.
-
----
-
-## [0.2.0] — 2026-04-27
-
-### Maintenance
-
-- bump version to 0.2.0 (`d52e5c1`)
-
 
 ---
 
@@ -88,7 +75,7 @@ _No conventional commits found in this range._
 - Various visual hierarchy issues in documentation via typography `LuText` adjustments.
 
 ### Changed
-- **Zero-Raw-HTML Adherence**: Removed all raw DOM nodes (`div`, `span`, etc.) and `PreviewBlock` from the showcase application in favor of 100% native `Lu*` primitives. 
+- **Zero-Raw-HTML Adherence**: Removed all raw DOM nodes (`div`, `span`, etc.) and `PreviewBlock` from the showcase application in favor of 100% native `Lu*` primitives.
 - Integrated Shiki to `@astrake/lumora-ui` core package dependencies.
 
 ---
@@ -107,14 +94,6 @@ _No conventional commits found in this range._
 ### Added
 - `lumora.css` — zero-dependency CSS baseline for all structural/layout defaults; exported at `@astrake/lumora-ui/style`
 - `tailwindContent()` helper exported at `@astrake/lumora-ui/tailwind` — resolves correct `node_modules` source glob for Tailwind `content` config
-
----
-
-## [0.1.6] — 2026-04-25
-
-### Maintenance
-
-- bump version to 0.1.6 - add LuForm validation orchestrator (`1f11734`)
 
 ---
 
@@ -143,7 +122,6 @@ _No conventional commits found in this range._
 
 - prepack hook to include README and CHANGELOG in npm tarball (`e69bdfb`)
 
-
 ---
 
 ## [0.1.3] — 2026-04-25
@@ -156,7 +134,6 @@ _No conventional commits found in this range._
 All notable changes to `@astrake/lumora-ui` are documented here.
 
 Format: [Keep a Changelog](https://keepachangelog.com/) · Commits: [Conventional Commits](https://www.conventionalcommits.org/)
-
 
 ---
 

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuIcon, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuIcon, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const svgCode = `<LuStack direction="horizontal" gap="4">

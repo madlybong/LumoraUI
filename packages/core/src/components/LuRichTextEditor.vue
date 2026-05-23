@@ -52,7 +52,7 @@ const editor = ref<unknown>(null);
 onMounted(async () => {
   try {
     // @ts-ignore peer deps — vue-tsc cannot resolve these without direct deps
-    const { useEditor } = await (import("@tiptap/vue-3" /* @vite-ignore */) as unknown as Promise<{ useEditor: Function }>);
+    const { Editor } = await (import("@tiptap/vue-3" /* @vite-ignore */) as unknown as Promise<{ Editor: new (options: any) => any }>);
     // @ts-ignore peer deps
     const { StarterKit } = await (import("@tiptap/starter-kit" /* @vite-ignore */) as unknown as Promise<{ StarterKit: object }>);
     // @ts-ignore peer deps — optional extension
@@ -65,7 +65,7 @@ onMounted(async () => {
       extensions.push(P.configure({ placeholder: props.placeholder }));
     }
 
-    editor.value = useEditor({
+    editor.value = new Editor({
       extensions,
       content: props.modelValue,
       editable: !props.readonly,

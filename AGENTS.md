@@ -24,7 +24,7 @@ Keep the repo aligned with this model:
 
 ---
 
-## Current State (v0.2.2+)
+## Current State (v0.5.0)
 
 | Subsystem | Status |
 |---|---|
@@ -69,7 +69,7 @@ Do **not** manually create npm packages or GitHub releases — automation handle
 
 Before finalizing any changes or declaring a task complete, run and pass this validation suite:
 ```bash
-bun run check     # vue-tsc typecheck
-bun test          # Vitest suite runs
-bun run build     # Compiles packages & showcase application
+bun run check          # vue-tsc typecheck
+bun run test --run     # Vitest suite runs (must use 'run' script, not native bun test)
+bun run build          # Compiles packages & showcase application
 ```

@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuEmbeddedShell, LuEmbeddedTopBar, LuEmbeddedStatusBar, LuIcon, LuFill , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuEmbeddedShell, LuEmbeddedTopBar, LuEmbeddedStatusBar, LuIcon, LuFill, LuCodeBlock } from '@astrake/lumora-ui';
 
 const exampleCode = `<LuEmbeddedShell>
   <template #topbar>

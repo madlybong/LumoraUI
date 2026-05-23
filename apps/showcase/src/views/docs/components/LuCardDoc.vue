@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuCard, LuButton , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuCard, LuButton, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const cardCode = `<template>

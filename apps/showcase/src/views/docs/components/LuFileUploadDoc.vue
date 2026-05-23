@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuFileUpload, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuFileUpload, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const onFilesSelected = (files: File[]) => {

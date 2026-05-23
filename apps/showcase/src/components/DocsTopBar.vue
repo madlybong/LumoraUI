@@ -23,5 +23,5 @@ import { LuDesktopTopBar, LuIcon, LuBadge, LuStack, LuLink, LuText, LuDivider } 
 import ThemeToggle from './ThemeToggle.vue';
 
 // @ts-ignore
-const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '?.?.?';
 </script>

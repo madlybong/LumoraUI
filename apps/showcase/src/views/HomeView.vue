@@ -87,7 +87,7 @@ import { LuIcon, LuText, LuBadge, LuButton, LuCard, LuGrid, LuDivider } from '@a
 const router = useRouter();
 
 // @ts-ignore
-const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '?.?.?';
 
 function openGithub() {
   window.open('https://github.com/madlybong/lumora-ui', '_blank');

@@ -4,8 +4,6 @@ export { default as LuIcon } from "./LuIcon.vue";
 export { default as LuText } from "./LuText.vue";
 export { default as LuSwitch } from "./LuSwitch.vue";
 export { default as LuSelect } from "./LuSelect.vue";
-export { default as LuThemeSwitch } from "./LuThemeSwitch.vue";
-export { default as LuThemeSelect } from "./LuThemeSelect.vue";
 export { default as LuTabs } from "./LuTabs.vue";
 export { default as LuTabList } from "./LuTabList.vue";
 export { default as LuTab } from "./LuTab.vue";
@@ -17,7 +15,6 @@ export { default as LuCollapsible } from "./LuCollapsible.vue";
 export { default as LuAvatar } from "./LuAvatar.vue";
 export { default as LuLink } from "./LuLink.vue";
 export { default as LuDivider } from "./LuDivider.vue";
-export { default as LuPageHeader } from "./LuPageHeader.vue";
 export { default as LuCard } from "./LuCard.vue";
 export { default as LuTable } from "./LuTable.vue";
 export { default as LuTableHead } from "./LuTableHead.vue";
@@ -72,15 +69,7 @@ export { default as LuCalendar } from "./LuCalendar.vue";
 export type { CalendarEvent as LuCalendarEvent } from "./LuCalendar.vue";
 export { default as LuDateRangePicker } from "./LuDateRangePicker.vue";
 export type { DateRange as LuDateRange } from "./LuDateRangePicker.vue";
-export { default as LuDashboardGrid } from "./LuDashboardGrid.vue";
-export type { DashboardWidget as LuDashboardWidget } from "./LuDashboardGrid.vue";
 export { default as LuCommandPalette } from "./LuCommandPalette.vue";
 export type { CommandItem as LuCommandItem } from "./LuCommandPalette.vue";
 export { default as LuRichTextEditor } from "./LuRichTextEditor.vue";
-export { default as LuNotificationCenter } from "./LuNotificationCenter.vue";
-export type { NotificationItem as LuNotificationItem } from "./LuNotificationCenter.vue";
-
-// ── v0.5.0: Entity components ─────────────────────────────────────────────────
-export { default as LuEntityCard } from "./LuEntityCard.vue";
-export { default as LuEntityCardStat } from "./LuEntityCardStat.vue";
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, nextTick } from "vue";
-import { useLumoraConfig } from "../../context";
-import LuIcon from "../../components/LuIcon.vue";
+import { useLumoraConfig } from '@astrake/lumora-ui';
+import { LuIcon } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEmbeddedBarcodeInput" });
 

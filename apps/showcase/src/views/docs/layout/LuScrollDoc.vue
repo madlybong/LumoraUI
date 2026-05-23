@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuScroll, LuPageHeader, LuStack, LuText , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuScroll, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
 import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+import { useLumoraConfig } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEntityCard" });
 

@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuPageHeader, LuStack, LuText, LuDesktopShell, LuDesktopTopBar, LuDesktopRailBar, LuDesktopRailItem, LuDesktopSidebar, LuDesktopStatusBar, LuButton, LuIcon, LuAvatar, LuCard, LuFill , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuDesktopShell, LuDesktopTopBar, LuDesktopRailBar, LuDesktopRailItem, LuDesktopSidebar, LuDesktopStatusBar, LuButton, LuIcon, LuAvatar, LuCard, LuFill, LuCodeBlock } from '@astrake/lumora-ui';
 
 const exampleCode = `<LuDesktopShell>
   <template #topbar>

@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LuToggleGroup, LuToggleButton, LuPageHeader, LuStack, LuText, LuIcon , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuToggleGroup, LuToggleButton, LuStack, LuText, LuIcon, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const selected = ref('bold');

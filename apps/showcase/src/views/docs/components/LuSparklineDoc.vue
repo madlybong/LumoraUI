@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { LuSparkline, LuPageHeader, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuSparkline, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const basicCode = `<template>
