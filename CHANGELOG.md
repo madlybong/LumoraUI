@@ -1,6 +1,25 @@
 # Changelog
 
-## Unreleased
+## [0.6.0] — 2026-05-23
+
+### ⚠ Breaking Changes
+- Removed from core exports: `LuEntityCard`, `LuEntityCardStat`, `LuPageHeader`, `LuNotificationCenter`, `LuDashboardGrid`, `LuThemeSwitch`, `LuThemeSelect`, `LuEmbeddedPOS*` (5 components). Moved to showcase recipes.
+
+### Added
+- `LuDrawer` — Overlay/push drawer panel (left/right/top/bottom)
+- `LuList`, `LuListItem`, `LuListDivider`, `LuListSubheader` — Structured list primitives
+- `LuPopover` — Rich content anchored to trigger (floating-ui)
+- `LuBottomSheet` — Mobile-friendly bottom panel with drag support
+- `LuToast` + `useLuToast()` — Non-blocking notification system
+- `LuChip`, `LuChipGroup` — Interactive selection chips
+- `LuAccordion` — Grouped collapsibles with exclusive-open mode
+- `useFloating()` — Shared floating-ui composable
+- Showcase: 11 functional navigation categories + Recipes section
+
+### Changed
+- `LuTooltip` — Now uses floating-ui for precise positioning with auto-flip
+- `LuMenu` — Now uses floating-ui, replaces hardcoded CSS alignment
+- `LuDesktopRailBar` promoted as the recommended rail/mini-drawer pattern
 
 ---
 

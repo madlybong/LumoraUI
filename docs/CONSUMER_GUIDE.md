@@ -266,6 +266,13 @@ These are surface-agnostic structural building blocks. Use them inside any shell
 | `LuOverlay` | Absolute-fill layer for modals, drawers, tooltips |
 | `LuCodeBlock` | Native syntax highlighting component with shiki integration |
 | `LuToggleGroup` | Container for grouped `LuToggleButton` selections |
+| `LuDrawer` | Overlay/push drawer panel (left/right/top/bottom) |
+| `LuList` / `LuListItem` | Structured semantic lists with divider, subheader, and slot support |
+| `LuPopover` | Rich content anchored to a trigger with flip/shift viewport protection |
+| `LuBottomSheet` | Mobile-friendly bottom drawer with drag-dismiss support |
+| `LuToast` | Transient non-blocking notification portals via `useLuToast()` |
+| `LuChip` / `LuChipGroup` | Compact interactive selection and tag filtering components |
+| `LuAccordion` | Exclusive single or multi-expandable grouped collapsible panels |
 
 ---
 

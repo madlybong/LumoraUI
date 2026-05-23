@@ -22,7 +22,7 @@
 |--------|-----------|---------|
 | **Mobile** (`LuMobile*`) | `LuMobileShell`, `LuMobileHeader`, `LuMobileNavBar` | PWA-ready apps — touch targets ≥44px, swipe gestures, bottom nav |
 | **Desktop** (`LuDesktop*`) | `LuDesktopShell`, `LuDesktopSidebar`, `LuDesktopTopBar` | Feature-rich browser / Electron apps — resizable splits, keyboard shortcuts |
-| **Embedded** (`LuEmbedded*`) | `LuEmbeddedShell`, `LuEmbeddedPOSLayout`, `LuEmbeddedPOSSummary` | Retail POS, Kiosk, IoT, in-car screens — fixed viewport, high contrast, touch-first |
+| **Embedded** (`LuEmbedded*`) | `LuEmbeddedShell` | Retail POS, Kiosk, IoT, in-car screens — fixed viewport, high contrast, touch-first |
 | **Shared** (`Lu*`) | `LuDataGrid`, `LuKanban`, `LuBarChart`, `LuRichTextEditor`, `LuButton` | Cross-surface primitives, data-rich components, and operational features |
 
 ---
@@ -52,7 +52,7 @@ bun add vue@^3.5.0
 import { LuButton, LuDataGrid, LuKanban, LuStack } from "@astrake/lumora-ui"
 
 // Import surface-specific shells
-import { LuMobileShell, LuDesktopShell, LuEmbeddedShell, LuPOSLayout } from "@astrake/lumora-ui"
+import { LuMobileShell, LuDesktopShell, LuEmbeddedShell } from "@astrake/lumora-ui"
 ```
 
 **Register the plugin:**

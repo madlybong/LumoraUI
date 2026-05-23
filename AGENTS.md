@@ -24,7 +24,7 @@ Keep the repo aligned with this model:
 
 ---
 
-## Current State (v0.5.0)
+## Current State (v0.6.0)
 
 | Subsystem | Status |
 |---|---|
