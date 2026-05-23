@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, toRef } from "vue";
+import { computed, ref, watch } from "vue";
 import { useLumoraConfig } from "../context";
 import { useDataGrid } from "../composables/useDataGrid";
 import LuText from "./LuText.vue";
@@ -8,8 +8,11 @@ import LuCheckbox from "./LuCheckbox.vue";
 import LuButton from "./LuButton.vue";
 import LuPagination from "./LuPagination.vue";
 import LuSpinner from "./LuSpinner.vue";
-import LuSkeleton from "./LuSkeleton.vue";
-import type { ColumnDef, Row, DataGridSortState, DataGridCellEditPayload, DataGridPageChangePayload } from "./LuDataGrid.types";
+import type {
+  ColumnDef, Row, DataGridSortState,
+  DataGridCellEditPayload, DataGridPageChangePayload,
+  DataGridFilterState, DataGridSearchPayload,
+} from "./LuDataGrid.types";
 
 defineOptions({ name: "LuDataGrid" });
 
@@ -21,22 +24,35 @@ const props = withDefaults(defineProps<{
   page?: number;
   pageSize?: number;
   sortable?: boolean;
+  localSort?: boolean;
   groupBy?: string;
   selectable?: boolean;
   freezeColumns?: number;
   inlineEdit?: boolean;
   idKey?: string;
   emptyText?: string;
+  /** Show a search input in the toolbar */
+  searchable?: boolean;
+  /** 'local' filters data client-side; 'remote' emits a search event */
+  searchMode?: "local" | "remote";
+  /** Debounce ms for remote search emit */
+  searchDebounce?: number;
+  searchPlaceholder?: string;
 }>(), {
   loading: false,
   page: 1,
   pageSize: 20,
   sortable: false,
+  localSort: true,
   selectable: false,
   freezeColumns: 0,
   inlineEdit: false,
   idKey: "id",
   emptyText: "No data",
+  searchable: false,
+  searchMode: "local",
+  searchDebounce: 300,
+  searchPlaceholder: "Search…",
 });
 
 const emit = defineEmits<{
@@ -45,6 +61,8 @@ const emit = defineEmits<{
   (e: "selection-change", selectedIds: string[]): void;
   (e: "cell-edit", payload: DataGridCellEditPayload): void;
   (e: "export", payload: { format: "csv" | "excel" }): void;
+  (e: "search", payload: DataGridSearchPayload): void;
+  (e: "filter-change", payload: DataGridFilterState): void;
 }>();
 
 const { resolveSkin } = useLumoraConfig();
@@ -52,17 +70,38 @@ const { resolveSkin } = useLumoraConfig();
 const {
   visibleColumns, hiddenColumns, toggleColumn,
   sortState, toggleSort,
-  selectedIds, isSelected, toggleRow, selectAll, clearSelection, allSelected, someSelected,
-  groupedRows,
+  searchQuery, columnFilters, setColumnFilter, clearFilters,
+  filteredData,
+  selectedIds, isSelected, toggleRow, selectAll, selectAllData, clearSelection, allSelected, someSelected, selectionCount,
+  groupedRows, hasColumnFilters,
 } = useDataGrid({
   columns: computed(() => props.columns),
   data: computed(() => props.data),
   groupBy: computed(() => props.groupBy),
   selectable: computed(() => props.selectable),
   idKey: computed(() => props.idKey),
+  localSort: computed(() => props.localSort && props.sortable),
+  localSearch: computed(() => props.searchMode === "local"),
 });
 
-// ── Editing ──────────────────────────────────────────────────────────────────
+// ── Search debounce ───────────────────────────────────────────────────────────
+let searchTimer: ReturnType<typeof setTimeout> | null = null;
+function handleSearch(e: Event) {
+  const q = (e.target as HTMLInputElement).value;
+  searchQuery.value = q;
+  if (props.searchMode === "remote") {
+    if (searchTimer) clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => emit("search", { query: q }), props.searchDebounce);
+  }
+}
+
+// ── Column filter ─────────────────────────────────────────────────────────────
+function handleColumnFilter(key: string, value: string) {
+  setColumnFilter(key, value || undefined);
+  emit("filter-change", columnFilters.value);
+}
+
+// ── Editing ───────────────────────────────────────────────────────────────────
 const editingCell = ref<{ rowId: string; columnKey: string } | null>(null);
 const editingValue = ref<unknown>(null);
 
@@ -87,7 +126,7 @@ function isEditing(row: Row, col: ColumnDef): boolean {
     editingCell.value?.columnKey === col.key;
 }
 
-// ── Sort ─────────────────────────────────────────────────────────────────────
+// ── Sort ──────────────────────────────────────────────────────────────────────
 function handleSort(key: string, colSortable?: boolean) {
   if (!props.sortable || !colSortable) return;
   const newState = toggleSort(key);
@@ -110,9 +149,22 @@ function handleToggleRow(row: Row) {
   emit("selection-change", ids);
 }
 
-// ── Pagination ────────────────────────────────────────────────────────────────
+function handleSelectAllData() {
+  const ids = selectAllData();
+  emit("selection-change", ids);
+}
 
-// ── Skin ─────────────────────────────────────────────────────────────────────
+function handleClearSelection() {
+  const ids = clearSelection();
+  emit("selection-change", ids);
+}
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+function handlePageChange(p: number) {
+  emit("page-change", { page: p, pageSize: props.pageSize });
+}
+
+// ── Skin ──────────────────────────────────────────────────────────────────────
 const skinContainer = computed(() => resolveSkin("LuDataGridContainer"));
 const skinToolbar = computed(() => resolveSkin("LuDataGridToolbar"));
 const skinScrollArea = computed(() => resolveSkin("LuDataGridScrollArea"));
@@ -134,6 +186,14 @@ const skinFooter = computed(() => resolveSkin("LuDataGridFooter"));
 const skinSortIcon = computed(() => resolveSkin("LuDataGridSortIcon"));
 const skinSortIconAsc = computed(() => resolveSkin("LuDataGridSortIcon", "asc"));
 const skinSortIconDesc = computed(() => resolveSkin("LuDataGridSortIcon", "desc"));
+const skinSearchInput = computed(() => resolveSkin("LuDataGridSearchInput"));
+const skinSelectionBar = computed(() => resolveSkin("LuDataGridSelectionBar"));
+const skinSelectionBarCount = computed(() => resolveSkin("LuDataGridSelectionBarCount"));
+const skinSelectionBarAction = computed(() => resolveSkin("LuDataGridSelectionBarAction"));
+const skinFilterRow = computed(() => resolveSkin("LuDataGridFilterRow"));
+const skinFilterCell = computed(() => resolveSkin("LuDataGridFilterCell"));
+const skinFilterInput = computed(() => resolveSkin("LuDataGridFilterInput"));
+const skinFilterSelect = computed(() => resolveSkin("LuDataGridFilterSelect"));
 
 function sortIconVariant(key: string) {
   if (sortState.value?.key !== key) return skinSortIcon.value;
@@ -147,28 +207,47 @@ function sortIconName(key: string): string {
 
 const isFrozen = (index: number) => index < props.freezeColumns;
 const frozenLeft = (index: number) => {
-  // approximate: each frozen column is 150px wide (simplified)
   return isFrozen(index) ? `${index * 150}px` : undefined;
 };
 
-const hasData = computed(() => props.data.length > 0);
+const hasData = computed(() => groupedRows.value.length > 0);
 const totalPages = computed(() => Math.ceil((props.total ?? props.data.length) / props.pageSize));
-
-function handlePageChange(p: number) {
-  emit("page-change", { page: p, pageSize: props.pageSize });
-}
+const totalCount = computed(() => props.total ?? filteredData.value.length);
 </script>
 
 <template>
   <div :class="skinContainer">
     <!-- Toolbar -->
     <div :class="skinToolbar">
-      <div class="flex items-center gap-2">
-        <slot name="toolbar-start" />
+      <div class="flex items-center gap-3 min-w-0">
+        <!-- Search input (left) -->
+        <input
+          v-if="searchable"
+          :class="skinSearchInput"
+          :placeholder="searchPlaceholder"
+          :value="searchQuery"
+          type="text"
+          @input="handleSearch"
+        />
+
+        <!-- Selection bar or custom toolbar-start slot -->
+        <template v-if="selectable && selectionCount > 0">
+          <div :class="skinSelectionBar">
+            <span :class="skinSelectionBarCount">{{ selectionCount }}</span>
+            <span>selected</span>
+            <span :class="skinSelectionBarAction" @click="handleSelectAllData">
+              Select all {{ data.length }}
+            </span>
+            <span :class="skinSelectionBarAction" @click="handleClearSelection">Clear</span>
+          </div>
+        </template>
+        <template v-else>
+          <slot name="toolbar-start" />
+        </template>
       </div>
+
       <div class="flex items-center gap-2">
         <slot name="toolbar-end">
-          <!-- Column visibility toggle -->
           <LuButton variant="ghost" size="sm" @click="emit('export', { format: 'csv' })">
             <LuIcon name="download" :size="14" />
             <LuText variant="caption">Export</LuText>
@@ -188,8 +267,9 @@ function handlePageChange(p: number) {
       <div :class="skinScrollArea">
         <table :class="skinTable">
           <thead :class="skinHead">
+            <!-- Column header row -->
             <tr>
-              <!-- Checkbox column -->
+              <!-- Checkbox column header -->
               <th v-if="selectable" :class="skinCheckboxCell">
                 <LuCheckbox
                   :model-value="allSelected"
@@ -197,7 +277,7 @@ function handlePageChange(p: number) {
                   @update:model-value="handleToggleAll"
                 />
               </th>
-              <!-- Data columns -->
+              <!-- Data column headers -->
               <th
                 v-for="(col, colIdx) in visibleColumns"
                 :key="col.key"
@@ -214,6 +294,40 @@ function handlePageChange(p: number) {
                     <LuIcon :name="sortIconName(col.key)" :size="12" />
                   </span>
                 </div>
+              </th>
+            </tr>
+
+            <!-- Per-column filter row -->
+            <tr v-if="hasColumnFilters" :class="skinFilterRow">
+              <th v-if="selectable" :class="skinFilterCell" />
+              <th
+                v-for="col in visibleColumns"
+                :key="col.key"
+                :class="skinFilterCell"
+              >
+                <!-- Text filter -->
+                <input
+                  v-if="col.filterable && col.filterType !== 'select'"
+                  :class="skinFilterInput"
+                  :placeholder="`Filter…`"
+                  type="text"
+                  :value="columnFilters[col.key] ?? ''"
+                  @input="handleColumnFilter(col.key, ($event.target as HTMLInputElement).value)"
+                />
+                <!-- Select filter -->
+                <select
+                  v-else-if="col.filterable && col.filterType === 'select'"
+                  :class="skinFilterSelect"
+                  :value="columnFilters[col.key] ?? ''"
+                  @change="handleColumnFilter(col.key, ($event.target as HTMLSelectElement).value)"
+                >
+                  <option value="">All</option>
+                  <option
+                    v-for="opt in col.filterOptions"
+                    :key="opt.value"
+                    :value="opt.value"
+                  >{{ opt.label }}</option>
+                </select>
               </th>
             </tr>
           </thead>
@@ -293,7 +407,7 @@ function handlePageChange(p: number) {
       <!-- Footer / Pagination -->
       <div v-if="total != null && totalPages > 1" :class="skinFooter">
         <LuText variant="caption">
-          {{ selectedIds.size > 0 ? `${selectedIds.size} selected · ` : '' }}{{ total }} total
+          {{ selectionCount > 0 ? `${selectionCount} selected · ` : '' }}{{ totalCount }} total
         </LuText>
         <LuPagination
           :model-value="page"
