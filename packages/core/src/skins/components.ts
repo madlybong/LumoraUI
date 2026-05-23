@@ -797,5 +797,82 @@ export const componentsSkin: SkinMap = {
   LuCommandPaletteItemLabel: {
     default: "font-medium",
   },
+
+  // ─── v0.6.0: LuDrawer ───────────────────────────────────────────────────────
+  LuDrawerBackdrop: {
+    default: "fixed inset-0 z-50 bg-black/40 backdrop-blur-sm",
+  },
+  LuDrawerPanel: {
+    default: "fixed z-50 flex flex-col bg-white shadow-2xl dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 transition-transform duration-300 ease-in-out",
+  },
+  "LuDrawerPanel.left": {
+    default: "left-0 top-0 bottom-0 w-80 border-r",
+  },
+  "LuDrawerPanel.right": {
+    default: "right-0 top-0 bottom-0 w-80 border-l",
+  },
+  "LuDrawerPanel.top": {
+    default: "top-0 left-0 right-0 h-80 border-b",
+  },
+  "LuDrawerPanel.bottom": {
+    default: "bottom-0 left-0 right-0 h-80 border-t",
+  },
+  LuDrawerHeader: {
+    default: "flex items-center justify-between px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 shrink-0",
+  },
+  LuDrawerContent: {
+    default: "flex-1 overflow-y-auto p-6 lu-scrollbar-thin",
+  },
+  LuDrawerFooter: {
+    default: "px-6 py-4 border-t border-zinc-100 dark:border-zinc-800 shrink-0 bg-zinc-50 dark:bg-zinc-900/50",
+  },
+
+  // ─── v0.6.0: LuList ─────────────────────────────────────────────────────────
+  LuList: {
+    default: "flex flex-col w-full divide-y-0 divide-zinc-100 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm overflow-hidden p-1.5",
+  },
+  LuListItem: {
+    default: "flex items-center gap-3 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500/20",
+  },
+  "LuListItem.active": {
+    default: "bg-rose-50/50 text-rose-600 dark:bg-rose-950/10 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20",
+  },
+  "LuListItem.disabled": {
+    default: "opacity-40 pointer-events-none",
+  },
+  LuListItemLeading: {
+    default: "flex items-center justify-center shrink-0 min-w-[20px] text-zinc-400 dark:text-zinc-500",
+  },
+  LuListItemContent: {
+    default: "flex-1 min-w-0 flex flex-col gap-0.5",
+  },
+  LuListItemTrailing: {
+    default: "flex items-center justify-center shrink-0 text-zinc-400 dark:text-zinc-500 text-xs",
+  },
+  LuListDivider: {
+    default: "h-px bg-zinc-200 dark:bg-zinc-800/80 my-1 mx-2 list-none",
+  },
+  LuListSubheader: {
+    default: "px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 list-none mt-2 first:mt-0",
+  },
+
+  // ─── v0.6.0: LuPopover ──────────────────────────────────────────────────────
+  LuPopover: {
+    default: "relative inline-block",
+  },
+  LuPopoverContent: {
+    default: "absolute z-40 w-72 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-xl focus:outline-none dark:border-zinc-800 dark:bg-zinc-900 lu-fade-in",
+  },
+
+  // ─── v0.6.0: LuBottomSheet ──────────────────────────────────────────────────
+  LuBottomSheetBackdrop: {
+    default: "fixed inset-0 z-50 bg-black/40 backdrop-blur-sm",
+  },
+  LuBottomSheet: {
+    default: "fixed bottom-0 left-0 right-0 z-50 max-h-[90vh] flex flex-col rounded-t-3xl border-t border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900 transition-transform duration-300 ease-in-out",
+  },
+  LuBottomSheetHandle: {
+    default: "py-4 w-full cursor-grab active:cursor-grabbing shrink-0",
+  },
 };
 

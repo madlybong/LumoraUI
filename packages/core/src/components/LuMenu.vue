@@ -1,6 +1,6 @@
 <template>
   <div :class="resolvedSkin" ref="dropdownRef">
-    <div @click="toggle" :class="resolvedTriggerSkin" aria-haspopup="true" :aria-expanded="isOpen">
+    <div @click="toggle" ref="triggerRef" :class="resolvedTriggerSkin" aria-haspopup="true" :aria-expanded="isOpen">
       <slot name="trigger">
         <LuButton variant="default">Options <LuIcon name="chevron-down" class="ml-2 h-4 w-4" /></LuButton>
       </slot>
@@ -13,7 +13,7 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <div v-if="isOpen" :class="[resolvedContentSkin, alignClass]">
+      <div v-if="isOpen" ref="contentRef" :class="resolvedContentSkin" :style="floatingStyle">
         <div :class="resolvedGroupSkin" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
           <slot />
         </div>
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useLumoraConfig } from "../context";
+import { useFloating } from "../composables/useFloating";
 import LuButton from "./LuButton.vue";
 import LuIcon from "./LuIcon.vue";
 
@@ -42,6 +43,20 @@ const emit = defineEmits<{
 
 const isOpen = ref(false);
 const dropdownRef = ref<HTMLElement | null>(null);
+const triggerRef = ref<HTMLElement | null>(null);
+const contentRef = ref<HTMLElement | null>(null);
+
+const { x, y } = useFloating(triggerRef, contentRef, {
+  placement: props.align === 'right' ? 'bottom-end' : 'bottom-start',
+  offset: 4
+});
+
+const floatingStyle = computed(() => ({
+  position: 'absolute' as const,
+  left: `${x.value}px`,
+  top: `${y.value}px`,
+  zIndex: 50
+}));
 
 const { resolveSkin } = useLumoraConfig();
 
@@ -50,11 +65,8 @@ const resolvedTriggerSkin = computed(() => resolveSkin("LuMenuTrigger", props.va
 const resolvedContentSkin = computed(() => resolveSkin("LuMenuContent", props.variant));
 const resolvedGroupSkin = computed(() => resolveSkin("LuMenuGroup", props.variant));
 
-const alignClass = computed(() => {
-  return props.align === 'right' ? 'right-0 origin-top-right' : 'left-0 origin-top-left';
-});
-
-const toggle = () => {
+const toggle = (event: Event) => {
+  event.stopPropagation();
   isOpen.value = !isOpen.value;
   if (isOpen.value) {
     emit("open");
@@ -84,3 +96,4 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
 });
 </script>
+

@@ -185,3 +185,60 @@
 .lu-scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
 .lu-scrollbar-thin::-webkit-scrollbar-thumb { border-radius: 9999px; background: rgba(0,0,0,0.15); }
 
+/* ─── Drawer Transitions ─────────────────────────────────────────────────── */
+.lu-drawer-fade-enter-active,
+.lu-drawer-fade-leave-active {
+  transition: opacity 300ms ease;
+}
+.lu-drawer-fade-enter-from,
+.lu-drawer-fade-leave-to {
+  opacity: 0;
+}
+
+.lu-drawer-slide-left-enter-active,
+.lu-drawer-slide-left-leave-active,
+.lu-drawer-slide-right-enter-active,
+.lu-drawer-slide-right-leave-active,
+.lu-drawer-slide-top-enter-active,
+.lu-drawer-slide-top-leave-active,
+.lu-drawer-slide-bottom-enter-active,
+.lu-drawer-slide-bottom-leave-active {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lu-drawer-slide-left-enter-from,
+.lu-drawer-slide-left-leave-to {
+  transform: translateX(-100%);
+}
+.lu-drawer-slide-right-enter-from,
+.lu-drawer-slide-right-leave-to {
+  transform: translateX(100%);
+}
+.lu-drawer-slide-top-enter-from,
+.lu-drawer-slide-top-leave-to {
+  transform: translateY(-100%);
+}
+.lu-drawer-slide-bottom-enter-from,
+.lu-drawer-slide-bottom-leave-to {
+  transform: translateY(100%);
+}
+
+/* ─── Bottom Sheet Transitions ───────────────────────────────────────────── */
+.lu-bottom-sheet-fade-enter-active,
+.lu-bottom-sheet-fade-leave-active {
+  transition: opacity 300ms ease;
+}
+.lu-bottom-sheet-fade-enter-from,
+.lu-bottom-sheet-fade-leave-to {
+  opacity: 0;
+}
+
+.lu-bottom-sheet-slide-enter-active,
+.lu-bottom-sheet-slide-leave-active {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lu-bottom-sheet-slide-enter-from,
+.lu-bottom-sheet-slide-leave-to {
+  transform: translateY(100%);
+}
+

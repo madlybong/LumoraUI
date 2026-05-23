@@ -73,3 +73,12 @@ export { default as LuCommandPalette } from "./LuCommandPalette.vue";
 export type { CommandItem as LuCommandItem } from "./LuCommandPalette.vue";
 export { default as LuRichTextEditor } from "./LuRichTextEditor.vue";
 
+// ── v0.6.0: P0 Primitives ────────────────────────────────────────────────────
+export { default as LuDrawer } from "./LuDrawer.vue";
+export { default as LuList } from "./LuList.vue";
+export { default as LuListItem } from "./LuListItem.vue";
+export { default as LuListDivider } from "./LuListDivider.vue";
+export { default as LuListSubheader } from "./LuListSubheader.vue";
+export { default as LuPopover } from "./LuPopover.vue";
+export { default as LuBottomSheet } from "./LuBottomSheet.vue";
+

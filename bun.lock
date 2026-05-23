@@ -24,7 +24,7 @@
     },
     "apps/showcase": {
       "name": "showcase",
-      "version": "0.1.0",
+      "version": "0.5.0",
       "dependencies": {
         "@astrake/lumora-ui": "workspace:*",
         "lucide-vue-next": "^1.0.0",
@@ -54,6 +54,7 @@
       "name": "@astrake/lumora-ui",
       "version": "0.5.0",
       "dependencies": {
+        "@floating-ui/dom": "^1.7.6",
         "clsx": "^2.1.1",
         "shiki": "^4.0.2",
         "tailwind-merge": "^3.5.0",
