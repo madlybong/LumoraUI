@@ -23,10 +23,14 @@ const props = withDefaults(defineProps<{
   minDate?: string;
   maxDate?: string;
   firstDayOfWeek?: 0 | 1;
+  size?: "default" | "mini";
+  showEventLabels?: boolean;
 }>(), {
   events: () => [],
   disabledDates: () => [],
   firstDayOfWeek: 1,
+  size: "default",
+  showEventLabels: true,
 });
 
 const emit = defineEmits<{
@@ -157,13 +161,13 @@ function dayButtonVariant(day: CalendarDay): string | undefined {
 }
 
 // Skins
-const skinCalendar = computed(() => resolveSkin("LuCalendar"));
-const skinHeader = computed(() => resolveSkin("LuCalendarHeader"));
-const skinTitle = computed(() => resolveSkin("LuCalendarTitle"));
-const skinGrid = computed(() => resolveSkin("LuCalendarGrid"));
-const skinGridHeader = computed(() => resolveSkin("LuCalendarGridHeader"));
-const skinGridHeaderCell = computed(() => resolveSkin("LuCalendarGridHeaderCell"));
-const skinDay = computed(() => resolveSkin("LuCalendarDay"));
+const skinCalendar = computed(() => resolveSkin("LuCalendar", props.size));
+const skinHeader = computed(() => resolveSkin("LuCalendarHeader", props.size));
+const skinTitle = computed(() => resolveSkin("LuCalendarTitle", props.size));
+const skinGrid = computed(() => resolveSkin("LuCalendarGrid", props.size));
+const skinGridHeader = computed(() => resolveSkin("LuCalendarGridHeader", props.size));
+const skinGridHeaderCell = computed(() => resolveSkin("LuCalendarGridHeaderCell", props.size));
+const skinDay = computed(() => resolveSkin("LuCalendarDay", props.size));
 </script>
 
 <template>
@@ -171,12 +175,12 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay"));
     <!-- Month navigation -->
     <div :class="skinHeader">
       <LuText :class="skinTitle">{{ MONTH_NAMES[viewMonth] }} {{ viewYear }}</LuText>
-      <div :class="resolveSkin('LuCalendarNav')">
-        <LuButton variant="ghost" size="icon-sm" aria-label="Previous month" @click="prevMonth">
-          <LuIcon name="chevron-left" :size="16" />
+      <div :class="resolveSkin('LuCalendarNav', props.size)">
+        <LuButton variant="ghost" :size="props.size === 'mini' ? 'icon-sm' : 'icon-sm'" aria-label="Previous month" @click="prevMonth">
+          <LuIcon name="chevron-left" :size="props.size === 'mini' ? 14 : 16" />
         </LuButton>
-        <LuButton variant="ghost" size="icon-sm" aria-label="Next month" @click="nextMonth">
-          <LuIcon name="chevron-right" :size="16" />
+        <LuButton variant="ghost" :size="props.size === 'mini' ? 'icon-sm' : 'icon-sm'" aria-label="Next month" @click="nextMonth">
+          <LuIcon name="chevron-right" :size="props.size === 'mini' ? 14 : 16" />
         </LuButton>
       </div>
     </div>
@@ -191,7 +195,7 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay"));
             scope="col"
             :class="skinGridHeaderCell"
           >
-            {{ day }}
+            {{ props.size === 'mini' ? day.charAt(0) : day }}
           </th>
         </tr>
       </thead>
@@ -205,7 +209,7 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay"));
             <template v-if="calendarDays[rowIdx * 7 + cellIdx - 1]">
               <button
                 type="button"
-                :class="resolveSkin('LuCalendarDayButton', dayButtonVariant(calendarDays[rowIdx * 7 + cellIdx - 1]))"
+                :class="resolveSkin(props.size === 'mini' ? 'LuCalendarDayButtonMini' : 'LuCalendarDayButton', dayButtonVariant(calendarDays[rowIdx * 7 + cellIdx - 1]))"
                 :aria-label="calendarDays[rowIdx * 7 + cellIdx - 1].iso"
                 :aria-selected="calendarDays[rowIdx * 7 + cellIdx - 1].isSelected"
                 :aria-disabled="calendarDays[rowIdx * 7 + cellIdx - 1].isDisabled"
@@ -217,7 +221,7 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay"));
               <div
                 v-for="evt in calendarDays[rowIdx * 7 + cellIdx - 1].events.slice(0, 2)"
                 :key="evt.id"
-                :class="resolveSkin('LuCalendarEventDot')"
+                :class="resolveSkin('LuCalendarEventDot', props.size)"
                 :style="evt.color ? { backgroundColor: evt.color } : undefined"
                 :title="evt.label"
                 @click.stop="emit('event-click', evt)"
