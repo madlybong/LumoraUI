@@ -31,7 +31,10 @@ Shared primitives (`LuIcon`, `LuButton`, `LuInput`, etc.) are surface-agnostic a
 ### Step 1 — Install
 
 ```bash
-bun add @astrake/lumora-ui  # or npm/yarn/pnpm
+bun add @astrake/lumora-ui vue@^3.5.0 tailwindcss @tailwindcss/vite \
+        echarts vue-echarts \
+        @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-placeholder \
+        vue-draggable-plus
 ```
 
 ### Step 2 — Import the CSS baseline (REQUIRED)

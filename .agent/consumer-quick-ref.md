@@ -8,7 +8,10 @@ This document provides a single-page integration cheat sheet for developers or s
 
 ### Step 1 — Add the Dependency
 ```bash
-bun add @astrake/lumora-ui
+bun add @astrake/lumora-ui vue@^3.5.0 tailwindcss @tailwindcss/vite \
+        echarts vue-echarts \
+        @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-placeholder \
+        vue-draggable-plus
 ```
 
 ### Step 2 — Import the CSS Structural Baseline

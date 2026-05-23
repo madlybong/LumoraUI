@@ -4,6 +4,48 @@
 
 ---
 
+## [0.7.3] — 2026-05-23
+
+### Added
+
+- update shared skins for select, forms, timeline, calendar, and planner (`10cf2ba`)
+- extend LuCalendar with mini size and showEventLabels prop (`41462de`)
+- add LuPlanner weekly scheduling component (`759cc1f`)
+- redesign LuTimeline with compact, numbered, and status variants (`ed6ff6c`)
+- enhance LuDataGrid with sorting, select-all, and local search/filter (`8374caf`)
+- overhaul LuCheckbox, LuRadio, LuSwitch with improved skins and tri-state switch (`2248907`)
+- redesign LuSelect with search, groups, and chip multi-select (`b6c8d4f`)
+- add LuToast, LuChip, LuAccordion (`f85b57e`)
+- add LuDrawer, LuList, LuPopover, LuBottomSheet; integrate floating-ui (`04fd13b`)
+- complete v0.3.0 to v0.5.0 roadmap (`14ec1c8`)
+
+### Fixed
+
+- restore LuThemeSwitch recipe (`35f5988`)
+- repair LuFormWizard step navigation and layout (`c8a5ba9`)
+- resolve remaining headless violations and strengthen tests (`d4f8e25`)
+
+### Changed
+
+- restructure navigation into functional categories (`c2575d6`)
+- remove domain-specific components from core exports (`1310993`)
+
+### Documentation
+
+- add LuCodeBlock documentation page (`02a6f77`)
+- integrate missing v0.5.0 components and fix charts renderer error (`ffbf80d`)
+
+### Maintenance
+
+- bump version to 0.7.2 (`b4ea3c4`)
+- bump version to 0.7.1 (`754ee2b`)
+- bump version to 0.7.0 (`0fe5c37`)
+- bump version to 0.6.0 (`2e62243`)
+- bump version to 0.5.0 (`18b82f6`)
+
+
+---
+
 ## [0.7.2] — 2026-05-23
 
 ### Fixed

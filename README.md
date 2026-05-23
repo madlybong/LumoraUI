@@ -30,18 +30,14 @@
 ## Install
 
 ```bash
-bun add @astrake/lumora-ui
-# or
-npm install @astrake/lumora-ui
-# or
-pnpm add @astrake/lumora-ui
+bun add @astrake/lumora-ui vue@^3.5.0 tailwindcss @tailwindcss/vite \
+        echarts vue-echarts \
+        @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-placeholder \
+        vue-draggable-plus
 ```
 
-**Peer dependency:**
-
-```bash
-bun add vue@^3.5.0
-```
+> The `postinstall` script will print this command automatically after
+> `bun add @astrake/lumora-ui`.
 
 ---
 
