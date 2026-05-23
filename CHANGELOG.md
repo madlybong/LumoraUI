@@ -4,6 +4,13 @@
 
 ---
 
+## [0.7.2] — 2026-05-23
+
+### Fixed
+- Fixed CI release workflow git authentication: added `token: ${{ secrets.GITHUB_TOKEN }}` to checkout step and explicit remote URL configuration before tag push to resolve "No such device or address" error.
+
+---
+
 ## [0.7.1] — 2026-05-23
 
 ### Fixed
