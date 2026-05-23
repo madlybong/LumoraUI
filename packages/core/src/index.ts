@@ -11,5 +11,8 @@ export * from "./skins/index";
 export { useDataGrid } from "./composables/useDataGrid";
 export { useChartTheme } from "./composables/useChartTheme";
 export type { UseDataGridOptions } from "./composables/useDataGrid";
+export { useFloating } from "./composables/useFloating";
+export { useLuToast, type ToastItem } from "./composables/useLuToast";
+
 
 

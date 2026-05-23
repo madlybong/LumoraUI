@@ -874,5 +874,62 @@ export const componentsSkin: SkinMap = {
   LuBottomSheetHandle: {
     default: "py-4 w-full cursor-grab active:cursor-grabbing shrink-0",
   },
+
+  // ─── v0.6.0: LuToast ────────────────────────────────────────────────────────
+  LuToastContainer: {
+    default: "fixed bottom-4 right-4 z-50 flex flex-col gap-2 w-full max-w-sm pointer-events-none px-4 sm:px-0",
+  },
+  LuToast: {
+    default: "flex items-start gap-3 p-4 rounded-xl border bg-white dark:bg-zinc-900 shadow-lg pointer-events-auto transition-all duration-300 w-full",
+  },
+  "LuToast.success": {
+    default: "border-emerald-200 bg-emerald-50/50 text-emerald-900 dark:border-emerald-800/50 dark:bg-emerald-950/10 dark:text-emerald-300",
+  },
+  "LuToast.error": {
+    default: "border-rose-200 bg-rose-50/50 text-rose-900 dark:border-rose-800/50 dark:bg-rose-950/10 dark:text-rose-300",
+  },
+  "LuToast.warning": {
+    default: "border-amber-200 bg-amber-50/50 text-amber-900 dark:border-amber-800/50 dark:bg-amber-950/10 dark:text-amber-300",
+  },
+  "LuToast.info": {
+    default: "border-blue-200 bg-blue-50/50 text-blue-900 dark:border-blue-800/50 dark:bg-blue-950/10 dark:text-blue-300",
+  },
+  LuToastTitle: {
+    default: "text-sm font-semibold",
+  },
+  LuToastDescription: {
+    default: "text-xs mt-1 opacity-90",
+  },
+  LuToastClose: {
+    default: "shrink-0 rounded-lg p-1 opacity-60 hover:opacity-100 transition-opacity focus:outline-none",
+  },
+
+  // ─── v0.6.0: LuChip ─────────────────────────────────────────────────────────
+  LuChip: {
+    default: "inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 transition-colors cursor-pointer select-none dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800",
+  },
+  "LuChip.selected": {
+    default: "border-rose-200 bg-rose-50 text-rose-600 dark:border-rose-800/50 dark:bg-rose-950/20 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/30",
+  },
+  "LuChip.disabled": {
+    default: "opacity-40 pointer-events-none",
+  },
+  LuChipClose: {
+    default: "shrink-0 rounded-full p-0.5 opacity-60 hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus:outline-none",
+  },
+
+  // ─── v0.6.0: LuAccordion ───────────────────────────────────────────────────
+  LuAccordion: {
+    default: "w-full border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900 overflow-hidden divide-y divide-zinc-200 dark:divide-zinc-800",
+  },
+  LuAccordionItem: {
+    default: "flex flex-col",
+  },
+  LuAccordionTrigger: {
+    default: "flex items-center justify-between w-full px-6 py-4 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors text-left focus:outline-none focus:bg-zinc-50 dark:focus:bg-zinc-800/40",
+  },
+  LuAccordionContent: {
+    default: "px-6 pb-4 pt-1 text-sm text-zinc-600 dark:text-zinc-400",
+  },
 };
 

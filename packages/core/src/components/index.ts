@@ -82,3 +82,9 @@ export { default as LuListSubheader } from "./LuListSubheader.vue";
 export { default as LuPopover } from "./LuPopover.vue";
 export { default as LuBottomSheet } from "./LuBottomSheet.vue";
 
+// ── v0.6.0: P1 Primitives ────────────────────────────────────────────────────
+export { default as LuToast } from "./LuToast.vue";
+export { default as LuChip } from "./LuChip.vue";
+export { default as LuChipGroup } from "./LuChipGroup.vue";
+export { default as LuAccordion } from "./LuAccordion.vue";
+
