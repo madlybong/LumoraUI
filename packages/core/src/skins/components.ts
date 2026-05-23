@@ -400,6 +400,12 @@ export const componentsSkin: SkinMap = {
     asc: "text-zinc-700 dark:text-zinc-300",
     desc: "text-zinc-700 dark:text-zinc-300",
   },
+  LuDataGridErrorInput: {
+    default: "border-rose-500 bg-rose-50/30 dark:bg-rose-950/10 dark:border-rose-400",
+  },
+  LuDataGridEmptyIcon: {
+    default: "text-zinc-300 dark:text-zinc-600",
+  },
 
   // ─── v0.3.0: LuChart components ───────────────────────────────────────────
   LuBarChart: {

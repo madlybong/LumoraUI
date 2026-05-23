@@ -37,11 +37,10 @@ describe("LuCalendar", () => {
     const dateButton = dayButtons.find(
       (btn) => btn.text().trim() === "15" && !btn.classes().includes("opacity-0")
     );
-    if (dateButton) {
-      await dateButton.trigger("click");
-      // Should emit some update event
-      expect(wrapper.emitted()).toBeDefined();
-    }
+    expect(dateButton).toBeDefined();
+    await dateButton!.trigger("click");
+    // Should emit some update event
+    expect(wrapper.emitted()).toBeDefined();
   });
 
   it("renders event indicators when events are provided", () => {
@@ -59,13 +58,11 @@ describe("LuCalendar", () => {
     const wrapper = mount(LuCalendar, {
       props: { events: [] },
     });
-    const textBefore = wrapper.text();
     // Find navigation buttons and click next
     const navButtons = wrapper.findAll("button");
     // The last few buttons should be prev/next navigation
-    if (navButtons.length > 2) {
-      await navButtons[1].trigger("click"); // Next month button
-    }
+    expect(navButtons.length).toBeGreaterThan(2);
+    await navButtons[1].trigger("click"); // Next month button
     // Text should have changed (different month displayed)
     expect(wrapper.exists()).toBe(true);
   });

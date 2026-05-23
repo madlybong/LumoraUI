@@ -128,6 +128,8 @@ const skinCheckboxCell = computed(() => resolveSkin("LuDataGridCheckboxCell"));
 const skinGroupRow = computed(() => resolveSkin("LuDataGridGroupRow"));
 const skinGroupCell = computed(() => resolveSkin("LuDataGridGroupCell"));
 const skinEmpty = computed(() => resolveSkin("LuDataGridEmpty"));
+const skinErrorInput = computed(() => resolveSkin("LuDataGridErrorInput"));
+const skinEmptyIcon = computed(() => resolveSkin("LuDataGridEmptyIcon"));
 const skinFooter = computed(() => resolveSkin("LuDataGridFooter"));
 const skinSortIcon = computed(() => resolveSkin("LuDataGridSortIcon"));
 const skinSortIconAsc = computed(() => resolveSkin("LuDataGridSortIcon", "asc"));
@@ -255,11 +257,10 @@ function handlePageChange(p: number) {
                     :style="isFrozen(colIdx) ? { left: frozenLeft(colIdx) } : undefined"
                     @dblclick="startEdit(item.row, col)"
                   >
-                    <!-- Inline edit input -->
                     <input
                       v-if="isEditing(item.row, col)"
                       v-model="editingValue"
-                      class="w-full h-8 px-2 text-sm rounded border border-rose-500 bg-rose-50/30 focus:outline-none dark:bg-rose-950/10 dark:border-rose-400"
+                      :class="['w-full h-8 px-2 text-sm rounded border focus:outline-none', skinErrorInput]"
                       @blur="commitEdit(item.row, col)"
                       @keydown.enter="commitEdit(item.row, col)"
                       @keydown.escape="editingCell = null"
@@ -280,7 +281,7 @@ function handlePageChange(p: number) {
                 :class="skinEmpty"
               >
                 <slot name="empty">
-                  <LuIcon name="inbox" :size="32" class="text-zinc-300 dark:text-zinc-600" />
+                  <LuIcon name="inbox" :size="32" :class="skinEmptyIcon" />
                   <LuText variant="muted">{{ emptyText }}</LuText>
                 </slot>
               </td>

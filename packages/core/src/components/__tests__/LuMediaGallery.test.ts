@@ -45,10 +45,9 @@ describe("LuMediaGallery", () => {
       props: { items },
     });
     const galleryItems = wrapper.findAll("[role='button']");
-    if (galleryItems.length > 0) {
-      await galleryItems[0].trigger("click");
-      expect(wrapper.emitted("click")).toBeTruthy();
-    }
+    expect(galleryItems.length).toBeGreaterThan(0);
+    await galleryItems[0].trigger("click");
+    expect(wrapper.emitted("click")).toBeTruthy();
   });
 
   it("renders delete button when deletable is true", () => {

@@ -57,10 +57,9 @@ describe("LuKanban", () => {
     });
     // Find any card div and click it
     const cardElements = wrapper.findAll("[tabindex='0']");
-    if (cardElements.length > 0) {
-      await cardElements[0].trigger("click");
-      expect(wrapper.emitted("card-click")).toBeTruthy();
-    }
+    expect(cardElements.length).toBeGreaterThan(0);
+    await cardElements[0].trigger("click");
+    expect(wrapper.emitted("card-click")).toBeTruthy();
   });
 
   it("emits add-card when the add button is clicked", async () => {
@@ -68,11 +67,10 @@ describe("LuKanban", () => {
       props: { columns },
     });
     const addButtons = wrapper.findAll("button[aria-label^='Add card']");
-    if (addButtons.length > 0) {
-      await addButtons[0].trigger("click");
-      expect(wrapper.emitted("add-card")).toBeTruthy();
-      expect(wrapper.emitted("add-card")![0]).toEqual(["todo"]);
-    }
+    expect(addButtons.length).toBeGreaterThan(0);
+    await addButtons[0].trigger("click");
+    expect(wrapper.emitted("add-card")).toBeTruthy();
+    expect(wrapper.emitted("add-card")![0]).toEqual(["todo"]);
   });
 
   it("shows empty state text when column has no cards", () => {

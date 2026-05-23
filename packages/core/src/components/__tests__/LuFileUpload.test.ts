@@ -19,9 +19,8 @@ describe("LuFileUpload", () => {
       props: { accept: ["image/*"] },
     });
     const input = wrapper.find("input[type='file']");
-    if (input.exists()) {
-      expect(input.attributes("accept")).toBe("image/*");
-    }
+    expect(input.exists()).toBe(true);
+    expect(input.attributes("accept")).toBe("image/*");
   });
 
   it("allows multiple file selection when multiple prop is true", () => {
@@ -29,8 +28,7 @@ describe("LuFileUpload", () => {
       props: { multiple: true },
     });
     const input = wrapper.find("input[type='file']");
-    if (input.exists()) {
-      expect(input.attributes("multiple")).toBeDefined();
-    }
+    expect(input.exists()).toBe(true);
+    expect(input.attributes("multiple")).toBeDefined();
   });
 });
