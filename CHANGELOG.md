@@ -4,6 +4,13 @@
 
 ---
 
+## [0.7.1] — 2026-05-23
+
+### Fixed
+- Fixed GitHub Actions release workflow `npm publish` double-packing issue.
+
+---
+
 ## [0.7.0] — 2026-05-23
 
 ### Added
