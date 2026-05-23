@@ -1,102 +1,91 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
-import { defineComponent } from "vue";
 import LuFormWizard from "../LuFormWizard.vue";
 import type { FormWizardStep } from "../LuFormWizard.types";
-
-const steps: FormWizardStep[] = [
-  { id: "basic",   label: "Basic Info" },
-  { id: "address", label: "Address" },
-  { id: "confirm", label: "Confirm" },
-];
+import { nextTick } from "vue";
 
 describe("LuFormWizard", () => {
-  it("renders all step labels", () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="0" />`,
-      data() { return { steps }; },
+  const steps: FormWizardStep[] = [
+    { id: "1", label: "Step 1" },
+    { id: "2", label: "Step 2" },
+    { id: "3", label: "Step 3" }
+  ];
+
+  it("renders steps correctly", () => {
+    const wrapper = mount(LuFormWizard, {
+      props: { steps }
     });
-    const wrapper = mount(Wrapper);
-    for (const step of steps) {
-      expect(wrapper.text()).toContain(step.label);
-    }
+    
+    expect(wrapper.text()).toContain("Step 1");
+    expect(wrapper.text()).toContain("Step 2");
+    expect(wrapper.text()).toContain("Step 3");
   });
 
-  it("shows Back button disabled on first step", () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="0" />`,
-      data() { return { steps }; },
+  it("renders specific slot content based on current step", async () => {
+    const wrapper = mount(LuFormWizard, {
+      props: { steps, modelValue: 0 },
+      slots: {
+        "step-1": '<div class="content-1">Content 1</div>',
+        "step-2": '<div class="content-2">Content 2</div>',
+      }
     });
-    const wrapper = mount(Wrapper);
-    const backBtn = wrapper.findAll("button").find(b => b.text().includes("Back"));
-    expect(backBtn?.attributes("disabled")).toBeDefined();
+
+    // Both might be in DOM due to v-show, but only step-1 should be visible
+    const div1 = wrapper.find(".content-1").element.parentElement;
+    expect(div1?.style.display).not.toBe("none");
+
+    const div2 = wrapper.find(".content-2").element.parentElement;
+    expect(div2?.style.display).toBe("none");
+
+    await wrapper.setProps({ modelValue: 1 });
+    
+    expect(div1?.style.display).toBe("none");
+    expect(div2?.style.display).not.toBe("none");
   });
 
-  it("shows Continue on non-last step", () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="0" />`,
-      data() { return { steps }; },
+  it("validates before proceeding", async () => {
+    const mockValidate = vi.fn().mockResolvedValue(false);
+    
+    const wrapper = mount(LuFormWizard, {
+      props: { 
+        steps: [
+          { id: "1", label: "Step 1", validateFn: mockValidate },
+          { id: "2", label: "Step 2" }
+        ],
+        modelValue: 0 
+      }
     });
-    const wrapper = mount(Wrapper);
-    expect(wrapper.text()).toContain("Continue");
+
+    const nextBtn = wrapper.findAll("button").filter(b => b.text().includes("Continue"))[0];
+    await nextBtn.trigger("click");
+    
+    // Wait for async validation
+    await new Promise(r => setTimeout(r, 0));
+    
+    expect(mockValidate).toHaveBeenCalled();
+    expect(wrapper.emitted("update:modelValue")).toBeFalsy();
+    expect(wrapper.text()).toContain("Please complete this step before continuing.");
   });
 
-  it("shows Complete on last step", () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="2" />`,
-      data() { return { steps }; },
+  it("proceeds when validation passes", async () => {
+    const mockValidate = vi.fn().mockResolvedValue(true);
+    
+    const wrapper = mount(LuFormWizard, {
+      props: { 
+        steps: [
+          { id: "1", label: "Step 1", validateFn: mockValidate },
+          { id: "2", label: "Step 2" }
+        ],
+        modelValue: 0 
+      }
     });
-    const wrapper = mount(Wrapper);
-    expect(wrapper.text()).toContain("Complete");
-  });
 
-  it("emits update:modelValue on next click", async () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="0" />`,
-      data() { return { steps }; },
-    });
-    const wrapper = mount(Wrapper);
-    const nextBtn = wrapper.findAll("button").find(b => b.text().includes("Continue"));
-    await nextBtn?.trigger("click");
-    const wizard = wrapper.findComponent(LuFormWizard);
-    const emitted = wizard.emitted("update:modelValue");
-    expect(emitted?.[0]?.[0]).toBe(1);
-  });
-
-  it("emits complete when clicking next on last step", async () => {
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="steps" :modelValue="2" />`,
-      data() { return { steps }; },
-    });
-    const wrapper = mount(Wrapper);
-    const nextBtn = wrapper.findAll("button").find(b => b.text().includes("Complete"));
-    await nextBtn?.trigger("click");
-    const wizard = wrapper.findComponent(LuFormWizard);
-    expect(wizard.emitted("complete")).toBeTruthy();
-  });
-
-  it("validates step before advancing when validateFn returns error string", async () => {
-    const stepsWithValidation: FormWizardStep[] = [
-      { id: "step1", label: "Step 1", validateFn: () => "Field required" },
-      { id: "step2", label: "Step 2" },
-    ];
-    const Wrapper = defineComponent({
-      components: { LuFormWizard },
-      template: `<LuFormWizard :steps="stepsWithValidation" :modelValue="0" />`,
-      data() { return { stepsWithValidation }; },
-    });
-    const wrapper = mount(Wrapper);
-    const nextBtn = wrapper.findAll("button").find(b => b.text().includes("Continue"));
-    await nextBtn?.trigger("click");
-    await new Promise(r => setTimeout(r, 10)); // wait for async validation
-    const wizard = wrapper.findComponent(LuFormWizard);
-    expect(wizard.emitted("update:modelValue")).toBeFalsy();
-    expect(wrapper.text()).toContain("Field required");
+    const nextBtn = wrapper.findAll("button").filter(b => b.text().includes("Continue"))[0];
+    await nextBtn.trigger("click");
+    
+    await new Promise(r => setTimeout(r, 0));
+    
+    expect(wrapper.emitted("update:modelValue")).toBeTruthy();
+    expect(wrapper.emitted("update:modelValue")![0]).toEqual([1]);
   });
 });

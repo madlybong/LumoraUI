@@ -11,23 +11,23 @@
         <LuFormWizard :steps="steps" @complete="onComplete">
           
           <template #step-1>
-            <div class="flex flex-col gap-6 px-8 py-6">
+            <LuStack direction="vertical" gap="6" class="px-8 py-6">
               <LuText variant="section-title">Create Account</LuText>
-              <div class="flex flex-col gap-4">
+              <LuStack direction="vertical" gap="4">
                 <LuFormField label="Email Address">
                   <LuInput v-model="formData.email" placeholder="jane@example.com" />
                 </LuFormField>
                 <LuFormField label="Password">
                   <LuInput v-model="formData.password" type="password" placeholder="••••••••" />
                 </LuFormField>
-              </div>
-            </div>
+              </LuStack>
+            </LuStack>
           </template>
 
           <template #step-2>
-            <div class="flex flex-col gap-6 px-8 py-6">
+            <LuStack direction="vertical" gap="6" class="px-8 py-6">
               <LuText variant="section-title">Personal Details</LuText>
-              <div class="flex flex-col gap-4">
+              <LuStack direction="vertical" gap="4">
                 <div class="grid grid-cols-2 gap-4">
                   <LuFormField label="First Name">
                     <LuInput v-model="formData.firstName" placeholder="Jane" />
@@ -39,28 +39,28 @@
                 <LuFormField label="Job Title">
                   <LuInput v-model="formData.jobTitle" placeholder="Software Engineer" />
                 </LuFormField>
-              </div>
-            </div>
+              </LuStack>
+            </LuStack>
           </template>
 
           <template #step-3>
-            <div class="flex flex-col gap-6 px-8 py-6">
+            <LuStack direction="vertical" gap="6" class="px-8 py-6">
               <LuText variant="section-title">Review & Confirm</LuText>
-              <div class="flex flex-col gap-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 p-4 border border-zinc-100 dark:border-zinc-800">
-                <div class="flex justify-between items-center py-2 border-b border-zinc-200/50 dark:border-zinc-800">
+              <LuStack direction="vertical" gap="4" class="rounded-xl bg-zinc-50 dark:bg-zinc-900/50 p-4 border border-zinc-100 dark:border-zinc-800">
+                <LuStack justify="between" align="center" class="py-2 border-b border-zinc-200/50 dark:border-zinc-800">
                   <LuText variant="muted">Account</LuText>
                   <LuText variant="body" class="font-medium">{{ formData.email || '—' }}</LuText>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-zinc-200/50 dark:border-zinc-800">
+                </LuStack>
+                <LuStack justify="between" align="center" class="py-2 border-b border-zinc-200/50 dark:border-zinc-800">
                   <LuText variant="muted">Name</LuText>
                   <LuText variant="body" class="font-medium">{{ formData.firstName }} {{ formData.lastName }}</LuText>
-                </div>
-                <div class="flex items-center gap-3 pt-2">
+                </LuStack>
+                <LuStack align="center" gap="3" class="pt-2">
                   <LuSwitch v-model="formData.agree" />
                   <LuText variant="body">I agree to the terms and conditions</LuText>
-                </div>
-              </div>
-            </div>
+                </LuStack>
+              </LuStack>
+            </LuStack>
           </template>
 
         </LuFormWizard>
@@ -74,7 +74,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { 
-  LuFormWizard, LuCodeBlock, LuCard, LuText, LuFormField, LuInput, LuSwitch, type LuFormWizardStep } from '@astrake/lumora-ui';
+  LuFormWizard, LuCodeBlock, LuCard, LuText, LuFormField, LuInput, LuSwitch, type LuFormWizardStep, LuStack 
+} from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const formData = ref({
@@ -135,7 +136,7 @@ const basicCode = `<template>
 
 const propsData = [
   { name: 'steps', type: 'LuFormWizardStep[]', description: 'Array of step definitions with IDs, labels, and async validation.' },
-  { name: 'modelValue', type: 'number', description: 'Zero-based index of current step.' },
+  { name: 'modelValue', type: 'number', description: 'Zero-based index of current step. Optional.' },
   { name: 'allowSkip', type: 'boolean', description: 'If true, users can click future steps without validating current.' }
 ];
 </script>

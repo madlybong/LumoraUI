@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useLumoraConfig } from "../context";
 import LuIcon from "./LuIcon.vue";
 import LuText from "./LuText.vue";
@@ -13,7 +13,6 @@ const props = withDefaults(defineProps<{
   modelValue?: number;
   allowSkip?: boolean;
 }>(), {
-  modelValue: 0,
   allowSkip: false,
 });
 
@@ -28,9 +27,19 @@ const { resolveSkin } = useLumoraConfig();
 const stepError = ref<string | null>(null);
 const isValidating = ref(false);
 
+const internalStep = ref(props.modelValue ?? 0);
 const currentStep = computed({
-  get: () => props.modelValue,
-  set: (v) => emit("update:modelValue", v),
+  get: () => props.modelValue !== undefined ? props.modelValue : internalStep.value,
+  set: (v) => {
+    internalStep.value = v;
+    emit("update:modelValue", v);
+  }
+});
+
+watch(() => props.modelValue, (newVal) => {
+  if (newVal !== undefined) {
+    internalStep.value = newVal;
+  }
 });
 
 const isFirst = computed(() => currentStep.value === 0);
@@ -114,6 +123,7 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
             @click="goToStep(idx)"
           >
             <LuIcon v-if="stepStatus(idx) === 'completed'" name="check" :size="16" />
+            <LuIcon v-else-if="step.icon" :name="step.icon" :size="16" />
             <template v-else>{{ idx + 1 }}</template>
           </button>
           <LuText :class="resolveSkin('LuFormWizardStepLabel', stepStatus(idx) === 'default' ? undefined : stepStatus(idx))">
@@ -125,9 +135,11 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
 
     <!-- Active step content -->
     <div :class="skinBody">
-      <slot :name="`step-${steps[currentStep]?.id}`" :step="steps[currentStep]" :index="currentStep">
-        <slot :step="steps[currentStep]" :index="currentStep" />
-      </slot>
+      <template v-for="(step, idx) in steps" :key="step.id">
+        <div v-show="idx === currentStep">
+          <slot :name="`step-${step.id}`" :step="step" :index="idx" />
+        </div>
+      </template>
     </div>
 
     <!-- Error message -->
@@ -135,7 +147,7 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
 
     <!-- Navigation footer -->
     <div :class="skinFooter">
-      <LuButton variant="ghost" :disabled="isFirst" @click="goPrev">
+      <LuButton variant="ghost" :class="[isFirst ? 'invisible' : 'visible']" @click="goPrev">
         <LuIcon name="chevron-left" :size="16" />
         Back
       </LuButton>
