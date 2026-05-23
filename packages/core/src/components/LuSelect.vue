@@ -1,67 +1,273 @@
 <template>
-  <select
-    v-bind="$attrs"
-    :class="resolvedSkin"
-    :value="modelValue"
-    :name="name"
-    :disabled="formContext?.disabled.value"
-    @change="onChange"
-    @blur="onBlur"
-  >
-    <option v-for="opt in options" :key="opt.value" :value="opt.value">
-      {{ opt.label }}
-    </option>
-  </select>
+  <div class="relative w-full" ref="containerRef">
+    <button
+      type="button"
+      :class="[resolvedSkin, error ? errorSkin : '']"
+      :disabled="isDisabled"
+      :aria-haspopup="true"
+      :aria-expanded="isOpen"
+      @click="toggle"
+      @keydown.down.prevent="open"
+      @keydown.up.prevent="open"
+      @keydown.esc.prevent="close"
+      @blur="onBlur"
+    >
+      <span v-if="selectedOption" class="truncate">
+        {{ selectedOption.label }}
+      </span>
+      <span v-else :class="placeholderSkin">{{ placeholder }}</span>
+
+      <slot name="trigger-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          :class="[iconSkin, isOpen ? iconOpenSkin : '']"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </slot>
+    </button>
+
+    <select
+      hidden
+      :name="name"
+      :value="modelValue"
+      :disabled="isDisabled"
+    >
+      <option v-for="opt in options" :key="opt.value" :value="opt.value">
+        {{ opt.label }}
+      </option>
+    </select>
+
+    <Teleport to="body">
+      <div
+        v-if="isOpen"
+        ref="panelRef"
+        :class="panelSkin"
+        :style="{
+          top: `${y}px`,
+          left: `${x}px`,
+          minWidth: `${triggerWidth}px`
+        }"
+      >
+        <input
+          v-if="searchable"
+          ref="searchInputRef"
+          v-model="searchQuery"
+          type="text"
+          :class="searchSkin"
+          placeholder="Search..."
+          @keydown.down.prevent="navigate(1)"
+          @keydown.up.prevent="navigate(-1)"
+          @keydown.enter.prevent="selectHighlighted"
+          @keydown.esc.prevent="close"
+        />
+
+        <div :class="listSkin" @keydown.esc.prevent="close">
+          <div v-if="filteredOptions.length === 0" :class="emptySkin">
+            No options found
+          </div>
+          <div
+            v-for="(opt, index) in filteredOptions"
+            :key="opt.value"
+            :class="[
+              optionSkin,
+              index === activeIndex ? activeSkin : '',
+              modelValue === opt.value ? selectedSkin : '',
+              opt.disabled ? disabledSkin : ''
+            ]"
+            @click="selectOption(opt)"
+            @mouseenter="activeIndex = index"
+          >
+            <slot name="option" :option="opt" :selected="modelValue === opt.value">
+              <span class="truncate">{{ opt.label }}</span>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </Teleport>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted, ref } from "vue";
+import { computed, inject, onMounted, onUnmounted, ref, watch, nextTick } from "vue";
 import { useLumoraConfig } from "../context";
 import { LuFormContextKey } from "./LuForm.types";
+import { useFloating } from "../composables/useFloating";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue?: string | number;
   variant?: string;
-  options: Array<{ value: string | number; label: string }>;
+  options: Array<{ value: string | number; label: string; disabled?: boolean; icon?: string }>;
   name?: string;
   error?: string | null;
-}>();
+  placeholder?: string;
+  searchable?: boolean;
+  disabled?: boolean;
+}>(), {
+  placeholder: "Select an option",
+  searchable: false,
+  disabled: false
+});
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string | number): void;
   (e: "blur"): void;
+  (e: "open"): void;
+  (e: "close"): void;
 }>();
 
 const { resolveSkin } = useLumoraConfig();
+
 const resolvedSkin = computed(() => resolveSkin("LuSelect", props.variant));
+const errorSkin = computed(() => resolveSkin("LuSelect.error", props.variant));
+const iconSkin = computed(() => resolveSkin("LuSelectIcon", props.variant));
+const iconOpenSkin = computed(() => resolveSkin("LuSelectIcon", "open"));
+const panelSkin = computed(() => resolveSkin("LuSelectPanel", props.variant));
+const searchSkin = computed(() => resolveSkin("LuSelectSearch", props.variant));
+const listSkin = computed(() => resolveSkin("LuSelectOptionList", props.variant));
+const optionSkin = computed(() => resolveSkin("LuSelectOption", props.variant));
+const activeSkin = computed(() => resolveSkin("LuSelectOption", "active"));
+const selectedSkin = computed(() => resolveSkin("LuSelectOption", "selected"));
+const disabledSkin = computed(() => resolveSkin("LuSelectOption", "disabled"));
+const emptySkin = computed(() => resolveSkin("LuSelectEmpty", props.variant));
+const placeholderSkin = computed(() => resolveSkin("LuSelectPlaceholder", props.variant));
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);
+const isDisabled = computed(() => props.disabled || formContext?.disabled.value);
 
-const onChange = (event: Event) => {
-  const value = (event.target as HTMLSelectElement).value;
-  internalValue.value = value;
-  emit("update:modelValue", value);
+const isOpen = ref(false);
+const searchQuery = ref("");
+const activeIndex = ref(-1);
+const containerRef = ref<HTMLElement | null>(null);
+const panelRef = ref<HTMLElement | null>(null);
+const searchInputRef = ref<HTMLInputElement | null>(null);
+const triggerWidth = ref(0);
+
+const { x, y, update } = useFloating(containerRef, panelRef, { placement: 'bottom-start', offset: 4 });
+
+const filteredOptions = computed(() => {
+  if (!props.searchable || !searchQuery.value) return props.options;
+  const q = searchQuery.value.toLowerCase();
+  return props.options.filter(o => o.label.toLowerCase().includes(q));
+});
+
+const selectedOption = computed(() => {
+  const val = props.modelValue !== undefined ? props.modelValue : internalValue.value;
+  return props.options.find(o => o.value === val);
+});
+
+const toggle = () => {
+  if (isDisabled.value) return;
+  if (isOpen.value) close();
+  else open();
 };
 
-const onBlur = () => {
+const open = async () => {
+  if (isDisabled.value) return;
+  isOpen.value = true;
+  searchQuery.value = "";
+  if (containerRef.value) {
+    triggerWidth.value = containerRef.value.getBoundingClientRect().width;
+  }
+  emit("open");
+  
+  await nextTick();
+  update();
+  
+  if (props.searchable && searchInputRef.value) {
+    searchInputRef.value.focus();
+  }
+  
+  // Highlight currently selected option
+  const selectedIndex = filteredOptions.value.findIndex(o => o.value === (props.modelValue ?? internalValue.value));
+  activeIndex.value = selectedIndex >= 0 ? selectedIndex : 0;
+};
+
+const close = () => {
+  isOpen.value = false;
+  activeIndex.value = -1;
+  emit("close");
+  if (containerRef.value) {
+    (containerRef.value.firstElementChild as HTMLElement)?.focus();
+  }
+};
+
+const selectOption = (opt: typeof props.options[0]) => {
+  if (opt.disabled) return;
+  internalValue.value = opt.value;
+  emit("update:modelValue", opt.value);
+  close();
+  
   if (props.name && formContext && (formContext.validateOn.value === "blur" || formContext.validateOn.value === "both")) {
-    // trigger single-field validation — handled by parent LuForm
+    // validation is handled by parent
+  }
+};
+
+const navigate = (dir: number) => {
+  const max = filteredOptions.value.length - 1;
+  if (max < 0) return;
+  
+  let newIndex = activeIndex.value + dir;
+  if (newIndex < 0) newIndex = max;
+  if (newIndex > max) newIndex = 0;
+  
+  // skip disabled
+  let attempts = 0;
+  while (filteredOptions.value[newIndex].disabled && attempts <= max) {
+    newIndex += dir;
+    if (newIndex < 0) newIndex = max;
+    if (newIndex > max) newIndex = 0;
+    attempts++;
+  }
+  
+  activeIndex.value = newIndex;
+};
+
+const selectHighlighted = () => {
+  if (activeIndex.value >= 0 && activeIndex.value < filteredOptions.value.length) {
+    selectOption(filteredOptions.value[activeIndex.value]);
+  }
+};
+
+const onBlur = (e: FocusEvent) => {
+  if (props.name && formContext && (formContext.validateOn.value === "blur" || formContext.validateOn.value === "both")) {
+    // validation is handled by parent
   }
   emit("blur");
 };
 
+// Handle outside click to close
+const handleOutsideClick = (e: MouseEvent) => {
+  if (!isOpen.value) return;
+  const target = e.target as Node;
+  if (containerRef.value?.contains(target) || panelRef.value?.contains(target)) return;
+  close();
+};
+
+watch(() => props.modelValue, (newVal) => {
+  internalValue.value = newVal;
+});
+
 onMounted(() => {
+  document.addEventListener('mousedown', handleOutsideClick);
   if (!props.name || !formContext) return;
   formContext.register({
     name: props.name,
     getValue: () => internalValue.value,
     setValue: (v) => { internalValue.value = v as string | number; },
-    setError: (_msg) => { /* error display handled via formContext.getError in template if desired */ },
+    setError: (_msg) => {},
   });
 });
 
 onUnmounted(() => {
+  document.removeEventListener('mousedown', handleOutsideClick);
   if (props.name && formContext) formContext.unregister(props.name);
 });
 </script>
