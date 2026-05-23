@@ -5,6 +5,7 @@ export interface LuRadioGroupContext {
   modelValue: Ref<string | number | undefined>;
   updateValue: (value: string | number) => void;
   disabled: Ref<boolean>;
+  variant?: Ref<string | undefined>;
 }
 
 export const LuRadioGroupContextKey: InjectionKey<LuRadioGroupContext> = Symbol('LuRadioGroupContext');

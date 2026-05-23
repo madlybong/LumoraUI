@@ -47,7 +47,8 @@ provide(LuRadioGroupContextKey, {
   name: props.name,
   modelValue: computed(() => internalValue.value),
   updateValue,
-  disabled: computed(() => !!props.disabled || !!formContext?.disabled.value)
+  disabled: computed(() => !!props.disabled || !!formContext?.disabled.value),
+  variant: computed(() => props.variant)
 });
 
 onMounted(() => {
