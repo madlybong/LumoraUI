@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased
+
+---
+
+## [0.7.0] — 2026-05-23
+
+### Added
+- `LuPlanner` — Weekly scheduling grid with absolute-positioned time slots, event blocks, and `slot-click` / `event-click` emissions
+- `LuSelect` — Rebuilt with text search/filter, option groups, chip-based multi-select, clearable state, and async-ready slot API
+- `LuDataGrid` — Column sorting (asc/desc/none cycle), header select-all checkbox, local text search bar, per-column filter support
+- `LuTimeline` — `compact` and `numbered` layout variants; `status` prop for per-item color coding (success/warning/error/info)
+- `LuSwitch` — Indeterminate / tri-state variant via `indeterminate` prop
+- `LuCalendar` — `size="mini"` compact variant and `showEventLabels` boolean prop
+- Showcase: `LuCodeBlock` dedicated documentation page
+- New skin keys: `timeline.*`, `calendar.*`, `planner.*`, `select.*` (chip, group, search, clearable styles)
+- Test coverage: 5 new test files — `LuCheckbox`, `LuRadio`, `LuSwitch`, `LuSelect`, `LuPlanner`
+
+### Fixed
+- `LuFormWizard` — Step navigation regressions and layout rendering corrected
+- `LuCheckbox` / `LuRadio` / `LuSwitch` — Complete default-skin visual overhaul: accessible focus rings, checked/disabled states, label alignment
+
+---
+
 ## [0.6.0] — 2026-05-23
 
 ### ⚠ Breaking Changes
