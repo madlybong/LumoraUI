@@ -3,7 +3,7 @@
 > **This document is written for AI coding agents and developers building applications
 > that CONSUME `@astrake/lumora-ui`. It is not about contributing to the framework itself.**
 >
-> Framework contributors: see `AGENTS.md` and `docs/AI_AGENT_GUIDE.md`.
+> Framework contributors: see `AGENTS.md` and `.agent/README.md`.
 
 ---
 

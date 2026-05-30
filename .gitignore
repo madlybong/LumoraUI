@@ -49,3 +49,6 @@ Thumbs.db
 
 # Agent knowledge base (Intentionally committed, do not ignore)
 !.agent/
+
+# Kilo Code IDE plugin (local tool, not part of project)
+.kilo/

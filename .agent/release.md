@@ -60,3 +60,15 @@ Push the commit. The workflow on GitHub will automatically detect the release co
 * **`ci.yml`**: Fired on every pull request and push to verify code syntax. Runs `check.ts` (Vue type checking) and `bun test`.
 * **`version-check.yml`**: Validates that any updates to source code are accompanied by matching checks or syncs in the version system.
 * **`release.yml`**: Triggered on push to the `main` branch when the commit message matches `chore(release):`. Builds, compiles, packages, and pushes release versions to npm and GitHub Releases.
+
+---
+
+## 4. Consumer DX Scripts
+
+### The `postinstall.mjs` Hook
+The framework ships with `packages/core/scripts/postinstall.mjs`. This script runs automatically on the consumer's machine after they run `bun add @astrake/lumora-ui`. 
+
+It prints a helpful terminal message reminding the consumer to install all required peer dependencies. It includes a heuristic to silently exit when running inside the LumoraUI monorepo itself.
+
+> [!IMPORTANT]
+> **Rule**: When adding or removing peer dependencies in `packages/core/package.json`, you MUST update the `bun add` command string inside `packages/core/scripts/postinstall.mjs` to match.

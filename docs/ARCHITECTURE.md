@@ -20,7 +20,7 @@
 └─────────────────────────────────────────────────────────┘
                       │  resolves tokens from
 ┌─────────────────────▼───────────────────────────────────┐
-│                 Token System (tokens/)                   │
+│                 Token System (lumora.css)                │
 │             --lu-* CSS custom properties                │
 │    color · typography · spacing · radius · shadow · motion │
 └─────────────────────────────────────────────────────────┘
@@ -41,9 +41,9 @@ Each surface is a separate Vite entry point. Tree-shaking works at the entry-poi
 | `@astrake/lumora-ui/skins` | `src/skins/index.ts` | Default skin map and skin types |
 | `@astrake/lumora-ui/tailwind` | `src/tailwind.ts` | `getLumoraSourceDir()` for Tailwind v4 `@source` |
 
-## Token system (`tokens/`)
+## Token system
 
-All `--lu-*` custom properties are defined in `tokens/`. Each surface root element
+All `--lu-*` custom properties are defined in `src/lumora.css`. Each surface root element
 (`[data-lu-surface="mobile"]`, `[data-lu-surface="desktop"]`, `[data-lu-surface="embedded"]`)
 applies overrides appropriate for that context.
 
@@ -77,21 +77,21 @@ named-slot architecture:
 | Component | Surface | Named slots |
 |-----------|---------|-------------|
 | `LuMobileShell` | Mobile | `nav`, `default`, `sheet` |
-| `LuDesktopShell` | Desktop | `sidebar`, `header`, `default`, `panel` |
-| `LuEmbeddedShell` | Embedded | `statusbar`, `default`, `alert` |
+| `LuDesktopShell` | Desktop | `topbar`, `rail`, `sidebar`, `content`, `statusbar` |
+| `LuEmbeddedShell` | Embedded | `topbar`, `content`, `bottombar` |
 
 ## Composables (`composables/`)
 
-Shared composition functions — e.g., `useLuSkin()`, `useLuBreakpoint()`,
-`useLuPortal()` — are available to both internal components and consuming apps.
+Shared composition functions — e.g., `useDataGrid()`, `useFloating()`,
+`useLuToast()` — are available to both internal components and consuming apps.
 
 ## Component naming convention
 
 | Prefix | Surface | Example |
 |--------|---------|---------|
-| `LuM` | Mobile | `LuMButton`, `LuMCard` |
-| `LuD` | Desktop | `LuDTable`, `LuDModal` |
-| `LuE` | Embedded | `LuEDisplay`, `LuENumpad` |
+| `LuMobile` | Mobile | `LuMobileButton`, `LuMobileCard` |
+| `LuDesktop` | Desktop | `LuDesktopTable`, `LuDesktopModal` |
+| `LuEmbedded` | Embedded | `LuEmbeddedDisplay`, `LuEmbeddedNumpad` |
 | `Lu` | Shared | `LuIcon`, `LuBadge` |
 
 ## Build pipeline

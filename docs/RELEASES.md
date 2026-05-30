@@ -41,7 +41,7 @@ The workflow then automatically:
 
 1. Detects the `VERSION` file change.
 2. Installs dependencies and syncs all package versions.
-3. Runs the full test suite (`vitest`).
+3. Assumes CI validation (typecheck + tests + build) already passed for this commit.
 4. Builds the package (Vite library mode, three entry points).
 5. Generates and commits an updated `CHANGELOG.md`.
 6. Creates a `vX.Y.Z` git tag.

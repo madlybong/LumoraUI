@@ -10,8 +10,10 @@ Before making any changes, please read the relevant markdown context file below 
 
 | Document | When to Read | Focus Area |
 |:---|:---|:---|
-| 📜 **[rules.md](./rules.md)** | **Read First** | Non-negotiable architectural principles, headless-first coding, surface boundaries, validation commands. |
-| 🏗️ **[architecture.md](./architecture.md)** | When refactoring core APIs | Layer model, skin resolution flow, `shallowReactive` context, Tailwind v4 integration. |
+| 📖 **[rules.md](./rules.md)** | Start here for every task | Headless constraints, surface bounds |
+| 🤖 **[skills.md](./skills.md)** | When running multi-step workflows | `DOC-SYNC`, `BUILD-TEST-RELEASE`, `AI-ADOPT` protocols |
+| 🚀 **[betterment.md](./betterment.md)** | When improving agent infrastructure | Test gaps, composable docs, anti-hallucination guards |
+| 🏗️ **[architecture.md](./architecture.md)** | When building features | Skin resolution, dynamic merges |
 | 🧩 **[component-authoring.md](./component-authoring.md)** | When creating or modifying components | Step-by-step checklist to write `Lu*`, `LuDesktop*`, `LuMobile*`, and `LuEmbedded*` components. |
 | 🎨 **[skin-authoring.md](./skin-authoring.md)** | When styling components or updating presets | `SkinMap` type specifications, default skin structures, slot keys, merge precedence. |
 | 🧪 **[testing.md](./testing.md)** | When writing tests or fixing logic bugs | Vitest configurations, `happy-dom` instructions, `@vue/test-utils` examples. |

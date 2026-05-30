@@ -76,13 +76,6 @@ bun run release:prep
 7. Add Vitest unit tests.
 8. Update relevant docs.
 
-## Token authoring workflow
-
-1. Add the token to `packages/core/src/tokens/` with a default value.
-2. Add surface overrides in the appropriate surface root styles if needed.
-3. Use the token in the component that requires it.
-4. Document the new token in `docs/ARCHITECTURE.md`.
-
 ## Coding conventions
 
 - Keep component props minimal and explicit.

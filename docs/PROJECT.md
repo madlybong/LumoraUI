@@ -32,17 +32,16 @@ import { LuEDisplay, LuEGrid } from "@astrake/lumora-ui/embedded"
 
 ```
 LumoraUI/
-├── packages/core/        ← @astrake/lumora-ui (published)
+├── packages/core/        ← @astrake/lumora-ui (published package)
 │   └── src/
-│       ├── tokens/       ← CSS custom property definitions
-│       ├── shared/       ← Lu* primitives
-│       ├── mobile/       ← LuM* components
-│       ├── desktop/      ← LuD* components
-│       ├── embedded/     ← LuE* components
+│       ├── components/   ← shared primitives + complex components (Lu*)
+│       ├── layout/       ← layout primitives
+│       ├── shell/        ← surface shells
 │       ├── composables/  ← shared composition functions
-│       ├── skins/        ← skin configuration
-│       ├── shell/        ← shell layout components
-│       └── index.ts
+│       ├── skins/        ← SkinMap default theme
+│       ├── __mocks__/    ← test infrastructure
+│       ├── scripts/      ← local tooling
+│       └── index.ts      ← main entrypoint
 ├── apps/showcase/        ← Vite + Vue 3 reference app
 ├── tools/                ← build, check, version, changelog
 └── docs/                 ← project, architecture, releases, legal
@@ -62,5 +61,4 @@ The showcase app at `apps/showcase` demonstrates:
 - Desktop and Embedded targets are still in active development.
 - No accessibility audit (WCAG) has been performed on the current component set.
 - Animation and motion tokens are defined but not yet fully integrated across all components.
-- The showcase app is for demonstration only — it is not a documentation site yet.
-  The full docs site will be at `https://ui.lumora.astrake.com`.
+- The full docs site will be at `https://ui.lumora.astrake.com`.

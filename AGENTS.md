@@ -4,6 +4,8 @@ This is the operating guide for AI coding agents working in this repository.
 
 > [!IMPORTANT]
 > **Primary Rulebook**: A comprehensive repository of project constraints, architectural guides, authoring checklists, and test patterns has been established inside the **`.agent/`** directory. Before making any modifications, AI coding agents must read and follow **[`.agent/rules.md`](file:///.agent/rules.md)**.
+>
+> 🤖 **New to this repo?** Read **[`.agent/skills.md`](file:///.agent/skills.md)** to understand the long-running workflows expected of you (Documentation Sync, Release Flow).
 
 ---
 
@@ -24,7 +26,7 @@ Keep the repo aligned with this model:
 
 ---
 
-## Current State (v0.6.0)
+## Current State (v0.7.3)
 
 | Subsystem | Status |
 |---|---|
@@ -36,6 +38,8 @@ Keep the repo aligned with this model:
 | Showcase App | 100% Zero-Raw-HTML adherence. All previews use framework primitives only. |
 | Tailwind helper (`src/tailwind.ts`) | Exports `getLumoraSourceDir()` for Tailwind v4 `@source` directive |
 | Form validation (`LuForm`) | Orchestrator with `LuInput`/`LuSelect`/`LuSwitch` integration |
+| Advanced Components | `LuPlanner`, `LuSelect` (rebuilt), `LuDataGrid` (extended), `LuTimeline`, `LuAccordion`, `LuToast`, `LuChip`, `LuDrawer`, `LuList`, `LuPopover`, `LuBottomSheet` |
+| Floating-UI | Integrated via `useFloating` composable |
 
 ---
 
@@ -44,10 +48,12 @@ Keep the repo aligned with this model:
 Refer to the targeted guides within `.agent/` depending on your task:
 
 * 📚 **Global Rulebook**: **[`.agent/rules.md`](file:///.agent/rules.md)** (Headless constraints, Surface isolation boundaries)
+* 🤖 **Agentic Skills**: **[`.agent/skills.md`](file:///.agent/skills.md)** (DOC-SYNC, BUILD-TEST-RELEASE, AI-ADOPT workflows)
+* 🚀 **Betterment**: **[`.agent/betterment.md`](file:///.agent/betterment.md)** (Test gaps, composable docs, future improvements)
 * 🏗️ **Core Architecture**: **[`.agent/architecture.md`](file:///.agent/architecture.md)** (Dynamic skin resolution flow, dynamic merges)
 * 🧩 **Component Checklists**: **[`.agent/component-authoring.md`](file:///.agent/component-authoring.md)** (Step-by-step component creation checklist)
 * 🎨 **Skin Customization**: **[`.agent/skin-authoring.md`](file:///.agent/skin-authoring.md)** (Component variants, class merges)
-* 🧪 **Testing Framework**: **[`.agent/testing.md`](file:///.agent/testing.md)** (Vitest configuration, mount mocks)
+* 🧪 **Testing Framework**: **[`.agent/testing.md`](file:///.agent/testing.md)** (Vitest configuration, mount mocks, __mocks__ infrastructure)
 * 📦 **Release Life cycle**: **[`.agent/release.md`](file:///.agent/release.md)** (Bumping versions, synchronization, publishes)
 * 💻 **Reference Previews**: **[`.agent/showcase.md`](file:///.agent/showcase.md)** (Showcase views, local verification server)
 

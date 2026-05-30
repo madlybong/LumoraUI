@@ -12,7 +12,7 @@ Operating manual and command index for working in `@astrake/lumora-ui`.
 ### Verification Suite
 * **Full Verification**: `bun run check && bun test && bun run build`
 * Static Vue / TypeScript Typecheck: `bun run check`
-* Run Vitest Unit Tests: `bun test`
+* Run Vitest Unit Tests: `bun run test --run`
 * Run Single Test File: `bun test packages/core/src/components/__tests__/LuForm.test.ts`
 * Library & Showcase Compiles: `bun run build`
 
@@ -49,5 +49,6 @@ Operating manual and command index for working in `@astrake/lumora-ui`.
 
 Refer to the `.agent/` knowledge directory for deep architectural specifications:
 * Guidelines & Constraints: **[`.agent/rules.md`](file:///.agent/rules.md)**
+* Agentic Workflows: **[`.agent/skills.md`](file:///.agent/skills.md)**
 * Dynamic Skin Merges: **[`.agent/architecture.md`](file:///.agent/architecture.md)**
 * Testing & Mount Mocks: **[`.agent/testing.md`](file:///.agent/testing.md)**

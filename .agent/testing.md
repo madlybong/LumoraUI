@@ -110,3 +110,25 @@ it("allows inputs to work standalone without a LuForm parent", async () => {
 * Do assertions cover both default rendering and variable options?
 * Are events correctly emitted and validated?
 * Does `bun test` pass cleanly inside the workspace?
+
+---
+
+## 5. Test Infrastructure Internals
+
+### The `__mocks__/empty.ts` Stub
+Many of our components rely on heavy third-party libraries (ECharts, Tiptap, Sortable.js). To ensure tests run extremely fast and without heavy DOM compilation overhead, these peer dependencies are **completely stubbed out** during testing.
+
+The file `packages/core/src/__mocks__/empty.ts` provides empty objects and no-op functions for these libraries. 
+
+### Vitest Alias Setup
+In `vitest.config.mts`, the following libraries are aliased directly to `empty.ts`:
+- `vue-echarts`
+- `@tiptap/vue-3`
+- `@tiptap/starter-kit`
+- `@tiptap/extension-placeholder`
+- `echarts/core`, `echarts/charts`, `echarts/components`, `echarts/renderers`
+
+> [!IMPORTANT]
+> **Rule**: When adding a new heavy peer dependency that provides Vue components or composables, you **must**:
+> 1. Add its commonly-used named exports to `__mocks__/empty.ts`
+> 2. Add a `resolve(__dirname, "packages/core/src/__mocks__/empty.ts")` alias mapping for it in `vitest.config.mts`
