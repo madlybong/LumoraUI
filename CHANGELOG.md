@@ -4,6 +4,14 @@
 
 ---
 
+## [0.7.4] — 2026-05-30
+
+### Maintenance
+
+- overhaul agentic infrastructure for fail-safe development (`3b081cd`)
+
+---
+
 ## [0.7.3] — 2026-05-23
 
 ### Added
