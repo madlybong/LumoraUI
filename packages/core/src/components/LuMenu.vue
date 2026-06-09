@@ -1,20 +1,20 @@
 <template>
-  <div :class="resolvedSkin" ref="dropdownRef">
-    <div @click="toggle" ref="triggerRef" :class="resolvedTriggerSkin" aria-haspopup="true" :aria-expanded="isOpen">
+  <div :class="['lu-menu', variant && `lu-menu--${variant}`]" ref="dropdownRef">
+    <div @click="toggle" ref="triggerRef" :class="['lu-menu__trigger']" aria-haspopup="true" :aria-expanded="isOpen">
       <slot name="trigger">
-        <LuButton variant="default">Options <LuIcon name="chevron-down" class="ml-2 h-4 w-4" /></LuButton>
+        <LuButton variant="default">Options <LuIcon name="chevron-down" class="lu-menu__chevron" /></LuButton>
       </slot>
     </div>
     <transition
-      enter-active-class="transition ease-out duration-100"
-      enter-from-class="transform opacity-0 scale-95"
-      enter-to-class="transform opacity-100 scale-100"
-      leave-active-class="transition ease-in duration-75"
-      leave-from-class="transform opacity-100 scale-100"
-      leave-to-class="transform opacity-0 scale-95"
+      enter-active-class="lu-menu-enter-active"
+      enter-from-class="lu-menu-enter-from"
+      enter-to-class="lu-menu-enter-to"
+      leave-active-class="lu-menu-leave-active"
+      leave-from-class="lu-menu-leave-from"
+      leave-to-class="lu-menu-leave-to"
     >
-      <div v-if="isOpen" ref="contentRef" :class="resolvedContentSkin" :style="floatingStyle">
-        <div :class="resolvedGroupSkin" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+      <div v-if="isOpen" ref="contentRef" :class="['lu-menu__content']" :style="floatingStyle">
+        <div :class="['lu-menu__group']" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
           <slot />
         </div>
       </div>
@@ -24,7 +24,6 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import { useLumoraConfig } from "../context";
 import { useFloating } from "../composables/useFloating";
 import LuButton from "./LuButton.vue";
 import LuIcon from "./LuIcon.vue";
@@ -48,22 +47,18 @@ const contentRef = ref<HTMLElement | null>(null);
 
 const { x, y } = useFloating(triggerRef, contentRef, {
   placement: props.align === 'right' ? 'bottom-end' : 'bottom-start',
-  offset: 4
+  offset: 4,
+  strategy: 'fixed'
 });
 
 const floatingStyle = computed(() => ({
-  position: 'absolute' as const,
+  position: 'fixed' as const,
   left: `${x.value}px`,
   top: `${y.value}px`,
   zIndex: 50
 }));
 
-const { resolveSkin } = useLumoraConfig();
 
-const resolvedSkin = computed(() => resolveSkin("LuMenu", props.variant));
-const resolvedTriggerSkin = computed(() => resolveSkin("LuMenuTrigger", props.variant));
-const resolvedContentSkin = computed(() => resolveSkin("LuMenuContent", props.variant));
-const resolvedGroupSkin = computed(() => resolveSkin("LuMenuGroup", props.variant));
 
 const toggle = (event: Event) => {
   event.stopPropagation();

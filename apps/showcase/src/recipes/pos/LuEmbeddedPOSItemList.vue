@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 import { LuIcon } from '@astrake/lumora-ui';
 
@@ -28,19 +27,17 @@ const emit = defineEmits<{
   (e: "remove", itemId: string): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
 function changeQty(item: POSLineItem, delta: number) {
   const newQty = Math.max(1, item.qty + delta);
   emit("qty-change", item.id, newQty);
 }
 
-const skinList = computed(() => resolveSkin("LuEmbeddedPOSItemList"));
-const skinRow = computed(() => resolveSkin("LuEmbeddedPOSItemListRow"));
-const skinQty = computed(() => resolveSkin("LuEmbeddedPOSItemListQty"));
-const skinQtyBtn = computed(() => resolveSkin("LuEmbeddedPOSItemListQtyBtn"));
-const skinQtyValue = computed(() => resolveSkin("LuEmbeddedPOSItemListQtyValue"));
-const skinRemove = computed(() => resolveSkin("LuEmbeddedPOSItemListRemove"));
+const skinList = computed(() => `sc-pos-item-list`);
+const skinRow = computed(() => `sc-pos-item-list__row`);
+const skinQty = computed(() => `sc-pos-item-list__qty`);
+const skinQtyBtn = computed(() => `sc-pos-item-list__qty-btn`);
+const skinQtyValue = computed(() => `sc-pos-item-list__qty-value`);
+const skinRemove = computed(() => `sc-pos-item-list__remove`);
 </script>
 
 <template>

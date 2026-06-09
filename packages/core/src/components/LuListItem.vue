@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 
 const props = withDefaults(defineProps<{
   as?: string;
@@ -50,12 +50,10 @@ const handleClick = (event: Event) => {
   emit("click", event);
 };
 
-const { resolveSkin } = useLumoraConfig();
-
-const itemSkin = computed(() => resolveSkin("LuListItem", props.variant));
-const activeSkin = computed(() => resolveSkin("LuListItem.active", props.variant));
-const disabledSkin = computed(() => resolveSkin("LuListItem.disabled", props.variant));
-const leadingSkin = computed(() => resolveSkin("LuListItemLeading", props.variant));
-const contentSkin = computed(() => resolveSkin("LuListItemContent", props.variant));
-const trailingSkin = computed(() => resolveSkin("LuListItemTrailing", props.variant));
+const itemSkin = computed(() => `lu-list-item ${props.variant && props.variant !== 'default' ? 'lu-list-item--'+props.variant : ''}`.trim());
+const activeSkin = computed(() => `lu-list-item--active`);
+const disabledSkin = computed(() => `lu-list-item--disabled`);
+const leadingSkin = computed(() => `lu-list-item__leading ${props.variant && props.variant !== 'default' ? 'lu-list-item__leading--'+props.variant : ''}`.trim());
+const contentSkin = computed(() => `lu-list-item__content ${props.variant && props.variant !== 'default' ? 'lu-list-item__content--'+props.variant : ''}`.trim());
+const trailingSkin = computed(() => `lu-list-item__trailing ${props.variant && props.variant !== 'default' ? 'lu-list-item__trailing--'+props.variant : ''}`.trim());
 </script>

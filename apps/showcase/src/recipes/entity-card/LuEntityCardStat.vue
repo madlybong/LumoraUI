@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEntityCardStat" });
@@ -12,11 +11,9 @@ const props = defineProps<{
   deltaUp?: boolean;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
-const skinStat = computed(() => resolveSkin("LuEntityCardStat"));
-const skinLabel = computed(() => resolveSkin("LuEntityCardStatLabel"));
-const skinValue = computed(() => resolveSkin("LuEntityCardStatValue"));
+const skinStat = computed(() => `sc-entity-card-stat`);
+const skinLabel = computed(() => `sc-entity-card-stat-label`);
+const skinValue = computed(() => `sc-entity-card-stat-value`);
 </script>
 
 <template>

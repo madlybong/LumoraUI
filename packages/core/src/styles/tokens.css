@@ -1,0 +1,164 @@
+@layer lu-tokens {
+  /* ─── TIER 1: Primitive Tokens ────────────────────────────────────────── */
+  :root {
+    /* Color palette */
+    --lu-rose-50: #fff1f2;  --lu-rose-100: #ffe4e6;  --lu-rose-200: #fecdd3;
+    --lu-rose-300: #fda4af; --lu-rose-400: #fb7185;  --lu-rose-500: #f43f5e;
+    --lu-rose-600: #e11d48; --lu-rose-700: #be123c;  --lu-rose-800: #9f1239;
+    --lu-rose-900: #881337; --lu-rose-950: #4c0519;
+
+    --lu-zinc-50: #fafafa;  --lu-zinc-100: #f4f4f5;  --lu-zinc-200: #e4e4e7;
+    --lu-zinc-300: #d4d4d8; --lu-zinc-400: #a1a1aa;  --lu-zinc-500: #71717a;
+    --lu-zinc-600: #52525b; --lu-zinc-700: #3f3f46;  --lu-zinc-800: #27272a;
+    --lu-zinc-900: #18181b; --lu-zinc-950: #09090b;
+
+    --lu-emerald-500: #10b981; --lu-emerald-600: #059669;
+    --lu-amber-500:   #f59e0b; --lu-amber-600:   #d97706;
+    --lu-red-500:     #ef4444; --lu-red-600:     #dc2626;
+    --lu-blue-500:    #3b82f6; --lu-blue-600:    #2563eb;
+    
+    --lu-transparent: transparent;
+    --lu-white: #ffffff;
+    --lu-black: #000000;
+
+    /* Radius scale */
+    --lu-radius-1: 0.25rem;  --lu-radius-2: 0.375rem; --lu-radius-3: 0.5rem;
+    --lu-radius-4: 0.75rem;  --lu-radius-5: 1rem;     --lu-radius-6: 1.5rem;
+    --lu-radius-full: 9999px;
+
+    /* Spacing scale */
+    --lu-space-0: 0;
+    --lu-space-px: 1px;
+    --lu-space-1: 0.25rem;  --lu-space-2: 0.5rem;  --lu-space-3: 0.75rem;
+    --lu-space-4: 1rem;     --lu-space-5: 1.25rem; --lu-space-6: 1.5rem;
+    --lu-space-8: 2rem;     --lu-space-10: 2.5rem; --lu-space-12: 3rem;
+    --lu-space-16: 4rem;
+
+    /* Font size scale */
+    --lu-text-xs: 0.75rem;    --lu-text-sm: 0.875rem;
+    --lu-text-base: 1rem;     --lu-text-lg: 1.125rem;
+    --lu-text-xl: 1.25rem;    --lu-text-2xl: 1.5rem;
+    --lu-text-3xl: 1.875rem;  --lu-text-4xl: 2.25rem;
+
+    /* Font weights */
+    --lu-font-normal: 400;  --lu-font-medium: 500;
+    --lu-font-semibold: 600; --lu-font-bold: 700;
+
+    /* Shadows */
+    --lu-shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --lu-shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --lu-shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --lu-shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --lu-shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --lu-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* Transitions */
+    --lu-ease-spring:    cubic-bezier(0.16, 1, 0.3, 1);
+    --lu-ease-out:       cubic-bezier(0, 0, 0.2, 1);
+    --lu-ease-in:        cubic-bezier(0.4, 0, 1, 1);
+    --lu-ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+    --lu-duration-fast:  100ms;
+    --lu-duration-base:  150ms;
+    --lu-duration-slow:  300ms;
+
+    /* Z-Index */
+    --lu-z-base: 0;
+    --lu-z-dropdown: 100;
+    --lu-z-sticky: 200;
+    --lu-z-modal: 300;
+    --lu-z-popover: 400;
+    --lu-z-command: 500;
+    --lu-z-tooltip: 600;
+
+    /* ─── TIER 2: Semantic Tokens (light mode defaults) ──────────────────── */
+
+    /* Surfaces */
+    --lu-color-surface:         var(--lu-zinc-50);
+    --lu-color-surface-raised:  #ffffff;
+    --lu-color-surface-sunken:  var(--lu-zinc-100);
+    --lu-color-surface-overlay: rgba(255,255,255,0.95);
+    
+    --lu-color-surface-hover:   var(--lu-zinc-100);
+    --lu-color-surface-active:  var(--lu-zinc-200);
+
+    /* Borders */
+    --lu-color-border:          var(--lu-zinc-200);
+    --lu-color-border-strong:   var(--lu-zinc-300);
+    --lu-color-border-focus:    var(--lu-rose-500);
+
+    /* Brand */
+    --lu-color-primary:         var(--lu-rose-600);
+    --lu-color-primary-hover:   var(--lu-rose-700);
+    --lu-color-primary-active:  var(--lu-rose-800);
+    --lu-color-on-primary:      #ffffff;
+    --lu-color-primary-surface: var(--lu-rose-50);
+    --lu-color-primary-border:  var(--lu-rose-200);
+
+    /* Semantic states */
+    --lu-color-danger:          var(--lu-red-600);
+    --lu-color-danger-surface:  #fef2f2;
+    --lu-color-success:         var(--lu-emerald-600);
+    --lu-color-success-surface: #f0fdf4;
+    --lu-color-warning:         var(--lu-amber-600);
+    --lu-color-warning-surface: #fffbeb;
+    --lu-color-info:            var(--lu-blue-600);
+    --lu-color-info-surface:    #eff6ff;
+
+    /* Text */
+    --lu-color-text:            var(--lu-zinc-900);
+    --lu-color-text-muted:      var(--lu-zinc-500);
+    --lu-color-text-disabled:   var(--lu-zinc-400);
+
+    /* Radius aliases for consumers to override a single scale */
+    --lu-radius-btn:    var(--lu-radius-3);
+    --lu-radius-input:  var(--lu-radius-3);
+    --lu-radius-card:   var(--lu-radius-4);
+    --lu-radius-dialog: var(--lu-radius-5);
+    --lu-radius-chip:   var(--lu-radius-full);
+
+    /* Pipeline colors */
+    --lu-pipeline-success: var(--lu-emerald-500);
+    --lu-pipeline-warning: var(--lu-amber-500);
+    --lu-pipeline-danger:  var(--lu-rose-500);
+    --lu-pipeline-info:    var(--lu-blue-500);
+  }
+
+  /* ─── Dark mode: override ONLY semantic tokens ────────────────────────── */
+  .dark, [data-theme="dark"] {
+    --lu-color-surface:          var(--lu-zinc-900);
+    --lu-color-surface-raised:   var(--lu-zinc-800);
+    --lu-color-surface-sunken:   var(--lu-zinc-950);
+    --lu-color-surface-overlay:  rgba(24,24,27,0.95);
+    
+    --lu-color-surface-hover:    var(--lu-zinc-800);
+    --lu-color-surface-active:   var(--lu-zinc-700);
+    
+    --lu-color-border:           var(--lu-zinc-700);
+    --lu-color-border-strong:    var(--lu-zinc-600);
+    --lu-color-border-focus:     var(--lu-rose-400);
+    
+    --lu-color-primary:          var(--lu-rose-500);
+    --lu-color-primary-hover:    var(--lu-rose-600);
+    --lu-color-primary-active:   var(--lu-rose-700);
+    --lu-color-primary-surface:  rgba(244, 63, 94, 0.1);
+    --lu-color-primary-border:   rgba(244, 63, 94, 0.2);
+    
+    --lu-color-danger:           var(--lu-red-500);
+    --lu-color-danger-surface:   rgb(239 68 68 / 0.1);
+    --lu-color-success:          var(--lu-emerald-500);
+    --lu-color-success-surface:  rgb(16 185 129 / 0.1);
+    --lu-color-warning:          var(--lu-amber-500);
+    --lu-color-warning-surface:  rgb(245 158 11 / 0.1);
+    --lu-color-info:             var(--lu-blue-500);
+    --lu-color-info-surface:     rgb(59 130 246 / 0.1);
+    
+    --lu-color-text:             var(--lu-zinc-50);
+    --lu-color-text-muted:       var(--lu-zinc-400);
+    --lu-color-text-disabled:    var(--lu-zinc-600);
+    
+    --lu-pipeline-success: #34d399;
+    --lu-pipeline-warning: #fbbf24;
+    --lu-pipeline-danger:  #fb7185;
+    --lu-pipeline-info:    #60a5fa;
+  }
+}

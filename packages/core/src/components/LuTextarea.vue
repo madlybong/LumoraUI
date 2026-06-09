@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, ref } from "vue";
-import { useLumoraConfig } from "../context";
+
 import { LuFormContextKey } from "./LuForm.types";
 
 const props = defineProps<{
@@ -27,8 +27,8 @@ const emit = defineEmits<{
   (e: "blur"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuTextarea", props.variant));
+
+const resolvedSkin = computed(() => `lu-textarea ${props.variant && props.variant !== 'default' ? 'lu-textarea--'+props.variant : ''}`.trim());
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);

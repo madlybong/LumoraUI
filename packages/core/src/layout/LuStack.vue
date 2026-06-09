@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = withDefaults(defineProps<{
   direction?: "vertical" | "horizontal";
@@ -21,8 +20,6 @@ const props = withDefaults(defineProps<{
 }>(), {
   as: 'div'
 });
-
-const { resolveSkin } = useLumoraConfig();
 
 const ALIGN: Record<string, string> = {
   center: 'items-center',
@@ -42,7 +39,7 @@ const JUSTIFY: Record<string, string> = {
 };
 
 const resolvedClasses = computed(() => {
-  const skin = resolveSkin("LuStack", props.direction ?? props.variant);
+  const skin = `lu-stack ${props.direction ? "lu-stack--"+props.direction : props.variant && props.variant !== "default" ? "lu-stack--"+props.variant : ""}`.trim();
   const gap = props.gap !== undefined ? `gap-${props.gap}` : '';
   const align = props.align ? (ALIGN[props.align] ?? '') : '';
   const justify = props.justify ? (JUSTIFY[props.justify] ?? '') : '';

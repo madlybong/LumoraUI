@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    :class="resolvedSkin"
+    :class="['lu-menu-item', variant && `lu-menu-item--${variant}`]"
     role="menuitem"
     :disabled="disabled"
     :data-disabled="disabled ? '' : undefined"
@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   variant?: string;
@@ -24,8 +23,7 @@ const emit = defineEmits<{
   (e: "click", event: MouseEvent): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuMenuItem", props.variant));
+
 
 const onClick = (event: MouseEvent) => {
   if (props.disabled) {

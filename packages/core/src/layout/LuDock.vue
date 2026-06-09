@@ -1,7 +1,6 @@
 <script lang="ts">
 import { h, defineComponent, computed, Fragment, Comment } from "vue";
 import type { VNode } from "vue";
-import { useLumoraConfig } from "../context";
 
 export default defineComponent({
   name: "LuDock",
@@ -9,8 +8,7 @@ export default defineComponent({
     variant: String,
   },
   setup(props, { slots, attrs }) {
-    const { resolveSkin } = useLumoraConfig();
-    const resolvedSkin = computed(() => resolveSkin("LuDock", props.variant));
+    const resolvedSkin = computed(() => `lu-dock ${props.variant && props.variant !== "default" ? "lu-dock--"+props.variant : ""}`.trim());
 
     function flattenChildren(children: any[]): VNode[] {
       let result: VNode[] = [];
@@ -34,20 +32,20 @@ export default defineComponent({
         return h("div", { ...attrs, class: resolvedSkin.value });
       }
 
-      let currentContainer = h("div", { class: "flex flex-col flex-1 min-h-0 min-w-0 overflow-hidden" }, [children[children.length - 1]]);
+      let currentContainer = h("div", { class: "lu-dock__pane" }, [children[children.length - 1]]);
 
       for (let i = children.length - 2; i >= 0; i--) {
         const item = children[i];
         const edge = item.props?.dock || "left";
 
         const isVertical = edge === "top" || edge === "bottom";
-        const flexDirection = isVertical ? "flex-col" : "flex-row";
+        const dirClass = isVertical ? "lu-dock__pane lu-dock__pane--col" : "lu-dock__pane lu-dock__pane--row";
 
         const nodes = (edge === "top" || edge === "left") 
           ? [item, currentContainer] 
           : [currentContainer, item];
 
-        currentContainer = h("div", { class: `flex ${flexDirection} flex-1 min-h-0 min-w-0 overflow-hidden` }, nodes);
+        currentContainer = h("div", { class: dirClass }, nodes);
       }
 
       return h("div", { ...attrs, class: resolvedSkin.value }, [currentContainer]);

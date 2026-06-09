@@ -1,6 +1,6 @@
 <template>
-  <div v-bind="$attrs" :class="trackSkin">
-    <div :class="fillSkin" :style="{ width: `${percent}%` }"></div>
+  <div v-bind="$attrs" :class="['lu-progress-bar', variant && `lu-progress-bar--${variant}`]">
+    <div class="lu-progress-bar__indicator" :style="{ width: `${percent}%` }"></div>
   </div>
 </template>
 
@@ -14,8 +14,4 @@ const percent = computed(() => {
   const m = props.max ?? 100;
   return Math.max(0, Math.min(100, (props.value / m) * 100));
 });
-
-const { resolveSkin } = useLumoraConfig();
-const trackSkin = computed(() => resolveSkin("LuProgressBar", props.variant));
-const fillSkin = computed(() => resolveSkin("LuProgressBarFill", props.variant));
 </script>

@@ -1,15 +1,9 @@
 <template>
-  <th v-bind="$attrs" :class="resolvedSkin">
+  <th v-bind="$attrs" :class="['lu-table-head-cell', variant && `lu-table-head-cell--${variant}`]">
     <slot />
   </th>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useLumoraConfig } from "../context";
-
 const props = defineProps<{ variant?: string }>();
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuTableHeadCell", props.variant));
 </script>

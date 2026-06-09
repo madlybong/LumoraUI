@@ -45,11 +45,6 @@ export type { LuFormRules, LuFormErrors, LuFormValidator, LuFormContext } from "
 // ── v0.3.0: Data-rich components ─────────────────────────────────────────────
 export { default as LuDataGrid } from "./LuDataGrid.vue";
 export type { ColumnDef as LuColumnDef, Row as LuRow, DataGridSortState, DataGridCellEditPayload, DataGridPageChangePayload } from "./LuDataGrid.types";
-export { default as LuBarChart } from "./LuBarChart.vue";
-export { default as LuLineChart } from "./LuLineChart.vue";
-export { default as LuDoughnutChart } from "./LuDoughnutChart.vue";
-export { default as LuSparkline } from "./LuSparkline.vue";
-export { default as LuGaugeChart } from "./LuGaugeChart.vue";
 export { default as LuFileUpload } from "./LuFileUpload.vue";
 export type { UploadedFile as LuUploadedFile } from "./LuFileUpload.vue";
 export { default as LuMediaGallery } from "./LuMediaGallery.vue";
@@ -61,6 +56,7 @@ export { default as LuFormWizard } from "./LuFormWizard.vue";
 export type { FormWizardStep as LuFormWizardStep } from "./LuFormWizard.types";
 export { default as LuTree } from "./LuTree.vue";
 export { default as LuTreeNode } from "./LuTreeNode.vue";
+export { default as LuTreeItem } from "./LuTreeItem.vue";
 export type { TreeNodeData as LuTreeNodeData } from "./LuTree.types";
 
 // ── v0.4.0: Operational components ───────────────────────────────────────────
@@ -74,7 +70,6 @@ export { default as LuDateRangePicker } from "./LuDateRangePicker.vue";
 export type { DateRange as LuDateRange } from "./LuDateRangePicker.vue";
 export { default as LuCommandPalette } from "./LuCommandPalette.vue";
 export type { CommandItem as LuCommandItem } from "./LuCommandPalette.vue";
-export { default as LuRichTextEditor } from "./LuRichTextEditor.vue";
 
 // ── v0.6.0: P0 Primitives ────────────────────────────────────────────────────
 export { default as LuDrawer } from "./LuDrawer.vue";

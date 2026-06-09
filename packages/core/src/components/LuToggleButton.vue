@@ -1,7 +1,7 @@
 <template>
   <button 
     v-bind="$attrs" 
-    :class="[resolvedSkin, isActive ? activeSkin : '']" 
+    :class="['lu-toggle-button', variant && `lu-toggle-button--${variant}`, isActive && 'lu-toggle-button--active']" 
     @click="onClick"
     :aria-pressed="isActive"
   >
@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import { computed, inject, type Ref } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   value: string | number | boolean;
@@ -28,13 +27,4 @@ const onClick = () => {
     setGroupValue(props.value);
   }
 };
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuToggleButton", props.variant));
-const activeSkin = computed(() => {
-  const activeVariant = props.variant ? `${props.variant}-active` : "active";
-  const skin = resolveSkin("LuToggleButton", activeVariant);
-  // Fallback to standard 'active' if the variant-specific active skin isn't defined
-  return skin || resolveSkin("LuToggleButton", "active");
-});
 </script>

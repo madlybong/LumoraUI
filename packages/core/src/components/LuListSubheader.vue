@@ -6,13 +6,12 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 
 const props = defineProps<{
   label?: string;
   variant?: string;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const subheaderSkin = computed(() => resolveSkin("LuListSubheader", props.variant));
+const subheaderSkin = computed(() => `lu-list-subheader ${props.variant && props.variant !== 'default' ? 'lu-list-subheader--'+props.variant : ''}`.trim());
 </script>

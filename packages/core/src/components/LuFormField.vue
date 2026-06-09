@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 import LuText from "./LuText.vue";
 
 defineOptions({ name: "LuFormField" });
@@ -15,21 +14,16 @@ const props = withDefaults(defineProps<{
   required: false,
 });
 
-const { resolveSkin } = useLumoraConfig();
 
-const skinField = computed(() => resolveSkin("LuFormField"));
-const skinLabel = computed(() => resolveSkin("LuFormFieldLabel"));
-const skinHint = computed(() => resolveSkin("LuFormFieldHint"));
-const skinError = computed(() => resolveSkin("LuFormFieldError"));
 </script>
 
 <template>
-  <div :class="skinField">
-    <label v-if="label" :for="props.for" :class="skinLabel">
-      {{ label }}<span v-if="required" class="text-rose-500 ml-0.5">*</span>
+  <div :class="['lu-form-field']">
+    <label v-if="label" :for="props.for" :class="['lu-form-field__label']">
+      {{ label }}<span v-if="required" class="lu-form-field__error-icon">*</span>
     </label>
     <slot />
-    <LuText v-if="error" :class="skinError" role="alert">{{ error }}</LuText>
-    <LuText v-else-if="hint" :class="skinHint">{{ hint }}</LuText>
+    <LuText v-if="error" :class="['lu-form-field__error']" role="alert">{{ error }}</LuText>
+    <LuText v-else-if="hint" :class="['lu-form-field__hint']">{{ hint }}</LuText>
   </div>
 </template>

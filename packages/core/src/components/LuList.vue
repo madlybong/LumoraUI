@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 
 const props = withDefaults(defineProps<{
   as?: string;
@@ -15,6 +15,5 @@ const props = withDefaults(defineProps<{
   as: "ul"
 });
 
-const { resolveSkin } = useLumoraConfig();
-const listSkin = computed(() => resolveSkin("LuList", props.variant));
+const listSkin = computed(() => `lu-list ${props.variant && props.variant !== 'default' ? 'lu-list--'+props.variant : ''}`.trim());
 </script>

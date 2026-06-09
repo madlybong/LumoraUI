@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 
 const props = withDefaults(defineProps<{
@@ -18,7 +17,5 @@ const props = withDefaults(defineProps<{
 }>(), {
   level: "h1"
 });
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuPageHeader", props.variant));
+const resolvedSkin = computed(() => `sc-page-header ${props.variant && props.variant !== "default" ? "sc-page-header--"+props.variant : ""}`.trim());
 </script>

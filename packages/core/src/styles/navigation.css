@@ -1,0 +1,581 @@
+@layer lu-components {
+  /* ==========================================================================
+     LuCodeBlock (FLAT KEBAB-CASE)
+     ========================================================================== */
+  
+  .lu-code-block-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-2);
+    width: 100%;
+  }
+
+  .lu-code-block-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-2);
+    margin-bottom: var(--lu-space-4);
+  }
+
+  .lu-code-block-title {
+    /* Inherits from LuText variant="section-title" */
+  }
+
+  .lu-code-block-description {
+    /* Inherits from LuText variant="body" */
+  }
+
+  .lu-code-block-card,
+  .lu-code-block-card--preview {
+    border-radius: var(--lu-radius-card);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    overflow: hidden;
+  }
+
+  .lu-code-block-preview-area {
+    padding: var(--lu-space-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 8rem;
+    background: var(--lu-color-surface);
+  }
+
+  .lu-code-block-preview-area--preview {
+    padding: var(--lu-space-6);
+    background: var(--lu-color-surface);
+    min-height: 18rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .lu-code-block-code-area,
+  .lu-code-block-code-area--preview {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lu-code-block-split-container,
+  .lu-code-block-split-container--preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 20rem;
+  }
+
+  .lu-code-block-split-area,
+  .lu-code-block-split-area--preview {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--lu-color-border);
+  }
+
+  .lu-code-block-code-header,
+  .lu-code-block-code-header--preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border-bottom: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-sunken);
+  }
+
+  .lu-code-block-badge,
+  .lu-code-block-badge--preview {
+    font-size: var(--lu-text-xs);
+    font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lu-code-block-copy-button,
+  .lu-code-block-copy-button--preview {
+    /* Base inheritance comes from LuButton */
+  }
+
+  .lu-code-block-code-content,
+  .lu-code-block-code-content--preview {
+    overflow-x: auto;
+  }
+
+  .lu-code-block-code-content pre,
+  .lu-code-block-code-content--preview pre {
+    margin: 0;
+    padding: var(--lu-space-4);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    tab-size: 2;
+  }
+
+  .lu-code-block-code-content code,
+  .lu-code-block-code-content--preview code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  /* ==========================================================================
+     LuBreadcrumb
+     ========================================================================== */
+  
+  .lu-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--lu-space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--lu-text-sm);
+  }
+
+  .lu-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+  }
+
+  .lu-breadcrumb__link {
+    color: var(--lu-color-text-muted);
+    font-size: var(--lu-text-sm);
+    text-decoration: none;
+    transition: color var(--lu-duration-base);
+  }
+
+  .lu-breadcrumb__link:hover {
+    color: var(--lu-color-text);
+  }
+
+  .lu-breadcrumb__page {
+    color: var(--lu-color-text);
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lu-breadcrumb__separator {
+    color: var(--lu-color-text-disabled);
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  /* ==========================================================================
+     LuPagination
+     ========================================================================== */
+  
+  .lu-pagination {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+  }
+
+  .lu-pagination__button {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0;
+  }
+
+  .lu-pagination__pages {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .lu-pagination__page-button {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--lu-text-sm);
+  }
+
+  .lu-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text-muted);
+  }
+
+  /* ==========================================================================
+     LuTimeline
+     ========================================================================== */
+
+  .lu-timeline {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lu-timeline-item {
+    display: flex;
+    gap: var(--lu-space-3);
+    width: 100%;
+  }
+
+  .lu-timeline-item__dot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .lu-timeline-item__dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--lu-radius-full);
+    border: 2px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+    z-index: 1;
+  }
+
+  .lu-timeline-item__dot--success {
+    border-color: var(--lu-color-success);
+    background: var(--lu-color-success-surface);
+    color: var(--lu-color-success);
+  }
+
+  .lu-timeline-item__dot--warning {
+    border-color: var(--lu-color-warning);
+    background: var(--lu-color-warning-surface);
+    color: var(--lu-color-warning);
+  }
+
+  .lu-timeline-item__dot--danger {
+    border-color: var(--lu-color-danger);
+    background: var(--lu-color-danger-surface);
+    color: var(--lu-color-danger);
+  }
+
+  .lu-timeline-item__dot--info {
+    border-color: var(--lu-color-info);
+    background: var(--lu-color-info-surface);
+    color: var(--lu-color-info);
+  }
+
+  .lu-timeline-item__dot-compact {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: var(--lu-radius-full);
+    border: 2px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    flex-shrink: 0;
+  }
+
+  /* Modifiers for compact dot */
+  .lu-timeline-item__dot-compact--success { border-color: var(--lu-color-success); background: var(--lu-color-success-surface); color: var(--lu-color-success); }
+  .lu-timeline-item__dot-compact--warning { border-color: var(--lu-color-warning); background: var(--lu-color-warning-surface); color: var(--lu-color-warning); }
+  .lu-timeline-item__dot-compact--danger { border-color: var(--lu-color-danger); background: var(--lu-color-danger-surface); color: var(--lu-color-danger); }
+  .lu-timeline-item__dot-compact--info { border-color: var(--lu-color-info); background: var(--lu-color-info-surface); color: var(--lu-color-info); }
+
+  .lu-timeline-item__connector {
+    flex: 1;
+    width: 2px;
+    background: var(--lu-color-border);
+    margin: var(--lu-space-1) 0;
+    min-height: var(--lu-space-8);
+  }
+
+  .lu-timeline-item__content {
+    flex: 1;
+    padding-bottom: var(--lu-space-8);
+    padding-top: var(--lu-space-1);
+  }
+
+  .lu-timeline-item__date {
+    font-size: var(--lu-text-xs);
+    color: var(--lu-color-text-muted);
+    display: block;
+    margin-bottom: var(--lu-space-1);
+  }
+
+  .lu-timeline-item__title {
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text);
+    margin-bottom: var(--lu-space-1);
+  }
+
+  /* ==========================================================================
+     LuAvatar
+     ========================================================================== */
+
+  .lu-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--lu-radius-full);
+    background: var(--lu-color-surface-sunken);
+    border: 1px solid var(--lu-color-border);
+    flex-shrink: 0;
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text-muted);
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .lu-avatar--sm {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.625rem;
+  }
+
+  .lu-avatar--md {
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--lu-text-xs);
+  }
+
+  .lu-avatar--lg {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: var(--lu-text-sm);
+  }
+
+  .lu-avatar--xl {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: var(--lu-text-base);
+  }
+
+  .lu-avatar--square {
+    border-radius: var(--lu-radius-3);
+  }
+
+  .lu-avatar__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lu-avatar__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+
+  /* ==========================================================================
+     LuListItem
+     ========================================================================== */
+
+  .lu-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-3);
+    padding: var(--lu-space-2) var(--lu-space-4);
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text);
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-list-item.cursor-pointer:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  .lu-list-item--active {
+    background: color-mix(in srgb, var(--lu-color-primary) 8%, transparent);
+    color: var(--lu-color-primary);
+  }
+
+  .lu-list-item--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .lu-list-item__leading {
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+  }
+
+  .lu-list-item__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lu-list-item__trailing {
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+  }
+
+  /* ==========================================================================
+     LuTree
+     ========================================================================== */
+
+  .lu-tree {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lu-tree-node {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lu-tree-node__content {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+    padding: var(--lu-space-1) var(--lu-space-2);
+    padding-left: calc(var(--lu-space-2) + (var(--lu-tree-depth, 0) * var(--lu-space-4)));
+    border-radius: var(--lu-radius-2);
+    cursor: pointer;
+    outline: none;
+    transition: background var(--lu-duration-fast);
+    min-height: 1.75rem;
+  }
+
+  .lu-tree-node__content:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  .lu-tree-node__content:focus-visible {
+    outline: 2px solid var(--lu-color-border-focus);
+    outline-offset: -2px;
+  }
+
+  .lu-tree-node__content--selected {
+    background: color-mix(in srgb, var(--lu-color-primary) 8%, transparent);
+    color: var(--lu-color-primary);
+  }
+
+  .lu-tree-node__content--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .lu-tree-node__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+    cursor: pointer;
+  }
+
+  .lu-tree-node__label {
+    font-size: var(--lu-text-sm);
+    color: inherit;
+  }
+
+  .lu-tree-node__children {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .lu-tree-node__checkbox {
+    display: inline-flex;
+    align-items: center;
+    margin-right: var(--lu-space-2);
+  }
+
+  /* ==========================================================================
+     LuTooltip
+     ========================================================================== */
+
+  .lu-tooltip {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .lu-tooltip__content {
+    position: absolute;
+    z-index: var(--lu-z-tooltip);
+    background: var(--lu-color-surface-overlay);
+    color: var(--lu-color-text);
+    font-size: var(--lu-text-xs);
+    padding: var(--lu-space-1) var(--lu-space-2);
+    border-radius: var(--lu-radius-2);
+    border: 1px solid var(--lu-color-border);
+    box-shadow: var(--lu-shadow-md);
+    white-space: nowrap;
+    pointer-events: none;
+    max-width: 16rem;
+  }
+
+  /* ==========================================================================
+     LuMenu
+     ========================================================================== */
+
+  .lu-menu {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .lu-menu__trigger {
+    display: inline-flex;
+    cursor: pointer;
+  }
+
+  .lu-menu__content {
+    background: var(--lu-color-surface-raised);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    box-shadow: var(--lu-shadow-lg);
+    overflow: hidden;
+    min-width: 10rem;
+    padding: var(--lu-space-1);
+  }
+
+  .lu-menu__group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .lu-menu-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: var(--lu-space-2);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border-radius: var(--lu-radius-2);
+    border: none;
+    background: transparent;
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text);
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--lu-duration-fast);
+    outline: none;
+  }
+
+  .lu-menu-item:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  .lu-menu-item:focus-visible {
+    outline: 2px solid var(--lu-color-border-focus);
+    outline-offset: 2px;
+  }
+
+  .lu-menu-item[disabled],
+  .lu-menu-item[data-disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+}

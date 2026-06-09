@@ -1,5 +1,5 @@
 <template>
-  <div :class="resolvedContainerSkin">
+  <div :class="['lu-radio-container', variant && `lu-radio-container--${variant}`]">
     <button
       type="button"
       role="radio"
@@ -8,11 +8,11 @@
       :disabled="isDisabled"
       :name="radioGroup?.name"
       :value="value"
-      :class="[resolvedSkin, isChecked ? activeSkin : '']"
+      :class="['lu-radio', variant && `lu-radio--${variant}`, isChecked && 'lu-radio--checked']"
       @click="onClick"
       @keydown.space.prevent="onClick"
     >
-      <span v-if="isChecked" :class="dotSkin"></span>
+      <span v-if="isChecked" class="lu-radio__dot"></span>
     </button>
     
     <input
@@ -26,7 +26,7 @@
       aria-hidden="true"
     />
     
-    <label v-if="$slots.default || label" :class="resolvedLabelSkin" @click.prevent="onClick">
+    <label v-if="$slots.default || label" class="lu-radio__label" @click.prevent="onClick">
       <slot>{{ label }}</slot>
     </label>
   </div>
@@ -34,7 +34,6 @@
 
 <script setup lang="ts">
 import { computed, inject } from "vue";
-import { useLumoraConfig } from "../context";
 import { LuRadioGroupContextKey } from "./LuRadioGroup.types";
 
 const props = defineProps<{
@@ -50,16 +49,7 @@ if (!radioGroup) {
   console.warn("LuRadio must be used within a LuRadioGroup");
 }
 
-const { resolveSkin } = useLumoraConfig();
 
-// If the group is using 'card' variant, we want the radio to inherit it for container/label
-const resolvedVariant = computed(() => props.variant || radioGroup?.variant?.value);
-
-const resolvedContainerSkin = computed(() => resolveSkin("LuRadioContainer", resolvedVariant.value));
-const resolvedSkin = computed(() => resolveSkin("LuRadio", props.variant)); // Radio circle itself doesn't need card variant
-const activeSkin = computed(() => resolveSkin("LuRadio", "checked"));
-const dotSkin = computed(() => resolveSkin("LuRadioDot", props.variant));
-const resolvedLabelSkin = computed(() => resolveSkin("LuRadioLabel", resolvedVariant.value));
 
 const isDisabled = computed(() => !!props.disabled || !!radioGroup?.disabled.value);
 

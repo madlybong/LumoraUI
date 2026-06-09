@@ -23,7 +23,6 @@ const DEFAULT_PRESETS: Preset[] = [
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
 import LuCalendar from "./LuCalendar.vue";
 import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
@@ -48,7 +47,6 @@ const emit = defineEmits<{
   (e: "update:modelValue", range: DateRange): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 const isOpen = ref(false);
 const activePreset = ref<Preset["key"] | null>(null);
@@ -118,36 +116,34 @@ const displayLabel = computed(() => {
   return `${props.modelValue.start} → ${props.modelValue.end}`;
 });
 
-const skinInput = computed(() => resolveSkin("LuDateRangePickerInput"));
-const skinDropdown = computed(() => resolveSkin("LuDateRangePickerDropdown"));
-const skinPresets = computed(() => resolveSkin("LuDateRangePresets"));
+
 </script>
 
 <template>
-  <div :class="resolveSkin('LuDateRangePicker')">
+  <div :class="['lu-date-range-picker']">
     <!-- Trigger -->
     <button
       type="button"
-      :class="skinInput"
+      :class="['lu-date-range-picker__input']"
       :aria-expanded="isOpen"
       @click="isOpen = !isOpen"
     >
-      <LuIcon name="calendar" :size="15" class="text-zinc-400 dark:text-zinc-500 shrink-0" />
+      <LuIcon name="calendar" :size="15" class="text-zinc-400" />
       <LuText>{{ displayLabel }}</LuText>
-      <LuIcon name="chevron-down" :size="14" class="ml-2 text-zinc-400 dark:text-zinc-500 shrink-0" />
+      <LuIcon name="chevron-down" :size="14" class="ml-2" />
     </button>
 
     <!-- Dropdown -->
     <Transition name="lu-slide-down">
-      <div v-if="isOpen" :class="skinDropdown">
+      <div v-if="isOpen" :class="['lu-date-range-picker__dropdown']">
         <div class="flex gap-3">
           <!-- Presets -->
-          <nav :class="skinPresets" aria-label="Date presets">
+          <nav :class="['lu-date-range-presets']" aria-label="Date presets">
             <button
               v-for="preset in presets"
               :key="preset.key"
               type="button"
-              :class="resolveSkin('LuDateRangePreset', activePreset === preset.key ? 'active' : undefined)"
+              :class="['lu-date-range-preset', activePreset === preset.key ? 'lu-date-range-preset--active' : '']"
               @click="applyPreset(preset)"
             >
               {{ preset.label }}

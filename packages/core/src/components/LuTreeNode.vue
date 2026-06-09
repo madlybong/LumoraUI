@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuIcon from "./LuIcon.vue";
 import LuText from "./LuText.vue";
 import LuCheckbox from "./LuCheckbox.vue";
@@ -23,13 +23,16 @@ const props = withDefaults(defineProps<{
   depth: 0,
 });
 
+defineSlots<{
+  label(props: { node: TreeNodeData; expanded: boolean; selected: boolean }): any
+}>();
+
 const emit = defineEmits<{
   (e: "select", id: string): void;
   (e: "expand", id: string): void;
   (e: "check", id: string, checked: boolean): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 const hasChildren = computed(() => (props.node.children?.length ?? 0) > 0);
 const isExpanded = computed(() => props.expanded.includes(props.node.id));
@@ -45,14 +48,13 @@ function handleSelect() {
   if (props.selectable) emit("select", props.node.id);
 }
 
-const skinNode = computed(() => resolveSkin("LuTreeNode"));
+const skinNode = computed(() => `lu-tree-node`);
 const skinNodeContent = computed(() =>
-  resolveSkin("LuTreeNodeContent",
-    props.node.disabled ? "disabled" : isSelected.value ? "selected" : undefined)
+  `lu-tree-node__content ${props.node.disabled ? 'lu-tree-node__content--disabled' : isSelected.value ? 'lu-tree-node__content--selected' : ''}`.trim()
 );
-const skinToggle = computed(() => resolveSkin("LuTreeNodeToggle"));
-const skinLabel = computed(() => resolveSkin("LuTreeNodeLabel"));
-const skinChildren = computed(() => resolveSkin("LuTreeChildren"));
+const skinToggle = computed(() => `lu-tree-node__toggle`);
+const skinLabel = computed(() => `lu-tree-node__label`);
+const skinChildren = computed(() => `lu-tree-node__children`);
 </script>
 
 <template>
@@ -60,6 +62,7 @@ const skinChildren = computed(() => resolveSkin("LuTreeChildren"));
     <!-- Node content row -->
     <div
       :class="skinNodeContent"
+      :style="`--lu-tree-depth: ${depth};`"
       tabindex="0"
       @click="handleSelect"
       @keydown.enter="handleSelect"
@@ -79,18 +82,20 @@ const skinChildren = computed(() => resolveSkin("LuTreeChildren"));
       <!-- Checkbox -->
       <LuCheckbox
         v-if="checkable"
-        :class="resolveSkin('LuTreeNodeCheckbox')"
+        :class="['lu-tree-node__checkbox']"
         :model-value="isSelected"
         @update:model-value="(v) => emit('check', node.id, v)"
         @click.stop
       />
 
       <!-- Icon -->
-      <LuIcon v-if="node.icon" :name="node.icon" :size="14" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
+      <LuIcon v-if="node.icon" :name="node.icon" :size="14" class="shrink-0" />
 
       <!-- Label -->
       <LuText :class="skinLabel">
-        <slot :node="node">{{ node.label }}</slot>
+        <slot name="label" :node="node" :expanded="isExpanded" :selected="isSelected">
+          {{ node.label }}
+        </slot>
       </LuText>
     </div>
 
@@ -113,7 +118,11 @@ const skinChildren = computed(() => resolveSkin("LuTreeChildren"));
           @select="(id) => emit('select', id)"
           @expand="(id) => emit('expand', id)"
           @check="(id, v) => emit('check', id, v)"
-        />
+        >
+          <template v-if="$slots.label" #label="slotProps">
+            <slot name="label" v-bind="slotProps" />
+          </template>
+        </LuTreeNode>
       </div>
     </Transition>
   </div>

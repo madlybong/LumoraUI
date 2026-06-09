@@ -2,7 +2,7 @@
   <component
     :is="componentType"
     v-bind="bindingProps"
-    :class="resolvedSkin"
+    :class="['lu-link', variant && `lu-link--${variant}`]"
     @click="emit('click', $event)"
   >
     <slot />
@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import { computed, resolveComponent } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   variant?: string;
@@ -42,6 +41,5 @@ const bindingProps = computed(() => {
   return p;
 });
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuLink", props.variant));
+
 </script>

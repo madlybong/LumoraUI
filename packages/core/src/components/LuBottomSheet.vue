@@ -1,29 +1,29 @@
 <template>
   <teleport to="body">
     <transition name="lu-bottom-sheet-fade">
-      <div v-if="modelValue" :class="backdropSkin" @click="close" />
+      <div v-if="modelValue" :class="['lu-bottom-sheet__backdrop']" @click="close" />
     </transition>
     <transition name="lu-bottom-sheet-slide">
       <div 
         v-if="modelValue" 
-        :class="panelSkin"
+        :class="['lu-bottom-sheet', variant && `lu-bottom-sheet--${variant}`]"
         :style="sheetStyle"
         role="dialog"
         aria-modal="true"
       >
         <!-- Drag Handle Area -->
         <div 
-          :class="handleSkin"
+          :class="['lu-bottom-sheet__handle']"
           @mousedown="startDrag"
           @touchstart="startDrag"
         >
           <slot name="handle">
-            <div class="w-12 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700 mx-auto" />
+            <div class="lu-bottom-sheet__handle-bar" />
           </slot>
         </div>
 
         <!-- Content Area -->
-        <div class="flex-1 overflow-y-auto px-6 pb-8 lu-scrollbar-thin">
+        <div class="lu-bottom-sheet__body">
           <slot />
         </div>
       </div>
@@ -33,7 +33,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = withDefaults(defineProps<{
   modelValue: boolean;
@@ -111,9 +110,5 @@ const sheetStyle = computed(() => {
   return {};
 });
 
-const { resolveSkin } = useLumoraConfig();
 
-const backdropSkin = computed(() => resolveSkin("LuBottomSheetBackdrop", props.variant));
-const panelSkin = computed(() => resolveSkin("LuBottomSheet", props.variant));
-const handleSkin = computed(() => resolveSkin("LuBottomSheetHandle", props.variant));
 </script>

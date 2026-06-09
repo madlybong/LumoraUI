@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 import { LuIcon } from '@astrake/lumora-ui';
 
@@ -31,8 +30,6 @@ const emit = defineEmits<{
   (e: "widget-move", widgetId: string, newPos: { col: number; row: number }): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
 const gridStyle = computed(() => ({
   gridTemplateColumns: `repeat(${props.columns}, minmax(0, 1fr))`,
   gap: `${props.gap * 4}px`,
@@ -45,11 +42,11 @@ function widgetStyle(widget: DashboardWidget) {
   };
 }
 
-const skinGrid = computed(() => resolveSkin("LuDashboardGrid"));
-const skinWidget = computed(() => resolveSkin("LuDashboardGridWidget"));
-const skinWidgetHeader = computed(() => resolveSkin("LuDashboardGridWidgetHeader"));
-const skinDragHandle = computed(() => resolveSkin("LuDashboardGridWidgetDragHandle"));
-const skinEditMode = computed(() => resolveSkin("LuDashboardGridEditMode"));
+const skinGrid = computed(() => `sc-dashboard-grid`);
+const skinWidget = computed(() => `sc-dashboard-grid__widget`);
+const skinWidgetHeader = computed(() => `sc-dashboard-grid__widget-header`);
+const skinDragHandle = computed(() => `sc-dashboard-grid__drag-handle`);
+const skinEditMode = computed(() => `sc-dashboard-grid--edit`);
 </script>
 
 <template>
@@ -58,7 +55,7 @@ const skinEditMode = computed(() => resolveSkin("LuDashboardGridEditMode"));
       <div
         v-for="widget in widgets"
         :key="widget.id"
-        :class="[skinWidget, 'lu-dashboard-widget']"
+        :class="[skinWidget, 'sc-dashboard-widget']"
         :style="widgetStyle(widget)"
       >
         <div v-if="widget.title || editMode" :class="skinWidgetHeader">

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
 import type { LuPlannerEvent, LuPlannerSlotClickPayload } from "./LuPlanner.types";
 import LuButton from "./LuButton.vue";
 import LuIcon from "./LuIcon.vue";
@@ -27,7 +26,6 @@ const emit = defineEmits<{
   (e: "week-change", startDate: string): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 // Helper to format Date to ISO "YYYY-MM-DD"
 function formatISO(d: Date): string {
@@ -174,66 +172,51 @@ function handleSlotClick(isoDateStr: string, timeStr: string) {
   emit("slot-click", { date: isoDateStr, time: timeStr });
 }
 
-// Skins computed properties
-const skinContainer = computed(() => resolveSkin("LuPlannerContainer"));
-const skinHeader = computed(() => resolveSkin("LuPlannerHeader"));
-const skinNavButton = computed(() => resolveSkin("LuPlannerNavButton"));
-const skinWeekLabel = computed(() => resolveSkin("LuPlannerWeekLabel"));
-const skinGrid = computed(() => resolveSkin("LuPlannerGrid"));
-const skinTimeGutter = computed(() => resolveSkin("LuPlannerTimeGutter"));
-const skinTimeCell = computed(() => resolveSkin("LuPlannerTimeCell"));
-const skinTimeLabel = computed(() => resolveSkin("LuPlannerTimeLabel"));
-const skinDayColumn = computed(() => resolveSkin("LuPlannerDayColumn"));
-const skinDayHeader = computed(() => resolveSkin("LuPlannerDayHeader"));
-const skinDayHeaderToday = computed(() => resolveSkin("LuPlannerDayHeaderToday"));
-const skinHourCell = computed(() => resolveSkin("LuPlannerHourCell"));
-const skinEvent = computed(() => resolveSkin("LuPlannerEvent"));
+
 </script>
 
 <template>
-  <div :class="skinContainer">
+  <div :class="['lu-planner']">
     <!-- Top toolbar navigation -->
-    <div :class="skinHeader">
-      <div class="flex items-center gap-2">
-        <LuButton variant="ghost" size="icon-sm" :class="skinNavButton" aria-label="Previous week" @click="prevWeek">
+    <div :class="['lu-planner__header']">
+      <div class="lu-planner__header-nav">
+        <LuButton variant="ghost" size="icon-sm" :class="['lu-planner__nav-button']" aria-label="Previous week" @click="prevWeek">
           <LuIcon name="chevron-left" :size="16" />
         </LuButton>
-        <LuButton variant="ghost" size="sm" :class="skinNavButton" @click="goToToday">
+        <LuButton variant="ghost" size="sm" :class="['lu-planner__nav-button']" @click="goToToday">
           Today
         </LuButton>
-        <LuButton variant="ghost" size="icon-sm" :class="skinNavButton" aria-label="Next week" @click="nextWeek">
+        <LuButton variant="ghost" size="icon-sm" :class="['lu-planner__nav-button']" aria-label="Next week" @click="nextWeek">
           <LuIcon name="chevron-right" :size="16" />
         </LuButton>
       </div>
-      <LuText :class="skinWeekLabel">{{ currentRangeLabel }}</LuText>
-      <div class="w-20" /> <!-- Spacer for visual balance -->
+      <LuText :class="['lu-planner__week-label']">{{ currentRangeLabel }}</LuText>
+      <div class="lu-planner__header-spacer" />
     </div>
 
     <!-- Scrollable schedule calendar grid -->
-    <div :class="skinGrid">
+    <div :class="['lu-planner__grid']">
       <!-- Time scale left gutter -->
-      <div :class="skinTimeGutter">
-        <!-- Top spacer cell matching day headers -->
-        <div class="h-12 border-b border-zinc-200 dark:border-zinc-800 shrink-0" />
-        <div v-for="slot in timeSlots" :key="slot.hour" :class="skinTimeCell" class="h-16 relative">
-          <span :class="skinTimeLabel" class="absolute -top-2 right-2">{{ slot.label }}</span>
+      <div :class="['lu-planner__time-gutter']">
+        <div class="lu-planner__time-gutter-header" />
+        <div v-for="slot in timeSlots" :key="slot.hour" :class="['lu-planner__time-cell']">
+          <span :class="['lu-planner__time-label']">{{ slot.label }}</span>
         </div>
       </div>
 
       <!-- Weekly column grid mapping 7 days -->
-      <div v-for="day in weekDays" :key="day.iso" :class="skinDayColumn">
+      <div v-for="day in weekDays" :key="day.iso" :class="['lu-planner__day-column']">
         <!-- Day header column cell -->
-        <div :class="[skinDayHeader, day.isToday ? skinDayHeaderToday : '']" class="h-12 flex flex-col items-center justify-center shrink-0 border-b border-zinc-200 dark:border-zinc-800">
-          <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{{ day.dayName }}</span>
-          <span class="text-sm font-semibold mt-0.5" :class="day.isToday ? 'text-rose-600 dark:text-rose-400' : 'text-zinc-700 dark:text-zinc-200'">{{ day.dayNumber }}</span>
+        <div :class="['lu-planner__day-header', day.isToday ? 'lu-planner__day-header--today' : '']">
+          <span class="lu-planner__day-name">{{ day.dayName }}</span>
+          <span class="lu-planner__day-number" :class="day.isToday ? 'lu-planner__day-number--today' : ''">{{ day.dayNumber }}</span>
         </div>
 
         <!-- 1-Hour row empty slots click targets -->
         <div 
           v-for="slot in timeSlots" 
           :key="slot.hour" 
-          :class="skinHourCell" 
-          class="h-16 cursor-pointer"
+          :class="['lu-planner__hour-cell']" 
           @click="handleSlotClick(day.iso, slot.timeString)"
         />
 
@@ -241,13 +224,12 @@ const skinEvent = computed(() => resolveSkin("LuPlannerEvent"));
         <div
           v-for="evt in getDayEvents(day.iso)"
           :key="evt.id"
-          :class="skinEvent"
+          :class="['lu-planner__event']"
           :style="getEventStyle(evt)"
-          class="border-l-4"
           @click.stop="emit('event-click', evt)"
         >
-          <div class="font-bold truncate text-[11px]">{{ evt.title }}</div>
-          <div class="text-[10px] opacity-90 font-medium mt-0.5">{{ evt.startTime }} – {{ evt.endTime }}</div>
+          <div class="lu-planner__event-title">{{ evt.title }}</div>
+          <div class="lu-planner__event-time">{{ evt.startTime }} – {{ evt.endTime }}</div>
         </div>
       </div>
     </div>

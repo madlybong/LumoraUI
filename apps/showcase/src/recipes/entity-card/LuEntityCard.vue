@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEntityCard" });
 
-const { resolveSkin } = useLumoraConfig();
-
-const skinCard = computed(() => resolveSkin("LuEntityCard"));
-const skinHeader = computed(() => resolveSkin("LuEntityCardHeader"));
-const skinAvatar = computed(() => resolveSkin("LuEntityCardAvatar"));
-const skinMeta = computed(() => resolveSkin("LuEntityCardMeta"));
-const skinStats = computed(() => resolveSkin("LuEntityCardStats"));
-const skinActions = computed(() => resolveSkin("LuEntityCardActions"));
-const skinContent = computed(() => resolveSkin("LuEntityCardContent"));
+const skinCard = computed(() => `sc-entity-card`);
+const skinHeader = computed(() => `sc-entity-card__header`);
+const skinAvatar = computed(() => `sc-entity-card__avatar`);
+const skinMeta = computed(() => `sc-entity-card__meta`);
+const skinStats = computed(() => `sc-entity-card__stats`);
+const skinActions = computed(() => `sc-entity-card__actions`);
+const skinContent = computed(() => `sc-entity-card__content`);
 </script>
 
 <template>

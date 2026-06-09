@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { computed, provide, readonly } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   direction?: "horizontal" | "vertical";
@@ -15,7 +14,5 @@ const props = defineProps<{
 
 const direction = computed(() => props.direction ?? "horizontal");
 provide("lu-split-direction", readonly(direction));
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuSplit", props.direction ?? props.variant));
+const resolvedSkin = computed(() => `lu-split ${props.direction ? "lu-split--"+props.direction : props.variant && props.variant !== "default" ? "lu-split--"+props.variant : ""}`.trim());
 </script>

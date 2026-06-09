@@ -1,5 +1,5 @@
 <template>
-  <span v-bind="$attrs" :class="resolvedSkin" aria-hidden="true" :style="sizeStyle">
+  <span v-bind="$attrs" :class="['lu-icon', variant && `lu-icon--${variant}`]" aria-hidden="true" :style="sizeStyle">
     <slot>
       <component
         v-if="resolvedIcon"
@@ -23,9 +23,7 @@ const props = defineProps<{
 }>();
 
 const slots = useSlots();
-const { resolveSkin, resolveIcon } = useLumoraConfig();
-
-const resolvedSkin = computed(() => resolveSkin("LuIcon", props.variant));
+const { resolveIcon } = useLumoraConfig();
 
 const resolvedIcon = computed(() => {
   if (slots.default) return null;

@@ -1,59 +1,121 @@
 <template>
-  <div class="relative w-full" v-if="$slots.prepend || $slots.append">
-    <div v-if="$slots.prepend" :class="prependSkin">
-      <slot name="prepend" />
+  <div :class="rootSkin">
+    <!-- Prepend Zone -->
+    <div v-if="hasPrepend" class="lu-input__prepend">
+      <slot name="prepend">
+        <LuIcon v-if="prependIcon" :name="prependIcon" :size="16" class="lu-input__icon" />
+      </slot>
     </div>
+
+    <!-- Native Input -->
     <input
+      ref="inputRef"
       v-bind="$attrs"
-      :class="[resolvedSkin, $slots.prepend && 'pl-9', $slots.append && 'pr-9']"
+      :class="resolvedSkin"
+      :type="resolvedType"
       :value="modelValue"
       :name="name"
       :disabled="formContext?.disabled.value"
       @input="onInput"
       @blur="onBlur"
     />
-    <div v-if="$slots.append" :class="appendSkin">
-      <slot name="append" />
+
+    <!-- Append Zone -->
+    <div v-if="hasAppend" class="lu-input__append">
+      <button
+        v-if="isPasswordType"
+        type="button"
+        class="lu-input__reveal-button"
+        :aria-label="showPassword ? 'Hide password' : 'Show password'"
+        @click.stop="showPassword = !showPassword"
+      >
+        <LuIcon :name="showPassword ? 'eye-off' : 'eye'" :size="16" class="lu-input__icon" />
+      </button>
+      <slot v-else name="append">
+        <LuIcon v-if="appendIcon" :name="appendIcon" :size="16" class="lu-input__icon" />
+      </slot>
     </div>
   </div>
-  <input
-    v-else
-    v-bind="$attrs"
-    :class="resolvedSkin"
-    :value="modelValue"
-    :name="name"
-    :disabled="formContext?.disabled.value"
-    @input="onInput"
-    @blur="onBlur"
-  />
 </template>
 
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted, ref } from "vue";
-import { useLumoraConfig } from "../context";
+import { computed, inject, onMounted, onUnmounted, ref, useSlots } from "vue";
 import { LuFormContextKey } from "./LuForm.types";
+import LuIcon from "./LuIcon.vue";
 
-const props = defineProps<{
+defineOptions({ name: "LuInput" });
+
+interface LuInputProps {
   modelValue?: string | number;
   variant?: string;
   name?: string;
   error?: string | null;
-}>();
+  type?: string;
+  prependIcon?: string;
+  appendIcon?: string;
+  mask?: string | string[];
+  maskOptions?: Record<string, unknown>;
+}
+
+const props = defineProps<LuInputProps>();
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;
   (e: "blur"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuInput", props.variant));
-const prependSkin = computed(() => resolveSkin("LuInputPrepend", props.variant));
-const appendSkin = computed(() => resolveSkin("LuInputAppend", props.variant));
-
+const slots = useSlots();
+const inputRef = ref<HTMLInputElement | null>(null);
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);
 
+// Type handling (password reveal)
+const isPasswordType = computed(() => props.type === "password");
+const showPassword = ref(false);
+const resolvedType = computed(() =>
+  isPasswordType.value ? (showPassword.value ? "text" : "password") : (props.type ?? "text")
+);
+
+// Zone presence
+const hasPrepend = computed(() => !!props.prependIcon || !!slots.prepend);
+const hasAppend = computed(() => !!props.appendIcon || !!slots.append || isPasswordType.value);
+
+// BEM classes
+const rootSkin = computed(() => [
+  "lu-input__root",
+  props.error && "lu-input__root--error",
+  formContext?.disabled.value && "lu-input__root--disabled"
+].filter(Boolean).join(" "));
+
+const resolvedSkin = computed(() => [
+  "lu-input",
+  props.variant && props.variant !== "default" && `lu-input--${props.variant}`,
+  isPasswordType.value && "lu-input--password"
+].filter(Boolean).join(" "));
+
+// Maska Integration
+onMounted(async () => {
+  if (!props.mask || !inputRef.value) return;
+  try {
+    const { MaskInput } = await import("maska");
+    new MaskInput(inputRef.value, {
+      mask: props.mask as string | string[],
+      ...props.maskOptions,
+      onMaska: (detail: any) => {
+        internalValue.value = detail.unmasked;
+        emit("update:modelValue", detail.unmasked);
+      }
+    });
+  } catch {
+    // maska not installed, ignore
+  }
+});
+
 const onInput = (event: Event) => {
+  // If maska is active, let it handle the emit.
+  // Otherwise, handle it here.
+  if (props.mask) return; 
+
   const value = (event.target as HTMLInputElement).value;
   internalValue.value = value;
   emit("update:modelValue", value);
@@ -72,7 +134,7 @@ onMounted(() => {
     name: props.name,
     getValue: () => internalValue.value,
     setValue: (v) => { internalValue.value = v as string; },
-    setError: (_msg) => { /* error display handled via formContext.getError in template if desired */ },
+    setError: (_msg) => {},
   });
 });
 

@@ -63,7 +63,7 @@ describe("LuToast and useLuToast", () => {
     expect(toastElement?.textContent).toContain("Check if rendered in body");
     
     // Check close button click
-    const closeBtn = document.querySelector(".lu-toast-close") as HTMLButtonElement | null;
+    const closeBtn = document.querySelector(".lu-toast__close") as HTMLButtonElement | null;
     expect(closeBtn).not.toBeNull();
     closeBtn?.click();
     

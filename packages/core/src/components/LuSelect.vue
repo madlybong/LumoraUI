@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full" ref="containerRef">
+  <div class="relative" ref="containerRef">
     <button
       type="button"
       :class="[resolvedSkin, error ? errorSkin : '']"
@@ -96,7 +96,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, ref, watch, nextTick } from "vue";
-import { useLumoraConfig } from "../context";
+
 import { LuFormContextKey } from "./LuForm.types";
 import { useFloating } from "../composables/useFloating";
 
@@ -122,21 +122,21 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
-const resolvedSkin = computed(() => resolveSkin("LuSelect", props.variant));
-const errorSkin = computed(() => resolveSkin("LuSelect.error", props.variant));
-const iconSkin = computed(() => resolveSkin("LuSelectIcon", props.variant));
-const iconOpenSkin = computed(() => resolveSkin("LuSelectIcon", "open"));
-const panelSkin = computed(() => resolveSkin("LuSelectPanel", props.variant));
-const searchSkin = computed(() => resolveSkin("LuSelectSearch", props.variant));
-const listSkin = computed(() => resolveSkin("LuSelectOptionList", props.variant));
-const optionSkin = computed(() => resolveSkin("LuSelectOption", props.variant));
-const activeSkin = computed(() => resolveSkin("LuSelectOption", "active"));
-const selectedSkin = computed(() => resolveSkin("LuSelectOption", "selected"));
-const disabledSkin = computed(() => resolveSkin("LuSelectOption", "disabled"));
-const emptySkin = computed(() => resolveSkin("LuSelectEmpty", props.variant));
-const placeholderSkin = computed(() => resolveSkin("LuSelectPlaceholder", props.variant));
+
+const resolvedSkin = computed(() => `lu-select ${props.variant && props.variant !== 'default' ? 'lu-select--'+props.variant : ''}`.trim());
+const errorSkin = computed(() => `lu-select--error`);
+const iconSkin = computed(() => `lu-select__icon ${props.variant && props.variant !== 'default' ? 'lu-select__icon--'+props.variant : ''}`.trim());
+const iconOpenSkin = computed(() => `lu-select__icon--open`);
+const panelSkin = computed(() => `lu-select__panel ${props.variant && props.variant !== 'default' ? 'lu-select__panel--'+props.variant : ''}`.trim());
+const searchSkin = computed(() => `lu-select__search ${props.variant && props.variant !== 'default' ? 'lu-select__search--'+props.variant : ''}`.trim());
+const listSkin = computed(() => `lu-select__option-list ${props.variant && props.variant !== 'default' ? 'lu-select__option-list--'+props.variant : ''}`.trim());
+const optionSkin = computed(() => `lu-select__option ${props.variant && props.variant !== 'default' ? 'lu-select__option--'+props.variant : ''}`.trim());
+const activeSkin = computed(() => `lu-select__option--active`);
+const selectedSkin = computed(() => `lu-select__option--selected`);
+const disabledSkin = computed(() => `lu-select__option--disabled`);
+const emptySkin = computed(() => `lu-select__empty ${props.variant && props.variant !== 'default' ? 'lu-select__empty--'+props.variant : ''}`.trim());
+const placeholderSkin = computed(() => `lu-select__placeholder ${props.variant && props.variant !== 'default' ? 'lu-select__placeholder--'+props.variant : ''}`.trim());
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);

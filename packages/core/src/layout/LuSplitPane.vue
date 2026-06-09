@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { computed, inject, ref, unref, type Ref } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   minSize?: number;
@@ -25,8 +24,5 @@ const style = computed(() => {
     ? { width: dim, flex: `0 0 ${dim}` }
     : { height: dim, flex: `0 0 ${dim}` };
 });
-
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuSplitPane", props.variant));
+const resolvedSkin = computed(() => `lu-split-pane ${props.variant && props.variant !== "default" ? "lu-split-pane--"+props.variant : ""}`.trim());
 </script>

@@ -1,9 +1,10 @@
 <template>
   <div
     :class="[
-      chipSkin,
-      isChipSelected && selectedSkin,
-      disabled && disabledSkin
+      'lu-chip',
+      variant && `lu-chip--${variant}`,
+      isChipSelected && 'lu-chip--selected',
+      disabled && 'lu-chip--disabled'
     ]"
     role="button"
     :tabindex="disabled ? -1 : 0"
@@ -13,20 +14,20 @@
     @keydown.enter="handleClick"
     @keydown.space.prevent="handleClick"
   >
-    <span v-if="$slots.leading" class="shrink-0 flex items-center justify-center">
+    <span v-if="$slots.leading" class="lu-chip__icon">
       <slot name="leading" />
     </span>
-    <span class="flex-1 min-w-0">
+    <span class="lu-chip__label">
       <slot>{{ label }}</slot>
     </span>
     <button
       v-if="closable"
-      :class="closeSkin"
+      class="lu-chip__close"
       type="button"
       aria-label="Remove"
       @click.stop="handleClose"
     >
-      <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <svg class="lu-chip__remove-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
@@ -35,7 +36,6 @@
 
 <script setup lang="ts">
 import { computed, inject, type ComputedRef } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = withDefaults(defineProps<{
   label?: string;
@@ -80,12 +80,7 @@ const handleClose = (event: Event) => {
   emit("close", event);
 };
 
-const { resolveSkin } = useLumoraConfig();
 
-const chipSkin = computed(() => resolveSkin("LuChip", props.variant));
-const selectedSkin = computed(() => resolveSkin("LuChip.selected", props.variant));
-const disabledSkin = computed(() => resolveSkin("LuChip.disabled", props.variant));
-const closeSkin = computed(() => resolveSkin("LuChipClose", props.variant));
 
 defineExpose({ isChipSelected });
 </script>

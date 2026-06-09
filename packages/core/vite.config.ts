@@ -8,7 +8,6 @@ const entries = {
   "layout/index": resolve(__dirname, "src/layout/index.ts"),
   "shell/index": resolve(__dirname, "src/shell/index.ts"),
   "composables/index": resolve(__dirname, "src/composables/index.ts"),
-  "skins/index": resolve(__dirname, "src/skins/index.ts"),
   tailwind: resolve(__dirname, "src/tailwind.ts"),
 };
 

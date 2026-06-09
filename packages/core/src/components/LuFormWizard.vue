@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
 import LuIcon from "./LuIcon.vue";
 import LuText from "./LuText.vue";
 import LuButton from "./LuButton.vue";
@@ -22,7 +21,6 @@ const emit = defineEmits<{
   (e: "step-change", from: number, to: number): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 const stepError = ref<string | null>(null);
 const isValidating = ref(false);
@@ -92,32 +90,24 @@ function stepStatus(idx: number): "completed" | "active" | "default" {
   return "default";
 }
 
-const skinWizard = computed(() => resolveSkin("LuFormWizard"));
-const skinSteps = computed(() => resolveSkin("LuFormWizardSteps"));
-const skinStepWrapper = computed(() => resolveSkin("LuFormWizardStepWrapper"));
-const skinConnectorBase = computed(() => resolveSkin("LuFormWizardStepConnector"));
-const skinConnectorCompleted = computed(() => resolveSkin("LuFormWizardStepConnector", "completed"));
-const skinBody = computed(() => resolveSkin("LuFormWizardBody"));
-const skinFooter = computed(() => resolveSkin("LuFormWizardFooter"));
-const skinError = computed(() => resolveSkin("LuFormWizardError"));
 </script>
 
 <template>
-  <div :class="skinWizard">
+  <div :class="['lu-form-wizard']">
     <!-- Steps indicator -->
-    <nav :class="skinSteps" aria-label="Form steps">
+    <nav :class="['lu-form-wizard__steps']" aria-label="Form steps">
       <template v-for="(step, idx) in steps" :key="step.id">
         <!-- Connector line before each step except first -->
         <div
           v-if="idx > 0"
-          :class="idx <= currentStep ? skinConnectorCompleted : skinConnectorBase"
+          :class="['lu-form-wizard__step-connector', idx <= currentStep ? 'lu-form-wizard__step-connector--completed' : '']"
         />
 
         <!-- Step bubble -->
-        <div :class="skinStepWrapper">
+        <div :class="['lu-form-wizard__step-wrapper']">
           <button
             type="button"
-            :class="resolveSkin('LuFormWizardStep', stepStatus(idx) === 'default' ? undefined : stepStatus(idx))"
+            :class="['lu-form-wizard__step', stepStatus(idx) === 'default' ? '' : `lu-form-wizard__step--${stepStatus(idx)}`]"
             :aria-current="idx === currentStep ? 'step' : undefined"
             :aria-label="`Step ${idx + 1}: ${step.label}`"
             @click="goToStep(idx)"
@@ -126,7 +116,7 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
             <LuIcon v-else-if="step.icon" :name="step.icon" :size="16" />
             <template v-else>{{ idx + 1 }}</template>
           </button>
-          <LuText :class="resolveSkin('LuFormWizardStepLabel', stepStatus(idx) === 'default' ? undefined : stepStatus(idx))">
+          <LuText :class="['lu-form-wizard__step-label', stepStatus(idx) === 'default' ? '' : `lu-form-wizard__step-label--${stepStatus(idx)}`]">
             {{ step.label }}
           </LuText>
         </div>
@@ -134,7 +124,7 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
     </nav>
 
     <!-- Active step content -->
-    <div :class="skinBody">
+    <div :class="['lu-form-wizard__body']">
       <template v-for="(step, idx) in steps" :key="step.id">
         <div v-show="idx === currentStep">
           <slot :name="`step-${step.id}`" :step="step" :index="idx" />
@@ -143,10 +133,10 @@ const skinError = computed(() => resolveSkin("LuFormWizardError"));
     </div>
 
     <!-- Error message -->
-    <LuText v-if="stepError" :class="skinError" role="alert">{{ stepError }}</LuText>
+    <LuText v-if="stepError" :class="['lu-form-wizard__error']" role="alert">{{ stepError }}</LuText>
 
     <!-- Navigation footer -->
-    <div :class="skinFooter">
+    <div :class="['lu-form-wizard__footer']">
       <LuButton variant="ghost" :class="[isFirst ? 'invisible' : 'visible']" @click="goPrev">
         <LuIcon name="chevron-left" :size="16" />
         Back

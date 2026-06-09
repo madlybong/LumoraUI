@@ -1,0 +1,13 @@
+@layer lu-reset {
+  /* Minimal resets */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+  
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+  }
+}

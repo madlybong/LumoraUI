@@ -1,30 +1,30 @@
 <template>
   <nav aria-label="breadcrumb">
-    <ol :class="resolvedSkin">
-      <li v-for="(item, index) in items" :key="index" :class="resolvedItemSkin">
+    <ol :class="['lu-breadcrumb', variant && `lu-breadcrumb--${variant}`]">
+      <li v-for="(item, index) in items" :key="index" :class="['lu-breadcrumb__item']">
         <LuLink
           v-if="item.href || item.to"
           :href="item.href"
           :to="item.to"
           :variant="item.current ? 'nav-active' : 'nav'"
           :aria-current="item.current ? 'page' : undefined"
-          :class="resolvedLinkSkin"
+          :class="['lu-breadcrumb__link']"
         >
-          <LuIcon v-if="item.icon" :name="item.icon" class="mr-2 h-4 w-4" />
+          <LuIcon v-if="item.icon" :name="item.icon" class="lu-breadcrumb__separator-icon" />
           {{ item.label }}
         </LuLink>
         <span
           v-else
-          :class="resolvedPageSkin"
+          :class="['lu-breadcrumb__page']"
           :aria-current="item.current ? 'page' : undefined"
         >
-          <LuIcon v-if="item.icon" :name="item.icon" class="mr-2 h-4 w-4" />
+          <LuIcon v-if="item.icon" :name="item.icon" class="lu-breadcrumb__separator-icon" />
           {{ item.label }}
         </span>
         <LuIcon
           v-if="index < items.length - 1"
           :name="separatorIcon"
-          :class="resolvedSeparatorSkin"
+          :class="['lu-breadcrumb__separator']"
         />
       </li>
     </ol>
@@ -33,7 +33,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 import LuLink from "./LuLink.vue";
 import LuIcon from "./LuIcon.vue";
 
@@ -53,11 +52,5 @@ const props = withDefaults(defineProps<{
   separatorIcon: 'chevron-right'
 });
 
-const { resolveSkin } = useLumoraConfig();
 
-const resolvedSkin = computed(() => resolveSkin("LuBreadcrumb", props.variant));
-const resolvedItemSkin = computed(() => resolveSkin("LuBreadcrumbItem", props.variant));
-const resolvedLinkSkin = computed(() => resolveSkin("LuBreadcrumbLink", props.variant));
-const resolvedPageSkin = computed(() => resolveSkin("LuBreadcrumbPage", props.variant));
-const resolvedSeparatorSkin = computed(() => resolveSkin("LuBreadcrumbSeparator", props.variant));
 </script>

@@ -15,7 +15,6 @@ const DEFAULT_METHODS: PaymentMethod[] = [
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 import { LuIcon } from '@astrake/lumora-ui';
 
@@ -39,14 +38,12 @@ const emit = defineEmits<{
   (e: "pay", methodId: string): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
 const selectedMethod = ref(props.methods[0]?.id ?? "cash");
 
-const skinPayment = computed(() => resolveSkin("LuEmbeddedPOSPayment"));
-const skinMethod = computed(() => resolveSkin("LuEmbeddedPOSPaymentMethod"));
-const skinMethodSelected = computed(() => resolveSkin("LuEmbeddedPOSPaymentMethod", "selected"));
-const skinPayBtn = computed(() => resolveSkin("LuEmbeddedPOSPayButton", props.disabled ? "disabled" : undefined));
+const skinPayment = computed(() => `sc-pos-payment`);
+const skinMethod = computed(() => `sc-pos-payment__method`);
+const skinMethodSelected = computed(() => `sc-pos-payment__method sc-pos-payment__method--selected`);
+const skinPayBtn = computed(() => `sc-pos-payment__pay-btn ${props.disabled ? "sc-pos-payment__pay-btn--disabled" : ""}`.trim());
 </script>
 
 <template>

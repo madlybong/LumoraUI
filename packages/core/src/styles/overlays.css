@@ -1,0 +1,162 @@
+@layer lu-components {
+
+  /* ── LuModal ──────────────────────────────────────────────────────────── */
+  .lu-modal__overlay {
+    position: fixed; inset: 0; z-index: var(--lu-z-modal);
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--lu-space-4);
+  }
+  .lu-modal {
+    position: relative;
+    background: var(--lu-color-surface-raised);
+    border-radius: var(--lu-radius-card);
+    border: 1px solid var(--lu-color-border);
+    box-shadow: var(--lu-shadow-xl);
+    width: 100%; max-width: 32rem; max-height: 90dvh;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .lu-modal--sm { max-width: 24rem; }
+  .lu-modal--lg { max-width: 48rem; }
+  .lu-modal--xl { max-width: 64rem; }
+  
+  .lu-modal__header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--lu-space-4) var(--lu-space-5);
+    border-bottom: 1px solid var(--lu-color-border);
+    flex-shrink: 0;
+  }
+  .lu-modal__close-button {
+    /* Uses base button classes in template */
+  }
+  .lu-modal__content {
+    flex: 1; overflow-y: auto; padding: var(--lu-space-5);
+  }
+  .lu-modal__footer {
+    display: flex; justify-content: flex-end; gap: var(--lu-space-2);
+    padding: var(--lu-space-4) var(--lu-space-5);
+    border-top: 1px solid var(--lu-color-border);
+    flex-shrink: 0;
+  }
+
+  /* Modal overlay transition */
+  .lu-modal-overlay-enter-active,
+  .lu-modal-overlay-leave-active { transition: opacity 200ms ease; }
+  .lu-modal-overlay-enter-from,
+  .lu-modal-overlay-leave-to { opacity: 0; }
+
+  /* Modal content transition */
+  .lu-modal-content-enter-active {
+    transition: opacity 180ms var(--lu-ease-out), transform 180ms var(--lu-ease-spring);
+  }
+  .lu-modal-content-leave-active {
+    transition: opacity 140ms ease, transform 140ms ease;
+  }
+  .lu-modal-content-enter-from,
+  .lu-modal-content-leave-to {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+
+
+  /* ── LuCommandPalette ─────────────────────────────────────────────────── */
+  .lu-command-palette__overlay {
+    position: fixed; inset: 0; z-index: var(--lu-z-command);
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 10dvh;
+  }
+  .lu-command-palette__dialog {
+    width: 100%; max-width: 36rem;
+    background: var(--lu-color-surface-raised);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    box-shadow: var(--lu-shadow-xl);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    max-height: 60dvh;
+  }
+  .lu-command-palette__input-wrapper {
+    display: flex; align-items: center; gap: var(--lu-space-2);
+    padding: var(--lu-space-3) var(--lu-space-4);
+    border-bottom: 1px solid var(--lu-color-border);
+    flex-shrink: 0;
+  }
+  .lu-command-palette__search-icon {
+    color: var(--lu-color-text-muted);
+    flex-shrink: 0;
+  }
+  .lu-command-palette__input {
+    flex: 1; background: transparent; border: none; outline: none;
+    font-size: var(--lu-text-sm); color: var(--lu-color-text);
+  }
+  .lu-command-palette__input::placeholder { color: var(--lu-color-text-disabled); }
+  .lu-command-palette__clear-icon {
+    cursor: pointer; color: var(--lu-color-text-muted);
+    flex-shrink: 0;
+  }
+  .lu-command-palette__list {
+    flex: 1; overflow-y: auto; padding: var(--lu-space-2);
+  }
+  .lu-command-palette__group { margin-bottom: var(--lu-space-2); }
+  .lu-command-palette__group-label {
+    font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text-muted);
+    padding: var(--lu-space-1) var(--lu-space-2);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .lu-command-palette__item {
+    display: flex; align-items: center; gap: var(--lu-space-3);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border-radius: var(--lu-radius-2);
+    cursor: pointer;
+    transition: background var(--lu-duration-fast);
+  }
+  .lu-command-palette__item:hover,
+  .lu-command-palette__item--active {
+    background: var(--lu-color-surface-hover);
+  }
+  .lu-command-palette__item-icon {
+    color: var(--lu-color-text-muted); flex-shrink: 0;
+  }
+  .lu-command-palette__item-label {
+    flex: 1; min-width: 0; font-size: var(--lu-text-sm); color: var(--lu-color-text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .lu-command-palette__kbd {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 1.25rem; height: 1.25rem; padding: 0 0.375rem;
+    border: 1px solid var(--lu-color-border); border-radius: var(--lu-radius-2);
+    font-size: 0.6875rem; font-family: inherit;
+    color: var(--lu-color-text-muted);
+    background: var(--lu-color-surface-sunken);
+  }
+  .lu-command-palette__empty {
+    padding: var(--lu-space-8) var(--lu-space-4);
+    text-align: center; color: var(--lu-color-text-muted); font-size: var(--lu-text-sm);
+  }
+  .lu-command-palette__footer {
+    display: flex; align-items: center; gap: var(--lu-space-4);
+    padding: var(--lu-space-2) var(--lu-space-4);
+    border-top: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface);
+    flex-shrink: 0;
+  }
+
+  /* ── LuMenu transitions ───────────────────────────────────────────────── */
+  .lu-menu-enter-active { transition: opacity 100ms ease-out, transform 100ms ease-out; }
+  .lu-menu-leave-active { transition: opacity 75ms ease-in, transform 75ms ease-in; }
+  .lu-menu-enter-from, .lu-menu-leave-to { opacity: 0; transform: scale(0.95); }
+  .lu-menu-enter-to, .lu-menu-leave-from { opacity: 1; transform: scale(1); }
+
+  /* lu-menu__chevron replaces ml-2 h-4 w-4 on the default trigger icon */
+  .lu-menu__chevron { margin-left: 0.5rem; width: 1rem; height: 1rem; }
+
+  /* ── LuPopover transitions ────────────────────────────────────────────── */
+  .lu-popover__trigger { display: inline-block; }
+  .lu-popover-enter-active { transition: opacity 100ms ease-out, transform 100ms ease-out; }
+  .lu-popover-leave-active { transition: opacity 75ms ease-in, transform 75ms ease-in; }
+  .lu-popover-enter-from, .lu-popover-leave-to { opacity: 0; transform: scale(0.95); }
+  .lu-popover-enter-to, .lu-popover-leave-from { opacity: 1; transform: scale(1); }
+
+}

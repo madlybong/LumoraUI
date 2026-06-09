@@ -40,7 +40,7 @@ describe("LuBottomSheet", () => {
       }
     });
 
-    const backdrop = document.querySelector(".fixed.inset-0.z-50");
+    const backdrop = document.querySelector(".lu-bottom-sheet__backdrop");
     expect(backdrop).not.toBeNull();
     if (backdrop) {
       await backdrop.dispatchEvent(new MouseEvent("click"));

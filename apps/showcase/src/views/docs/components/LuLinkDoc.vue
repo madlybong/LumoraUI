@@ -7,7 +7,7 @@
     :code="linkCode"
   >
     <template #preview>
-      <LuStack direction="horizontal">
+      <LuStack direction="horizontal" class="gap-4">
         <LuLink href="https://example.com" target="_blank" variant="default">External Link</LuLink>
         <LuLink to="/" variant="default">Internal Link</LuLink>
       </LuStack>
@@ -25,8 +25,10 @@ import { LuStack, LuText, LuLink, LuCodeBlock } from '@astrake/lumora-ui';
 import PropTable from '../../../components/PropTable.vue';
 
 const linkCode = `<template>
-  <LuLink href="https://example.com" target="_blank" variant="default">External Link</LuLink>
-  <LuLink to="/" variant="default">Internal Link</LuLink>
+  <LuStack direction="horizontal" class="gap-4">
+    <LuLink href="https://example.com" target="_blank" variant="default">External Link</LuLink>
+    <LuLink to="/" variant="default">Internal Link</LuLink>
+  </LuStack>
 </template>`;
 
 const propsData = [

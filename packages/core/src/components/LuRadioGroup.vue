@@ -1,12 +1,11 @@
 <template>
-  <div :class="resolvedSkin" role="radiogroup" :aria-disabled="disabled || formContext?.disabled.value">
+  <div :class="['lu-radio-group', variant && `lu-radio-group--${variant}`]" role="radiogroup" :aria-disabled="disabled || formContext?.disabled.value">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, provide, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
 import { LuFormContextKey } from "./LuForm.types";
 import { LuRadioGroupContextKey } from "./LuRadioGroup.types";
 
@@ -21,9 +20,6 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: string | number): void;
   (e: "change", value: string | number): void;
 }>();
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuRadioGroup", props.variant));
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<string | number | undefined>(props.modelValue);

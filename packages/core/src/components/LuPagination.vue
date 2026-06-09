@@ -7,7 +7,7 @@
       :class="resolvedButtonSkin"
       aria-label="Previous page"
     >
-      <LuIcon name="chevron-left" class="h-4 w-4" />
+      <LuIcon name="chevron-left" class="lu-pagination__icon" />
     </LuButton>
 
     <div :class="resolvedPagesSkin">
@@ -32,14 +32,14 @@
       :class="resolvedButtonSkin"
       aria-label="Next page"
     >
-      <LuIcon name="chevron-right" class="h-4 w-4" />
+      <LuIcon name="chevron-right" class="lu-pagination__icon" />
     </LuButton>
   </nav>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuButton from "./LuButton.vue";
 import LuIcon from "./LuIcon.vue";
 
@@ -94,13 +94,11 @@ const pages = computed(() => {
   return Array.from({ length: total }, (_, i) => i + 1);
 });
 
-const { resolveSkin } = useLumoraConfig();
-
-const resolvedSkin = computed(() => resolveSkin("LuPagination", props.variant));
-const resolvedButtonSkin = computed(() => resolveSkin("LuPaginationButton", props.variant));
-const resolvedPagesSkin = computed(() => resolveSkin("LuPaginationPages", props.variant));
-const resolvedPageButtonSkin = computed(() => resolveSkin("LuPaginationPageButton", props.variant));
-const resolvedEllipsisSkin = computed(() => resolveSkin("LuPaginationEllipsis", props.variant));
+const resolvedSkin = computed(() => `lu-pagination ${props.variant && props.variant !== 'default' ? 'lu-pagination--'+props.variant : ''}`.trim());
+const resolvedButtonSkin = computed(() => `lu-pagination__button ${props.variant && props.variant !== 'default' ? 'lu-pagination__button--'+props.variant : ''}`.trim());
+const resolvedPagesSkin = computed(() => `lu-pagination__pages ${props.variant && props.variant !== 'default' ? 'lu-pagination__pages--'+props.variant : ''}`.trim());
+const resolvedPageButtonSkin = computed(() => `lu-pagination__page-button ${props.variant && props.variant !== 'default' ? 'lu-pagination__page-button--'+props.variant : ''}`.trim());
+const resolvedEllipsisSkin = computed(() => `lu-pagination__ellipsis ${props.variant && props.variant !== 'default' ? 'lu-pagination__ellipsis--'+props.variant : ''}`.trim());
 
 const goToPage = (page: number) => {
   if (page === props.modelValue) return;

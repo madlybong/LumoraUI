@@ -41,7 +41,7 @@ describe("LuSelect", () => {
     await wrapper.find("button").trigger("click");
     
     // Panel teleported to body
-    const panel = document.querySelector('.absolute.z-50');
+    const panel = document.querySelector('.lu-select__panel');
     expect(panel).not.toBeNull();
     expect(panel?.textContent).toContain("One");
     expect(panel?.textContent).toContain("Two");
@@ -81,7 +81,7 @@ describe("LuSelect", () => {
     await wrapper.vm.$nextTick();
     await wrapper.vm.$nextTick(); // Wait a bit more for watch to update
     
-    const panel = document.querySelector('.absolute.z-50');
+    const panel = document.querySelector('.lu-select__panel');
     // Only "Three" should be visible in the dropdown
     expect(panel?.textContent).toContain("Three");
     expect(panel?.textContent).not.toContain("One");

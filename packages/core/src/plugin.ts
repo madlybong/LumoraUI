@@ -13,7 +13,6 @@ export function createLumoraUI(options: LumoraUIPluginOptions = {}): Plugin {
     install(app: App) {
       const config = shallowReactive<LumoraUIConfig>({
         target: options.target ?? "desktop",
-        skin: options.skin,
         locale: options.locale ?? "en-US",
         a11y: options.a11y ?? true,
         icons: options.icons,

@@ -6,12 +6,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   variant?: string;
 }>();
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuOverlay", props.variant));
+const resolvedSkin = computed(() => `lu-overlay ${props.variant && props.variant !== "default" ? "lu-overlay--"+props.variant : ""}`.trim());
 </script>

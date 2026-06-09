@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
+import { computed, ref, provide, InjectionKey, Ref, ComputedRef } from "vue";
+
 import LuTreeNode from "./LuTreeNode.vue";
-import type { TreeNodeData } from "./LuTree.types";
+import type { TreeNodeData, LuTreeContext } from "./LuTree.types";
+import { LuTreeContextKey } from "./LuTree.types";
 
 defineOptions({ name: "LuTree" });
 
 const props = withDefaults(defineProps<{
-  nodes: TreeNodeData[];
+  nodes?: TreeNodeData[];
   modelValue?: string[];
   expanded?: string[];
   selectable?: boolean;
   checkable?: boolean;
   defaultExpanded?: boolean;
 }>(), {
+  nodes: () => [],
   modelValue: () => [],
   expanded: () => [],
   selectable: false,
@@ -21,13 +23,17 @@ const props = withDefaults(defineProps<{
   defaultExpanded: false,
 });
 
+defineSlots<{
+  default(): any;
+  label(props: { node: TreeNodeData; expanded: boolean; selected: boolean }): any;
+}>();
+
 const emit = defineEmits<{
   (e: "update:modelValue", selected: string[]): void;
   (e: "update:expanded", expanded: string[]): void;
   (e: "select", id: string, node: TreeNodeData | undefined): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 // ── Internal expanded state ──────────────────────────────────────────────────
 const internalExpanded = ref<string[]>(
@@ -58,6 +64,10 @@ function findNode(nodes: TreeNodeData[], id: string): TreeNodeData | undefined {
 function handleSelect(id: string) {
   const node = findNode(props.nodes, id);
   emit("select", id, node);
+  
+  if (node?.children?.length) {
+    handleExpand(id);
+  }
 
   if (!props.selectable && !props.checkable) return;
   const current = [...props.modelValue];
@@ -93,22 +103,39 @@ function handleCheck(id: string, checked: boolean) {
   emit("update:modelValue", current);
 }
 
-const skinTree = computed(() => resolveSkin("LuTree"));
+provide(LuTreeContextKey, {
+  selected: computed(() => props.modelValue),
+  expanded: internalExpanded,
+  selectable: computed(() => props.selectable),
+  checkable: computed(() => props.checkable),
+  handleSelect,
+  handleExpand,
+  handleCheck,
+});
+
+const skinTree = computed(() => `lu-tree`);
 </script>
 
 <template>
   <div :class="skinTree" role="tree">
-    <LuTreeNode
-      v-for="node in nodes"
-      :key="node.id"
-      :node="node"
-      :selected="modelValue"
-      :expanded="internalExpanded"
-      :selectable="selectable"
-      :checkable="checkable"
-      @select="handleSelect"
-      @expand="handleExpand"
-      @check="handleCheck"
-    />
+    <template v-if="nodes && nodes.length > 0">
+      <LuTreeNode
+        v-for="node in nodes"
+        :key="node.id"
+        :node="node"
+        :selected="modelValue"
+        :expanded="internalExpanded"
+        :selectable="selectable"
+        :checkable="checkable"
+        @select="handleSelect"
+        @expand="handleExpand"
+        @check="handleCheck"
+      >
+        <template v-if="$slots.label" #label="slotProps">
+          <slot name="label" v-bind="slotProps" />
+        </template>
+      </LuTreeNode>
+    </template>
+    <slot v-else />
   </div>
 </template>

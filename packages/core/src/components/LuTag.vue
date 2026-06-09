@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuIcon from "./LuIcon.vue";
 import LuButton from "./LuButton.vue";
 
@@ -28,9 +28,7 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
-const resolvedSkin = computed(() => resolveSkin("LuTag", props.variant));
-const resolvedCloseButtonSkin = computed(() => resolveSkin("LuTagCloseButton", props.variant));
-const resolvedIconSkin = computed(() => resolveSkin("LuTagIcon", props.variant));
+const resolvedSkin = computed(() => `lu-tag ${props.variant && props.variant !== 'default' ? 'lu-tag--'+props.variant : ''}`.trim());
+const resolvedCloseButtonSkin = computed(() => `lu-tag__close-button ${props.variant && props.variant !== 'default' ? 'lu-tag__close-button--'+props.variant : ''}`.trim());
+const resolvedIconSkin = computed(() => `lu-tag__icon ${props.variant && props.variant !== 'default' ? 'lu-tag__icon--'+props.variant : ''}`.trim());
 </script>

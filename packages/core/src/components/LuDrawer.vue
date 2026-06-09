@@ -3,24 +3,24 @@
     <transition name="lu-drawer-fade">
       <div 
         v-if="modelValue && mode === 'overlay'" 
-        :class="backdropSkin" 
+        :class="['lu-drawer__backdrop']" 
         @click="handleOutsideClick"
       />
     </transition>
     <transition :name="`lu-drawer-slide-${position}`">
       <div 
         v-if="modelValue" 
-        :class="[panelSkin, positionSkin]"
+        :class="['lu-drawer__panel', `lu-drawer__panel--${position}`, variant && `lu-drawer__panel--${variant}`]"
         role="dialog"
         aria-modal="true"
       >
-        <div v-if="$slots.header" :class="headerSkin">
+        <div v-if="$slots.header" :class="['lu-drawer__header']">
           <slot name="header" />
         </div>
-        <div :class="contentSkin">
+        <div :class="['lu-drawer__content']">
           <slot />
         </div>
-        <div v-if="$slots.footer" :class="footerSkin">
+        <div v-if="$slots.footer" :class="['lu-drawer__footer']">
           <slot name="footer" />
         </div>
       </div>
@@ -30,7 +30,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = withDefaults(defineProps<{
   modelValue: boolean;
@@ -60,12 +59,5 @@ const handleOutsideClick = () => {
   }
 };
 
-const { resolveSkin } = useLumoraConfig();
 
-const backdropSkin = computed(() => resolveSkin("LuDrawerBackdrop", props.variant));
-const panelSkin = computed(() => resolveSkin("LuDrawerPanel", props.variant));
-const positionSkin = computed(() => resolveSkin(`LuDrawerPanel.${props.position}`, props.variant));
-const headerSkin = computed(() => resolveSkin("LuDrawerHeader", props.variant));
-const contentSkin = computed(() => resolveSkin("LuDrawerContent", props.variant));
-const footerSkin = computed(() => resolveSkin("LuDrawerFooter", props.variant));
 </script>

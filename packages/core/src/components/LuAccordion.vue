@@ -1,12 +1,11 @@
 <template>
-  <div v-bind="$attrs" :class="accordionSkin" class="lu-accordion">
+  <div v-bind="$attrs" :class="['lu-accordion', variant && `lu-accordion--${variant}`]">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, provide } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = withDefaults(defineProps<{
   modelValue?: string | string[];
@@ -47,6 +46,4 @@ provide("lu-accordion-context", {
   togglePanel
 });
 
-const { resolveSkin } = useLumoraConfig();
-const accordionSkin = computed(() => resolveSkin("LuAccordion", props.variant));
 </script>

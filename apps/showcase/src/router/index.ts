@@ -36,11 +36,6 @@ import LuTooltipDoc from '../views/docs/components/LuTooltipDoc.vue';
 
 // v0.3.0
 import LuDataGridDoc from '../views/docs/components/LuDataGridDoc.vue';
-import LuBarChartDoc from '../views/docs/components/LuBarChartDoc.vue';
-import LuLineChartDoc from '../views/docs/components/LuLineChartDoc.vue';
-import LuDoughnutChartDoc from '../views/docs/components/LuDoughnutChartDoc.vue';
-import LuSparklineDoc from '../views/docs/components/LuSparklineDoc.vue';
-import LuGaugeChartDoc from '../views/docs/components/LuGaugeChartDoc.vue';
 import LuFileUploadDoc from '../views/docs/components/LuFileUploadDoc.vue';
 import LuMediaGalleryDoc from '../views/docs/components/LuMediaGalleryDoc.vue';
 import LuTimelineDoc from '../views/docs/components/LuTimelineDoc.vue';
@@ -53,7 +48,6 @@ import LuCalendarDoc from '../views/docs/components/LuCalendarDoc.vue';
 import LuCodeBlockDoc from '../views/docs/components/LuCodeBlockDoc.vue';
 import LuDateRangePickerDoc from '../views/docs/components/LuDateRangePickerDoc.vue';
 import LuCommandPaletteDoc from '../views/docs/components/LuCommandPaletteDoc.vue';
-import LuRichTextEditorDoc from '../views/docs/components/LuRichTextEditorDoc.vue';
 
 // v0.6.0
 import LuDrawerDoc from '../views/docs/components/LuDrawerDoc.vue';
@@ -128,11 +122,6 @@ export const router = createRouter({
 
     // v0.3.0
     { path: '/docs/components/data-grid', component: LuDataGridDoc },
-    { path: '/docs/components/bar-chart', component: LuBarChartDoc },
-    { path: '/docs/components/line-chart', component: LuLineChartDoc },
-    { path: '/docs/components/doughnut-chart', component: LuDoughnutChartDoc },
-    { path: '/docs/components/sparkline', component: LuSparklineDoc },
-    { path: '/docs/components/gauge-chart', component: LuGaugeChartDoc },
     { path: '/docs/components/file-upload', component: LuFileUploadDoc },
     { path: '/docs/components/media-gallery', component: LuMediaGalleryDoc },
     { path: '/docs/components/timeline', component: LuTimelineDoc },
@@ -145,7 +134,6 @@ export const router = createRouter({
     { path: '/docs/components/code-block', component: LuCodeBlockDoc },
     { path: '/docs/components/date-range-picker', component: LuDateRangePickerDoc },
     { path: '/docs/components/command-palette', component: LuCommandPaletteDoc },
-    { path: '/docs/components/rich-text-editor', component: LuRichTextEditorDoc },
 
     // v0.6.0
     { path: '/docs/components/drawer', component: LuDrawerDoc },

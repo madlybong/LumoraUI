@@ -1,11 +1,10 @@
 <template>
-  <LuToggleGroup v-model="themeStore.mode" variant="ghost">
+  <LuToggleGroup v-model="themeStore.mode">
     <LuToggleButton
       v-for="mode in modes"
       :key="mode.value"
       :value="mode.value"
       :aria-label="mode.label"
-      variant="ghost"
     >
       <LuIcon :name="mode.icon" class="h-4 w-4" />
     </LuToggleButton>

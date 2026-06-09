@@ -1,0 +1,349 @@
+@layer lu-components {
+  /* ==========================================================================
+     LuCollapsible + LuAccordion
+     ========================================================================== */
+
+  .lu-collapsible {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lu-collapsible__trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--lu-space-3) var(--lu-space-4);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--lu-color-text);
+    font-size: var(--lu-text-sm);
+    transition: background var(--lu-duration-fast);
+    border-radius: var(--lu-radius-2);
+  }
+
+  .lu-collapsible__trigger:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  .lu-collapsible__content-inner {
+    padding: var(--lu-space-2) var(--lu-space-4) var(--lu-space-4);
+  }
+
+  .lu-accordion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    overflow: hidden;
+  }
+
+  .lu-accordion-item {
+    border-bottom: 1px solid var(--lu-color-border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lu-accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .lu-accordion-item__trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--lu-space-4);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text);
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-accordion-item__trigger:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  /* ==========================================================================
+     LuRichTextEditor
+     ========================================================================== */
+
+  .lu-rich-text-editor {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    overflow: hidden;
+    background: var(--lu-color-surface-raised);
+    width: 100%;
+  }
+
+  .lu-rich-text-editor:focus-within {
+    border-color: var(--lu-color-border-focus);
+  }
+
+  .lu-rich-text-editor__toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: var(--lu-space-2);
+    border-bottom: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-sunken);
+  }
+
+  .lu-rich-text-editor__toolbar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--lu-radius-2);
+    border: none;
+    background: transparent;
+    color: var(--lu-color-text-muted);
+    cursor: pointer;
+    font-size: var(--lu-text-xs);
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-rich-text-editor__toolbar-button:hover {
+    background: var(--lu-color-surface-hover);
+    color: var(--lu-color-text);
+  }
+
+  .lu-rich-text-editor__toolbar-button--active {
+    background: var(--lu-color-surface-hover);
+    color: var(--lu-color-primary);
+    font-weight: var(--lu-font-bold);
+  }
+
+  .lu-rich-text-editor__toolbar-divider {
+    display: inline-block;
+    width: 1px;
+    height: 1.25rem;
+    background: var(--lu-color-border);
+    margin: 0 var(--lu-space-1);
+    align-self: center;
+  }
+
+  .lu-rich-text-editor__content {
+    padding: var(--lu-space-4);
+    outline: none;
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text);
+    line-height: 1.6;
+    overflow-y: auto;
+  }
+
+  /* ==========================================================================
+     LuFormWizard
+     ========================================================================== */
+
+  .lu-form-wizard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-6);
+    width: 100%;
+  }
+
+  .lu-form-wizard__steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .lu-form-wizard__step-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--lu-color-border);
+    transition: background var(--lu-duration-base);
+  }
+
+  .lu-form-wizard__step-connector--completed {
+    background: var(--lu-color-primary);
+  }
+
+  .lu-form-wizard__step-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--lu-space-1);
+    position: relative;
+  }
+
+  .lu-form-wizard__step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--lu-radius-full);
+    border: 2px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    color: var(--lu-color-text-muted);
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    cursor: pointer;
+    transition: all var(--lu-duration-base);
+  }
+
+  .lu-form-wizard__step--active {
+    border-color: var(--lu-color-primary);
+    color: var(--lu-color-primary);
+    background: color-mix(in srgb, var(--lu-color-primary) 8%, transparent);
+  }
+
+  .lu-form-wizard__step--completed {
+    border-color: var(--lu-color-primary);
+    background: var(--lu-color-primary);
+    color: #fff;
+  }
+
+  .lu-form-wizard__step-label {
+    font-size: var(--lu-text-xs);
+    color: var(--lu-color-text-muted);
+    white-space: nowrap;
+  }
+
+  .lu-form-wizard__step-label--active {
+    color: var(--lu-color-primary);
+    font-weight: var(--lu-font-medium);
+  }
+
+  .lu-form-wizard__step-label--completed {
+    color: var(--lu-color-text);
+  }
+
+  .lu-form-wizard__body {
+    width: 100%;
+    min-height: 10rem;
+  }
+
+  .lu-form-wizard__error {
+    color: var(--lu-color-danger);
+    font-size: var(--lu-text-sm);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border-radius: var(--lu-radius-2);
+    background: var(--lu-color-danger-surface);
+  }
+
+  .lu-form-wizard__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--lu-space-4);
+    border-top: 1px solid var(--lu-color-border);
+  }
+
+  /* ==========================================================================
+     LuFileUpload
+     ========================================================================== */
+
+  .lu-file-upload {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-3);
+    width: 100%;
+  }
+
+  .lu-file-upload__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--lu-space-2);
+    padding: var(--lu-space-8) var(--lu-space-4);
+    border: 2px dashed var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    background: var(--lu-color-surface);
+    cursor: pointer;
+    transition: all var(--lu-duration-base);
+    text-align: center;
+  }
+
+  .lu-file-upload__dropzone:hover,
+  .lu-file-upload__dropzone--active {
+    border-color: var(--lu-color-primary);
+    background: color-mix(in srgb, var(--lu-color-primary) 4%, var(--lu-color-surface));
+  }
+
+  .lu-file-upload__input {
+    position: absolute;
+    inset: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lu-file-upload__icon {
+    color: var(--lu-color-text-muted);
+    opacity: 0.6;
+  }
+
+  .lu-file-upload__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-2);
+  }
+
+  .lu-file-upload__item {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-2);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-3);
+    background: var(--lu-color-surface-raised);
+    font-size: var(--lu-text-sm);
+  }
+
+  .lu-file-upload__item-icon {
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+  }
+
+  .lu-file-upload__item-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--lu-color-text);
+  }
+
+  .lu-file-upload__item-size {
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+    font-size: var(--lu-text-xs);
+  }
+
+  .lu-file-upload__item-remove {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--lu-radius-2);
+    border: none;
+    background: transparent;
+    color: var(--lu-color-text-muted);
+    cursor: pointer;
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-file-upload__item-remove:hover {
+    background: var(--lu-color-surface-hover);
+    color: var(--lu-color-danger);
+  }
+}

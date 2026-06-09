@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
 import LuText from "./LuText.vue";
 import LuButton from "./LuButton.vue";
 import LuIcon from "./LuIcon.vue";
@@ -39,7 +38,6 @@ const emit = defineEmits<{
   (e: "event-click", event: CalendarEvent): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 // ── State ────────────────────────────────────────────────────────────────────
 const today = new Date();
@@ -160,22 +158,15 @@ function dayButtonVariant(day: CalendarDay): string | undefined {
   return undefined;
 }
 
-// Skins
-const skinCalendar = computed(() => resolveSkin("LuCalendar", props.size));
-const skinHeader = computed(() => resolveSkin("LuCalendarHeader", props.size));
-const skinTitle = computed(() => resolveSkin("LuCalendarTitle", props.size));
-const skinGrid = computed(() => resolveSkin("LuCalendarGrid", props.size));
-const skinGridHeader = computed(() => resolveSkin("LuCalendarGridHeader", props.size));
-const skinGridHeaderCell = computed(() => resolveSkin("LuCalendarGridHeaderCell", props.size));
-const skinDay = computed(() => resolveSkin("LuCalendarDay", props.size));
+
 </script>
 
 <template>
-  <div :class="skinCalendar">
+  <div :class="['lu-calendar', size && `lu-calendar--${size}`]">
     <!-- Month navigation -->
-    <div :class="skinHeader">
-      <LuText :class="skinTitle">{{ MONTH_NAMES[viewMonth] }} {{ viewYear }}</LuText>
-      <div :class="resolveSkin('LuCalendarNav', props.size)">
+    <div :class="['lu-calendar__header']">
+      <LuText :class="['lu-calendar__title']">{{ MONTH_NAMES[viewMonth] }} {{ viewYear }}</LuText>
+      <div :class="['lu-calendar__nav']">
         <LuButton variant="ghost" :size="props.size === 'mini' ? 'icon-sm' : 'icon-sm'" aria-label="Previous month" @click="prevMonth">
           <LuIcon name="chevron-left" :size="props.size === 'mini' ? 14 : 16" />
         </LuButton>
@@ -186,14 +177,14 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay", props.size));
     </div>
 
     <!-- Day grid -->
-    <table :class="skinGrid">
-      <thead :class="skinGridHeader">
+    <table :class="['lu-calendar__grid']">
+      <thead :class="['lu-calendar__grid-header']">
         <tr>
           <th
             v-for="day in orderedDays"
             :key="day"
             scope="col"
-            :class="skinGridHeaderCell"
+            :class="['lu-calendar__grid-header-cell']"
           >
             {{ props.size === 'mini' ? day.charAt(0) : day }}
           </th>
@@ -204,12 +195,12 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay", props.size));
           <td
             v-for="cellIdx in 7"
             :key="cellIdx"
-            :class="skinDay"
+            :class="['lu-calendar__day']"
           >
             <template v-if="calendarDays[rowIdx * 7 + cellIdx - 1]">
               <button
                 type="button"
-                :class="resolveSkin(props.size === 'mini' ? 'LuCalendarDayButtonMini' : 'LuCalendarDayButton', dayButtonVariant(calendarDays[rowIdx * 7 + cellIdx - 1]))"
+                :class="['lu-calendar__day-button', props.size === 'mini' ? 'lu-calendar__day-button--mini' : '', dayButtonVariant(calendarDays[rowIdx * 7 + cellIdx - 1]) && `lu-calendar__day-button--${dayButtonVariant(calendarDays[rowIdx * 7 + cellIdx - 1])}`]"
                 :aria-label="calendarDays[rowIdx * 7 + cellIdx - 1].iso"
                 :aria-selected="calendarDays[rowIdx * 7 + cellIdx - 1].isSelected"
                 :aria-disabled="calendarDays[rowIdx * 7 + cellIdx - 1].isDisabled"
@@ -221,7 +212,7 @@ const skinDay = computed(() => resolveSkin("LuCalendarDay", props.size));
               <div
                 v-for="evt in calendarDays[rowIdx * 7 + cellIdx - 1].events.slice(0, 2)"
                 :key="evt.id"
-                :class="resolveSkin('LuCalendarEventDot', props.size)"
+                :class="['lu-calendar__event-dot']"
                 :style="evt.color ? { backgroundColor: evt.color } : undefined"
                 :title="evt.label"
                 @click.stop="emit('event-click', evt)"

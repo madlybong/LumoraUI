@@ -80,17 +80,6 @@ export const navTree: NavSection[] = [
     ]
   },
   {
-    title: 'Charts',
-    icon: 'bar-chart-3',
-    items: [
-      { label: 'LuBarChart', path: '/docs/components/bar-chart', icon: 'bar-chart-3' },
-      { label: 'LuLineChart', path: '/docs/components/line-chart', icon: 'trending-up' },
-      { label: 'LuDoughnutChart', path: '/docs/components/doughnut-chart', icon: 'pie-chart' },
-      { label: 'LuGaugeChart', path: '/docs/components/gauge-chart', icon: 'gauge' },
-      { label: 'LuSparkline', path: '/docs/components/sparkline', icon: 'activity' },
-    ]
-  },
-  {
     title: 'Navigation',
     icon: 'compass',
     items: [
@@ -133,7 +122,6 @@ export const navTree: NavSection[] = [
     items: [
       { label: 'LuKanban', path: '/docs/components/kanban', icon: 'kanban' },
       { label: 'LuCommandPalette', path: '/docs/components/command-palette', icon: 'terminal' },
-      { label: 'LuRichTextEditor', path: '/docs/components/rich-text-editor', icon: 'file-text' },
       { label: 'LuList', path: '/docs/components/list', icon: 'list-todo' },
     ]
   },

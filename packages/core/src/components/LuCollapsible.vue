@@ -1,11 +1,11 @@
 <template>
-  <div v-bind="$attrs" :class="wrapperSkin">
-    <button type="button" :class="triggerSkin" @click="toggle">
+  <div v-bind="$attrs" :class="[isAccordionControlled ? 'lu-accordion-item' : 'lu-collapsible', variant && `lu-collapsible--${variant}`]">
+    <button type="button" :class="[isAccordionControlled ? 'lu-accordion-item__trigger' : 'lu-collapsible__trigger']" @click="toggle">
       <slot name="trigger" :isOpen="isOpen" />
     </button>
     <transition name="lu-collapsible">
-      <div v-show="isOpen" :class="contentSkin.wrapper">
-        <div :class="contentSkin.inner">
+      <div v-show="isOpen" :class="[isAccordionControlled ? 'lu-accordion-item__content' : 'lu-collapsible__content']">
+        <div :class="['lu-collapsible__content-inner']">
           <slot name="content" />
         </div>
       </div>
@@ -15,7 +15,6 @@
 
 <script setup lang="ts">
 import { computed, ref, watch, inject } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{
   variant?: string;
@@ -57,14 +56,7 @@ const toggle = () => {
   }
 };
 
-const { resolveSkin } = useLumoraConfig();
 
-const wrapperSkin = computed(() => resolveSkin(isAccordionControlled.value ? "LuAccordionItem" : "LuCollapsible", props.variant));
-const triggerSkin = computed(() => resolveSkin(isAccordionControlled.value ? "LuAccordionTrigger" : "LuCollapsibleTrigger", props.variant));
-const contentSkin = computed(() => ({
-  wrapper: resolveSkin(isAccordionControlled.value ? "LuAccordionContent" : "LuCollapsibleContent", props.variant),
-  inner: resolveSkin("LuCollapsibleContent", "inner")
-}));
 
 defineExpose({ isOpen });
 </script>

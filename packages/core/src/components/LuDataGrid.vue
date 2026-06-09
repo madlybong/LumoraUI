@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
 import { useDataGrid } from "../composables/useDataGrid";
 import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
@@ -65,7 +64,6 @@ const emit = defineEmits<{
   (e: "filter-change", payload: DataGridFilterState): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 const {
   visibleColumns, hiddenColumns, toggleColumn,
@@ -165,39 +163,39 @@ function handlePageChange(p: number) {
 }
 
 // ── Skin ──────────────────────────────────────────────────────────────────────
-const skinContainer = computed(() => resolveSkin("LuDataGridContainer"));
-const skinToolbar = computed(() => resolveSkin("LuDataGridToolbar"));
-const skinScrollArea = computed(() => resolveSkin("LuDataGridScrollArea"));
-const skinTable = computed(() => resolveSkin("LuDataGridTable"));
-const skinHead = computed(() => resolveSkin("LuDataGridHead"));
-const skinHeaderCell = computed(() => resolveSkin("LuDataGridHeaderCell"));
-const skinHeaderCellSortable = computed(() => resolveSkin("LuDataGridHeaderCell", "sortable"));
-const skinBody = computed(() => resolveSkin("LuDataGridBody"));
-const skinRow = computed(() => resolveSkin("LuDataGridRow"));
-const skinCell = computed(() => resolveSkin("LuDataGridCell"));
-const skinCellEditing = computed(() => resolveSkin("LuDataGridCell", "editing"));
-const skinCheckboxCell = computed(() => resolveSkin("LuDataGridCheckboxCell"));
-const skinGroupRow = computed(() => resolveSkin("LuDataGridGroupRow"));
-const skinGroupCell = computed(() => resolveSkin("LuDataGridGroupCell"));
-const skinEmpty = computed(() => resolveSkin("LuDataGridEmpty"));
-const skinErrorInput = computed(() => resolveSkin("LuDataGridErrorInput"));
-const skinEmptyIcon = computed(() => resolveSkin("LuDataGridEmptyIcon"));
-const skinFooter = computed(() => resolveSkin("LuDataGridFooter"));
-const skinSortIcon = computed(() => resolveSkin("LuDataGridSortIcon"));
-const skinSortIconAsc = computed(() => resolveSkin("LuDataGridSortIcon", "asc"));
-const skinSortIconDesc = computed(() => resolveSkin("LuDataGridSortIcon", "desc"));
-const skinSearchInput = computed(() => resolveSkin("LuDataGridSearchInput"));
-const skinSelectionBar = computed(() => resolveSkin("LuDataGridSelectionBar"));
-const skinSelectionBarCount = computed(() => resolveSkin("LuDataGridSelectionBarCount"));
-const skinSelectionBarAction = computed(() => resolveSkin("LuDataGridSelectionBarAction"));
-const skinFilterRow = computed(() => resolveSkin("LuDataGridFilterRow"));
-const skinFilterCell = computed(() => resolveSkin("LuDataGridFilterCell"));
-const skinFilterInput = computed(() => resolveSkin("LuDataGridFilterInput"));
-const skinFilterSelect = computed(() => resolveSkin("LuDataGridFilterSelect"));
+const skinContainer = "lu-data-grid__container";
+const skinToolbar = "lu-data-grid__toolbar";
+const skinScrollArea = "lu-data-grid__scroll-area";
+const skinTable = "lu-data-grid__table";
+const skinHead = "lu-data-grid__head";
+const skinHeaderCell = "lu-data-grid__header-cell";
+const skinHeaderCellSortable = "lu-data-grid__header-cell lu-data-grid__header-cell--sortable";
+const skinBody = "lu-data-grid__body";
+const skinRow = "lu-data-grid__row";
+const skinCell = "lu-data-grid__cell";
+const skinCellEditing = "lu-data-grid__cell lu-data-grid__cell--editing";
+const skinCheckboxCell = "lu-data-grid__checkbox-cell";
+const skinGroupRow = "lu-data-grid__group-row";
+const skinGroupCell = "lu-data-grid__group-cell";
+const skinEmpty = "lu-data-grid__empty";
+const skinErrorInput = "lu-data-grid__error-input";
+const skinEmptyIcon = "lu-data-grid__empty-icon";
+const skinFooter = "lu-data-grid__footer";
+const skinSortIcon = "lu-data-grid__sort-icon";
+const skinSortIconAsc = "lu-data-grid__sort-icon lu-data-grid__sort-icon--asc";
+const skinSortIconDesc = "lu-data-grid__sort-icon lu-data-grid__sort-icon--desc";
+const skinSearchInput = "lu-data-grid__search-input";
+const skinSelectionBar = "lu-data-grid__selection-bar";
+const skinSelectionBarCount = "lu-data-grid__selection-bar-count";
+const skinSelectionBarAction = "lu-data-grid__selection-bar-action";
+const skinFilterRow = "lu-data-grid__filter-row";
+const skinFilterCell = "lu-data-grid__filter-cell";
+const skinFilterInput = "lu-data-grid__filter-input";
+const skinFilterSelect = "lu-data-grid__filter-select";
 
 function sortIconVariant(key: string) {
-  if (sortState.value?.key !== key) return skinSortIcon.value;
-  return sortState.value.direction === "asc" ? skinSortIconAsc.value : skinSortIconDesc.value;
+  if (sortState.value?.key !== key) return skinSortIcon;
+  return sortState.value.direction === "asc" ? skinSortIconAsc : skinSortIconDesc;
 }
 
 function sortIconName(key: string): string {
@@ -219,7 +217,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
   <div :class="skinContainer">
     <!-- Toolbar -->
     <div :class="skinToolbar">
-      <div class="flex items-center gap-3 min-w-0">
+      <div class="flex items-center gap-3">
         <!-- Search input (left) -->
         <input
           v-if="searchable"
@@ -257,7 +255,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
     </div>
 
     <!-- Loading overlay -->
-    <div v-if="loading" class="flex items-center justify-center py-16 gap-3">
+    <div v-if="loading" class="flex items-center gap-3">
       <LuSpinner variant="primary" />
       <LuText variant="muted">Loading…</LuText>
     </div>

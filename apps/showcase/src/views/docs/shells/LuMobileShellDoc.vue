@@ -1,79 +1,187 @@
 <template>
-  <LuPageHeader title="Mobile Shell" description="An application shell tailored for mobile devices and PWAs, featuring top headers, bottom navigation bars, and safe-area insets." />
+  <LuPageHeader
+    title="Mobile Shell"
+    description="Application shell for mobile PWAs and native webviews. Features a safe-area-aware header, scrollable content zone, and a sticky bottom navigation bar."
+  />
 
-  <LuCodeBlock variant="preview" 
-    title="Mobile Shell Structure" 
-    description="The standard layout for mobile applications."
+  <!-- Example 1: Standard Mobile Layout -->
+  <LuCodeBlock
+    variant="preview"
+    title="Standard Mobile Layout"
+    description="Header at the top, scrollable content in the middle, and a sticky bottom navigation bar. The content zone fills all available space between them."
     :code="exampleCode"
   >
     <template #preview>
-      <div class="h-[400px] w-[300px] border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden mx-auto shadow-xl flex bg-white dark:bg-zinc-950">
-        <LuMobileShell variant="default">
+      <!-- 
+        Mobile device frame: bounded height. Shell uses height: 100% to fit inside.
+        The outer div simulates the phone viewport boundary.
+      -->
+      <div style="width: 375px; height: 600px; margin: 0 auto; position: relative; border: 12px solid color-mix(in srgb, currentColor 15%, #000); border-radius: 3rem; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.3);">
+        <LuMobileShell>
           <template #header>
-            <LuMobileHeader variant="default">
-              <template #left><LuButton variant="ghost" class="p-2"><LuIcon name="menu" /></LuButton></template>
-              <LuText variant="section-title">Home</LuText>
-              <template #right><LuButton variant="ghost" class="p-2"><LuIcon name="bell" /></LuButton></template>
+            <LuMobileHeader>
+              <template #left>
+                <LuAvatar variant="sm" fallback="U" />
+              </template>
+              <template #center>
+                <LuText variant="section-title">Home</LuText>
+              </template>
+              <template #right>
+                <LuButton variant="ghost" class="p-2 h-8 w-8">
+                  <LuIcon name="bell" />
+                </LuButton>
+              </template>
             </LuMobileHeader>
           </template>
 
           <template #content>
-            <LuFill class="bg-zinc-50 p-4 dark:bg-zinc-900 overflow-y-auto">
-              <LuStack direction="vertical">
-                <LuCard variant="default"><LuText>Content area</LuText></LuCard>
-                <LuCard variant="default"><LuText>More content</LuText></LuCard>
+            <LuFill class="overflow-y-auto p-4">
+              <LuStack direction="vertical" gap="3">
+                <LuCard>
+                  <LuText variant="section-title">Mobile Feed</LuText>
+                  <LuText variant="body" class="mt-2 text-sm opacity-60">
+                    Scroll this area. The header stays pinned at the top and the nav bar stays pinned at the bottom.
+                  </LuText>
+                </LuCard>
+                <LuCard v-for="i in 6" :key="i">
+                  <LuStack direction="horizontal" align="center" gap="3">
+                    <div style="width: 2rem; height: 2rem; border-radius: 50%; background: color-mix(in srgb, currentColor 8%, transparent);" />
+                    <LuStack direction="vertical" gap="1">
+                      <LuText variant="label">Post {{ i }}</LuText>
+                      <LuText class="text-xs opacity-40">3 minutes ago</LuText>
+                    </LuStack>
+                  </LuStack>
+                </LuCard>
               </LuStack>
             </LuFill>
           </template>
-          
+
           <template #navbar>
-            <LuMobileNavBar variant="default">
-              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="home" /><LuText class="text-[10px]">Home</LuText></LuButton>
-              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="search" /><LuText class="text-[10px]">Search</LuText></LuButton>
-              <LuButton variant="ghost" class="flex-col h-auto py-1"><LuIcon name="user" /><LuText class="text-[10px]">Profile</LuText></LuButton>
+            <LuMobileNavBar v-model="activeTab">
+              <LuMobileNavBarItem value="home" label="Home">
+                <template #icon><LuIcon name="home" /></template>
+              </LuMobileNavBarItem>
+              <LuMobileNavBarItem value="search" label="Search">
+                <template #icon><LuIcon name="search" /></template>
+              </LuMobileNavBarItem>
+              <LuMobileNavBarItem value="add">
+                <template #icon>
+                  <div style="background: var(--lu-color-primary, #6366f1); border-radius: 50%; width: 2rem; height: 2rem; display:flex; align-items:center; justify-content:center;">
+                    <LuIcon name="plus" style="color: white;" />
+                  </div>
+                </template>
+              </LuMobileNavBarItem>
+              <LuMobileNavBarItem value="messages" label="Messages">
+                <template #icon><LuIcon name="message-square" /></template>
+              </LuMobileNavBarItem>
+              <LuMobileNavBarItem value="profile" label="Profile">
+                <template #icon><LuIcon name="user" /></template>
+              </LuMobileNavBarItem>
             </LuMobileNavBar>
           </template>
         </LuMobileShell>
       </div>
+      <!-- Active tab display -->
+      <div class="mt-3 text-center">
+        <LuText class="text-xs opacity-50">Active tab: <strong>{{ activeTab }}</strong></LuText>
+      </div>
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-8">
-    <LuText as="h2" variant="section-title">Components in this Shell</LuText>
-    <LuStack as="ul" direction="vertical">
-      <LuText as="li" variant="body"><code>LuMobileShell</code> — The root container that handles safe-area padding</LuText>
-      <LuText as="li" variant="body"><code>LuMobileHeader</code> — The top app bar</LuText>
-      <LuText as="li" variant="body"><code>LuMobileNavBar</code> — The bottom tab navigation bar</LuText>
-    </LuStack>
+  <!-- API Reference -->
+  <LuStack direction="vertical" gap="6" class="mt-10">
+    <LuText as="h2" variant="default">API Reference</LuText>
+
+    <div>
+      <LuText as="h3" variant="section-title" class="mb-3">LuMobileShell</LuText>
+      <PropTable :props-list="shellProps" />
+    </div>
+
+    <div>
+      <LuText as="h3" variant="section-title" class="mb-3">LuMobileHeader</LuText>
+      <PropTable :props-list="headerProps" />
+    </div>
+
+    <div>
+      <LuText as="h3" variant="section-title" class="mb-3">LuMobileNavBar</LuText>
+      <PropTable :props-list="navbarProps" />
+    </div>
+
+    <div>
+      <LuText as="h3" variant="section-title" class="mb-3">LuMobileNavBarItem</LuText>
+      <PropTable :props-list="navbarItemProps" />
+    </div>
   </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuStack, LuText, LuMobileShell, LuMobileHeader, LuMobileNavBar, LuButton, LuIcon, LuFill, LuCard, LuCodeBlock } from '@astrake/lumora-ui';
+import { ref } from 'vue';
+import {
+  LuStack, LuText, LuButton, LuIcon, LuAvatar, LuCard, LuFill, LuCodeBlock,
+  LuMobileShell, LuMobileHeader, LuMobileNavBar, LuMobileNavBarItem
+} from '@astrake/lumora-ui';
+import PropTable from '../../../components/PropTable.vue';
+import LuPageHeader from '../../../recipes/page-header/LuPageHeader.vue';
 
-const exampleCode = `<LuMobileShell>
-  <template #header>
-    <LuMobileHeader>
-      <template #left><LuButton variant="ghost"><LuIcon name="menu" /></LuButton></template>
-      <LuText variant="section-title">Home</LuText>
-      <template #right><LuButton variant="ghost"><LuIcon name="bell" /></LuButton></template>
-    </LuMobileHeader>
-  </template>
+const activeTab = ref('home');
 
-  <template #content>
-    <LuFill>
-      <LuStack direction="vertical">
-        <LuCard>Content area</LuCard>
-      </LuStack>
-    </LuFill>
-  </template>
-  
-  <template #navbar>
-    <LuMobileNavBar>
-      <LuButton variant="ghost">Home</LuButton>
-      <LuButton variant="ghost">Search</LuButton>
-      <LuButton variant="ghost">Profile</LuButton>
-    </LuMobileNavBar>
-  </template>
-</LuMobileShell>`;
+const exampleCode = `<script setup>
+const activeTab = ref('home');
+<\/script>
+
+<div style="height: 100dvh;">
+  <LuMobileShell>
+    <template #header>
+      <LuMobileHeader>
+        <template #left>...</template>
+        <template #center>
+          <LuText variant="section-title">Home</LuText>
+        </template>
+        <template #right>...</template>
+      </LuMobileHeader>
+    </template>
+
+    <template #content>
+      <LuFill class="overflow-y-auto p-4">
+        <!-- Scrollable page content -->
+      </LuFill>
+    </template>
+
+    <template #navbar>
+      <LuMobileNavBar v-model="activeTab">
+        <LuMobileNavBarItem value="home" label="Home">
+          <template #icon><LuIcon name="home" /></template>
+        </LuMobileNavBarItem>
+        <LuMobileNavBarItem value="search" label="Search">
+          <template #icon><LuIcon name="search" /></template>
+        </LuMobileNavBarItem>
+        <LuMobileNavBarItem value="profile" label="Profile">
+          <template #icon><LuIcon name="user" /></template>
+        </LuMobileNavBarItem>
+      </LuMobileNavBar>
+    </template>
+  </LuMobileShell>
+</div>`;
+
+const shellProps = [
+  { name: 'variant', type: '"default" | "full"', default: '"default"', description: 'Visual style. "full" forces 100dvh for standalone page usage.' }
+];
+
+const headerProps = [
+  { name: 'variant', type: '"default" | "transparent"', default: '"default"', description: 'Visual style variant.' },
+  { name: 'ariaLabel', type: 'string', default: '"Header"', description: 'Accessible label for the header banner region.' }
+];
+
+const navbarProps = [
+  { name: 'modelValue', type: 'string | number', default: 'undefined', description: 'The value of the currently active item. Bind with v-model.' },
+  { name: 'variant', type: '"default"', default: '"default"', description: 'Visual style variant.' },
+  { name: 'ariaLabel', type: 'string', default: '"Bottom navigation"', description: 'Accessible label for the nav region.' }
+];
+
+const navbarItemProps = [
+  { name: 'value', type: 'string | number', default: 'Required', description: 'Unique identifier for this tab item.' },
+  { name: 'label', type: 'string', default: 'undefined', description: 'Text label rendered below the icon.' },
+  { name: 'to', type: 'any', default: 'undefined', description: 'Vue Router target. Renders as RouterLink when provided.' },
+  { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the item and prevents selection.' }
+];
 </script>

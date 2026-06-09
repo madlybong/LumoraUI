@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuIcon from "./LuIcon.vue";
 
 const props = defineProps<{
@@ -24,10 +24,9 @@ const props = defineProps<{
   icon?: string;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
-const resolvedSkin = computed(() => resolveSkin("LuAlert", props.variant));
-const resolvedIconWrapperSkin = computed(() => resolveSkin("LuAlertIcon", props.variant));
-const resolvedContentSkin = computed(() => resolveSkin("LuAlertContent", props.variant));
-const resolvedActionSkin = computed(() => resolveSkin("LuAlertAction", props.variant));
+const resolvedSkin = computed(() => `lu-alert ${props.variant && props.variant !== 'default' ? 'lu-alert--'+props.variant : ''}`.trim());
+const resolvedIconWrapperSkin = computed(() => `lu-alert__icon-wrapper ${props.variant && props.variant !== 'default' ? 'lu-alert__icon-wrapper--'+props.variant : ''}`.trim());
+const resolvedContentSkin = computed(() => `lu-alert__content ${props.variant && props.variant !== 'default' ? 'lu-alert__content--'+props.variant : ''}`.trim());
+const resolvedActionSkin = computed(() => `lu-alert__action ${props.variant && props.variant !== 'default' ? 'lu-alert__action--'+props.variant : ''}`.trim());
 </script>

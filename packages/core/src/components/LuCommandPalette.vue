@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
 
@@ -30,7 +30,6 @@ const emit = defineEmits<{
   (e: "select", item: CommandItem): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 const query = ref("");
 const activeIndex = ref(0);
@@ -94,15 +93,15 @@ function isActive(item: CommandItem): boolean {
   return flatList.value[activeIndex.value]?.id === item.id;
 }
 
-const skinOverlay = computed(() => resolveSkin("LuCommandPaletteOverlay"));
-const skinDialog = computed(() => resolveSkin("LuCommandPaletteDialog"));
-const skinInputWrapper = computed(() => resolveSkin("LuCommandPaletteInputWrapper"));
-const skinInput = computed(() => resolveSkin("LuCommandPaletteInput"));
-const skinList = computed(() => resolveSkin("LuCommandPaletteList"));
-const skinGroup = computed(() => resolveSkin("LuCommandPaletteGroup"));
-const skinGroupLabel = computed(() => resolveSkin("LuCommandPaletteGroupLabel"));
-const skinEmpty = computed(() => resolveSkin("LuCommandPaletteEmpty"));
-const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
+const skinOverlay = computed(() => `lu-command-palette__overlay`);
+const skinDialog = computed(() => `lu-command-palette__dialog`);
+const skinInputWrapper = computed(() => `lu-command-palette__input-wrapper`);
+const skinInput = computed(() => `lu-command-palette__input`);
+const skinList = computed(() => `lu-command-palette__list`);
+const skinGroup = computed(() => `lu-command-palette__group`);
+const skinGroupLabel = computed(() => `lu-command-palette__group-label`);
+const skinEmpty = computed(() => `lu-command-palette__empty`);
+const skinFooter = computed(() => `lu-command-palette__footer`);
 </script>
 
 <template>
@@ -120,7 +119,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
         <div :class="skinDialog">
           <!-- Search input -->
           <div :class="skinInputWrapper">
-            <LuIcon name="search" :size="16" :class="resolveSkin('LuCommandPaletteSearchIcon')" />
+            <LuIcon name="search" :size="16" :class="['lu-command-palette__search-icon']" />
             <input
               v-model="query"
               :class="skinInput"
@@ -134,7 +133,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
               v-if="query"
               name="x"
               :size="14"
-              :class="resolveSkin('LuCommandPaletteClearIcon')"
+              :class="['lu-command-palette__clear-icon']"
               @click="query = ''"
             />
           </div>
@@ -147,7 +146,7 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
                 <div
                   v-for="item in groupItems"
                   :key="item.id"
-                  :class="resolveSkin('LuCommandPaletteItem', isActive(item) ? 'active' : undefined)"
+                  :class="['lu-command-palette__item', isActive(item) ? 'lu-command-palette__item--active' : '']"
                   role="option"
                   :aria-selected="isActive(item)"
                   @click="selectItem(item)"
@@ -157,18 +156,18 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
                     v-if="item.icon"
                     :name="item.icon"
                     :size="15"
-                    :class="resolveSkin('LuCommandPaletteItemIcon')"
+                    :class="['lu-command-palette__item-icon']"
                   />
-                  <div class="flex flex-col flex-1 min-w-0">
-                    <LuText variant="body" :class="resolveSkin('LuCommandPaletteItemLabel')">{{ item.label }}</LuText>
+                  <div class="flex flex-col flex-1">
+                    <LuText variant="body" :class="['lu-command-palette__item-label']">{{ item.label }}</LuText>
                     <LuText v-if="item.description" variant="caption" class="truncate">{{ item.description }}</LuText>
                   </div>
                   <!-- Keyboard shortcut -->
-                  <div v-if="item.shortcut?.length" class="flex items-center gap-0.5">
+                  <div v-if="item.shortcut?.length" class="flex">
                     <kbd
                       v-for="k in item.shortcut"
                       :key="k"
-                      :class="resolveSkin('LuCommandPaletteKbd')"
+                      :class="['lu-command-palette__kbd']"
                     >{{ k }}</kbd>
                   </div>
                 </div>
@@ -180,14 +179,14 @@ const skinFooter = computed(() => resolveSkin("LuCommandPaletteFooter"));
 
           <!-- Footer keyboard hint -->
           <div :class="skinFooter">
-            <LuText variant="caption" class="flex items-center gap-1">
-              <kbd :class="resolveSkin('LuCommandPaletteKbd')">↑↓</kbd> Navigate
+            <LuText variant="caption" class="flex">
+              <kbd :class="['lu-command-palette__kbd']">↑↓</kbd> Navigate
             </LuText>
-            <LuText variant="caption" class="flex items-center gap-1">
-              <kbd :class="resolveSkin('LuCommandPaletteKbd')">↵</kbd> Select
+            <LuText variant="caption" class="flex">
+              <kbd :class="['lu-command-palette__kbd']">↵</kbd> Select
             </LuText>
-            <LuText variant="caption" class="flex items-center gap-1">
-              <kbd :class="resolveSkin('LuCommandPaletteKbd')">Esc</kbd> Close
+            <LuText variant="caption" class="flex">
+              <kbd :class="['lu-command-palette__kbd']">Esc</kbd> Close
             </LuText>
           </div>
         </div>

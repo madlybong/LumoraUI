@@ -1,11 +1,13 @@
 # Lumora UI Agent Guide
 
-This is the operating guide for AI coding agents working in this repository.
+This is the operating guide for Google Antigravity working in this repository.
 
 > [!IMPORTANT]
-> **Primary Rulebook**: A comprehensive repository of project constraints, architectural guides, authoring checklists, and test patterns has been established inside the **`.agent/`** directory. Before making any modifications, AI coding agents must read and follow **[`.agent/rules.md`](file:///.agent/rules.md)**.
+> **Primary Rulebook & Workflows**: A structured directory of rules, workflows, and references is established inside the **`.agents/`** directory. Before making any modifications, read and follow the auto-detected configurations under:
+> - Rules: **[`.agents/rules/`](file:///.agents/rules/)**
+> - Workflows: **[`.agents/workflows/`](file:///.agents/workflows/)**
 >
-> 🤖 **New to this repo?** Read **[`.agent/skills.md`](file:///.agent/skills.md)** to understand the long-running workflows expected of you (Documentation Sync, Release Flow).
+> 🤖 **New to this repo?** Read **[`.agents/rules/context-reentry.md`](file:///.agents/rules/context-reentry.md)** first.
 
 ---
 
@@ -18,24 +20,24 @@ Keep the repo aligned with this model:
 - one showcase app: `apps/showcase`
 - three surface namespaces: `LuMobile*` (mobile), `LuDesktop*` (desktop), `LuEmbedded*` (embedded)
 - one shared primitive layer: `Lu*` (LuButton, LuInput, LuIcon, LuForm, etc.)
-- one structural CSS escape hatch: `src/lumora.css` (for keyframes/psuedo-classes)
-- one skin injection system: `SkinMap` via `createLumoraUI({ skin })` and `useLumoraConfig()`
+- one structural CSS layer: `packages/core/src/styles/*.css` (static BEM CSS)
+- one lightweight plugin system via `createLumoraUI()`
 
 > **Building a consumer app?** Read `docs/CONSUMER_GUIDE.md` instead — it is written for
 > agents building apps that USE this framework, not agents working inside it.
 
 ---
 
-## Current State (v0.7.3)
+## Current State (v0.8.0)
 
 | Subsystem | Status |
 |---|---|
-| Plugin (`plugin.ts`) | `shallowReactive` — reactive skin switching works |
-| CSS baseline (`src/lumora.css`) | Escape hatch for non-Tailwind CSS (keyframes, etc.) |
-| Shell components | Fully reliant on SkinMap for structure and style |
-| Layout primitives | Fully reliant on SkinMap for structure and style. Includes new LuCodeBlock native syntax highlighting |
-| Skin system | `SkinMap` keys dictate all layout and visual properties via `resolveSkin()` |
-| Showcase App | 100% Zero-Raw-HTML adherence. All previews use framework primitives only. |
+| Plugin (`plugin.ts`) | `shallowReactive` — config container (no SkinMap) |
+| CSS baseline (`packages/core/src/styles`) | Modular static BEM CSS files (`components.css`, `shell.css`, etc.) |
+| Shell components | Fixed `100dvh` layout, static BEM CSS structure |
+| Layout primitives | Fully migrated to static BEM CSS. Charts have been removed. |
+| Skin system | **DELETED**. Component classes are static. |
+| Showcase App | 100% Zero-Raw-HTML adherence. Recipes isolated in `sc-*` namespace. |
 | Tailwind helper (`src/tailwind.ts`) | Exports `getLumoraSourceDir()` for Tailwind v4 `@source` directive |
 | Form validation (`LuForm`) | Orchestrator with `LuInput`/`LuSelect`/`LuSwitch` integration |
 | Advanced Components | `LuPlanner`, `LuSelect` (rebuilt), `LuDataGrid` (extended), `LuTimeline`, `LuAccordion`, `LuToast`, `LuChip`, `LuDrawer`, `LuList`, `LuPopover`, `LuBottomSheet` |
@@ -45,29 +47,34 @@ Keep the repo aligned with this model:
 
 ## Directory Navigation
 
-Refer to the targeted guides within `.agent/` depending on your task:
+Refer to the targeted guides within `.agents/` depending on your task:
 
-* 📚 **Global Rulebook**: **[`.agent/rules.md`](file:///.agent/rules.md)** (Headless constraints, Surface isolation boundaries)
-* 🤖 **Agentic Skills**: **[`.agent/skills.md`](file:///.agent/skills.md)** (DOC-SYNC, BUILD-TEST-RELEASE, AI-ADOPT workflows)
-* 🚀 **Betterment**: **[`.agent/betterment.md`](file:///.agent/betterment.md)** (Test gaps, composable docs, future improvements)
-* 🏗️ **Core Architecture**: **[`.agent/architecture.md`](file:///.agent/architecture.md)** (Dynamic skin resolution flow, dynamic merges)
-* 🧩 **Component Checklists**: **[`.agent/component-authoring.md`](file:///.agent/component-authoring.md)** (Step-by-step component creation checklist)
-* 🎨 **Skin Customization**: **[`.agent/skin-authoring.md`](file:///.agent/skin-authoring.md)** (Component variants, class merges)
-* 🧪 **Testing Framework**: **[`.agent/testing.md`](file:///.agent/testing.md)** (Vitest configuration, mount mocks, __mocks__ infrastructure)
-* 📦 **Release Life cycle**: **[`.agent/release.md`](file:///.agent/release.md)** (Bumping versions, synchronization, publishes)
-* 💻 **Reference Previews**: **[`.agent/showcase.md`](file:///.agent/showcase.md)** (Showcase views, local verification server)
+* 📚 **Rules & Invariants**: **[`.agents/rules/`](file:///.agents/rules/)**
+  - **[Headless Invariant](file:///.agents/rules/headless-styling.md)**
+  - **[Surface Isolation](file:///.agents/rules/surface-isolation.md)**
+  - **[Skin Resolution](file:///.agents/rules/skin-resolution.md)**
+  - **[Component Structure](file:///.agents/rules/component-structure.md)**
+  - **[Styles Directory](file:///.agents/rules/styles-directory.md)**
+  - **[BEM Class Index](file:///.agents/reference/bem-class-index.md)**
+  - **[Testing Contracts](file:///.agents/rules/testing-contracts.md)**
+  - **[Naming Conventions](file:///.agents/rules/naming-conventions.md)**
+  - **[Reactivity Model](file:///.agents/rules/reactivity-model.md)**
+  - **[Context Re-entry](file:///.agents/rules/context-reentry.md)**
 
----
+* 🤖 **Workflows**: **[`.agents/workflows/`](file:///.agents/workflows/)**
+  - **[DOC-SYNC](file:///.agents/workflows/doc-sync.md)** (Sync API documentation)
+  - **[BUILD-TEST-RELEASE](file:///.agents/workflows/build-test-release.md)** (Version release flow)
+  - **[AI-ADOPT](file:///.agents/workflows/ai-adopt.md)** (Knowledge base refresh)
+  - **[CONSTITUTION-CHECK](file:///.agents/workflows/constitution-check.md)** (Automated rule validation)
+  - **[NEW-COMPONENT](file:///.agents/workflows/new-component.md)** (Step-by-step component creation checklist)
 
-## Release Workflow
-
-1. Update `VERSION` file.
-2. Run `bun run version:sync` (syncs versions to all `package.json` files).
-3. Update `CHANGELOG.md` manually.
-4. Commit: `git commit -am "chore(release): bump version to X.Y.Z"`.
-5. Push to `main` — the release workflow fires automatically.
-
-Do **not** manually create npm packages or GitHub releases — automation handles this.
+* 📖 **References & Specifications**: **[`.agents/reference/`](file:///.agents/reference/)**
+  - **[Architecture Blueprint](file:///.agents/reference/architecture.md)**
+  - **[Skin Key Index](file:///.agents/reference/skin-key-index.md)**
+  - **[Composables Reference](file:///.agents/reference/composables.md)**
+  - **[Betterment Backlog](file:///.agents/reference/betterment.md)**
+  - **[Showcase Application Docs](file:///.agents/reference/showcase.md)**
+  - **[Release & Lifecycle Reference](file:///.agents/reference/release.md)**
 
 ---
 
@@ -76,6 +83,6 @@ Do **not** manually create npm packages or GitHub releases — automation handle
 Before finalizing any changes or declaring a task complete, run and pass this validation suite:
 ```bash
 bun run check          # vue-tsc typecheck
-bun run test --run     # Vitest suite runs (must use 'run' script, not native bun test)
+bun run test --run     # Vitest suite runs
 bun run build          # Compiles packages & showcase application
 ```

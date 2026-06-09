@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" :class="resolvedSkin">
+  <div v-bind="$attrs" :class="resolvedSkin" role="application" :aria-label="ariaLabel">
     <slot name="topbar" />
     <div :class="contentWrapperSkin">
       <slot name="rail" />
@@ -14,12 +14,16 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../../context";
 
-const props = defineProps<{ variant?: string }>();
+defineOptions({ name: "LuDesktopShell" });
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuDesktopShell", props.variant));
-const contentWrapperSkin = computed(() => resolveSkin("LuDesktopShellContentWrapper"));
-const mainContentSkin = computed(() => resolveSkin("LuDesktopShellMainContent"));
+const props = defineProps<{ 
+  variant?: "default" | "compact";
+  ariaLabel?: string;
+}>();
+
+const ariaLabel = computed(() => props.ariaLabel || "Application");
+const resolvedSkin = computed(() => `lu-desktop-shell ${props.variant && props.variant !== "default" ? "lu-desktop-shell--"+props.variant : ""}`.trim());
+const contentWrapperSkin = computed(() => `lu-desktop-shell-content-wrapper`);
+const mainContentSkin = computed(() => `lu-desktop-shell-main-content`);
 </script>

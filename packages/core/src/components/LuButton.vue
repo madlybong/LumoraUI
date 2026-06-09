@@ -7,7 +7,13 @@
     :type="componentType === 'button' ? type : undefined"
     :disabled="componentType === 'button' ? disabled : undefined"
     :aria-disabled="disabled ? 'true' : undefined"
-    :class="[resolvedSkin, { 'pointer-events-none': disabled && componentType !== 'button' }]"
+    :class="[
+      'lu-button',
+      variant && `lu-button--${variant}`,
+      align && align !== 'center' && `lu-button--align-${align}`,
+      { 'lu-button--full': full },
+      { 'pointer-events-none': disabled && componentType !== 'button' }
+    ]"
     @click="emit('click', $event)"
   >
     <slot />
@@ -16,7 +22,6 @@
 
 <script setup lang="ts">
 import { computed, resolveComponent } from "vue";
-import { useLumoraConfig } from "../context";
 
 defineOptions({ inheritAttrs: false });
 
@@ -27,6 +32,8 @@ const props = defineProps<{
   as?: string;
   to?: any;
   href?: string;
+  align?: "left" | "center" | "right";
+  full?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -42,7 +49,4 @@ const componentType = computed(() => {
   if (props.href) return "a";
   return "button";
 });
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuButton", props.variant));
 </script>

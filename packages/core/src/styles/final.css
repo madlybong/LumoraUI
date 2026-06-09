@@ -1,0 +1,101 @@
+@layer lu-components {
+  /* ─── Bottom Sheet ──────────────────────────────────────────────────────── */
+  .lu-bottom-sheet__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--lu-z-modal);
+    background: rgba(0, 0, 0, 0.45);
+    touch-action: none;
+  }
+
+  .lu-bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--lu-z-modal);
+    background: var(--lu-color-surface-raised);
+    border-radius: var(--lu-radius-5) var(--lu-radius-5) 0 0;
+    box-shadow: var(--lu-shadow-xl);
+    display: flex;
+    flex-direction: column;
+    max-height: 92dvh;
+    will-change: transform;
+  }
+
+  .lu-bottom-sheet__handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--lu-space-3) var(--lu-space-4);
+    flex-shrink: 0;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .lu-bottom-sheet__handle:active {
+    cursor: grabbing;
+  }
+
+  /* ─── Chart Wrappers ────────────────────────────────────────────────────── */
+  .lu-bar-chart,
+  .lu-line-chart,
+  .lu-doughnut-chart,
+  .lu-gauge-chart,
+  .lu-sparkline {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lu-chart-fallback-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text-muted);
+    opacity: 0.6;
+    user-select: none;
+  }
+
+  /* ─── Popover Sub-elements ──────────────────────────────────────────────── */
+  .lu-popover-trigger {
+    display: inline-block;
+    position: relative;
+  }
+
+  .lu-popover__content {
+    position: absolute;
+    z-index: var(--lu-z-dropdown);
+    background: var(--lu-color-surface-raised);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    box-shadow: var(--lu-shadow-lg);
+    padding: var(--lu-space-2);
+    min-width: 10rem;
+    overflow: hidden;
+  }
+
+  /* ─── Planner ───────────────────────────────────────────────────────────── */
+  .lu-planner__nav-button {
+    flex-shrink: 0;
+  }
+
+  /* ─── Tree Node ─────────────────────────────────────────────────────────── */
+  .lu-tree-node__checkbox {
+    flex-shrink: 0;
+    margin-right: var(--lu-space-1);
+  }
+
+  /* ─── DataGrid ──────────────────────────────────────────────────────────── */
+  .lu-data-grid__body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .lu-data-grid__error-input {
+    border-color: var(--lu-color-danger) !important;
+  }
+}

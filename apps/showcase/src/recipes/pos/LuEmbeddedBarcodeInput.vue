@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref, nextTick } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuIcon } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEmbeddedBarcodeInput" });
@@ -24,8 +23,6 @@ const emit = defineEmits<{
   (e: "submit", val: string): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
 const inputRef = ref<HTMLInputElement | null>(null);
 
 function handleKeydown(e: KeyboardEvent) {
@@ -47,13 +44,13 @@ function focus() {
 defineExpose({ focus });
 
 const skinField = computed(() =>
-  resolveSkin("LuEmbeddedBarcodeInputField", props.scanning ? "scanning" : undefined)
+  `sc-embedded-barcode-input__field ${props.scanning ? "sc-embedded-barcode-input__field--scanning" : ""}`.trim()
 );
-const skinInner = computed(() => resolveSkin("LuEmbeddedBarcodeInputInner"));
+const skinInner = computed(() => `sc-embedded-barcode-input__inner`);
 </script>
 
 <template>
-  <div :class="resolveSkin('LuEmbeddedBarcodeInput')">
+  <div class="sc-embedded-barcode-input">
     <div :class="skinField">
       <LuIcon name="scan-line" :size="18" class="shrink-0 text-zinc-400 dark:text-zinc-500" />
       <input

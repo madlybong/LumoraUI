@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 import LuText from "./LuText.vue";
 import LuBadge from "./LuBadge.vue";
 import LuIcon from "./LuIcon.vue";
@@ -21,7 +20,6 @@ const emit = defineEmits<{
   (e: "add-card", columnId: string): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 // Priority badge variants
 const priorityVariant: Record<string, string> = {
@@ -50,38 +48,31 @@ function onDrop(toColumn: KanbanColumn, toIndex: number) {
   dragCard = null;
 }
 
-const skinBoard = computed(() => resolveSkin("LuKanbanBoard"));
-const skinCol = computed(() => resolveSkin("LuKanbanColumn"));
-const skinColHeader = computed(() => resolveSkin("LuKanbanColumnHeader"));
-const skinColDot = computed(() => resolveSkin("LuKanbanColumnHeaderDot"));
-const skinColTitle = computed(() => resolveSkin("LuKanbanColumnHeaderTitle"));
-const skinColCount = computed(() => resolveSkin("LuKanbanColumnHeaderCount"));
-const skinColBody = computed(() => resolveSkin("LuKanbanColumnBody"));
-const skinCard = computed(() => resolveSkin("LuKanbanCard"));
+
 </script>
 
 <template>
-  <div :class="resolveSkin('LuKanban')">
-    <div :class="skinBoard">
+  <div :class="['lu-kanban']">
+    <div :class="['lu-kanban__board']">
       <div
         v-for="column in columns"
         :key="column.id"
-        :class="skinCol"
+        :class="['lu-kanban__column']"
         @dragover.prevent
         @drop="onDrop(column, column.cards.length)"
       >
         <!-- Column header -->
-        <div :class="skinColHeader">
+        <div :class="['lu-kanban__column-header']">
           <span
-            :class="skinColDot"
+            :class="['lu-kanban__column-dot']"
             :style="column.color ? { backgroundColor: column.color } : undefined"
           />
-          <LuText :class="skinColTitle">{{ column.title }}</LuText>
-          <LuText :class="skinColCount">{{ column.cards.length }}{{ column.limit ? ` / ${column.limit}` : '' }}</LuText>
+          <LuText :class="['lu-kanban__column-title']">{{ column.title }}</LuText>
+          <LuText :class="['lu-kanban__column-count']">{{ column.cards.length }}{{ column.limit ? ` / ${column.limit}` : '' }}</LuText>
 
           <button
             type="button"
-            :class="resolveSkin('LuKanbanAddButton')"
+            :class="['lu-kanban__add-button']"
             :aria-label="`Add card to ${column.title}`"
             @click="emit('add-card', column.id)"
           >
@@ -90,11 +81,11 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
         </div>
 
         <!-- Cards -->
-        <div :class="skinColBody">
+        <div :class="['lu-kanban__column-body']">
           <div
             v-for="card in column.cards"
             :key="card.id"
-            :class="skinCard"
+            :class="['lu-kanban__card']"
             :draggable="draggable"
             :aria-label="card.title"
             tabindex="0"
@@ -105,7 +96,7 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
             <slot name="card" :card="card" :column="column">
               <!-- Default card body -->
               <div class="flex flex-col gap-2">
-                <LuText variant="body" :class="resolveSkin('LuKanbanCardTitle')">
+                <LuText variant="body" :class="['lu-kanban__card-title']">
                   {{ card.title }}
                 </LuText>
 
@@ -113,12 +104,12 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
                   {{ card.description }}
                 </LuText>
 
-                <div v-if="card.priority || card.dueDate || card.tags?.length" class="flex flex-wrap items-center gap-1.5 mt-1">
+                <div v-if="card.priority || card.dueDate || card.tags?.length" class="flex">
                   <LuBadge v-if="card.priority" :variant="priorityVariant[card.priority]">
                     {{ card.priority }}
                   </LuBadge>
                   <LuBadge v-for="tag in card.tags" :key="tag" variant="secondary">{{ tag }}</LuBadge>
-                  <LuText v-if="card.dueDate" variant="caption" class="ml-auto flex items-center gap-1">
+                  <LuText v-if="card.dueDate" variant="caption" class="ml-auto flex gap-1">
                     <LuIcon name="calendar" :size="11" />
                     {{ card.dueDate }}
                   </LuText>
@@ -130,7 +121,7 @@ const skinCard = computed(() => resolveSkin("LuKanbanCard"));
           <!-- Drop zone hint when empty -->
           <div
             v-if="!column.cards.length"
-            :class="resolveSkin('LuKanbanEmptyColumn')"
+            :class="['lu-kanban__empty-column']"
           >
             Empty
           </div>

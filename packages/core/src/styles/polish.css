@@ -1,0 +1,223 @@
+@layer lu-components {
+  /* ==========================================================================
+     LuPagination
+     ========================================================================== */
+
+  .lu-pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+  }
+
+  .lu-pagination__button {
+    /* Inherits LuButton ghost styles */
+  }
+
+  .lu-pagination__pages {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+  }
+
+  .lu-pagination__page-button {
+    min-width: 2rem;
+  }
+
+  .lu-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--lu-color-text-muted);
+    font-size: var(--lu-text-sm);
+    cursor: default;
+    user-select: none;
+  }
+
+  /* ==========================================================================
+     LuChipGroup
+     ========================================================================== */
+
+  .lu-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--lu-space-2);
+    align-items: center;
+  }
+
+  .lu-chip-group--stack {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ==========================================================================
+     LuAlert Sub-elements
+     ========================================================================== */
+
+  .lu-alert__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .lu-alert__icon-wrapper--success { color: var(--lu-color-success); }
+  .lu-alert__icon-wrapper--danger { color: var(--lu-color-danger); }
+  .lu-alert__icon-wrapper--warning { color: var(--lu-color-warning); }
+  .lu-alert__icon-wrapper--info { color: var(--lu-color-info); }
+
+  .lu-alert__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-1);
+    flex: 1;
+    min-width: 0;
+    font-size: var(--lu-text-sm);
+  }
+
+  .lu-alert__action {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  /* ==========================================================================
+     LuToast Sub-elements
+     ========================================================================== */
+
+  .lu-toast-container {
+    position: fixed;
+    bottom: var(--lu-space-4);
+    right: var(--lu-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-2);
+    z-index: var(--lu-z-toast);
+    pointer-events: none;
+    width: 22rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .lu-toast-container--top-right {
+    top: var(--lu-space-4);
+    bottom: auto;
+  }
+
+  .lu-toast-container--top-center {
+    top: var(--lu-space-4);
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .lu-toast__description {
+    color: var(--lu-color-text-muted);
+    font-size: var(--lu-text-xs);
+    margin-top: 0.125rem;
+  }
+
+  .lu-toast__close {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--lu-radius-2);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--lu-color-text-muted);
+    padding: 0;
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-toast__close:hover {
+    background: var(--lu-color-surface-hover);
+    color: var(--lu-color-text);
+  }
+
+  /* ==========================================================================
+     LuChip Sub-elements
+     ========================================================================== */
+
+  .lu-chip--selected {
+    background: var(--lu-color-primary-surface);
+    color: var(--lu-color-primary);
+    border-color: var(--lu-color-primary-border);
+    cursor: pointer;
+  }
+
+  .lu-chip--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .lu-chip[role="button"] {
+    cursor: pointer;
+    transition: background var(--lu-duration-fast);
+  }
+
+  .lu-chip[role="button"]:hover {
+    background: var(--lu-color-surface-hover);
+  }
+
+  .lu-chip__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--lu-radius-full);
+    border: none;
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0;
+    transition: opacity var(--lu-duration-fast);
+  }
+
+  .lu-chip__close:hover {
+    opacity: 1;
+  }
+
+  /* ==========================================================================
+     LuTag Sub-elements
+     ========================================================================== */
+
+  .lu-tag__close-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--lu-radius-full);
+    border: none;
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0;
+    transition: opacity var(--lu-duration-fast);
+    margin-left: 2px;
+  }
+
+  .lu-tag__close-button:hover {
+    opacity: 1;
+  }
+
+  .lu-tag__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 2px;
+  }
+}

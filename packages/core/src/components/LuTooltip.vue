@@ -1,10 +1,10 @@
 <template>
-  <div v-bind="$attrs" ref="triggerRef" :class="containerSkin" @mouseenter="onEnter" @mouseleave="onLeave">
+  <div v-bind="$attrs" ref="triggerRef" :class="['lu-tooltip', variant && `lu-tooltip--${variant}`]" @mouseenter="onEnter" @mouseleave="onLeave">
     <slot name="trigger" />
     <div 
       v-show="isVisible" 
       ref="contentRef"
-      :class="contentSkin" 
+      :class="['lu-tooltip__content']" 
       :style="floatingStyle"
     >
       <slot name="content" />
@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from "../context";
 import { useFloating } from "../composables/useFloating";
 
 const props = defineProps<{ variant?: string; position?: "top" | "bottom" | "left" | "right"; delay?: number }>();
@@ -50,8 +49,6 @@ const onLeave = () => {
   isVisible.value = false;
 };
 
-const { resolveSkin } = useLumoraConfig();
-const containerSkin = computed(() => resolveSkin("LuTooltip", props.variant));
-const contentSkin = computed(() => resolveSkin("LuTooltipContent", props.variant));
+
 </script>
 

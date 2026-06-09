@@ -1,5 +1,5 @@
 <template>
-  <div :class="resolvedContainerSkin">
+  <div :class="['lu-checkbox-container', variant && `lu-checkbox-container--${variant}`]">
     <button
       type="button"
       role="checkbox"
@@ -8,18 +8,19 @@
       :disabled="isDisabled"
       :name="name"
       :class="[
-        resolvedSkin,
-        isChecked || indeterminate ? activeSkin : '',
-        error ? errorSkin : ''
+        'lu-checkbox',
+        variant && `lu-checkbox--${variant}`,
+        (isChecked || indeterminate) && 'lu-checkbox--active',
+        error && 'lu-checkbox--error'
       ]"
       @click="toggle"
       @blur="onBlur"
     >
       <slot name="icon" :checked="isChecked" :indeterminate="indeterminate">
-        <svg v-if="indeterminate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" :class="iconSkin">
+        <svg v-if="indeterminate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lu-checkbox__icon">
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
-        <svg v-else-if="isChecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" :class="iconSkin">
+        <svg v-else-if="isChecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lu-checkbox__icon">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </slot>
@@ -36,7 +37,7 @@
       aria-hidden="true"
     />
     
-    <label v-if="$slots.default || label" :class="resolvedLabelSkin" @click.prevent="toggle">
+    <label v-if="$slots.default || label" class="lu-checkbox__label" @click.prevent="toggle">
       <slot>{{ label }}</slot>
     </label>
   </div>
@@ -44,7 +45,6 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, onUnmounted, ref, watch } from "vue";
-import { useLumoraConfig } from "../context";
 import { LuFormContextKey } from "./LuForm.types";
 
 const props = withDefaults(defineProps<{
@@ -57,7 +57,6 @@ const props = withDefaults(defineProps<{
   disabled?: boolean;
   value?: string | number; // for array-based checkboxes in future, or just native submit
 }>(), {
-  modelValue: false,
   indeterminate: false,
   disabled: false
 });
@@ -69,13 +68,7 @@ const emit = defineEmits<{
   (e: "blur"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedContainerSkin = computed(() => resolveSkin("LuCheckContainer", props.variant));
-const resolvedSkin = computed(() => resolveSkin("LuCheck", props.variant));
-const activeSkin = computed(() => resolveSkin("LuCheck", props.indeterminate ? "indeterminate" : "checked"));
-const errorSkin = computed(() => resolveSkin("LuCheck.error", props.variant));
-const iconSkin = computed(() => resolveSkin("LuCheckIcon", props.variant));
-const resolvedLabelSkin = computed(() => resolveSkin("LuCheckLabel", props.variant));
+
 
 const formContext = inject(LuFormContextKey, null);
 const internalValue = ref<boolean>(!!props.modelValue);

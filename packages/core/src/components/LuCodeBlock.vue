@@ -23,7 +23,7 @@
             <div :class="resolvedSkin.codeHeader">
               <div :class="resolvedSkin.badge">{{ lang }}</div>
               <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
-                <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
+                <LuIcon :name="copied ? 'check' : 'copy'" class="lu-code-block__copy-icon" />
               </LuButton>
             </div>
             <div :class="resolvedSkin.codeContent" v-html="html"></div>
@@ -39,7 +39,7 @@
               <div :class="resolvedSkin.codeHeader">
                 <div :class="resolvedSkin.badge">{{ lang }}</div>
                 <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
-                  <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
+                  <LuIcon :name="copied ? 'check' : 'copy'" class="lu-code-block__copy-icon" />
                 </LuButton>
               </div>
               <div :class="resolvedSkin.codeContent" v-html="html"></div>
@@ -55,7 +55,7 @@
           <div :class="resolvedSkin.codeHeader">
             <div :class="resolvedSkin.badge">{{ lang }}</div>
             <LuButton @click="copyCode" variant="icon" :class="resolvedSkin.copyButton" aria-label="Copy code">
-              <LuIcon :name="copied ? 'check' : 'copy'" class="w-4 h-4" />
+              <LuIcon :name="copied ? 'check' : 'copy'" class="lu-code-block__copy-icon" />
             </LuButton>
           </div>
           <div :class="resolvedSkin.codeContent" v-html="html"></div>
@@ -68,7 +68,6 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, computed } from "vue";
 import { getHighlighter } from "../composables/useShiki";
-import { useLumoraConfig } from "../context";
 import LuTabs from "./LuTabs.vue";
 import LuTabList from "./LuTabList.vue";
 import LuTab from "./LuTab.vue";
@@ -89,22 +88,22 @@ const props = withDefaults(defineProps<{
   layout: "tabbed"
 });
 
-const { resolveSkin } = useLumoraConfig();
+
 const resolvedSkin = computed(() => {
   return {
-    wrapper: resolveSkin("LuCodeBlockWrapper", props.variant),
-    header: resolveSkin("LuCodeBlockHeader", props.variant),
-    title: resolveSkin("LuCodeBlockTitle", props.variant),
-    description: resolveSkin("LuCodeBlockDescription", props.variant),
-    card: resolveSkin("LuCodeBlockCard", props.variant),
-    previewArea: resolveSkin("LuCodeBlockPreviewArea", props.variant),
-    codeArea: resolveSkin("LuCodeBlockCodeArea", props.variant),
-    splitCodeArea: resolveSkin("LuCodeBlockSplitArea", props.variant),
-    splitContainer: resolveSkin("LuCodeBlockSplitContainer", props.variant),
-    codeHeader: resolveSkin("LuCodeBlockCodeHeader", props.variant),
-    badge: resolveSkin("LuCodeBlockBadge", props.variant),
-    copyButton: resolveSkin("LuCodeBlockCopyButton", props.variant),
-    codeContent: resolveSkin("LuCodeBlockCodeContent", props.variant),
+    wrapper: `lu-code-block-wrapper ${props.variant && props.variant !== 'default' ? 'lu-code-block-wrapper--'+props.variant : ''}`.trim(),
+    header: `lu-code-block-header ${props.variant && props.variant !== 'default' ? 'lu-code-block-header--'+props.variant : ''}`.trim(),
+    title: `lu-code-block-title ${props.variant && props.variant !== 'default' ? 'lu-code-block-title--'+props.variant : ''}`.trim(),
+    description: `lu-code-block-description ${props.variant && props.variant !== 'default' ? 'lu-code-block-description--'+props.variant : ''}`.trim(),
+    card: `lu-code-block-card ${props.variant && props.variant !== 'default' ? 'lu-code-block-card--'+props.variant : ''}`.trim(),
+    previewArea: `lu-code-block-preview-area ${props.variant && props.variant !== 'default' ? 'lu-code-block-preview-area--'+props.variant : ''}`.trim(),
+    codeArea: `lu-code-block-code-area ${props.variant && props.variant !== 'default' ? 'lu-code-block-code-area--'+props.variant : ''}`.trim(),
+    splitCodeArea: `lu-code-block-split-area ${props.variant && props.variant !== 'default' ? 'lu-code-block-split-area--'+props.variant : ''}`.trim(),
+    splitContainer: `lu-code-block-split-container ${props.variant && props.variant !== 'default' ? 'lu-code-block-split-container--'+props.variant : ''}`.trim(),
+    codeHeader: `lu-code-block-code-header ${props.variant && props.variant !== 'default' ? 'lu-code-block-code-header--'+props.variant : ''}`.trim(),
+    badge: `lu-code-block-badge ${props.variant && props.variant !== 'default' ? 'lu-code-block-badge--'+props.variant : ''}`.trim(),
+    copyButton: `lu-code-block-copy-button ${props.variant && props.variant !== 'default' ? 'lu-code-block-copy-button--'+props.variant : ''}`.trim(),
+    codeContent: `lu-code-block-code-content ${props.variant && props.variant !== 'default' ? 'lu-code-block-code-content--'+props.variant : ''}`.trim(),
   };
 });
 

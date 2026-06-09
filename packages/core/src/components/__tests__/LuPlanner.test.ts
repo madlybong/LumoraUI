@@ -26,7 +26,7 @@ describe("LuPlanner", () => {
     });
     
     // Check that we have 7 columns (one for each weekday)
-    const columns = wrapper.findAll(".flex-1.min-w-\\[120px\\]");
+    const columns = wrapper.findAll(".lu-planner__day-column");
     expect(columns.length).toBe(7);
   });
 
@@ -54,7 +54,7 @@ describe("LuPlanner", () => {
       },
     });
 
-    const cell = wrapper.find(".h-16.cursor-pointer");
+    const cell = wrapper.find(".lu-planner__hour-cell");
     expect(cell.exists()).toBe(true);
 
     await cell.trigger("click");

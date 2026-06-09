@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import { useLumoraConfig } from "../context";
+
 import LuIcon from "./LuIcon.vue";
 import LuText from "./LuText.vue";
 
@@ -30,7 +30,6 @@ const emit = defineEmits<{
   (e: "click", item: MediaItem): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
 
 // ── Lightbox state ────────────────────────────────────────────────────────────
 const lightboxOpen = ref(false);
@@ -66,18 +65,18 @@ function onKeydown(e: KeyboardEvent) {
 onMounted(() => document.addEventListener("keydown", onKeydown));
 onBeforeUnmount(() => document.removeEventListener("keydown", onKeydown));
 
-const skinGallery = computed(() => resolveSkin("LuMediaGallery") + ` grid-cols-${props.columns}`);
-const skinItem = computed(() => resolveSkin("LuMediaGalleryItem"));
-const skinItemImage = computed(() => resolveSkin("LuMediaGalleryItemImage"));
-const skinItemOverlay = computed(() => resolveSkin("LuMediaGalleryItemOverlay"));
-const skinLightbox = computed(() => resolveSkin("LuLightbox"));
-const skinLightboxOverlay = computed(() => resolveSkin("LuLightboxOverlay"));
-const skinLightboxContent = computed(() => resolveSkin("LuLightboxContent"));
-const skinLightboxImage = computed(() => resolveSkin("LuLightboxImage"));
-const skinLightboxNavBase = computed(() => resolveSkin("LuLightboxNav"));
-const skinLightboxNavPrev = computed(() => resolveSkin("LuLightboxNav", "prev"));
-const skinLightboxNavNext = computed(() => resolveSkin("LuLightboxNav", "next"));
-const skinLightboxClose = computed(() => resolveSkin("LuLightboxClose"));
+const skinGallery = computed(() => `lu-media-gallery grid-cols-${props.columns}`);
+const skinItem = computed(() => `lu-media-gallery__item`);
+const skinItemImage = computed(() => `lu-media-gallery__item-image`);
+const skinItemOverlay = computed(() => `lu-media-gallery__item-overlay`);
+const skinLightbox = computed(() => `lu-lightbox`);
+const skinLightboxOverlay = computed(() => `lu-lightbox__overlay`);
+const skinLightboxContent = computed(() => `lu-lightbox__content`);
+const skinLightboxImage = computed(() => `lu-lightbox__image`);
+const skinLightboxNavBase = computed(() => `lu-lightbox__nav`);
+const skinLightboxNavPrev = computed(() => `lu-lightbox__nav--prev`);
+const skinLightboxNavNext = computed(() => `lu-lightbox__nav--next`);
+const skinLightboxClose = computed(() => `lu-lightbox__close`);
 </script>
 
 <template>
@@ -105,7 +104,7 @@ const skinLightboxClose = computed(() => resolveSkin("LuLightboxClose"));
           <button
             v-if="deletable"
             type="button"
-            :class="resolveSkin('LuMediaGalleryRemoveButton')"
+            :class="['lu-media-gallery__remove-button']"
             :aria-label="`Delete ${item.caption ?? item.id}`"
             @click.stop="emit('delete', item)"
           >
@@ -170,14 +169,14 @@ const skinLightboxClose = computed(() => resolveSkin("LuLightboxClose"));
           <!-- Caption -->
           <LuText
             v-if="lightboxItem?.caption"
-            :class="resolveSkin('LuLightboxCaption')"
+            :class="['lu-lightbox__caption']"
           >
             {{ lightboxItem.caption }}
           </LuText>
 
           <!-- Counter -->
           <LuText
-            class="absolute top-4 left-4 text-white/70 text-xs"
+            class="absolute top-4 left-4"
           >
             {{ lightboxIndex + 1 }} / {{ items.length }}
           </LuText>

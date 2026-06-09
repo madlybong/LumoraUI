@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEmbeddedPOSLayout" });
 
@@ -9,9 +8,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   layout: "2col",
 });
-
-const { resolveSkin } = useLumoraConfig();
-const skinLayout = computed(() => resolveSkin("LuEmbeddedPOSLayout", props.layout));
+const skinLayout = computed(() => `sc-pos-layout ${props.layout ? "sc-pos-layout--"+props.layout : ""}`.trim());
 </script>
 
 <template>

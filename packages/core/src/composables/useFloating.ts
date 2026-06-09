@@ -4,6 +4,7 @@ import { computePosition, flip, shift, offset, autoUpdate, type Placement } from
 export interface UseFloatingOptions {
   placement?: Placement;
   offset?: number;
+  strategy?: 'absolute' | 'fixed';
 }
 
 export function useFloating(
@@ -25,6 +26,7 @@ export function useFloating(
 
     computePosition(referenceEl, floatingEl, {
       placement: options.placement || 'bottom',
+      strategy: options.strategy || 'absolute',
       middleware: [
         offset(options.offset !== undefined ? options.offset : 8),
         flip(),

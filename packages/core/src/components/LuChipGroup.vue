@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed, provide } from "vue";
-import { useLumoraConfig } from "../context";
+
 
 const props = withDefaults(defineProps<{
   modelValue?: any;
@@ -47,6 +47,5 @@ provide("lu-chip-group-selection", {
   toggleValue
 });
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuChipGroup", props.variant) || "flex flex-wrap gap-2");
+const resolvedSkin = computed(() => `lu-chip-group ${props.variant && props.variant !== 'default' ? 'lu-chip-group--'+props.variant : ''}`.trim());
 </script>

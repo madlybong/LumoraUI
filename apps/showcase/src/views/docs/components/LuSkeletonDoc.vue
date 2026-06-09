@@ -1,17 +1,19 @@
 <template>
+  <LuPageHeader title="LuSkeleton" description="Used to show a placeholder while content is loading." />
+
   <LuCodeBlock variant="preview"
-    title="Skeleton"
-    description="Used to show a placeholder while content is loading."
+    title="Basic Skeleton"
+    description="Combine skeleton variants to mock your layout's final shape."
     :code="code"
   >
     <template #preview>
       <LuCard class="w-full max-w-md" variant="panel">
         <LuStack direction="horizontal" gap="4">
-          <LuSkeleton variant="circle" class="w-12 h-12 shrink-0" />
+          <LuSkeleton variant="circle" class="shrink-0" />
           <LuStack direction="vertical" gap="2" class="w-full">
-            <LuSkeleton variant="line" class="w-3/4" />
-            <LuSkeleton variant="line" />
-            <LuSkeleton variant="line" class="w-1/2" />
+            <LuSkeleton variant="title" />
+            <LuSkeleton variant="text" />
+            <LuSkeleton variant="text" class="w-1/2" />
           </LuStack>
         </LuStack>
         
@@ -22,11 +24,15 @@
     </template>
   </LuCodeBlock>
 
-  <PropTable :propsList="propsList" class="mt-8" />
+  <LuStack direction="vertical" class="mt-8">
+    <LuText as="h2" variant="section-title">Props</LuText>
+    <PropTable :propsList="propsList" />
+  </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuCard, LuStack, LuSkeleton , LuCodeBlock } from '@astrake/lumora-ui';
+import { LuCard, LuStack, LuText, LuSkeleton, LuCodeBlock } from '@astrake/lumora-ui';
+import LuPageHeader from '../../../recipes/page-header/LuPageHeader.vue';
 import PropTable from '../../../components/PropTable.vue';
 
 const code = `<template>

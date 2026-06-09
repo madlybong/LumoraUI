@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, provide } from "vue";
-import { useLumoraConfig } from "../context";
+
 
 defineOptions({ name: "LuTimeline" });
 
@@ -13,8 +13,7 @@ const props = withDefaults(defineProps<{
 // Provide the variant to all child LuTimelineItem components
 provide("LuTimelineVariant", computed(() => props.variant));
 
-const { resolveSkin } = useLumoraConfig();
-const skinTimeline = computed(() => resolveSkin("LuTimeline", props.variant));
+const skinTimeline = computed(() => `lu-timeline ${props.variant && props.variant !== 'default' ? 'lu-timeline--'+props.variant : ''}`.trim());
 </script>
 
 <template>

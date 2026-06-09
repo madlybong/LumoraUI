@@ -4,6 +4,34 @@
 
 ---
 
+## [0.8.0] — 2026-06-09
+
+### ⚠ Breaking / Structural Changes
+- **Tier 3B BEM migration**: All ~100 framework components migrated from dynamic `resolveSkin()` / SkinMap to static BEM class names in `packages/core/src/styles/`. The `src/skins/` directory and `src/lumora.css` escape hatch are deleted.
+- **Chart components removed**: `LuBarChart`, `LuLineChart`, `LuDoughnutChart`, `LuGaugeChart`, `LuSparkline`, `LuRichTextEditor` removed (were experimental/unstable).
+- **Shell height fixed**: `LuDesktopShell`, `LuMobileShell`, `LuEmbeddedShell` now use `height: 100dvh` natively — consumers no longer need to set `html/body/#app` heights.
+- **Context API simplified**: `context.ts`, `types.ts`, `plugin.ts` cleaned up. `resolveSkin`, `extendSkin`, `SkinMap`, `createLumoraUI({ skin })` are removed.
+
+### Added
+- `LuTreeItem.vue` new component.
+- `LuMobileNavBarItem.vue` extracted as standalone component.
+- `packages/core/src/styles/` new directory with modular BEM CSS (`components.css`, `shell.css`, `layout.css`, `forms.css`, `tokens.css`).
+- `packages/core/src/tokens/` new design token directory.
+- `apps/showcase/src/sc-recipes.css` — new; recipe CSS namespace with `sc-*` prefix.
+
+### Changed
+- All recipe components renamed from `lu-*` to `sc-*` class prefix.
+- `DocsTopBar`, `DocsLayout` fixed.
+- `ThemeToggle` variant restored.
+
+### Maintenance
+- Dependency pruning: `vue-chartjs`, `chart.js` removed.
+- `lazyVChart.ts`, `useChartTheme.ts` composables removed.
+- `utils.ts` cleaned up.
+
+
+---
+
 ## [0.7.4] — 2026-05-30
 
 ### Maintenance

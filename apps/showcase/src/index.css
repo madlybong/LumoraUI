@@ -5,6 +5,8 @@
 @plugin "@tailwindcss/typography";
 @source "../../../packages/core/src";
 
+@import './sc-recipes.css';
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -63,6 +65,12 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .sc-docs-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" :class="resolvedSkin"></div>
+  <div v-bind="$attrs" :class="['lu-divider', `lu-divider--${orientation}`, variant && `lu-divider--${variant}`]"></div>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,4 @@ const props = withDefaults(defineProps<{
 }>(), {
   orientation: "horizontal"
 });
-
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuDivider", props.variant || props.orientation));
 </script>

@@ -11,7 +11,7 @@
     <template #content>
       <LuScroll>
         <LuStack as="main" variant="container">
-          <div class="flex flex-col gap-8 flex-1">
+          <div class="sc-docs-content-wrapper">
             <router-view />
           </div>
           <DocsPrevNext />

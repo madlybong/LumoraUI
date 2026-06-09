@@ -1,25 +1,25 @@
 <template>
-  <div :class="resolvedSkin" ref="popoverRef" @mouseleave="handleMouseLeave">
+  <div :class="['lu-popover', variant && `lu-popover--${variant}`]" ref="popoverRef" @mouseleave="handleMouseLeave">
     <div 
       ref="triggerRef" 
-      class="lu-popover-trigger inline-block" 
+      class="lu-popover__trigger" 
       @click="handleClick" 
       @mouseenter="handleMouseEnter"
     >
       <slot name="trigger" />
     </div>
     <transition
-      enter-active-class="transition ease-out duration-100"
-      enter-from-class="transform opacity-0 scale-95"
-      enter-to-class="transform opacity-100 scale-100"
-      leave-active-class="transition ease-in duration-75"
-      leave-from-class="transform opacity-100 scale-100"
-      leave-to-class="transform opacity-0 scale-95"
+      enter-active-class="lu-popover-enter-active"
+      enter-from-class="lu-popover-enter-from"
+      enter-to-class="lu-popover-enter-to"
+      leave-active-class="lu-popover-leave-active"
+      leave-from-class="lu-popover-leave-from"
+      leave-to-class="lu-popover-leave-to"
     >
       <div 
         v-if="isOpen" 
         ref="contentRef"
-        :class="resolvedContentSkin" 
+        :class="['lu-popover__content']" 
         :style="floatingStyle"
       >
         <slot name="content" />
@@ -30,7 +30,6 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import { useLumoraConfig } from "../context";
 import { useFloating } from "../composables/useFloating";
 
 const props = withDefaults(defineProps<{
@@ -51,11 +50,12 @@ const contentRef = ref<HTMLElement | null>(null);
 
 const { x, y } = useFloating(triggerRef, contentRef, {
   placement: props.position,
-  offset: 8
+  offset: 8,
+  strategy: 'fixed'
 });
 
 const floatingStyle = computed(() => ({
-  position: 'absolute' as const,
+  position: 'fixed' as const,
   left: `${x.value}px`,
   top: `${y.value}px`,
   zIndex: 40
@@ -91,8 +91,5 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside);
 });
 
-const { resolveSkin } = useLumoraConfig();
 
-const resolvedSkin = computed(() => resolveSkin("LuPopover", props.variant));
-const resolvedContentSkin = computed(() => resolveSkin("LuPopoverContent", props.variant));
 </script>

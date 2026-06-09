@@ -1,0 +1,760 @@
+@layer lu-components {
+  /* ── LuButton ─────────────────────────────────────────────────────────── */
+  .lu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--lu-space-2);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border-radius: var(--lu-radius-btn);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    color: var(--lu-color-text);
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--lu-duration-base), border-color var(--lu-duration-base),
+                color var(--lu-duration-base), box-shadow var(--lu-duration-base);
+    outline: none;
+    user-select: none;
+  }
+  .lu-button:hover  { background: var(--lu-color-surface-hover); }
+  .lu-button:active { background: var(--lu-color-surface-active); }
+  .lu-button:focus-visible {
+    outline: 2px solid var(--lu-color-border-focus);
+    outline-offset: 2px;
+  }
+  .lu-button:disabled,
+  .lu-button[aria-disabled="true"],
+  .lu-button.pointer-events-none { 
+    opacity: 0.4; 
+    pointer-events: none; 
+    cursor: not-allowed;
+  }
+
+  .lu-button--primary {
+    background: var(--lu-color-primary);
+    border-color: var(--lu-color-primary);
+    color: var(--lu-color-on-primary);
+    box-shadow: var(--lu-shadow-xs);
+  }
+  .lu-button--primary:hover  { background: var(--lu-color-primary-hover); border-color: var(--lu-color-primary-hover); }
+  .lu-button--primary:active { background: var(--lu-color-primary-active); }
+
+  .lu-button--secondary { background: transparent; border-color: var(--lu-color-border-strong); }
+  .lu-button--secondary:hover { background: var(--lu-color-surface-hover); }
+
+  .lu-button--ghost { background: transparent; border-color: transparent; color: var(--lu-color-text-muted); }
+  .lu-button--ghost:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+
+  .lu-button--danger { background: var(--lu-color-danger); border-color: var(--lu-color-danger); color: #fff; box-shadow: var(--lu-shadow-xs); }
+
+  .lu-button--icon {
+    padding: var(--lu-space-1);
+    background: transparent;
+    border-color: transparent;
+    color: var(--lu-color-text-muted);
+  }
+  .lu-button--icon:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+
+  .lu-button--icon-sm {
+    padding: 0.25rem;
+    background: transparent;
+    border-color: transparent;
+    color: var(--lu-color-text-muted);
+  }
+  .lu-button--icon-sm:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+
+  /* Button Sizes */
+  .lu-button--sm { padding: var(--lu-space-1) var(--lu-space-2); font-size: var(--lu-text-xs); }
+  .lu-button--lg { padding: var(--lu-space-3) var(--lu-space-4); font-size: var(--lu-text-base); }
+
+  /* Button Alignments */
+  .lu-button--align-left { justify-content: flex-start; }
+  .lu-button--align-right { justify-content: flex-end; }
+
+  /* Full Width */
+  .lu-button--full { width: 100%; }
+
+
+  /* ── LuIcon ───────────────────────────────────────────────────────────── */
+  .lu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .lu-icon svg { display: block; }
+
+
+  /* ── LuText ───────────────────────────────────────────────────────────── */
+  .lu-text {
+    color: var(--lu-color-text);
+    line-height: 1.5;
+  }
+
+  /* Headings */
+  .lu-text--h1 { font-size: var(--lu-text-4xl); font-weight: var(--lu-font-bold); line-height: 1.15; letter-spacing: -0.025em; }
+  .lu-text--h2 { font-size: var(--lu-text-3xl); font-weight: var(--lu-font-semibold); line-height: 1.2; letter-spacing: -0.02em; }
+  .lu-text--h3 { font-size: var(--lu-text-2xl); font-weight: var(--lu-font-semibold); line-height: 1.25; }
+  .lu-text--h4 { font-size: var(--lu-text-xl); font-weight: var(--lu-font-semibold); line-height: 1.3; }
+  .lu-text--h5 { font-size: var(--lu-text-lg); font-weight: var(--lu-font-medium); line-height: 1.4; }
+  .lu-text--h6 { font-size: var(--lu-text-base); font-weight: var(--lu-font-medium); line-height: 1.4; }
+
+  /* Body */
+  .lu-text--body    { font-size: var(--lu-text-sm); color: var(--lu-color-text); }
+  .lu-text--default { font-size: var(--lu-text-sm); color: var(--lu-color-text); }
+
+  /* Supporting */
+  .lu-text--caption { font-size: var(--lu-text-xs); color: var(--lu-color-text-muted); }
+  .lu-text--muted   { font-size: var(--lu-text-sm); color: var(--lu-color-text-muted); }
+  .lu-text--label   { font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium); color: var(--lu-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .lu-text--overline { font-size: var(--lu-text-xs); font-weight: var(--lu-font-semibold); text-transform: uppercase; letter-spacing: 0.1em; color: var(--lu-color-text-muted); }
+
+  /* Page-level hero text */
+  .lu-text--page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--lu-font-bold);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--lu-color-text);
+  }
+  .lu-text--page-subtitle {
+    font-size: var(--lu-text-lg);
+    color: var(--lu-color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Brand / UI */
+  .lu-text--brand-label {
+    font-size: var(--lu-text-sm); font-weight: var(--lu-font-semibold);
+    color: var(--lu-color-text); letter-spacing: -0.01em;
+  }
+  .lu-text--section-title {
+    font-size: var(--lu-text-sm); font-weight: var(--lu-font-semibold);
+    color: var(--lu-color-text);
+  }
+  .lu-text--code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85em;
+    background: var(--lu-color-surface-sunken);
+    padding: 0.15em 0.4em;
+    border-radius: var(--lu-radius-2);
+    color: var(--lu-color-text);
+  }
+
+
+  /* ── LuLink ───────────────────────────────────────────────────────────── */
+  .lu-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--lu-space-1);
+    cursor: pointer;
+    transition: color var(--lu-duration-base), background var(--lu-duration-base), opacity var(--lu-duration-base);
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--lu-radius-2);
+    font-size: var(--lu-text-sm);
+  }
+  .lu-link:focus-visible {
+    outline: 2px solid var(--lu-color-border-focus);
+    outline-offset: 2px;
+  }
+
+  .lu-link--default {
+    color: var(--lu-color-primary);
+    font-weight: var(--lu-font-medium);
+  }
+  .lu-link--default:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+
+  /* Nav link — sidebar navigation items */
+  .lu-link--nav {
+    display: flex; align-items: center; gap: var(--lu-space-2);
+    width: 100%; padding: var(--lu-space-1) var(--lu-space-2);
+    border-radius: var(--lu-radius-2);
+    font-size: var(--lu-text-sm); color: var(--lu-color-text-muted);
+    transition: background var(--lu-duration-base), color var(--lu-duration-base);
+  }
+  .lu-link--nav:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+
+  .lu-link--nav-active {
+    display: flex; align-items: center; gap: var(--lu-space-2);
+    width: 100%; padding: var(--lu-space-1) var(--lu-space-2);
+    border-radius: var(--lu-radius-2);
+    font-size: var(--lu-text-sm);
+    background: color-mix(in srgb, var(--lu-color-primary) 8%, transparent);
+    color: var(--lu-color-primary);
+    font-weight: var(--lu-font-medium);
+  }
+  .lu-link--nav-active:hover { background: color-mix(in srgb, var(--lu-color-primary) 12%, transparent); }
+
+  /* Brand link */
+  .lu-link--brand {
+    color: var(--lu-color-text);
+    font-weight: var(--lu-font-medium);
+    gap: var(--lu-space-1);
+  }
+  .lu-link--brand:hover { opacity: 0.8; }
+
+  /* Ghost icon link */
+  .lu-link--ghost {
+    color: var(--lu-color-text-muted);
+    padding: var(--lu-space-1);
+    border-radius: var(--lu-radius-2);
+  }
+  .lu-link--ghost:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+
+
+  /* ── LuCollapsible ────────────────────────────────────────────────────── */
+  .lu-collapsible { display: flex; flex-direction: column; width: 100%; }
+
+  .lu-collapsible__trigger {
+    display: flex; align-items: center; gap: var(--lu-space-2);
+    width: 100%; padding: var(--lu-space-1) var(--lu-space-2);
+    border-radius: var(--lu-radius-2);
+    font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text-muted);
+    text-align: left; cursor: pointer;
+    background: transparent; border: none; outline: none;
+    transition: background var(--lu-duration-base), color var(--lu-duration-base);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .lu-collapsible__trigger:hover { background: var(--lu-color-surface-hover); color: var(--lu-color-text); }
+  .lu-collapsible__trigger:focus-visible { outline: 2px solid var(--lu-color-border-focus); }
+
+  .lu-collapsible__content { overflow: hidden; }
+  .lu-collapsible__content-inner { padding-top: var(--lu-space-1); }
+
+  /* Collapsible open/close transition */
+  .lu-collapsible-enter-active,
+  .lu-collapsible-leave-active { transition: opacity var(--lu-duration-base) var(--lu-ease-out); }
+  .lu-collapsible-enter-from,
+  .lu-collapsible-leave-to { opacity: 0; }
+
+
+  /* ── LuAccordion Item (same component, accordion-context mode) ────────── */
+  .lu-accordion-item { display: flex; flex-direction: column; width: 100%; border-bottom: 1px solid var(--lu-color-border); }
+  .lu-accordion-item:first-child { border-top: 1px solid var(--lu-color-border); }
+
+  .lu-accordion-item__trigger {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--lu-space-2);
+    width: 100%; padding: var(--lu-space-3) var(--lu-space-4);
+    font-size: var(--lu-text-sm); font-weight: var(--lu-font-medium);
+    color: var(--lu-color-text);
+    text-align: left; cursor: pointer;
+    background: transparent; border: none; outline: none;
+    transition: background var(--lu-duration-base);
+  }
+  .lu-accordion-item__trigger:hover { background: var(--lu-color-surface-hover); }
+  .lu-accordion-item__trigger:focus-visible { outline: 2px solid var(--lu-color-border-focus); }
+
+  .lu-accordion-item__content { overflow: hidden; }
+  .lu-collapsible__content-inner { padding: var(--lu-space-3) var(--lu-space-4); }
+
+
+  /* ── LuInput ──────────────────────────────────────────────────────────── */
+
+  /* Root: owns the border, background, border-radius, and focus ring.
+     Prepend/append are natural flex children — no absolute positioning. */
+  .lu-input__root {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 2.25rem;
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-input);
+    background: var(--lu-color-surface);
+    overflow: hidden;
+    transition: border-color var(--lu-duration-base), box-shadow var(--lu-duration-base);
+  }
+  .lu-input__root:focus-within {
+    border-color: var(--lu-color-border-focus);
+    box-shadow: 0 0 0 1px var(--lu-color-border-focus);
+  }
+  .lu-input__root--error {
+    border-color: var(--lu-color-danger);
+    box-shadow: 0 0 0 1px var(--lu-color-danger);
+  }
+  .lu-input__root--error:focus-within {
+    box-shadow: 0 0 0 2px var(--lu-color-danger-surface);
+  }
+  .lu-input__root--disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+  /* The <input> itself: borderless, transparent — root handles visuals */
+  .lu-input {
+    flex: 1 1 0%;
+    min-width: 0;
+    display: block;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: var(--lu-space-2) var(--lu-space-3);
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text);
+    outline: none;
+  }
+  .lu-input::placeholder { color: var(--lu-color-text-disabled); }
+
+  /* Password variant */
+  .lu-input--password { letter-spacing: 0.1em; }
+
+  /* Prepend / Append zones — flex siblings, not absolutely positioned.
+     Width is driven by content; icon zones use a fixed min-width. */
+  .lu-input__prepend,
+  .lu-input__append {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--lu-color-text-muted);
+  }
+
+  /* Icon-only zones: fixed width so the icon is centered nicely */
+  .lu-input__prepend:has(> .lu-input__icon),
+  .lu-input__append:has(> .lu-input__icon),
+  .lu-input__append:has(> .lu-input__reveal-button) {
+    width: 2.25rem;
+  }
+
+  /* Shared icon */
+  .lu-input__icon { flex-shrink: 0; }
+
+  /* Reveal button (password toggle) */
+  .lu-input__reveal-button {
+    display: flex; align-items: center; justify-content: center;
+    width: 1.75rem; height: 1.75rem;
+    border-radius: var(--lu-radius-2);
+    border: none; background: transparent; cursor: pointer;
+    color: var(--lu-color-text-muted);
+    transition: color var(--lu-duration-fast), background var(--lu-duration-fast);
+  }
+  .lu-input__reveal-button:hover {
+    color: var(--lu-color-text);
+    background: var(--lu-color-surface-hover);
+  }
+  .lu-input__reveal-button:focus-visible {
+    outline: 2px solid var(--lu-color-border-focus);
+    outline-offset: 2px;
+  }
+
+  /* ── LuTextarea ───────────────────────────────────────────────────────── */
+  .lu-textarea {
+    display: block; width: 100%; min-height: 5rem;
+    border-radius: var(--lu-radius-input);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface);
+    padding: var(--lu-space-2) var(--lu-space-3);
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text);
+    resize: vertical;
+    transition: border-color var(--lu-duration-base), box-shadow var(--lu-duration-base);
+    outline: none;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+  .lu-textarea::placeholder { color: var(--lu-color-text-disabled); }
+  .lu-textarea:focus {
+    border-color: var(--lu-color-border-focus);
+    box-shadow: 0 0 0 1px var(--lu-color-border-focus);
+  }
+  .lu-textarea:disabled { opacity: 0.4; cursor: not-allowed; resize: none; }
+  .lu-textarea--error {
+    border-color: var(--lu-color-danger);
+    box-shadow: 0 0 0 1px var(--lu-color-danger);
+  }
+  .lu-textarea--error:focus {
+    box-shadow: 0 0 0 2px var(--lu-color-danger-surface);
+  }
+
+
+  /* ── LuCard ───────────────────────────────────────────────────────────── */
+  .lu-card {
+    border-radius: var(--lu-radius-card);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    color: var(--lu-color-text);
+    box-shadow: var(--lu-shadow-sm);
+    overflow: hidden;
+  }
+  .lu-card--default {} /* Alias for base card */
+  .lu-card--flat { box-shadow: none; }
+  .lu-card--surface { background: var(--lu-color-surface); box-shadow: none; }
+  .lu-card--panel {
+    background: var(--lu-color-surface-raised);
+    padding: var(--lu-space-4);
+    transition: box-shadow var(--lu-duration-base);
+  }
+  .lu-card--panel:hover { box-shadow: var(--lu-shadow-md); }
+
+  .lu-bottom-sheet__footer {
+    padding: var(--lu-space-4);
+    border-top: 1px solid var(--lu-color-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--lu-space-2);
+  }
+
+
+  /* ── LuPopover ────────────────────────────────────────────────────────── */
+  .lu-popover__content {
+    background: var(--lu-color-surface-raised);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    box-shadow: var(--lu-shadow-lg);
+    padding: var(--lu-space-3);
+    z-index: 50;
+  }
+
+
+  /* ── LuRichTextEditor ─────────────────────────────────────────────────── */
+  .lu-rich-text-editor__content .ProseMirror {
+    outline: none;
+    min-height: inherit;
+    padding: var(--lu-space-3);
+  }
+  .lu-rich-text-editor__content .ProseMirror p { margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror h1 { font-size: var(--lu-text-2xl); font-weight: var(--lu-font-bold); margin-top: var(--lu-space-4); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror h2 { font-size: var(--lu-text-xl); font-weight: var(--lu-font-semibold); margin-top: var(--lu-space-4); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror h3 { font-size: var(--lu-text-lg); font-weight: var(--lu-font-semibold); margin-top: var(--lu-space-4); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror ul { list-style: disc; padding-left: var(--lu-space-5); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror ol { list-style: decimal; padding-left: var(--lu-space-5); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror blockquote { border-left: 3px solid var(--lu-color-border); padding-left: var(--lu-space-3); color: var(--lu-color-text-muted); margin-bottom: var(--lu-space-2); }
+  .lu-rich-text-editor__content .ProseMirror code { font-family: monospace; background: var(--lu-color-surface-sunken); padding: 0.1em 0.3em; border-radius: 3px; }
+  .lu-rich-text-editor__content .ProseMirror pre { background: var(--lu-color-surface-sunken); padding: var(--lu-space-3); border-radius: var(--lu-radius-2); font-family: monospace; margin-bottom: var(--lu-space-2); overflow-x: auto; }
+  .lu-rich-text-editor__content .ProseMirror .is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: var(--lu-color-text-subtle);
+    pointer-events: none;
+    height: 0;
+  }
+
+  .lu-card__header { padding: var(--lu-space-4) var(--lu-space-4) var(--lu-space-2); display: flex; flex-direction: column; gap: var(--lu-space-1); }
+  .lu-card__header-content { display: flex; align-items: center; justify-content: space-between; gap: var(--lu-space-3); }
+  .lu-card__title { font-size: var(--lu-text-lg); font-weight: var(--lu-font-semibold); color: var(--lu-color-text); line-height: 1.25; margin: 0; }
+  .lu-card__subtitle { font-size: var(--lu-text-sm); color: var(--lu-color-text-muted); margin: 0; }
+  .lu-card__body { padding: var(--lu-space-4); flex: 1; }
+  .lu-card__footer { padding: var(--lu-space-3) var(--lu-space-4); border-top: 1px solid var(--lu-color-border); background: var(--lu-color-surface-sunken); border-bottom-left-radius: var(--lu-radius-card); border-bottom-right-radius: var(--lu-radius-card); }
+  .lu-card__media { width: 100%; height: auto; display: block; border-top-left-radius: calc(var(--lu-radius-card) - 1px); border-top-right-radius: calc(var(--lu-radius-card) - 1px); overflow: hidden; }
+  .lu-card__media img { width: 100%; height: 100%; object-fit: cover; }
+  .lu-card__divider { height: 1px; background: var(--lu-color-border); margin: 0; border: none; }
+  
+
+  /* ── LuBadge ──────────────────────────────────────────────────────────── */
+  .lu-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--lu-radius-full);
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: var(--lu-font-medium);
+    transition: background-color var(--lu-duration-base), color var(--lu-duration-base);
+  }
+  .lu-badge--default { background: var(--lu-zinc-100); color: var(--lu-zinc-800); }
+  .dark .lu-badge--default, [data-theme="dark"] .lu-badge--default { background: var(--lu-zinc-800); color: var(--lu-zinc-200); }
+  
+  .lu-badge--primary { background: var(--lu-color-primary-surface); color: var(--lu-color-primary); }
+  .lu-badge--success { background: var(--lu-color-success-surface); color: var(--lu-color-success); }
+  .lu-badge--warning { background: var(--lu-color-warning-surface); color: var(--lu-color-warning); }
+  .lu-badge--danger  { background: var(--lu-color-danger-surface); color: var(--lu-color-danger); }
+  .lu-badge--info    { background: var(--lu-color-info-surface); color: var(--lu-color-info); }
+  .lu-badge--outline { background: transparent; border: 1px solid currentColor; }
+
+
+  /* ── LuDivider ────────────────────────────────────────────────────────── */
+  .lu-divider {
+    border-color: var(--lu-color-border);
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .lu-divider--horizontal { border-width: 0 0 1px 0; width: 100%; margin: var(--lu-space-4) 0; }
+  .lu-divider--vertical { border-width: 0 0 0 1px; height: 100%; margin: 0 var(--lu-space-4); display: inline-block; align-self: stretch; }
+
+
+  /* ── LuSpinner ────────────────────────────────────────────────────────── */
+  .lu-spinner {
+    display: inline-block;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: lu-spin 0.75s linear infinite;
+  }
+  @keyframes lu-spin { to { transform: rotate(360deg); } }
+  .lu-spinner--sm { width: 1rem; height: 1rem; border-width: 2px; }
+  .lu-spinner--md { width: 1.5rem; height: 1.5rem; border-width: 2px; }
+  .lu-spinner--lg { width: 2rem; height: 2rem; border-width: 3px; }
+  .lu-spinner--primary { color: var(--lu-color-primary); }
+  .lu-spinner--default { color: var(--lu-color-text-muted); }
+  .lu-spinner--white { color: var(--lu-white); }
+  
+
+  /* ── LuSkeleton ───────────────────────────────────────────────────────── */
+  .lu-skeleton {
+    animation: lu-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background-color: var(--lu-zinc-200);
+    border-radius: var(--lu-radius-3);
+    display: block;
+    width: 100%;
+    height: 1rem;
+  }
+  .lu-skeleton--text   { height: 0.875rem; border-radius: var(--lu-radius-full); }
+  .lu-skeleton--title  { height: 1.5rem; width: 60%; border-radius: var(--lu-radius-full); }
+  .lu-skeleton--circle { width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+  .lu-skeleton--block  { height: 8rem; border-radius: var(--lu-radius-card); }
+  .lu-skeleton--avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+  .dark .lu-skeleton, [data-theme="dark"] .lu-skeleton { background-color: var(--lu-zinc-800); }
+  @keyframes lu-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+  }
+
+
+  /* ── LuProgressBar ────────────────────────────────────────────────────── */
+  .lu-progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--lu-color-surface-sunken);
+    border-radius: var(--lu-radius-full);
+    overflow: hidden;
+  }
+  .lu-progress-bar__indicator {
+    height: 100%;
+    background-color: var(--lu-color-primary);
+    transition: width var(--lu-duration-slow) var(--lu-ease-out);
+  }
+  
+
+  /* ── LuPageHeader ─────────────────────────────────────────────────────── */
+  .lu-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lu-space-2);
+    margin-bottom: var(--lu-space-6);
+  }
+  .lu-page-header__title {
+    font-size: var(--lu-text-2xl);
+    font-weight: var(--lu-font-semibold);
+    color: var(--lu-color-text);
+    margin: 0;
+  }
+  .lu-page-header__description {
+    font-size: var(--lu-text-sm);
+    color: var(--lu-color-text-muted);
+    margin: 0;
+  }
+
+
+  /* ── LuTable (Base table classes) ─────────────────────────────────────── */
+  .lu-table { width: 100%; text-align: left; border-collapse: collapse; }
+  .lu-table-body { display: table-row-group; }
+  .lu-table-head { background-color: var(--lu-color-surface); }
+  .lu-table-row { border-bottom: 1px solid var(--lu-color-border); transition: background-color var(--lu-duration-fast); }
+  .lu-table-row:hover { background-color: var(--lu-color-surface-hover); }
+  .lu-table-cell { padding: var(--lu-space-3) var(--lu-space-4); vertical-align: middle; font-size: var(--lu-text-sm); }
+  .lu-table-head-cell { padding: var(--lu-space-3) var(--lu-space-4); font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium); color: var(--lu-color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ── LuFormField ──────────────────────────────────────────────────────── */
+  .lu-form-field { display: flex; flex-direction: column; gap: var(--lu-space-1); width: 100%; }
+  .lu-form-field__label { font-size: var(--lu-text-sm); font-weight: var(--lu-font-medium); color: var(--lu-color-text); }
+  .lu-form-field__description { font-size: 0.8rem; color: var(--lu-color-text-muted); }
+  .lu-form-field__error { font-size: 0.8rem; color: var(--lu-color-danger); font-weight: var(--lu-font-medium); }
+  .lu-form-field__hint { font-size: 0.8rem; color: var(--lu-color-text-muted); }
+
+  /* ── LuList ───────────────────────────────────────────────────────────── */
+  .lu-list { display: flex; flex-direction: column; width: 100%; margin: 0; padding: 0; list-style: none; }
+  .lu-list-divider { border-bottom: 1px solid var(--lu-color-border); }
+  .lu-list-subheader { padding: var(--lu-space-2) var(--lu-space-4); font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium); color: var(--lu-color-text-muted); text-transform: uppercase; }
+
+  /* ── LuToast ──────────────────────────────────────────────────────────── */
+  .lu-toast-stack {
+    position: fixed; bottom: var(--lu-space-4); right: var(--lu-space-4);
+    display: flex; flex-direction: column; gap: var(--lu-space-2);
+    z-index: var(--lu-z-toast); pointer-events: none;
+  }
+  .lu-toast {
+    pointer-events: auto;
+    display: flex; align-items: flex-start; gap: var(--lu-space-3);
+    padding: var(--lu-space-3) var(--lu-space-4);
+    border-radius: var(--lu-radius-card);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    box-shadow: var(--lu-shadow-lg);
+    font-size: var(--lu-text-sm); color: var(--lu-color-text);
+    min-width: 280px; max-width: 400px;
+  }
+  .lu-toast--success { border-color: var(--lu-color-success); }
+  .lu-toast--error   { border-color: var(--lu-color-danger); }
+  .lu-toast--warning { border-color: var(--lu-color-warning); }
+  .lu-toast__title   { font-weight: var(--lu-font-medium); }
+  .lu-toast__body    { color: var(--lu-color-text-muted); font-size: var(--lu-text-xs); margin-top: 0.125rem; }
+  .lu-toast-close {
+    margin-left: auto; flex-shrink: 0;
+    background: transparent; border: none; cursor: pointer;
+    color: var(--lu-color-text-muted); padding: 0; line-height: 1;
+    border-radius: var(--lu-radius-2);
+  }
+  .lu-toast-close:hover { color: var(--lu-color-text); }
+
+  /* ── LuChip / LuTag ───────────────────────────────────────────────────── */
+  .lu-chip, .lu-tag {
+    display: inline-flex; align-items: center; gap: var(--lu-space-1);
+    padding: 0.125rem var(--lu-space-2);
+    border-radius: var(--lu-radius-chip);
+    font-size: var(--lu-text-xs); font-weight: var(--lu-font-medium);
+    background: var(--lu-color-surface-sunken);
+    color: var(--lu-color-text-muted);
+    border: 1px solid var(--lu-color-border);
+    cursor: default;
+  }
+  .lu-chip--primary, .lu-tag--primary { background: var(--lu-color-primary-surface); color: var(--lu-color-primary); border-color: var(--lu-color-primary-border); }
+  .lu-chip--success, .lu-tag--success { background: var(--lu-color-success-surface); color: var(--lu-color-success); }
+  .lu-chip--danger,  .lu-tag--danger  { background: var(--lu-color-danger-surface); color: var(--lu-color-danger); }
+  .lu-chip--warning, .lu-tag--warning { background: var(--lu-color-warning-surface); color: var(--lu-color-warning); }
+
+  /* ── LuAlert ──────────────────────────────────────────────────────────── */
+  .lu-alert {
+    display: flex; gap: var(--lu-space-3); align-items: flex-start;
+    padding: var(--lu-space-3) var(--lu-space-4);
+    border-radius: var(--lu-radius-card);
+    border: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface);
+  }
+  .lu-alert--success { border-color: var(--lu-color-success); background: var(--lu-color-success-surface); }
+  .lu-alert--danger  { border-color: var(--lu-color-danger); background: var(--lu-color-danger-surface); }
+  .lu-alert--warning { border-color: var(--lu-color-warning); background: var(--lu-color-warning-surface); }
+  .lu-alert--info    { border-color: var(--lu-color-info); background: var(--lu-color-info-surface); }
+  .lu-alert__icon    { flex-shrink: 0; margin-top: 0.1rem; }
+  .lu-alert__title   { font-weight: var(--lu-font-medium); font-size: var(--lu-text-sm); margin-bottom: var(--lu-space-1); }
+  .lu-alert__body    { font-size: var(--lu-text-sm); color: var(--lu-color-text-muted); }
+
+  /* ── LuPopover / Dropdown panel ───────────────────────────────────────── */
+  .lu-popover {
+    position: absolute; z-index: var(--lu-z-dropdown);
+    background: var(--lu-color-surface-raised);
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-card);
+    box-shadow: var(--lu-shadow-lg);
+    overflow: hidden;
+  }
+
+  /* ── LuDrawer ─────────────────────────────────────────────────────────── */
+  .lu-drawer__backdrop {
+    position: fixed; inset: 0; z-index: var(--lu-z-modal);
+    background: rgba(0,0,0,0.45);
+  }
+  .lu-drawer__panel {
+    position: fixed; z-index: var(--lu-z-modal);
+    background: var(--lu-color-surface-raised);
+    box-shadow: var(--lu-shadow-xl);
+    display: flex; flex-direction: column;
+  }
+  .lu-drawer__panel--right  { top: 0; right: 0; bottom: 0; width: 24rem; border-left: 1px solid var(--lu-color-border); }
+  .lu-drawer__panel--left   { top: 0; left: 0; bottom: 0; width: 24rem; border-right: 1px solid var(--lu-color-border); }
+  .lu-drawer__panel--bottom { left: 0; right: 0; bottom: 0; height: 50dvh; border-top: 1px solid var(--lu-color-border); border-radius: var(--lu-radius-5) var(--lu-radius-5) 0 0; }
+  .lu-drawer__header  { display: flex; align-items: center; justify-content: space-between; padding: var(--lu-space-4); border-bottom: 1px solid var(--lu-color-border); flex-shrink: 0; }
+  .lu-drawer__content { flex: 1; overflow-y: auto; padding: var(--lu-space-4); }
+  .lu-drawer__footer  { padding: var(--lu-space-4); border-top: 1px solid var(--lu-color-border); flex-shrink: 0; }
+
+  /* ── LuBottomSheet internal elements ─────────────────────────────────── */
+  /* Handle bar replaces: w-12 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700 mx-auto */
+  .lu-bottom-sheet__handle-bar {
+    width: 3rem; height: 0.375rem; border-radius: 9999px;
+    background: color-mix(in srgb, var(--lu-color-text) 25%, transparent);
+    margin-inline: auto;
+  }
+  /* Body replaces: flex-1 overflow-y-auto px-6 pb-8 */
+  .lu-bottom-sheet__body { flex: 1; overflow-y: auto; padding: 0 var(--lu-space-6) var(--lu-space-8); }
+
+  /* ── LuBreadcrumb separator icon ─────────────────────────────────────── */
+  /* Replaces: h-4 mr-2 w-4 */
+  .lu-breadcrumb__separator-icon { width: 1rem; height: 1rem; margin-right: 0.5rem; }
+
+  /* ── LuChip internal elements ────────────────────────────────────────── */
+  /* Replaces: flex-1 min-w-0 */
+  .lu-chip__label { flex: 1; min-width: 0; }
+  /* Replaces: w-3 h-3 */
+  .lu-chip__remove-icon { width: 0.75rem; height: 0.75rem; }
+  /* Replaces: shrink-0 flex items-center justify-center */
+  .lu-chip__icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+  /* ── LuCodeBlock copy icon ───────────────────────────────────────────── */
+  /* Replaces: w-4 h-4 */
+  .lu-code-block__copy-icon { width: 1rem; height: 1rem; }
+
+  /* ── LuFormField error icon ──────────────────────────────────────────── */
+  /* Replaces: text-rose-500 ml-0.5 */
+  .lu-form-field__error-icon { color: var(--lu-color-error); margin-left: 0.125rem; }
+
+  /* ── LuModal close icon ──────────────────────────────────────────────── */
+  /* Replaces: h-5 w-5 */
+  .lu-modal__close-icon { width: 1.25rem; height: 1.25rem; }
+
+  /* ── LuPagination icon ───────────────────────────────────────────────── */
+  /* Replaces: h-4 w-4 */
+  .lu-pagination__icon { width: 1rem; height: 1rem; }
+
+  /* ── LuTimelineItem counter ──────────────────────────────────────────── */
+  /* Replaces: text-xs font-bold leading-none */
+  .lu-timeline-item__counter {
+    font-size: var(--lu-text-xs); font-weight: var(--lu-font-bold); line-height: 1;
+  }
+
+  /* ── LuToast internal elements ───────────────────────────────────────── */
+  /* Replaces: flex-1 min-w-0 */
+  .lu-toast__message { flex: 1; min-width: 0; }
+  /* Replaces: w-4 h-4 */
+  .lu-toast__close-icon { width: 1rem; height: 1rem; }
+
+  /* ── LuPlanner new element classes ───────────────────────────────────── */
+  /* Header nav group replaces: flex items-center gap-2 */
+  .lu-planner__header-nav { display: flex; align-items: center; gap: var(--lu-space-2); }
+  /* Spacer replaces: w-20 */
+  .lu-planner__header-spacer { width: 5rem; }
+  /* Time gutter header replaces: h-12 border-b shrink-0 with zinc colors */
+  .lu-planner__time-gutter-header {
+    height: 3rem; flex-shrink: 0;
+    border-bottom: 1px solid var(--lu-color-border);
+  }
+  /* Day header replaces: h-12 flex flex-col items-center justify-center shrink-0 border-b */
+  .lu-planner__day-header {
+    height: 3rem;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--lu-color-border);
+  }
+  /* Day name replaces: text-[10px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 */
+  .lu-planner__day-name {
+    font-size: 0.625rem; font-weight: var(--lu-font-medium);
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--lu-color-text-muted);
+  }
+  /* Day number replaces: text-sm font-semibold mt-0.5 */
+  .lu-planner__day-number {
+    font-size: var(--lu-text-sm); font-weight: var(--lu-font-semibold);
+    margin-top: 0.125rem;
+    color: var(--lu-color-text);
+  }
+  /* Today variant: text-rose-600 dark:text-rose-400 */
+  .lu-planner__day-number--today { color: var(--lu-color-error); }
+  /* Hour cell replaces: h-16 cursor-pointer */
+  .lu-planner__hour-cell { height: 4rem; cursor: pointer; }
+  /* Event left accent border replaces: border-l-4 */
+  .lu-planner__event { border-left-width: 4px; border-left-style: solid; }
+  /* Event title replaces: font-bold truncate text-[11px] */
+  .lu-planner__event-title {
+    font-size: 0.6875rem; font-weight: var(--lu-font-bold);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  /* Event time replaces: text-[10px] opacity-90 font-medium mt-0.5 */
+  .lu-planner__event-time {
+    font-size: 0.625rem; opacity: 0.9;
+    font-weight: var(--lu-font-medium); margin-top: 0.125rem;
+  }
+
+}

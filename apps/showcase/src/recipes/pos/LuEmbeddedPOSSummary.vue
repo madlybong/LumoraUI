@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 
 defineOptions({ name: "LuEmbeddedPOSSummary" });
@@ -21,11 +20,9 @@ const props = withDefaults(defineProps<{
   formatCurrency: (v: number | string): string => typeof v === "number" ? `$${v.toFixed(2)}` : v,
 });
 
-const { resolveSkin } = useLumoraConfig();
-
-const skinSummary = computed(() => resolveSkin("LuEmbeddedPOSSummary"));
-const skinRow = computed(() => resolveSkin("LuEmbeddedPOSSummaryRow"));
-const skinTotal = computed(() => resolveSkin("LuEmbeddedPOSSummaryTotal"));
+const skinSummary = computed(() => `sc-pos-summary`);
+const skinRow = computed(() => `sc-pos-summary__row`);
+const skinTotal = computed(() => `sc-pos-summary__total`);
 </script>
 
 <template>

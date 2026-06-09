@@ -1,12 +1,11 @@
 <template>
-  <button v-bind="$attrs" :class="[resolvedSkin, isActive ? activeSkin : '']" @click="onClick">
+  <button v-bind="$attrs" :class="['lu-tab', variant && `lu-tab--${variant}`, isActive && 'lu-tab--active']" @click="onClick">
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, type Ref } from "vue";
-import { useLumoraConfig } from "../context";
 
 const props = defineProps<{ variant?: string; value: string | number }>();
 
@@ -20,7 +19,4 @@ const onClick = () => {
   }
 };
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => resolveSkin("LuTab", props.variant));
-const activeSkin = computed(() => resolveSkin("LuTab", "active"));
 </script>

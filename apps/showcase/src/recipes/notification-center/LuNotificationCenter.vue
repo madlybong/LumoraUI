@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useLumoraConfig } from '@astrake/lumora-ui';
 import { LuText } from '@astrake/lumora-ui';
 import { LuIcon } from '@astrake/lumora-ui';
 import { LuButton } from '@astrake/lumora-ui';
@@ -33,8 +32,6 @@ const emit = defineEmits<{
   (e: "click", notification: NotificationItem): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-
 const isOpen = ref(false);
 
 const unreadCount = computed(() => props.notifications.filter(n => !n.read).length);
@@ -54,14 +51,14 @@ function onOverlayClick() {
   isOpen.value = false;
 }
 
-const skinCenter = computed(() => resolveSkin("LuNotificationCenter"));
-const skinTrigger = computed(() => resolveSkin("LuNotificationCenterTrigger"));
-const skinBadge = computed(() => resolveSkin("LuNotificationCenterBadge"));
-const skinPanel = computed(() => resolveSkin("LuNotificationCenterPanel"));
-const skinHeader = computed(() => resolveSkin("LuNotificationCenterHeader"));
-const skinList = computed(() => resolveSkin("LuNotificationCenterList"));
-const skinEmpty = computed(() => resolveSkin("LuNotificationCenterEmpty"));
-const skinFooter = computed(() => resolveSkin("LuNotificationCenterFooter"));
+const skinCenter = computed(() => `sc-notification-center`);
+const skinTrigger = computed(() => `sc-notification-center__trigger`);
+const skinBadge = computed(() => `sc-notification-center__badge`);
+const skinPanel = computed(() => `sc-notification-center__panel`);
+const skinHeader = computed(() => `sc-notification-center__header`);
+const skinList = computed(() => `sc-notification-center__list`);
+const skinEmpty = computed(() => `sc-notification-center__empty`);
+const skinFooter = computed(() => `sc-notification-center__footer`);
 </script>
 
 <template>
@@ -125,7 +122,7 @@ const skinFooter = computed(() => resolveSkin("LuNotificationCenterFooter"));
             <div
               v-for="n in visibleNotifications"
               :key="n.id"
-              :class="n.read ? resolveSkin('LuNotificationCenterItem') : resolveSkin('LuNotificationCenterItemUnread')"
+              :class="n.read ? 'sc-notification-center__item' : 'sc-notification-center__item-unread'"
               role="listitem"
               :tabindex="0"
               @click="handleClick(n)"
@@ -134,7 +131,7 @@ const skinFooter = computed(() => resolveSkin("LuNotificationCenterFooter"));
               <!-- Unread dot -->
               <span
                 v-if="!n.read"
-                :class="resolveSkin('LuNotificationCenterUnreadDot')"
+                class="sc-notification-center__unread-dot"
                 aria-hidden="true"
               />
               <span v-else class="w-2 h-2 shrink-0" />

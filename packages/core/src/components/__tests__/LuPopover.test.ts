@@ -53,7 +53,7 @@ describe("LuPopover", () => {
       }
     });
 
-    const triggerWrapper = wrapper.find(".lu-popover-trigger");
+    const triggerWrapper = wrapper.find(".lu-popover__trigger");
     await triggerWrapper.trigger("mouseenter");
 
     const content = wrapper.find("#popover-content");
