@@ -167,10 +167,10 @@ function dayButtonVariant(day: CalendarDay): string | undefined {
     <div :class="['lu-calendar__header']">
       <LuText :class="['lu-calendar__title']">{{ MONTH_NAMES[viewMonth] }} {{ viewYear }}</LuText>
       <div :class="['lu-calendar__nav']">
-        <LuButton variant="ghost" :size="props.size === 'mini' ? 'icon-sm' : 'icon-sm'" aria-label="Previous month" @click="prevMonth">
+        <LuButton variant="ghost" :size="props.size === 'mini' ? 'sm' : 'sm'" class="lu-button--icon-sm" aria-label="Previous month" @click="prevMonth">
           <LuIcon name="chevron-left" :size="props.size === 'mini' ? 14 : 16" />
         </LuButton>
-        <LuButton variant="ghost" :size="props.size === 'mini' ? 'icon-sm' : 'icon-sm'" aria-label="Next month" @click="nextMonth">
+        <LuButton variant="ghost" :size="props.size === 'mini' ? 'sm' : 'sm'" class="lu-button--icon-sm" aria-label="Next month" @click="nextMonth">
           <LuIcon name="chevron-right" :size="props.size === 'mini' ? 14 : 16" />
         </LuButton>
       </div>

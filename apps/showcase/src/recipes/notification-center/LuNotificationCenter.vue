@@ -110,7 +110,7 @@ const skinFooter = computed(() => `sc-notification-center__footer`);
               <LuIcon name="check-check" :size="14" />
               <LuText variant="caption">Mark all read</LuText>
             </LuButton>
-            <LuButton variant="ghost" size="icon-sm" @click="emit('clear-all')" aria-label="Clear all">
+            <LuButton variant="ghost" size="sm" class="lu-button--icon-sm" @click="emit('clear-all')" aria-label="Clear all">
               <LuIcon name="trash-2" :size="14" />
             </LuButton>
           </div>

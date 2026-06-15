@@ -17,10 +17,16 @@ const props = defineProps<{
   variant?: string;
 }>();
 
-const groupValue = inject<Ref<string | number | boolean | undefined>>("lu-toggle-value");
+const groupValue = inject<Ref<string | number | boolean | (string | number | boolean)[] | undefined>>("lu-toggle-value");
+const isMultiple = inject<Ref<boolean | undefined>>("lu-toggle-multiple");
 const setGroupValue = inject<(value: string | number | boolean) => void>("lu-toggle-set");
 
-const isActive = computed(() => groupValue?.value === props.value);
+const isActive = computed(() => {
+  if (isMultiple?.value && Array.isArray(groupValue?.value)) {
+    return groupValue.value.includes(props.value);
+  }
+  return groupValue?.value === props.value;
+});
 
 const onClick = () => {
   if (setGroupValue) {

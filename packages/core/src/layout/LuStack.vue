@@ -1,5 +1,5 @@
 <template>
-  <component :is="as" v-bind="$attrs" :class="resolvedClasses">
+  <component :is="as" v-bind="$attrs" :class="resolvedClasses" :style="resolvedStyles">
     <slot />
   </component>
 </template>
@@ -11,38 +11,42 @@ const props = withDefaults(defineProps<{
   direction?: "vertical" | "horizontal";
   variant?: string;
   as?: string;
-  /** Tailwind gap step, e.g. gap="4" → gap-4 */
+  /** Space token scale gap, e.g. gap="4" → gap: var(--lu-space-4) */
   gap?: string | number;
-  /** Tailwind items-* shorthand: center | start | end | stretch | baseline */
+  /** Flexbox align-items property */
   align?: "center" | "start" | "end" | "stretch" | "baseline";
-  /** Tailwind justify-* shorthand: center | start | end | between | around | evenly */
+  /** Flexbox justify-content property */
   justify?: "center" | "start" | "end" | "between" | "around" | "evenly";
 }>(), {
   as: 'div'
 });
 
-const ALIGN: Record<string, string> = {
-  center: 'items-center',
-  start: 'items-start',
-  end: 'items-end',
-  stretch: 'items-stretch',
-  baseline: 'items-baseline',
+const ALIGN_VALUES: Record<string, string> = {
+  center: 'center',
+  start: 'flex-start',
+  end: 'flex-end',
+  stretch: 'stretch',
+  baseline: 'baseline',
 };
 
-const JUSTIFY: Record<string, string> = {
-  center: 'justify-center',
-  start: 'justify-start',
-  end: 'justify-end',
-  between: 'justify-between',
-  around: 'justify-around',
-  evenly: 'justify-evenly',
+const JUSTIFY_VALUES: Record<string, string> = {
+  center: 'center',
+  start: 'flex-start',
+  end: 'flex-end',
+  between: 'space-between',
+  around: 'space-around',
+  evenly: 'space-evenly',
 };
 
 const resolvedClasses = computed(() => {
-  const skin = `lu-stack ${props.direction ? "lu-stack--"+props.direction : props.variant && props.variant !== "default" ? "lu-stack--"+props.variant : ""}`.trim();
-  const gap = props.gap !== undefined ? `gap-${props.gap}` : '';
-  const align = props.align ? (ALIGN[props.align] ?? '') : '';
-  const justify = props.justify ? (JUSTIFY[props.justify] ?? '') : '';
-  return [skin, gap, align, justify].filter(Boolean).join(' ');
+  return `lu-stack ${props.direction ? "lu-stack--"+props.direction : props.variant && props.variant !== "default" ? "lu-stack--"+props.variant : ""}`.trim();
+});
+
+const resolvedStyles = computed(() => {
+  return {
+    gap: props.gap !== undefined ? `var(--lu-space-${props.gap})` : undefined,
+    alignItems: props.align ? ALIGN_VALUES[props.align] : undefined,
+    justifyContent: props.justify ? JUSTIFY_VALUES[props.justify] : undefined,
+  };
 });
 </script>

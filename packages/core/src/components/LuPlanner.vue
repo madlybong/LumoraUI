@@ -180,13 +180,13 @@ function handleSlotClick(isoDateStr: string, timeStr: string) {
     <!-- Top toolbar navigation -->
     <div :class="['lu-planner__header']">
       <div class="lu-planner__header-nav">
-        <LuButton variant="ghost" size="icon-sm" :class="['lu-planner__nav-button']" aria-label="Previous week" @click="prevWeek">
+        <LuButton variant="ghost" size="sm" :class="['lu-planner__nav-button', 'lu-button--icon-sm']" aria-label="Previous week" @click="prevWeek">
           <LuIcon name="chevron-left" :size="16" />
         </LuButton>
         <LuButton variant="ghost" size="sm" :class="['lu-planner__nav-button']" @click="goToToday">
           Today
         </LuButton>
-        <LuButton variant="ghost" size="icon-sm" :class="['lu-planner__nav-button']" aria-label="Next week" @click="nextWeek">
+        <LuButton variant="ghost" size="sm" :class="['lu-planner__nav-button', 'lu-button--icon-sm']" aria-label="Next week" @click="nextWeek">
           <LuIcon name="chevron-right" :size="16" />
         </LuButton>
       </div>

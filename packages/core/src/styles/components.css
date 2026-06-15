@@ -77,6 +77,12 @@
   /* Full Width */
   .lu-button--full { width: 100%; }
 
+  /* Button Loading State */
+  .lu-button { position: relative; } /* ensure overlay anchor */
+  .lu-button--loading { pointer-events: none; }
+  .lu-button--loading .lu-button__content { visibility: hidden; }
+  .lu-button__spinner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
 
   /* ── LuIcon ───────────────────────────────────────────────────────────── */
   .lu-icon {
@@ -640,6 +646,50 @@
     border-radius: var(--lu-radius-card);
     box-shadow: var(--lu-shadow-lg);
     overflow: hidden;
+  }
+
+  /* ── LuToggleGroup ──────────────────────────────────────────────────────── */
+  .lu-toggle-group {
+    display: inline-flex;
+    border: 1px solid var(--lu-color-border);
+    border-radius: var(--lu-radius-input);
+    overflow: hidden;
+  }
+  .lu-toggle-group--vertical {
+    flex-direction: column;
+  }
+  
+  .lu-toggle-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--lu-space-2) var(--lu-space-3);
+    border: none;
+    border-right: 1px solid var(--lu-color-border);
+    background: var(--lu-color-surface-raised);
+    color: var(--lu-color-text);
+    font-size: var(--lu-text-sm);
+    font-weight: var(--lu-font-medium);
+    cursor: pointer;
+    transition: background var(--lu-duration-fast), color var(--lu-duration-fast);
+  }
+  .lu-toggle-button:last-child {
+    border-right: none;
+  }
+  .lu-toggle-group--vertical .lu-toggle-button {
+    border-right: none;
+    border-bottom: 1px solid var(--lu-color-border);
+  }
+  .lu-toggle-group--vertical .lu-toggle-button:last-child {
+    border-bottom: none;
+  }
+  .lu-toggle-button:hover:not(.lu-toggle-button--active) {
+    background: var(--lu-color-surface-hover);
+  }
+  .lu-toggle-button--active {
+    background: var(--lu-color-primary-surface);
+    color: var(--lu-color-primary);
   }
 
   /* ── LuDrawer ─────────────────────────────────────────────────────────── */
