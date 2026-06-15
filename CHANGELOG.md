@@ -4,6 +4,22 @@
 
 ---
 
+## [0.9.0] — 2026-06-15
+
+### Added
+
+- `LuToggleGroup`: Added support for multiple selection via `multiple` prop.
+- `LuButton`: Added `size` (`sm`, `md`, `lg`) and `loading` props.
+- `LuStack`: Refactored to use static inline CSS gap/alignment instead of Tailwind utilities.
+- `LuText`: Added `color` and `weight` props for automatic design token mapping.
+
+### Documentation
+
+- Updated AI agent knowledge base to reflect the finalized static BEM styling architecture.
+
+
+---
+
 ## [0.8.0] — 2026-06-09
 
 ### ⚠ Breaking / Structural Changes
