@@ -18,9 +18,8 @@ Trigger this workflow every 2-3 minor versions or whenever documentation drift i
 ## Steps
 
 1. **Review Rules**: Check if new patterns or `[NEVER]` rules were established recently. If so, document them inside `.agents/rules/`.
-2. **Review Reference Directory**: Update the list of active skins inside `.agents/reference/skin-key-index.md` if any new components were introduced.
-3. **Verify Index Integrity**: Check that files in `.agents/rules/` and `.agents/workflows/` have proper YAML blocks and matching IDs.
-4. **Identify Dead References**:
+2. **Verify Index Integrity**: Check that files in `.agents/rules/` and `.agents/workflows/` have proper YAML blocks and matching IDs.
+3. **Identify Dead References**:
    - Run grep search for old naming patterns (e.g. `LuM*`, `LuD*`, `LuE*`).
    - Look for phantom paths (like `src/tokens/` or references to deleted files).
-5. **Commit**: Save changes with the commit prefix: `docs(agent): update AI knowledge base for vX.Y.Z cycle`.
+4. **Commit**: Save changes with the commit prefix: `docs(agent): update AI knowledge base for vX.Y.Z cycle`.

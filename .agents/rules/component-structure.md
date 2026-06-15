@@ -27,7 +27,6 @@ To maintain consistency and type safety across the monorepo, all Vue Single File
 ```vue
 <script setup lang="ts">
 import { computed } from "vue";
-import { useLumoraConfig } from "../context";
 
 defineOptions({ name: "LuBadge" });
 
@@ -43,14 +42,13 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const { resolveSkin } = useLumoraConfig();
-const resolvedSkin = computed(() => {
-  return resolveSkin("LuBadge", props.variant) || `lu-badge lu-badge--${props.variant}`;
+const resolvedClasses = computed(() => {
+  return `lu-badge lu-badge--${props.variant}`;
 });
 </script>
 
 <template>
-  <span :class="[resolvedSkin]">
+  <span :class="resolvedClasses">
     <slot />
   </span>
 </template>

@@ -74,7 +74,7 @@ To ensure consumers who do not use Tailwind CSS still get fully functioning comp
 
 Example standard component layout binding:
 ```vue
-<div :class="[resolveSkin('LuDesktopShell') || 'lu-desktop-shell']">
+<div class="lu-desktop-shell">
   ...
 </div>
 ```

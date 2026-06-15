@@ -52,7 +52,6 @@ Refer to the targeted guides within `.agents/` depending on your task:
 * 📚 **Rules & Invariants**: **[`.agents/rules/`](file:///.agents/rules/)**
   - **[Headless Invariant](file:///.agents/rules/headless-styling.md)**
   - **[Surface Isolation](file:///.agents/rules/surface-isolation.md)**
-  - **[Skin Resolution](file:///.agents/rules/skin-resolution.md)**
   - **[Component Structure](file:///.agents/rules/component-structure.md)**
   - **[Styles Directory](file:///.agents/rules/styles-directory.md)**
   - **[BEM Class Index](file:///.agents/reference/bem-class-index.md)**
@@ -70,7 +69,6 @@ Refer to the targeted guides within `.agents/` depending on your task:
 
 * 📖 **References & Specifications**: **[`.agents/reference/`](file:///.agents/reference/)**
   - **[Architecture Blueprint](file:///.agents/reference/architecture.md)**
-  - **[Skin Key Index](file:///.agents/reference/skin-key-index.md)**
   - **[Composables Reference](file:///.agents/reference/composables.md)**
   - **[Betterment Backlog](file:///.agents/reference/betterment.md)**
   - **[Showcase Application Docs](file:///.agents/reference/showcase.md)**

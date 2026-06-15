@@ -24,13 +24,10 @@ Use this step-by-step workflow when asked to design or implement a new UI compon
      - Mobile surface: `packages/core/src/shell/mobile/LuMobile[Name].vue`
      - Embedded surface: `packages/core/src/shell/embedded/LuEmbedded[Name].vue`
 2. **Implement Structural Template**:
-   - Resolve dynamic classes via `resolveSkin("Lu[Name]", props.variant) || 'lu-[name]'`.
+   - Assign static BEM class names using template literals (e.g., `` `lu-[name] lu-[name]--${props.variant}` ``).
    - Do not hardcode Tailwind utility classes in `<template>`.
-3. **Register Skin Mapping**:
-   - Add the types inside `packages/core/src/types.ts`.
-   - Add the default skin configuration mapping in `packages/core/src/skins/components.ts` (or relevant surface skin mapping).
-4. **CSS Escape Hatch Fallback**:
-   - If the component uses structural class prefixes (e.g. `lu-[name]`), add the default layout definition rules inside `packages/core/src/lumora.css`.
+3. **CSS Framework Support**:
+   - Add the default layout definition rules inside `packages/core/src/styles/components.css`.
 5. **Export the Component**:
    - Re-export the component from the main namespace entry points (`src/components/index.ts` or corresponding shell entry points).
 6. **Write Unit Tests**:
