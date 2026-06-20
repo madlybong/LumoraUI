@@ -4,6 +4,27 @@
 
 ---
 
+## [0.9.1] — 2026-06-20
+
+### Added
+- Added comprehensive AI Agent JSDoc notes to `LuStack`, `LuGrid`, `LuCard`, `LuAccordion`, `LuSplit`, and `LuDock` explaining Zero-Raw-HTML adherence constraints.
+- `LuToggleGroup`: Added support for multiple selection via `multiple` prop.
+- `LuButton`: Added `size` (`sm`, `md`, `lg`) and `loading` props.
+- `LuText`: Added `color` and `weight` props for automatic design token mapping.
+
+### Fixed
+- **Layout primitives**: Eliminated layout bloat ("blowfish" padding effect) by enforcing `pad="0"` explicitly across showcase applications and recipes.
+- `LuCard`: Overhauled subcomponents (`LuCardHeader`, `LuCardTitle`, `LuCardSubtitle`, `LuCardBody`, `LuCardFooter`, `LuCardMedia`) for strict zero-raw-HTML layout enforcement.
+- `LuAccordion`: Added `ghost` variant and repaired sidebar layout styles.
+- `LuStack`: Refactored to use static inline CSS gap/alignment instead of Tailwind utilities.
+
+### Documentation
+- Updated `CONSUMER_GUIDE.md` and `.agents/reference/showcase.md` to explicitly describe `LuStack` structural alignment and layout bloat anti-patterns.
+- Updated AI knowledge base for v0.8.0 architecture.
+
+
+---
+
 ## [0.9.0] — 2026-06-15
 
 ### Added
