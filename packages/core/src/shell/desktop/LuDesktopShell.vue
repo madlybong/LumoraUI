@@ -17,10 +17,24 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuDesktopShell" });
 
-const props = defineProps<{ 
+/**
+ * Root container for desktop applications.
+ * 
+ * @slots
+ * - `topbar`: Place `LuDesktopTopBar` here
+ * - `rail`: Place `LuDesktopRailBar` here
+ * - `sidebar`: Place `LuDesktopSidebar` here
+ * - `content`: Main scrollable application view
+ * - `statusbar`: Place `LuDesktopStatusBar` here
+ */
+interface LuDesktopShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-shell--{variant}`. */
   variant?: "default" | "compact";
+  /** ARIA label for the application region. */
   ariaLabel?: string;
-}>();
+}
+
+const props = defineProps<LuDesktopShellProps>();
 
 const ariaLabel = computed(() => props.ariaLabel || "Application");
 const resolvedSkin = computed(() => `lu-desktop-shell ${props.variant && props.variant !== "default" ? "lu-desktop-shell--"+props.variant : ""}`.trim());

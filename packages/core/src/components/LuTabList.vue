@@ -5,5 +5,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ variant?: string }>();
+/**
+ * Container for `LuTab` components. Typically flex-row layout.
+ */
+interface LuTabListProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tab-list--{variant}`. */
+  variant?: string;
+}
+
+const props = defineProps<LuTabListProps>();
 </script>

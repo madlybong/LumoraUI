@@ -1,0 +1,10 @@
+---
+description: This rule enforces the headless, BEM-based static CSS system used in Lumora UI.
+globs: *.vue, *.ts
+---
+# Lumora UI Styles Rule
+
+1. **Strictly Headless**: Lumora UI is a headless component framework. All built-in components use static BEM classes (e.g., `lu-button--primary`).
+2. **No Utility Classes**: Do not attempt to style Lumora components by passing Tailwind utilities to their `class` props.
+3. **Variant Prop**: Change component appearances using the `variant` prop.
+4. **Consumer Apps**: If you are building a consumer app, you should define styles via BEM or structural CSS, using Lumora CSS tokens (e.g., `var(--lu-color-primary)`).

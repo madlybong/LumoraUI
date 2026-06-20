@@ -1,0 +1,11 @@
+---
+description: This rule enforces proper usage of Lumora UI components.
+globs: *.vue, *.ts
+---
+# Lumora UI Components Rule
+
+1. **JSDoc Adherence**: Always read component JSDoc interfaces to know the correct props. Do not guess props.
+2. **Prop Hallucination**: Do not use generic props like `color`, `size`, `type` unless explicitly documented in the JSDoc.
+3. **Form Components**: Use `LuForm` and its associated inputs (`LuInput`, `LuSelect`). Do not build manual validation wrappers.
+4. **Layout**: Use `LuStack` for flexbox and `LuGrid` for grid.
+5. **No `class` overrides**: Do not apply Tailwind CSS or manual classes via the `class` prop. Use `variant` instead.

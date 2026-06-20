@@ -22,11 +22,24 @@ import { computed, useSlots } from "vue";
 
 defineOptions({ name: "LuDesktopSidebar" });
 
-const props = defineProps<{ 
+/**
+ * Vertical sidebar navigation for desktop shell.
+ * 
+ * @slots
+ * - `header`: Sticky top area (e.g., brand, search)
+ * - `content`: Scrollable middle area (e.g., nav links)
+ * - `footer`: Sticky bottom area (e.g., user profile, settings)
+ */
+interface LuDesktopSidebarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-sidebar--{variant}`. */
   variant?: "default" | "narrow" | "bordered";
+  /** Enables collapsible state. @default false */
   collapsible?: boolean;
+  /** Controls open state. Bind with `v-model`. */
   modelValue?: boolean;
-}>();
+}
+
+const props = defineProps<LuDesktopSidebarProps>();
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;

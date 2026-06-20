@@ -7,7 +7,7 @@
     :code="basicCode"
   >
     <template #preview>
-      <LuStack class="h-[600px] w-full relative border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+      <LuStack class="h-[600px] w-full relative border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden" pad="0">
         <LuEmbeddedPOSLayout>
           <template #scanner>
             <LuEmbeddedBarcodeInput />

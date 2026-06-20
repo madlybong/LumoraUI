@@ -15,29 +15,51 @@ import type {
 
 defineOptions({ name: "LuDataGrid" });
 
-const props = withDefaults(defineProps<{
+/**
+ * Complex data table with sorting, filtering, selection, and pagination capabilities.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuDataGridProps {
+  /** Array of column definitions. */
   columns: ColumnDef[];
+  /** Array of data row objects. */
   data: Row[];
+  /** Shows a loading spinner and overlay when true. @default false */
   loading?: boolean;
+  /** Total number of rows for server-side pagination. */
   total?: number;
+  /** Current page number (1-indexed). @default 1 */
   page?: number;
+  /** Number of rows per page. @default 20 */
   pageSize?: number;
+  /** Enables column sorting. @default false */
   sortable?: boolean;
+  /** Performs sorting client-side when true. @default true */
   localSort?: boolean;
+  /** Column key to group rows by. */
   groupBy?: string;
+  /** Shows a checkbox column for row selection. @default false */
   selectable?: boolean;
+  /** Number of columns from the left to sticky-freeze. @default 0 */
   freezeColumns?: number;
+  /** Enables inline cell editing on columns where `editable` is true. @default false */
   inlineEdit?: boolean;
+  /** Key field to use for row identity. @default "id" */
   idKey?: string;
+  /** Text to show when data is empty. @default "No data" */
   emptyText?: string;
-  /** Show a search input in the toolbar */
+  /** Shows a search input in the toolbar. @default false */
   searchable?: boolean;
-  /** 'local' filters data client-side; 'remote' emits a search event */
+  /** 'local' filters data client-side; 'remote' emits a search event. @default 'local' */
   searchMode?: "local" | "remote";
-  /** Debounce ms for remote search emit */
+  /** Debounce delay in ms for remote search emission. @default 300 */
   searchDebounce?: number;
+  /** Placeholder text for the search input. @default "Search…" */
   searchPlaceholder?: string;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuDataGridProps>(), {
   loading: false,
   page: 1,
   pageSize: 20,

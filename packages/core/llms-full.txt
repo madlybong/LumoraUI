@@ -1,0 +1,501 @@
+# Lumora UI Full Component Documentation
+
+This file contains automatically concatenated component APIs.
+
+## LuAccordion.vue
+
+```ts
+/**
+ * Exclusive single or multi-expandable accordion container.
+ * Wraps `LuCollapsible` instances.
+ */
+interface LuAccordionProps {
+  /** Currently active panel ID(s). Bind with `v-model`. */
+  modelValue?: string | string[];
+  /** Allow multiple panels to be open simultaneously. @default false */
+  multiple?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-accordion--{variant}
+```
+
+## LuAlert.vue
+
+```ts
+/**
+ * A notification alert box.
+ * 
+ * @example
+ * <LuAlert variant="danger" icon="alert-circle">Something went wrong!</LuAlert>
+ */
+interface LuAlertProps {
+  /** Visual variant. Resolves to BEM modifier `lu-alert--{variant}
+```
+
+## LuBadge.vue
+
+```ts
+/**
+ * A small visual badge for count numbers or status tags.
+ */
+interface LuBadgeProps {
+  /** Visual variant. Resolves to BEM modifier `lu-badge--{variant}
+```
+
+## LuButton.vue
+
+```ts
+/**
+ * Action button. Renders as `<button>`, `<a>`, or `<RouterLink>` depending on props.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities — visual theming is done
+ * exclusively via `--lu-*` CSS custom properties in your consumer stylesheet.
+ *
+ * @example
+ * <LuButton variant="primary" @click="save">Save</LuButton>
+ * <LuButton :to="{ name: 'home' }">Go Home</LuButton>
+ */
+interface LuButtonProps {
+  /**
+   * Native button type attribute. Only applies when rendering as `<button>`.
+   * @default 'button'
+   */
+  type?: "button" | "submit" | "reset";
+  /** Disables pointer events. Sets `aria-disabled` on non-`<button>` elements. */
+  disabled?: boolean;
+  /** Shows an inline `<LuSpinner>`, disables clicks, sets `aria-busy="true"`. */
+  loading?: boolean;
+  /**
+   * Visual intent. Resolves to BEM modifier `lu-button--{variant}
+```
+
+## LuCard.vue
+
+```ts
+/**
+ * A basic container for grouping related content.
+ * Can be composed with `LuStack` internally.
+ */
+interface LuCardProps {
+  /** Visual variant. Resolves to BEM modifier `lu-card--{variant}
+```
+
+## LuCheckbox.vue
+
+```ts
+/**
+ * Checkbox input with indeterminate state support.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuCheckboxProps {
+  /** Checked state. Use `v-model`. */
+  modelValue?: boolean;
+  /** Indeterminate state (mixed). Use `v-model:indeterminate`. */
+  indeterminate?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-checkbox--{variant}
+```
+
+## LuDataGrid.vue
+
+```ts
+/**
+ * Complex data table with sorting, filtering, selection, and pagination capabilities.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuDataGridProps {
+  /** Array of column definitions. */
+  columns: ColumnDef[];
+  /** Array of data row objects. */
+  data: Row[];
+  /** Shows a loading spinner and overlay when true. @default false */
+  loading?: boolean;
+  /** Total number of rows for server-side pagination. */
+  total?: number;
+  /** Current page number (1-indexed). @default 1 */
+  page?: number;
+  /** Number of rows per page. @default 20 */
+  pageSize?: number;
+  /** Enables column sorting. @default false */
+  sortable?: boolean;
+  /** Performs sorting client-side when true. @default true */
+  localSort?: boolean;
+  /** Column key to group rows by. */
+  groupBy?: string;
+  /** Shows a checkbox column for row selection. @default false */
+  selectable?: boolean;
+  /** Number of columns from the left to sticky-freeze. @default 0 */
+  freezeColumns?: number;
+  /** Enables inline cell editing on columns where `editable` is true. @default false */
+  inlineEdit?: boolean;
+  /** Key field to use for row identity. @default "id" */
+  idKey?: string;
+  /** Text to show when data is empty. @default "No data" */
+  emptyText?: string;
+  /** Shows a search input in the toolbar. @default false */
+  searchable?: boolean;
+  /** 'local' filters data client-side; 'remote' emits a search event. @default 'local' */
+  searchMode?: "local" | "remote";
+  /** Debounce delay in ms for remote search emission. @default 300 */
+  searchDebounce?: number;
+  /** Placeholder text for the search input. @default "Search…" */
+  searchPlaceholder?: string;
+}
+```
+
+## LuDrawer.vue
+
+```ts
+/**
+ * Slide-out drawer overlay panel.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuDrawerProps {
+  /** Controls visibility. Use `v-model`. */
+  modelValue: boolean;
+  /** Drawer origin side. @default 'right' */
+  position?: "left" | "right" | "top" | "bottom";
+  /** How the drawer behaves over content. 'overlay' darkens backdrop. @default 'overlay' */
+  mode?: "overlay" | "push";
+  /** Whether clicking outside the drawer closes it. @default true */
+  closeOnOutsideClick?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-drawer__panel--{variant}
+```
+
+## LuForm.vue
+
+```ts
+/**
+ * Form wrapper component providing validation context.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuFormProps {
+  /** Validation rules mapping field names to validators. */
+  rules?: LuFormRules;
+  /** When to trigger validation. @default 'submit' */
+  validateOn?: "submit" | "blur" | "both";
+  /** Whether to reset all fields upon successful submit. @default false */
+  resetOnSubmit?: boolean;
+  /** Disables the form and all its registered fields. @default false */
+  disabled?: boolean;
+}
+```
+
+## LuIcon.vue
+
+```ts
+/**
+ * Renders an icon from the configured icon pack.
+ */
+interface LuIconProps {
+  /** Visual variant. Resolves to BEM modifier `lu-icon--{variant}
+```
+
+## LuInput.vue
+
+```ts
+/**
+ * Text input component with prepend/append slot support and optional input masking.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities — visual theming is done
+ * exclusively via `--lu-*` CSS custom properties.
+ *
+ * @example
+ * <LuInput v-model="email" type="email" prependIcon="mail" />
+ */
+interface LuInputProps {
+  /** The value of the input. Use `v-model` to bind. */
+  modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-input--{variant}
+```
+
+## LuModal.vue
+
+```ts
+/**
+ * Overlay dialog modal. Renders via Vue `<Teleport>` to body.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuModalProps {
+  /** Controls visibility of the modal. Use `v-model` to bind. */
+  modelValue: boolean;
+  /** Modal title, rendered in the header slot if provided. */
+  title?: string;
+  /** Visual variant. Resolves to BEM modifier `lu-modal--{variant}
+```
+
+## LuPopover.vue
+
+```ts
+/**
+ * Floating popover component. Uses Floating UI internally.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuPopoverProps {
+  /** Preferred placement of the popover relative to the trigger. @default 'bottom' */
+  position?: "top" | "bottom" | "left" | "right";
+  /** Event that triggers the popover. @default 'click' */
+  trigger?: "click" | "hover";
+  /** Whether clicking outside closes the popover. @default true */
+  closeOnOutsideClick?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-popover--{variant}
+```
+
+## LuSelect.vue
+
+```ts
+/**
+ * Custom styled select dropdown with search filtering support.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ *
+ * @example
+ * <LuSelect v-model="status" :options="[{label: 'Active', value: 'active'}]" />
+ */
+interface LuSelectProps {
+  /** The selected value. Use `v-model` to bind. */
+  modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-select--{variant}
+```
+
+## LuSwitch.vue
+
+```ts
+/**
+ * Toggle switch input.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuSwitchProps {
+  /** The value of the switch. Use `v-model`. Null represents indeterminate state. */
+  modelValue?: boolean | null;
+  /** Visual variant. Resolves to BEM modifier `lu-switch--{variant}
+```
+
+## LuTab.vue
+
+```ts
+/**
+ * A single tab trigger button.
+ */
+interface LuTabProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tab--{variant}
+```
+
+## LuTabList.vue
+
+```ts
+/**
+ * Container for `LuTab` components. Typically flex-row layout.
+ */
+interface LuTabListProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tab-list--{variant}
+```
+
+## LuTabPanel.vue
+
+```ts
+/**
+ * Content panel associated with a specific tab.
+ */
+interface LuTabPanelProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tab-panel--{variant}
+```
+
+## LuTabs.vue
+
+```ts
+/**
+ * Container for a tabbed interface. Manages active tab state via provide/inject.
+ */
+interface LuTabsProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tabs--{variant}
+```
+
+## LuTextarea.vue
+
+```ts
+/**
+ * Multi-line text input component.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuTextareaProps {
+  /** The value of the textarea. Use `v-model` to bind. */
+  modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-textarea--{variant}
+```
+
+## LuToast.vue
+
+```ts
+/**
+ * Toast notification container. Typically rendered once at the app root.
+ */
+interface LuToastProps {
+  /** Visual variant. Resolves to BEM modifier `lu-toast-container--{variant}
+```
+
+## LuDockItem.vue
+
+```ts
+/**
+ * Item placed inside a `LuDock` container.
+ */
+interface LuDockItemProps {
+  /** The edge to dock to. The last item in the dock should be 'fill'. @default 'left' */
+  dock?: "top" | "bottom" | "left" | "right" | "fill";
+  /** Visual variant. Resolves to BEM modifier `lu-dock-item--{variant}
+```
+
+## LuGrid.vue
+
+```ts
+/**
+ * CSS Grid layout container.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuGridProps {
+  /** Total number of columns. */
+  cols?: number;
+  /** Columns at the 'sm' breakpoint. */
+  smCols?: number;
+  /** Columns at the 'md' breakpoint. */
+  mdCols?: number;
+  /** Columns at the 'lg' breakpoint. */
+  lgCols?: number;
+  /** Visual variant. Resolves to BEM modifier `lu-grid--{variant}
+```
+
+## LuScroll.vue
+
+```ts
+/**
+ * Scrollable container.
+ */
+interface LuScrollProps {
+  /** Visual variant. Resolves to BEM modifier `lu-scroll--{variant}
+```
+
+## LuSplit.vue
+
+```ts
+/**
+ * Resizable split pane container.
+ */
+interface LuSplitProps {
+  /** Direction of the split. @default 'horizontal' */
+  direction?: "horizontal" | "vertical";
+  /** Visual variant. Resolves to BEM modifier `lu-split--{variant}
+```
+
+## LuDesktopRailBar.vue
+
+```ts
+/**
+ * Narrow vertical rail navigation, typically used alongside or instead of a sidebar.
+ * 
+ * @slots
+ * - `default`: The vertical content of the rail
+ */
+interface LuDesktopRailBarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-rail-bar--{variant}
+```
+
+## LuDesktopShell.vue
+
+```ts
+/**
+ * Root container for desktop applications.
+ * 
+ * @slots
+ * - `topbar`: Place `LuDesktopTopBar` here
+ * - `rail`: Place `LuDesktopRailBar` here
+ * - `sidebar`: Place `LuDesktopSidebar` here
+ * - `content`: Main scrollable application view
+ * - `statusbar`: Place `LuDesktopStatusBar` here
+ */
+interface LuDesktopShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-shell--{variant}
+```
+
+## LuDesktopSidebar.vue
+
+```ts
+/**
+ * Vertical sidebar navigation for desktop shell.
+ * 
+ * @slots
+ * - `header`: Sticky top area (e.g., brand, search)
+ * - `content`: Scrollable middle area (e.g., nav links)
+ * - `footer`: Sticky bottom area (e.g., user profile, settings)
+ */
+interface LuDesktopSidebarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-sidebar--{variant}
+```
+
+## LuDesktopTopBar.vue
+
+```ts
+/**
+ * Horizontal top navigation bar for desktop shell.
+ * 
+ * @slots
+ * - `left`: Left-aligned items (brand, menu toggle)
+ * - `center`: Center-aligned items (search, tabs)
+ * - `right`: Right-aligned items (actions, profile)
+ */
+interface LuDesktopTopBarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-top-bar--{variant}
+```
+
+## LuEmbeddedShell.vue
+
+```ts
+/**
+ * Root container for embedded widgets or nested micro-frontends.
+ * 
+ * @slots
+ * - `topbar`: Place `LuEmbeddedTopBar` here
+ * - `content`: Main content area
+ * - `statusbar`: Place `LuEmbeddedStatusBar` here
+ */
+interface LuEmbeddedShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-embedded-shell--{variant}
+```
+
+## LuMobileHeader.vue
+
+```ts
+/**
+ * Top app bar for mobile shell. Automatically adds padding for safe area.
+ * 
+ * @slots
+ * - `left`: Left action (e.g., back button, menu toggle)
+ * - `default`: Center title area
+ * - `right`: Right actions
+ */
+interface LuMobileHeaderProps {
+  /** Visual variant. Resolves to BEM modifier `lu-mobile-header--{variant}
+```
+
+## LuMobileShell.vue
+
+```ts
+/**
+ * Root container for mobile applications.
+ * 
+ * @slots
+ * - `header`: Place `LuMobileHeader` here
+ * - `content`: Main scrollable content
+ * - `navbar`: Place `LuMobileNavBar` here
+ * - `drawer`: Place `LuDrawer` here for mobile menus
+ */
+interface LuMobileShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-mobile-shell--{variant}
+```
+

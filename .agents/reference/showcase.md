@@ -28,6 +28,7 @@ apps/showcase/src/
 When authoring pages within the showcase app, you must follow the **Zero-Raw-HTML Adherence Rule**:
 - **No Unstyled Divs**: Do not compose layout wraps using `<div class="some-custom-class">` or `<div style="display: flex;">`.
 - **Use Primitives Only**: Design layout arrangements using framework elements exclusively (`LuStack`, `LuGrid`, `LuCard`, `LuDivider`, `LuText`).
+  - **IMPORTANT WARNING**: When using `LuStack` or `LuGrid` purely as structural elements (e.g. wrapper divs, flex containers for alignment) without wanting intrinsic component spacing, you MUST specify `pad="0"`. Failure to do so will cause severe "blowfish" layout inflation because these layout primitives carry default bounding padding.
 - **Showcase CSS Namespace**: Recipe components may use custom BEM classes, but they MUST be prefixed with `sc-` (e.g. `sc-dashboard-header`), never `lu-`.
 - **Why**: The showcase app is a real-world validation of the library's completeness. If we cannot build the showcase app entirely using our own layout primitives, then the layout primitives are not complete.
 

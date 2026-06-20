@@ -36,7 +36,7 @@
 
           <template #content>
             <LuFill class="overflow-y-auto p-4">
-              <LuStack direction="vertical" gap="3">
+              <LuStack direction="vertical" gap="3" pad="0">
                 <LuCard>
                   <LuText variant="section-title">Mobile Feed</LuText>
                   <LuText variant="body" class="mt-2 text-sm opacity-60">
@@ -44,9 +44,9 @@
                   </LuText>
                 </LuCard>
                 <LuCard v-for="i in 6" :key="i">
-                  <LuStack direction="horizontal" align="center" gap="3">
+                  <LuStack direction="horizontal" align="center" gap="3" pad="0">
                     <div style="width: 2rem; height: 2rem; border-radius: 50%; background: color-mix(in srgb, currentColor 8%, transparent);" />
-                    <LuStack direction="vertical" gap="1">
+                    <LuStack direction="vertical" gap="1" pad="0">
                       <LuText variant="label">Post {{ i }}</LuText>
                       <LuText class="text-xs opacity-40">3 minutes ago</LuText>
                     </LuStack>
@@ -89,7 +89,7 @@
   </LuCodeBlock>
 
   <!-- API Reference -->
-  <LuStack direction="vertical" gap="6" class="mt-10">
+  <LuStack direction="vertical" gap="6" class="mt-10" pad="0">
     <LuText as="h2" variant="default">API Reference</LuText>
 
     <div>

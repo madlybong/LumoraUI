@@ -47,16 +47,31 @@
 import { computed, inject, onMounted, onUnmounted, ref, watch } from "vue";
 import { LuFormContextKey } from "./LuForm.types";
 
-const props = withDefaults(defineProps<{
+/**
+ * Checkbox input with indeterminate state support.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuCheckboxProps {
+  /** Checked state. Use `v-model`. */
   modelValue?: boolean;
+  /** Indeterminate state (mixed). Use `v-model:indeterminate`. */
   indeterminate?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-checkbox--{variant}`. */
   variant?: string;
+  /** Field name for form registration. */
   name?: string;
+  /** Label text rendered next to the checkbox. */
   label?: string;
+  /** Error message. Applies `lu-checkbox--error` state if truthy. */
   error?: string | null;
+  /** Disables interaction. */
   disabled?: boolean;
-  value?: string | number; // for array-based checkboxes in future, or just native submit
-}>(), {
+  /** Value string/number used when submitting natively. */
+  value?: string | number;
+}
+
+const props = withDefaults(defineProps<LuCheckboxProps>(), {
   indeterminate: false,
   disabled: false
 });

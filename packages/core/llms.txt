@@ -1,0 +1,13 @@
+# Lumora UI
+
+> Headless Vue 3 component framework
+
+Lumora UI provides three surface targets: Mobile, Desktop, and Embedded. It uses static BEM CSS classes for styling. There is no inline CSS-in-JS or Tailwind utility class dependence.
+
+**CRITICAL RULES FOR AI AGENTS**:
+1. **Never use `class` prop to apply Tailwind or other utility classes to Lumora components.** They are strictly styled via BEM `lu-*` classes and the `variant` prop.
+2. Components are divided into three areas: Shared Primitives (`LuButton`, `LuInput`, etc.), Layout Primitives (`LuStack`, `LuGrid`, etc.), and Shell Components (`LuDesktopShell`, `LuMobileShell`, `LuEmbeddedShell`).
+3. Form validation happens via `LuFormContext`. Do not create ad-hoc v-model state machines if using `LuForm`.
+4. Surface isolation is strictly enforced. Never mix Desktop shell components in a Mobile shell.
+
+For full API documentation, see `llms-full.txt`.

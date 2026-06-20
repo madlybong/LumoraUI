@@ -31,13 +31,25 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const props = withDefaults(defineProps<{
+/**
+ * Slide-out drawer overlay panel.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuDrawerProps {
+  /** Controls visibility. Use `v-model`. */
   modelValue: boolean;
+  /** Drawer origin side. @default 'right' */
   position?: "left" | "right" | "top" | "bottom";
+  /** How the drawer behaves over content. 'overlay' darkens backdrop. @default 'overlay' */
   mode?: "overlay" | "push";
+  /** Whether clicking outside the drawer closes it. @default true */
   closeOnOutsideClick?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-drawer__panel--{variant}`. */
   variant?: string;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuDrawerProps>(), {
   position: "right",
   mode: "overlay",
   closeOnOutsideClick: true

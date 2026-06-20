@@ -15,12 +15,21 @@
 import { computed, useSlots } from "vue";
 import { useLumoraConfig } from "../context";
 
-const props = defineProps<{
+/**
+ * Renders an icon from the configured icon pack.
+ */
+interface LuIconProps {
+  /** Visual variant. Resolves to BEM modifier `lu-icon--{variant}`. */
   variant?: string;
+  /** Icon name as registered in the UI plugin config. */
   name?: string;
+  /** Exact size in pixels. Maps to width/height styles. */
   size?: number;
+  /** Stroke width if using SVG stroke icons. */
   strokeWidth?: number;
-}>();
+}
+
+const props = defineProps<LuIconProps>();
 
 const slots = useSlots();
 const { resolveIcon } = useLumoraConfig();

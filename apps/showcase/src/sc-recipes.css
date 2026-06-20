@@ -440,3 +440,24 @@
 .dark .sc-notification-center__footer {
   background-color: var(--lu-color-surface-sunken, #09090b);
 }
+
+/* ── Layout Primitive Demo Helpers ───────────────────────────────────────── */
+.sc-layout-demo {
+  height: 300px;
+  overflow: hidden;
+  border: 1px solid var(--lu-color-border);
+  border-radius: var(--lu-radius-2);
+}
+.sc-layout-demo-top {
+  border-bottom: 1px solid var(--lu-color-border);
+  padding: var(--lu-space-2) var(--lu-space-3);
+}
+.sc-layout-demo-nav {
+  border-right: 1px solid var(--lu-color-border);
+  padding: var(--lu-space-2);
+}
+.sc-layout-demo-bottom {
+  border-top: 1px solid var(--lu-color-border);
+  padding: var(--lu-space-2) var(--lu-space-3);
+}
+

@@ -13,10 +13,22 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuEmbeddedShell" });
 
-const props = defineProps<{ 
+/**
+ * Root container for embedded widgets or nested micro-frontends.
+ * 
+ * @slots
+ * - `topbar`: Place `LuEmbeddedTopBar` here
+ * - `content`: Main content area
+ * - `statusbar`: Place `LuEmbeddedStatusBar` here
+ */
+interface LuEmbeddedShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-embedded-shell--{variant}`. */
   variant?: "default" | "fullscreen";
+  /** ARIA label. @default "Embedded application" */
   ariaLabel?: string;
-}>();
+}
+
+const props = defineProps<LuEmbeddedShellProps>();
 
 const ariaLabel = computed(() => props.ariaLabel || "Embedded application");
 const resolvedSkin = computed(() => `lu-embedded-shell ${props.variant && props.variant !== "default" ? "lu-embedded-shell--"+props.variant : ""}`.trim());

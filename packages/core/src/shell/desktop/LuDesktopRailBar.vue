@@ -9,12 +9,24 @@ import { computed, ref, provide } from "vue";
 
 defineOptions({ name: "LuDesktopRailBar" });
 
-const props = defineProps<{ 
+/**
+ * Narrow vertical rail navigation, typically used alongside or instead of a sidebar.
+ * 
+ * @slots
+ * - `default`: The vertical content of the rail
+ */
+interface LuDesktopRailBarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-rail-bar--{variant}`. */
   variant?: "default";
+  /** Force expanded state. */
   expanded?: boolean; 
+  /** Automatically expand when hovered. @default false */
   expandOnHover?: boolean;
+  /** ARIA label. @default "Primary navigation" */
   ariaLabel?: string;
-}>();
+}
+
+const props = defineProps<LuDesktopRailBarProps>();
 
 const ariaLabel = computed(() => props.ariaLabel || "Primary navigation");
 const hovered = ref(false);

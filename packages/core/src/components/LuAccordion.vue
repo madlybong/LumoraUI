@@ -7,11 +7,25 @@
 <script setup lang="ts">
 import { computed, provide } from "vue";
 
-const props = withDefaults(defineProps<{
+/**
+ * Exclusive single or multi-expandable accordion container.
+ * Wraps `<LuCollapsible>` instances.
+ * 
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - When using `LuAccordion` inside a navigation sidebar, ALWAYS use `variant="ghost"`. 
+ *   The default variant includes borders and heavy padding, which ruins sidebar layouts.
+ * - Always use `<LuCollapsible>` as direct children.
+ */
+interface LuAccordionProps {
+  /** Currently active panel ID(s). Bind with `v-model`. */
   modelValue?: string | string[];
+  /** Allow multiple panels to be open simultaneously. @default false */
   multiple?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-accordion--{variant}`. */
   variant?: string;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuAccordionProps>(), {
   multiple: false
 });
 

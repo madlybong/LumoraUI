@@ -1,6 +1,6 @@
 @layer lu-layout {
   /* ── LuStack ────────────────────────────────────────────────────────────── */
-  .lu-stack              { display: flex; }
+  .lu-stack              { display: flex; padding: var(--lu-space-4); }
   .lu-stack--vertical    { flex-direction: column; }
   .lu-stack--horizontal  { flex-direction: row; }
   .lu-stack--container   {
@@ -35,7 +35,7 @@
   .lu-scroll--horizontal { overflow-x: auto; overflow-y: visible; flex: 1; min-width: 0; }
 
   /* ── LuGrid ─────────────────────────────────────────────────────────────── */
-  .lu-grid { display: grid; }
+  .lu-grid { display: grid; padding: var(--lu-space-4); }
   .lu-grid--responsive-3 { grid-template-columns: repeat(1, 1fr); gap: var(--lu-space-8); }
   @media (min-width: 768px) { .lu-grid--responsive-3 { grid-template-columns: repeat(3, 1fr); } }
 
@@ -44,11 +44,19 @@
   .lu-split--horizontal  { flex-direction: row; }
   .lu-split--vertical    { flex-direction: column; }
   .lu-split-pane         { position: relative; overflow: hidden; }
-  .lu-split-resizer      { background: var(--lu-color-border); flex-shrink: 0; z-index: 10; }
+  .lu-split-resizer      { background: var(--lu-color-border); flex-shrink: 0; z-index: 10; position: relative; }
+  .lu-split-resizer::after { content: ""; position: absolute; z-index: 11; }
   .lu-split-resizer:hover { background: var(--lu-color-primary); }
   .lu-split-resizer--horizontal { width: 1px; cursor: col-resize; }
+  .lu-split-resizer--horizontal::after { top: 0; bottom: 0; left: -5px; right: -5px; cursor: col-resize; }
   .lu-split-resizer--vertical   { height: 1px; cursor: row-resize; }
+  .lu-split-resizer--vertical::after   { left: 0; right: 0; top: -5px; bottom: -5px; cursor: row-resize; }
 
   /* ── LuOverlay ──────────────────────────────────────────────────────────── */
   .lu-overlay { position: absolute; inset: 0; z-index: var(--lu-z-overlay); }
+
+  /* ── Border Collapse Utilities ──────────────────────────────────────────── */
+  /* Add these classes to parent containers to prevent nested borders from doubling up */
+  .lu-border-collapse-x > * + * { margin-left: -1px; }
+  .lu-border-collapse-y > * + * { margin-top: -1px; }
 }

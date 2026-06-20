@@ -7,7 +7,7 @@
     :code="basicCode"
   >
     <template #preview>
-      <LuStack direction="horizontal" class="justify-end w-full">
+      <LuStack direction="horizontal" class="justify-end w-full" pad="0">
         <LuNotificationCenter :notifications="notifications" :unreadCount="1" />
       </LuStack>
     </template>
@@ -26,7 +26,7 @@ const notifications = [
 ];
 
 const basicCode = `<template>
-  <LuStack direction="horizontal" class="justify-end w-full">
+  <LuStack direction="horizontal" class="justify-end w-full" pad="0">
     <LuNotificationCenter :notifications="notifications" :unreadCount="1" />
   </LuStack>
 </template>`;

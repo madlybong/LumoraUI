@@ -40,8 +40,14 @@ import { useLuToast } from "../composables/useLuToast";
 
 const { toasts, dismiss } = useLuToast();
 
-const props = defineProps<{
+/**
+ * Toast notification container. Typically rendered once at the app root.
+ */
+interface LuToastProps {
+  /** Visual variant. Resolves to BEM modifier `lu-toast-container--{variant}`. */
   variant?: string;
-}>();
+}
+
+const props = defineProps<LuToastProps>();
 
 </script>

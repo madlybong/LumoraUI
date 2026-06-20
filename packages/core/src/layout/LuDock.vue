@@ -2,9 +2,17 @@
 import { h, defineComponent, computed, Fragment, Comment } from "vue";
 import type { VNode } from "vue";
 
+/**
+ * Recursive structural dock layout.
+ * 
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - Use `LuDock` with `LuDockItem` children to dock elements to the top, bottom, left, or right edges of the container, leaving the final item to fill the remaining space.
+ * - `LuDock` is strictly a layout primitive. It does NOT automatically add padding inside the dock items.
+ */
 export default defineComponent({
   name: "LuDock",
   props: {
+    /** Visual variant. Resolves to BEM modifier `lu-dock--{variant}`. */
     variant: String,
   },
   setup(props, { slots, attrs }) {

@@ -32,14 +32,27 @@
 import { computed, inject, onMounted, onUnmounted, ref, watch } from "vue";
 import { LuFormContextKey } from "./LuForm.types";
 
-const props = withDefaults(defineProps<{
+/**
+ * Toggle switch input.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuSwitchProps {
+  /** The value of the switch. Use `v-model`. Null represents indeterminate state. */
   modelValue?: boolean | null;
+  /** Visual variant. Resolves to BEM modifier `lu-switch--{variant}`. */
   variant?: string;
+  /** Disables interaction. */
   disabled?: boolean;
+  /** Field name for form registration. */
   name?: string;
+  /** Error message. */
   error?: string | null;
+  /** Label text rendered next to the switch. */
   label?: string;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuSwitchProps>(), {
   disabled: false
 });
 

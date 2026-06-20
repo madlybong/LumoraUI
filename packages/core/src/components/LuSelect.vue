@@ -100,16 +100,34 @@ import { computed, inject, onMounted, onUnmounted, ref, watch, nextTick } from "
 import { LuFormContextKey } from "./LuForm.types";
 import { useFloating } from "../composables/useFloating";
 
-const props = withDefaults(defineProps<{
+/**
+ * Custom styled select dropdown with search filtering support.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ *
+ * @example
+ * <LuSelect v-model="status" :options="[{label: 'Active', value: 'active'}]" />
+ */
+interface LuSelectProps {
+  /** The selected value. Use `v-model` to bind. */
   modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-select--{variant}`. */
   variant?: string;
+  /** Array of option objects to render in the dropdown. */
   options: Array<{ value: string | number; label: string; disabled?: boolean; icon?: string }>;
+  /** Field name for form registration. */
   name?: string;
+  /** Error state message. */
   error?: string | null;
+  /** Placeholder text shown when no option is selected. @default 'Select an option' */
   placeholder?: string;
+  /** Enables an internal search input to filter options. @default false */
   searchable?: boolean;
+  /** Disables the entire select component. */
   disabled?: boolean;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuSelectProps>(), {
   placeholder: "Select an option",
   searchable: false,
   disabled: false

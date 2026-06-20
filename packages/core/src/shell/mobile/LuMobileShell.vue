@@ -16,9 +16,21 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuMobileShell" });
 
-const props = defineProps<{ 
+/**
+ * Root container for mobile applications.
+ * 
+ * @slots
+ * - `header`: Place `LuMobileHeader` here
+ * - `content`: Main scrollable content
+ * - `navbar`: Place `LuMobileNavBar` here
+ * - `drawer`: Place `LuDrawer` here for mobile menus
+ */
+interface LuMobileShellProps {
+  /** Visual variant. Resolves to BEM modifier `lu-mobile-shell--{variant}`. */
   variant?: "default" | "full";
-}>();
+}
+
+const props = defineProps<LuMobileShellProps>();
 
 const resolvedSkin = computed(() => `lu-mobile-shell ${props.variant && props.variant !== "default" ? "lu-mobile-shell--"+props.variant : ""}`.trim());
 const contentSkin = computed(() => `lu-mobile-shell-content`);

@@ -3,45 +3,45 @@
 
   <LuCodeBlock variant="preview" 
     title="Basic Card" 
-    description="Use lu-card__header, lu-card__body, and lu-card__footer to structure your content."
+    description="Use LuCardHeader, LuCardBody, and LuCardFooter to structure your content."
     :code="basicCode"
   >
     <template #preview>
       <LuCard variant="default" class="w-full max-w-sm">
-        <div class="lu-card__header">
-          <h3 class="lu-card__title">Card Title</h3>
-          <p class="lu-card__subtitle">Card subtitle text</p>
-        </div>
-        <div class="lu-card__body">
+        <LuCardHeader>
+          <LuCardTitle>Card Title</LuCardTitle>
+          <LuCardSubtitle>Card subtitle text</LuCardSubtitle>
+        </LuCardHeader>
+        <LuCardBody>
           <LuText as="p" variant="body">This is the card body content. It has padding and acts as the primary content area.</LuText>
-        </div>
-        <div class="lu-card__footer">
-          <LuStack direction="horizontal" class="justify-end">
+        </LuCardBody>
+        <LuCardFooter>
+          <LuStack direction="horizontal" class="justify-end" pad="0">
             <LuButton variant="ghost">Cancel</LuButton>
             <LuButton variant="primary">Confirm</LuButton>
           </LuStack>
-        </div>
+        </LuCardFooter>
       </LuCard>
     </template>
   </LuCodeBlock>
 
   <LuCodeBlock variant="preview" 
     title="Media Card" 
-    description="Use lu-card__media to display border-radius-clipped images at the top of a card."
+    description="Use LuCardMedia to display border-radius-clipped images at the top of a card."
     :code="mediaCode"
     class="mt-8"
   >
     <template #preview>
       <LuCard variant="default" class="w-full max-w-sm">
-        <div class="lu-card__media">
+        <LuCardMedia>
           <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&h=300&fit=crop" alt="Gradient background" />
-        </div>
-        <div class="lu-card__header">
-          <h3 class="lu-card__title">Vibrant Gradients</h3>
-        </div>
-        <div class="lu-card__body pt-0">
+        </LuCardMedia>
+        <LuCardHeader>
+          <LuCardTitle>Vibrant Gradients</LuCardTitle>
+        </LuCardHeader>
+        <LuCardBody class="pt-0">
           <LuText as="p" variant="body">Explore the new gradient pack available in your dashboard.</LuText>
-        </div>
+        </LuCardBody>
       </LuCard>
     </template>
   </LuCodeBlock>
@@ -54,14 +54,14 @@
   >
     <template #preview>
       <LuCard variant="default" class="w-full max-w-sm">
-        <div class="lu-card__header">
+        <LuCardHeader>
           <div class="lu-card__header-content">
-            <h3 class="lu-card__title">Team Members</h3>
+            <LuCardTitle>Team Members</LuCardTitle>
             <LuButton variant="ghost" size="sm">Invite</LuButton>
           </div>
-        </div>
-        <hr class="lu-card__divider" />
-        <div class="lu-card__body p-0">
+        </LuCardHeader>
+        <LuDivider />
+        <LuCardBody class="p-0">
           <div class="p-3 border-b border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
             <LuText variant="body" class="font-medium">Alice Smith</LuText>
             <LuText variant="caption">Admin</LuText>
@@ -74,7 +74,7 @@
             <LuText variant="body" class="font-medium">Charlie Brown</LuText>
             <LuText variant="caption">Viewer</LuText>
           </div>
-        </div>
+        </LuCardBody>
       </LuCard>
     </template>
   </LuCodeBlock>
@@ -87,18 +87,18 @@
   >
     <template #preview>
       <LuCard variant="default" class="w-full max-w-sm text-center">
-        <div class="lu-card__body flex flex-col items-center">
+        <LuCardBody class="flex flex-col items-center">
           <div class="lu-avatar lu-avatar--xl mb-3">
             <span class="lu-avatar__fallback">JD</span>
           </div>
-          <h3 class="lu-card__title mb-1">Jane Doe</h3>
-          <p class="lu-card__subtitle mb-4">Senior Designer</p>
-          <LuStack direction="horizontal" class="gap-2">
+          <LuCardTitle class="mb-1">Jane Doe</LuCardTitle>
+          <LuCardSubtitle class="mb-4">Senior Designer</LuCardSubtitle>
+          <LuStack direction="horizontal" class="gap-2" pad="0">
             <span class="inline-flex items-center rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 text-xs font-medium text-zinc-800 dark:text-zinc-200">Design</span>
             <span class="inline-flex items-center rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 text-xs font-medium text-zinc-800 dark:text-zinc-200">Product</span>
           </LuStack>
-        </div>
-        <hr class="lu-card__divider" />
+        </LuCardBody>
+        <LuDivider />
         <div class="grid grid-cols-2 divide-x divide-zinc-200 dark:divide-zinc-800">
           <div class="p-3">
             <p class="text-xs text-zinc-500">Followers</p>
@@ -120,76 +120,96 @@
     class="mt-8"
   >
     <template #preview>
-      <LuStack class="w-full max-w-2xl grid grid-cols-2 gap-4">
-        <LuCard variant="default" class="p-4"><LuText class="font-semibold">Default</LuText><LuText variant="caption">With shadow and border</LuText></LuCard>
-        <LuCard variant="flat" class="p-4"><LuText class="font-semibold">Flat</LuText><LuText variant="caption">Border, no shadow</LuText></LuCard>
-        <LuCard variant="surface" class="p-4"><LuText class="font-semibold">Surface</LuText><LuText variant="caption">No border, sunken bg</LuText></LuCard>
-        <LuCard variant="panel" class="p-4"><LuText class="font-semibold">Panel</LuText><LuText variant="caption">Hover to elevate</LuText></LuCard>
-      </LuStack>
+      <div class="w-full max-w-2xl grid grid-cols-2 gap-4">
+        <LuCard variant="default">
+          <LuCardBody>
+            <LuText class="font-semibold block">Default</LuText>
+            <LuText variant="caption" class="block">With shadow and border</LuText>
+          </LuCardBody>
+        </LuCard>
+        <LuCard variant="flat">
+          <LuCardBody>
+            <LuText class="font-semibold block">Flat</LuText>
+            <LuText variant="caption" class="block">Border, no shadow</LuText>
+          </LuCardBody>
+        </LuCard>
+        <LuCard variant="surface">
+          <LuCardBody>
+            <LuText class="font-semibold block">Surface</LuText>
+            <LuText variant="caption" class="block">No border, sunken bg</LuText>
+          </LuCardBody>
+        </LuCard>
+        <LuCard variant="panel">
+          <LuCardBody>
+            <LuText class="font-semibold block">Panel</LuText>
+            <LuText variant="caption" class="block">Hover to elevate</LuText>
+          </LuCardBody>
+        </LuCard>
+      </div>
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical" class="mt-8">
+  <LuStack direction="vertical" class="mt-8" pad="0">
     <LuText as="h2" variant="section-title">Props</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>
 </template>
 
 <script setup lang="ts">
-import { LuStack, LuText, LuCard, LuButton, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuStack, LuText, LuCard, LuCardHeader, LuCardTitle, LuCardSubtitle, LuCardBody, LuCardFooter, LuCardMedia, LuButton, LuCodeBlock, LuDivider } from '@astrake/lumora-ui';
 import LuPageHeader from '../../../recipes/page-header/LuPageHeader.vue';
 import PropTable from '../../../components/PropTable.vue';
 
 const basicCode = `<template>
   <LuCard>
-    <div class="lu-card__header">
-      <h3 class="lu-card__title">Card Title</h3>
-      <p class="lu-card__subtitle">Card subtitle text</p>
-    </div>
-    <div class="lu-card__body">
+    <LuCardHeader>
+      <LuCardTitle>Card Title</LuCardTitle>
+      <LuCardSubtitle>Card subtitle text</LuCardSubtitle>
+    </LuCardHeader>
+    <LuCardBody>
       <p>Body content...</p>
-    </div>
-    <div class="lu-card__footer">
+    </LuCardBody>
+    <LuCardFooter>
       <LuButton>Action</LuButton>
-    </div>
+    </LuCardFooter>
   </LuCard>
 </template>`;
 
 const mediaCode = `<template>
   <LuCard>
-    <div class="lu-card__media">
+    <LuCardMedia>
       <img src="image.jpg" alt="Description" />
-    </div>
-    <div class="lu-card__header">
-      <h3 class="lu-card__title">Vibrant Gradients</h3>
-    </div>
-    <div class="lu-card__body pt-0">
+    </LuCardMedia>
+    <LuCardHeader>
+      <LuCardTitle>Vibrant Gradients</LuCardTitle>
+    </LuCardHeader>
+    <LuCardBody class="pt-0">
       <p>Body content...</p>
-    </div>
+    </LuCardBody>
   </LuCard>
 </template>`;
 
 const listCode = `<template>
   <LuCard>
-    <div class="lu-card__header">
-      <div class="lu-card__header-content">
-        <h3 class="lu-card__title">Team Members</h3>
+    <LuCardHeader>
+      <div class="flex justify-between items-center">
+        <LuCardTitle>Team Members</LuCardTitle>
         <LuButton size="sm">Invite</LuButton>
       </div>
-    </div>
-    <hr class="lu-card__divider" />
-    <div class="lu-card__body p-0">
+    </LuCardHeader>
+    <LuDivider />
+    <LuCardBody class="p-0">
       <!-- list items -->
-    </div>
+    </LuCardBody>
   </LuCard>
 </template>`;
 
 const profileCode = `<template>
   <LuCard class="text-center">
-    <div class="lu-card__body">
+    <LuCardBody>
       <!-- avatar and name -->
-    </div>
-    <hr class="lu-card__divider" />
+    </LuCardBody>
+    <LuDivider />
     <div class="grid grid-cols-2">
       <!-- stats -->
     </div>

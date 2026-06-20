@@ -14,7 +14,7 @@
     </template>
   </LuCodeBlock>
 
-  <LuStack direction="vertical">
+  <LuStack direction="vertical" pad="0">
     <LuText as="h2" variant="section-title">Props</LuText>
     <PropTable :props-list="propsData" />
   </LuStack>

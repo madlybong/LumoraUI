@@ -1,0 +1,9 @@
+---
+description: This rule enforces surface isolation and shell usage in Lumora UI.
+globs: *.vue
+---
+# Lumora UI Shells Rule
+
+1. **Surface Isolation**: Lumora has three surface namespaces: `LuMobile*` (mobile), `LuDesktop*` (desktop), `LuEmbedded*` (embedded).
+2. **Never Mix Shells**: Never use a Desktop component inside a Mobile shell or vice-versa. Keep namespaces strictly isolated.
+3. **Shell Structure**: Read the JSDoc for `LuDesktopShell`, `LuMobileShell`, and `LuEmbeddedShell` to understand what named slots exist (e.g. `topbar`, `sidebar`, `rail`, `content`). Do not guess slots.

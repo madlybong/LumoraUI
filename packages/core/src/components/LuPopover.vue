@@ -32,12 +32,23 @@
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useFloating } from "../composables/useFloating";
 
-const props = withDefaults(defineProps<{
+/**
+ * Floating popover component. Uses Floating UI internally.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuPopoverProps {
+  /** Preferred placement of the popover relative to the trigger. @default 'bottom' */
   position?: "top" | "bottom" | "left" | "right";
+  /** Event that triggers the popover. @default 'click' */
   trigger?: "click" | "hover";
+  /** Whether clicking outside closes the popover. @default true */
   closeOnOutsideClick?: boolean;
+  /** Visual variant. Resolves to BEM modifier `lu-popover--{variant}`. */
   variant?: string;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuPopoverProps>(), {
   position: "bottom",
   trigger: "click",
   closeOnOutsideClick: true

@@ -70,10 +70,13 @@
     "src/styles",
     "scripts/postinstall.mjs",
     "README.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "llms.txt",
+    "llms-full.txt"
   ],
   "scripts": {
-    "prepack": "bun run build && bun -e \"await Bun.write('README.md', await Bun.file('../../README.md').text()); await Bun.write('CHANGELOG.md', await Bun.file('../../CHANGELOG.md').text())\"",
+    "build:llms": "node scripts/build-llms.mjs",
+    "prepack": "bun run build && bun run build:llms && bun -e \"await Bun.write('README.md', await Bun.file('../../README.md').text()); await Bun.write('CHANGELOG.md', await Bun.file('../../CHANGELOG.md').text())\"",
     "postpack": "bun -e \"import { unlinkSync } from 'fs'; try { unlinkSync('README.md') } catch(e){} try { unlinkSync('CHANGELOG.md') } catch(e){}\"",
     "build:types": "bun -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && bun run vue-tsc -p tsconfig.build.json",
     "build": "bun -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && bun run vue-tsc -p tsconfig.build.json && bun run ../../node_modules/vite/bin/vite.js build -c vite.config.ts",

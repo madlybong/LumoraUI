@@ -17,10 +17,22 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuMobileHeader" });
 
-const props = defineProps<{ 
+/**
+ * Top app bar for mobile shell. Automatically adds padding for safe area.
+ * 
+ * @slots
+ * - `left`: Left action (e.g., back button, menu toggle)
+ * - `default`: Center title area
+ * - `right`: Right actions
+ */
+interface LuMobileHeaderProps {
+  /** Visual variant. Resolves to BEM modifier `lu-mobile-header--{variant}`. */
   variant?: "default" | "transparent";
+  /** ARIA label. @default "Header" */
   ariaLabel?: string;
-}>();
+}
+
+const props = defineProps<LuMobileHeaderProps>();
 
 const ariaLabel = computed(() => props.ariaLabel || "Header");
 const resolvedSkin = computed(() => `lu-mobile-header ${props.variant && props.variant !== "default" ? "lu-mobile-header--"+props.variant : ""}`.trim());

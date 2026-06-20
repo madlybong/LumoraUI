@@ -7,7 +7,7 @@
     :code="switchCode"
   >
     <template #preview>
-      <LuStack>
+      <LuStack pad="0">
         <LuText as="span">Dark Mode</LuText>
         <LuThemeSwitch />
       </LuStack>
@@ -20,7 +20,7 @@
     :code="selectCode"
   >
     <template #preview>
-      <LuStack>
+      <LuStack pad="0">
         <LuThemeSelect />
       </LuStack>
     </template>
@@ -35,7 +35,7 @@ import LuThemeSelect from '../../../recipes/theme-controls/LuThemeSelect.vue';
 import { LuCodeBlock, LuText, LuStack } from '@astrake/lumora-ui';
 
 const switchCode = `<template>
-  <LuStack>
+  <LuStack pad="0">
     <LuText as="span">Dark Mode</LuText>
     <LuThemeSwitch />
   </LuStack>

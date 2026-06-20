@@ -48,13 +48,25 @@ import LuText from "./LuText.vue";
 import LuIcon from "./LuIcon.vue";
 import LuButton from "./LuButton.vue";
 
-const props = withDefaults(defineProps<{
+/**
+ * Overlay dialog modal. Renders via Vue `<Teleport>` to body.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuModalProps {
+  /** Controls visibility of the modal. Use `v-model` to bind. */
   modelValue: boolean;
+  /** Modal title, rendered in the header slot if provided. */
   title?: string;
+  /** Visual variant. Resolves to BEM modifier `lu-modal--{variant}`. */
   variant?: string;
+  /** Whether to show a close button in the header. @default true */
   closable?: boolean;
+  /** Whether clicking the overlay backdrop closes the modal. @default true */
   closeOnOverlayClick?: boolean;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuModalProps>(), {
   closable: true,
   closeOnOverlayClick: true,
 });

@@ -1,19 +1,35 @@
-﻿<template>
+<template>
   <LuPageHeader title="LuGrid" description="A primitive that maps to CSS Grid. It provides a structural foundation for 2D layouts." />
 
   <LuCodeBlock variant="preview" 
-    title="CSS Grid Layout" 
-    description="Combine LuGrid with Tailwind's grid-template-columns utilities."
-    :code="exampleCode"
+    title="Basic 3-Column Grid" 
+    description="Render a grid with a fixed number of columns using the cols prop."
+    :code="basicCode"
   >
     <template #preview>
-      <LuStack class="w-full">
-        <LuGrid class="grid-cols-3 gap-4 w-full max-w-lg mx-auto">
-          <LuStack v-for="i in 6" :key="i" class="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900 items-center justify-center shadow-sm">
+      <PreviewFrame width="100%">
+        <LuGrid :cols="3" :style="{ gap: 'var(--lu-space-4)', width: '100%' }">
+          <LuButton v-for="i in 6" :key="i" variant="outline">
             Cell {{ i }}
-          </LuStack>
+          </LuButton>
         </LuGrid>
-      </LuStack>
+      </PreviewFrame>
+    </template>
+  </LuCodeBlock>
+
+  <LuCodeBlock variant="preview" 
+    title="Responsive Grid" 
+    description="Vary the number of columns based on responsive breakpoints using smCols, mdCols, and lgCols props."
+    :code="responsiveCode"
+  >
+    <template #preview>
+      <PreviewFrame width="100%">
+        <LuGrid :smCols="1" :mdCols="2" :lgCols="3" :style="{ gap: 'var(--lu-space-4)', width: '100%' }">
+          <LuButton v-for="i in 6" :key="i" variant="outline">
+            Cell {{ i }}
+          </LuButton>
+        </LuGrid>
+      </PreviewFrame>
     </template>
   </LuCodeBlock>
 
@@ -21,16 +37,28 @@
 </template>
 
 <script setup lang="ts">
-import { LuGrid, LuStack, LuText, LuCodeBlock } from '@astrake/lumora-ui';
+import { LuGrid, LuText, LuCodeBlock, LuButton } from '@astrake/lumora-ui';
+import PreviewFrame from '../../../components/PreviewFrame.vue';
 import PropTable from '../../../components/PropTable.vue';
 
-const exampleCode = `<LuGrid class="grid-cols-3 gap-4">
-  <LuStack v-for="i in 6" :key="i" class="p-6 border rounded-xl items-center justify-center bg-gray-50">
+const basicCode = `<LuGrid :cols="3" :style="{ gap: 'var(--lu-space-4)' }">
+  <LuButton v-for="i in 6" :key="i" variant="outline">
     Cell {{ i }}
-  </LuStack>
+  </LuButton>
+</LuGrid>`;
+
+const responsiveCode = `<LuGrid :smCols="1" :mdCols="2" :lgCols="3" :style="{ gap: 'var(--lu-space-4)' }">
+  <LuButton v-for="i in 6" :key="i" variant="outline">
+    Cell {{ i }}
+  </LuButton>
 </LuGrid>`;
 
 const propsData = [
+  { name: 'cols', type: 'number', description: 'Total number of columns (applied via inline grid-template-columns).' },
+  { name: 'smCols', type: 'number', description: 'Columns at the sm breakpoint (adds responsive class sm:grid-cols-N).' },
+  { name: 'mdCols', type: 'number', description: 'Columns at the md breakpoint (adds responsive class md:grid-cols-N).' },
+  { name: 'lgCols', type: 'number', description: 'Columns at the lg breakpoint (adds responsive class lg:grid-cols-N).' },
+  { name: 'as', type: 'string', default: '"div"', description: 'HTML element to render as.' },
   { name: 'variant', type: 'string', description: 'Skin variant key.' },
 ];
 </script>

@@ -21,7 +21,7 @@
           <template #topbar>
             <LuDesktopTopBar>
               <template #left>
-                <LuStack direction="horizontal" align="center" gap="3">
+                <LuStack direction="horizontal" align="center" gap="3" pad="0">
                   <LuIcon name="layout-dashboard" />
                   <LuText variant="section-title">My App</LuText>
                 </LuStack>
@@ -30,7 +30,7 @@
                 <!-- global search / command launcher -->
               </template>
               <template #right>
-                <LuStack direction="horizontal" align="center" gap="2">
+                <LuStack direction="horizontal" align="center" gap="2" pad="0">
                   <LuButton variant="ghost" class="p-2 h-8 w-8"><LuIcon name="bell" /></LuButton>
                   <LuAvatar variant="sm" fallback="U" />
                 </LuStack>
@@ -65,7 +65,7 @@
                 <LuText variant="label" class="text-xs uppercase tracking-widest opacity-50">Navigation</LuText>
               </template>
               <template #content>
-                <LuStack direction="vertical" gap="1">
+                <LuStack direction="vertical" gap="1" pad="0">
                   <LuButton variant="ghost" align="left" full>Dashboard</LuButton>
                   <LuButton variant="ghost" align="left" full>Analytics</LuButton>
                   <LuButton variant="ghost" align="left" full>Reports</LuButton>
@@ -82,7 +82,7 @@
 
           <template #content>
             <LuFill class="overflow-y-auto p-5">
-              <LuStack direction="vertical" gap="4">
+              <LuStack direction="vertical" gap="4" pad="0">
                 <LuCard>
                   <LuText variant="section-title">Main Content Area</LuText>
                   <LuText variant="body" class="mt-2 text-sm opacity-60">
@@ -124,7 +124,7 @@
           <template #topbar>
             <LuDesktopTopBar variant="compact">
               <template #left>
-                <LuStack direction="horizontal" align="center" gap="2">
+                <LuStack direction="horizontal" align="center" gap="2" pad="0">
                   <LuButton variant="ghost" class="p-1 h-8 w-8" @click="collapsibleSidebarOpen = !collapsibleSidebarOpen">
                     <LuIcon name="panel-left" />
                   </LuButton>
@@ -138,7 +138,7 @@
             <!-- collapsible: true; v-model controls the open state (true = open, false = collapsed) -->
             <LuDesktopSidebar collapsible v-model="collapsibleSidebarOpen">
               <template #content>
-                <LuStack direction="vertical" gap="1">
+                <LuStack direction="vertical" gap="1" pad="0">
                   <LuButton variant="ghost" align="left" full>Menu Item 1</LuButton>
                   <LuButton variant="ghost" align="left" full>Menu Item 2</LuButton>
                   <LuButton variant="ghost" align="left" full>Menu Item 3</LuButton>
@@ -202,7 +202,7 @@
   </LuCodeBlock>
 
   <!-- API Reference -->
-  <LuStack direction="vertical" gap="6" class="mt-10">
+  <LuStack direction="vertical" gap="6" class="mt-10" pad="0">
     <LuText as="h2" variant="default">API Reference</LuText>
 
     <div>

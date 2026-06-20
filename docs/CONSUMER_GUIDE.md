@@ -31,11 +31,11 @@ Shared primitives (`LuIcon`, `LuButton`, `LuInput`, etc.) are surface-agnostic a
 ### Step 1 — Install
 
 ```bash
-bun add @astrake/lumora-ui vue@^3.5.0 tailwindcss @tailwindcss/vite \
-        echarts vue-echarts \
-        @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-placeholder \
-        vue-draggable-plus
+bun add @astrake/lumora-ui vue@^3.5.0 tailwindcss @tailwindcss/vite maska vue-draggable-plus
 ```
+
+> **🤖 AI Agent Notice:**
+> If you are an AI agent writing code that uses this framework, you MUST read the rules in `node_modules/@astrake/lumora-ui/llms.txt`.
 
 ### Step 2 — Import the CSS baseline (REQUIRED)
 
@@ -263,7 +263,7 @@ These are surface-agnostic structural building blocks. Use them inside any shell
 | `LuFill` | Greedy `flex: 1` child that fills available space |
 | `LuFixed` | Non-growing `flex-shrink: 0` child |
 | `LuScroll` | Scrollable region — `variant="horizontal"` for X-scroll |
-| `LuStack` | Flex container — `direction="vertical|horizontal"` |
+| `LuStack` | Flex container — `direction="vertical|horizontal"`. **Note:** Use `pad="0"` when strictly using it for layout structural alignment to avoid bloated padding. |
 | `LuGrid` | CSS grid container with optional `cols` prop |
 | `LuSplit` | Resizable split pane with `direction="horizontal|vertical"` |
 | `LuOverlay` | Absolute-fill layer for modals, drawers, tooltips |
@@ -314,6 +314,8 @@ const formRules = {
 | Using `LuDesktop*` components in a mobile app | Use `LuMobile*` components |
 | Using `tailwindContent()` with Tailwind v4 | Use `@source` directive in CSS |
 | Hard-coding colors inside skin strings via inline `style` | Use Tailwind/CSS classes in skin |
+| Using `class="flex flex-col"` instead of `<LuStack>` | Use `<LuStack direction="vertical">` (Zero-Raw-HTML Adherence) |
+| Using `<LuStack>` purely as a wrapper without `pad="0"` | `pad="0"` avoids "blowfish" layout bloat |
 | Mutating nested skin properties: `config.skin.LuButton.default = '...'` | Assign a new skin object |
 | Configuring `tailwind.config.js content` in a v4 setup | Use `@source` in CSS only |
 | Defining `LuMobileShell` skin key in a desktop app | Only define relevant surface keys |

@@ -17,9 +17,20 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuDesktopTopBar" });
 
-const props = defineProps<{ 
+/**
+ * Horizontal top navigation bar for desktop shell.
+ * 
+ * @slots
+ * - `left`: Left-aligned items (brand, menu toggle)
+ * - `center`: Center-aligned items (search, tabs)
+ * - `right`: Right-aligned items (actions, profile)
+ */
+interface LuDesktopTopBarProps {
+  /** Visual variant. Resolves to BEM modifier `lu-desktop-top-bar--{variant}`. */
   variant?: "default" | "bordered" | "transparent" | "compact";
-}>();
+}
+
+const props = defineProps<LuDesktopTopBarProps>();
 
 const resolvedSkin = computed(() => `lu-desktop-top-bar ${props.variant && props.variant !== "default" ? "lu-desktop-top-bar--"+props.variant : ""}`.trim());
 </script>

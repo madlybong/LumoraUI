@@ -15,12 +15,23 @@ import { computed, inject, onMounted, onUnmounted, ref } from "vue";
 
 import { LuFormContextKey } from "./LuForm.types";
 
-const props = defineProps<{
+/**
+ * Multi-line text input component.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuTextareaProps {
+  /** The value of the textarea. Use `v-model` to bind. */
   modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-textarea--{variant}`. */
   variant?: string;
+  /** Field name, used for form registration if inside a `<LuForm>`. */
   name?: string;
+  /** Error message. */
   error?: string | null;
-}>();
+}
+
+const props = defineProps<LuTextareaProps>();
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;

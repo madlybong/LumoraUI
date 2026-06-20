@@ -21,7 +21,7 @@
           <template #topbar>
             <LuEmbeddedTopBar>
               <template #left>
-                <LuStack direction="horizontal" align="center" gap="3">
+                <LuStack direction="horizontal" align="center" gap="3" pad="0">
                   <LuButton variant="ghost" class="p-2 h-8 w-8"><LuIcon name="menu" /></LuButton>
                   <LuText variant="section-title">Kiosk App</LuText>
                 </LuStack>
@@ -63,7 +63,7 @@
                 <span>{{ scanCount }} items scanned</span>
               </template>
               <template #right>
-                <LuStack direction="horizontal" align="center" gap="2">
+                <LuStack direction="horizontal" align="center" gap="2" pad="0">
                   <LuIcon name="wifi" style="width: 0.75rem; height: 0.75rem; color: #22c55e;" />
                   <span>Connected</span>
                 </LuStack>
@@ -101,11 +101,11 @@
 
           <template #content>
             <LuFill class="overflow-y-auto p-3">
-              <LuStack direction="vertical" gap="3">
+              <LuStack direction="vertical" gap="3" pad="0">
                 <LuCard v-for="setting in hmiSettings" :key="setting.id">
-                  <LuStack direction="horizontal" align="center" gap="3">
+                  <LuStack direction="horizontal" align="center" gap="3" pad="0">
                     <LuIcon :name="setting.icon" style="opacity: 0.5;" />
-                    <LuStack direction="vertical" gap="0">
+                    <LuStack direction="vertical" gap="0" pad="0">
                       <LuText variant="label">{{ setting.name }}</LuText>
                       <LuText class="text-xs opacity-40">{{ setting.value }}</LuText>
                     </LuStack>
@@ -118,7 +118,7 @@
           <template #statusbar>
             <LuEmbeddedStatusBar variant="icon-row">
               <template #center>
-                <LuStack direction="horizontal" align="center" gap="6">
+                <LuStack direction="horizontal" align="center" gap="6" pad="0">
                   <LuButton variant="ghost" class="p-2 h-9 w-9"><LuIcon name="settings" /></LuButton>
                   <LuButton variant="ghost" class="p-2 h-9 w-9"><LuIcon name="activity" /></LuButton>
                   <LuButton variant="ghost" class="p-2 h-9 w-9" style="color: #ef4444;"><LuIcon name="power" /></LuButton>
@@ -132,7 +132,7 @@
   </LuCodeBlock>
 
   <!-- API Reference -->
-  <LuStack direction="vertical" gap="6" class="mt-10">
+  <LuStack direction="vertical" gap="6" class="mt-10" pad="0">
     <LuText as="h2" variant="default">API Reference</LuText>
 
     <div>

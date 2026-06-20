@@ -19,10 +19,20 @@ import { computed } from "vue";
 
 import LuIcon from "./LuIcon.vue";
 
-const props = defineProps<{
+/**
+ * A notification alert box.
+ * 
+ * @example
+ * <LuAlert variant="danger" icon="alert-circle">Something went wrong!</LuAlert>
+ */
+interface LuAlertProps {
+  /** Visual variant. Resolves to BEM modifier `lu-alert--{variant}`. */
   variant?: string;
+  /** Optional icon name to display on the left. */
   icon?: string;
-}>();
+}
+
+const props = defineProps<LuAlertProps>();
 
 
 const resolvedSkin = computed(() => `lu-alert ${props.variant && props.variant !== 'default' ? 'lu-alert--'+props.variant : ''}`.trim());

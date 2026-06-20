@@ -16,6 +16,7 @@ if (isMonorepo) process.exit(0)
 
 const b = '\x1b[1m'
 const c = '\x1b[36m'
+const y = '\x1b[33m'
 const r = '\x1b[0m'
 const d = '\x1b[2m'
 
@@ -26,10 +27,9 @@ ${b}${c}╔═══════════════════════
 
 Run this to install all required peer dependencies:
 
-${c}  bun add vue@^3.5.0 tailwindcss @tailwindcss/vite \\
-        echarts vue-echarts \\
-        @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-placeholder \\
-        vue-draggable-plus${r}
+${c}  bun add vue@^3.5.0 maska vue-draggable-plus${r}
+
+${y}🤖 AI Agents: Read node_modules/@astrake/lumora-ui/llms.txt for usage rules.${r}
 
 ${d}Docs: https://ui.lumora.astrake.com/docs/setup${r}
 `)

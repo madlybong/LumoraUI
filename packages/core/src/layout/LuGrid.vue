@@ -7,14 +7,34 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const props = withDefaults(defineProps<{
+/**
+ * CSS Grid layout container.
+ * 
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - Use `LuGrid` as the primary tool for building multi-column Grid layouts.
+ * - NEVER use `<div style="display:grid">` or `<div class="grid">`.
+ * - Similar to `LuStack`, `LuGrid` supports a `pad` prop. Set `pad="0"` if you are using the grid purely for column arrangement without needing internal bounding padding.
+ * 
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities for column definitions, use the `cols`, `smCols`, `mdCols`, and `lgCols` props.
+ */
+interface LuGridProps {
+  /** Total number of columns. */
   cols?: number;
+  /** Columns at the 'sm' breakpoint. */
   smCols?: number;
+  /** Columns at the 'md' breakpoint. */
   mdCols?: number;
+  /** Columns at the 'lg' breakpoint. */
   lgCols?: number;
+  /** Visual variant. Resolves to BEM modifier `lu-grid--{variant}`. */
   variant?: string;
+  /** HTML element to render as. @default 'div' */
   as?: string;
-}>(), {
+  /** Space token scale padding, e.g. pad="4" → padding: var(--lu-space-4) */
+  pad?: string | number;
+}
+
+const props = withDefaults(defineProps<LuGridProps>(), {
   as: 'div'
 });
 
@@ -27,7 +47,14 @@ const colsClass = computed(() => {
 });
 const resolvedSkin = computed(() => [`lu-grid ${props.variant && props.variant !== "default" ? "lu-grid--"+props.variant : ""}`.trim(), colsClass.value].filter(Boolean).join(" "));
 
-const gridStyle = computed(() => 
-  props.cols ? { gridTemplateColumns: `repeat(${props.cols}, minmax(0, 1fr))` } : {}
-);
+const gridStyle = computed(() => {
+  const baseStyle: Record<string, string> = {};
+  if (props.pad !== undefined) {
+    baseStyle.padding = `var(--lu-space-${props.pad})`;
+  }
+  if (props.cols) {
+    baseStyle.gridTemplateColumns = `repeat(${props.cols}, minmax(0, 1fr))`;
+  }
+  return baseStyle;
+});
 </script>

@@ -45,15 +45,33 @@ import LuIcon from "./LuIcon.vue";
 
 defineOptions({ name: "LuInput" });
 
+/**
+ * Text input component with prepend/append slot support and optional input masking.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities — visual theming is done
+ * exclusively via `--lu-*` CSS custom properties.
+ *
+ * @example
+ * <LuInput v-model="email" type="email" prependIcon="mail" />
+ */
 interface LuInputProps {
+  /** The value of the input. Use `v-model` to bind. */
   modelValue?: string | number;
+  /** Visual variant. Resolves to BEM modifier `lu-input--{variant}`. */
   variant?: string;
+  /** Field name, used for form registration if inside a `<LuForm>`. */
   name?: string;
+  /** Error message. Applies `lu-input--error` state if truthy. */
   error?: string | null;
+  /** Native input type (e.g. 'text', 'password', 'email'). @default 'text' */
   type?: string;
+  /** Name of the icon to render in the prepend zone. */
   prependIcon?: string;
+  /** Name of the icon to render in the append zone. */
   appendIcon?: string;
+  /** Maska pattern for input masking (e.g. '(###) ###-####'). */
   mask?: string | string[];
+  /** Additional options for Maska. */
   maskOptions?: Record<string, unknown>;
 }
 

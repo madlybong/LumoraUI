@@ -262,6 +262,18 @@
   .lu-accordion-item__content { overflow: hidden; }
   .lu-collapsible__content-inner { padding: var(--lu-space-3) var(--lu-space-4); }
 
+  /* Accordion Ghost Variant */
+  .lu-accordion--ghost .lu-accordion-item { border: none; }
+  .lu-accordion--ghost .lu-accordion-item__trigger {
+    padding: var(--lu-space-1) var(--lu-space-2);
+    font-size: var(--lu-text-xs);
+    color: var(--lu-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .lu-accordion--ghost .lu-accordion-item__trigger:hover { background: transparent; color: var(--lu-color-text); }
+  .lu-accordion--ghost .lu-collapsible__content-inner { padding: var(--lu-space-1) 0; }
+
 
   /* ── LuInput ──────────────────────────────────────────────────────────── */
 
@@ -389,13 +401,12 @@
   }
   .lu-card--default {} /* Alias for base card */
   .lu-card--flat { box-shadow: none; }
-  .lu-card--surface { background: var(--lu-color-surface); box-shadow: none; }
+  .lu-card--surface { background: var(--lu-color-surface); box-shadow: none; border-color: transparent; }
   .lu-card--panel {
     background: var(--lu-color-surface-raised);
-    padding: var(--lu-space-4);
-    transition: box-shadow var(--lu-duration-base);
+    transition: box-shadow var(--lu-duration-base), transform var(--lu-duration-base);
   }
-  .lu-card--panel:hover { box-shadow: var(--lu-shadow-md); }
+  .lu-card--panel:hover { box-shadow: var(--lu-shadow-md); transform: translateY(-1px); }
 
   .lu-bottom-sheet__footer {
     padding: var(--lu-space-4);
@@ -485,15 +496,24 @@
   /* ── LuSpinner ────────────────────────────────────────────────────────── */
   .lu-spinner {
     display: inline-block;
-    border: 2px solid currentColor;
-    border-right-color: transparent;
-    border-radius: 50%;
-    animation: lu-spin 0.75s linear infinite;
+    animation: lu-spin 1.5s linear infinite;
   }
-  @keyframes lu-spin { to { transform: rotate(360deg); } }
-  .lu-spinner--sm { width: 1rem; height: 1rem; border-width: 2px; }
-  .lu-spinner--md { width: 1.5rem; height: 1.5rem; border-width: 2px; }
-  .lu-spinner--lg { width: 2rem; height: 2rem; border-width: 3px; }
+  .lu-spinner__circle {
+    stroke-dasharray: 45 45;
+    stroke-dashoffset: 0;
+    animation: lu-dash 1.5s ease-in-out infinite;
+  }
+  @keyframes lu-spin { 
+    100% { transform: rotate(360deg); } 
+  }
+  @keyframes lu-dash {
+    0% { stroke-dasharray: 1 60; stroke-dashoffset: 0; }
+    50% { stroke-dasharray: 45 45; stroke-dashoffset: -15; }
+    100% { stroke-dasharray: 45 45; stroke-dashoffset: -60; }
+  }
+  .lu-spinner--sm { width: 1rem; height: 1rem; }
+  .lu-spinner--md { width: 1.5rem; height: 1.5rem; }
+  .lu-spinner--lg { width: 2rem; height: 2rem; }
   .lu-spinner--primary { color: var(--lu-color-primary); }
   .lu-spinner--default { color: var(--lu-color-text-muted); }
   .lu-spinner--white { color: var(--lu-white); }

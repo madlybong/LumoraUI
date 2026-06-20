@@ -20,12 +20,23 @@ import { ref, computed, provide, readonly } from "vue";
 import type { LuFormRules, LuFormErrors, LuFormFieldRegistration, LuFormContext } from "./LuForm.types";
 import { LuFormContextKey } from "./LuForm.types";
 
-const props = withDefaults(defineProps<{
+/**
+ * Form wrapper component providing validation context.
+ *
+ * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ */
+interface LuFormProps {
+  /** Validation rules mapping field names to validators. */
   rules?: LuFormRules;
+  /** When to trigger validation. @default 'submit' */
   validateOn?: "submit" | "blur" | "both";
+  /** Whether to reset all fields upon successful submit. @default false */
   resetOnSubmit?: boolean;
+  /** Disables the form and all its registered fields. @default false */
   disabled?: boolean;
-}>(), {
+}
+
+const props = withDefaults(defineProps<LuFormProps>(), {
   rules: () => ({}),
   validateOn: "submit",
   resetOnSubmit: false,

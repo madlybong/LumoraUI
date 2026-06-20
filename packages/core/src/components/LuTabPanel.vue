@@ -7,7 +7,17 @@
 <script setup lang="ts">
 import { computed, inject, type Ref } from "vue";
 
-const props = defineProps<{ variant?: string; value: string | number }>();
+/**
+ * Content panel associated with a specific tab.
+ */
+interface LuTabPanelProps {
+  /** Visual variant. Resolves to BEM modifier `lu-tab-panel--{variant}`. */
+  variant?: string;
+  /** Unique value identifying this panel. Must match a `LuTab` value. */
+  value: string | number;
+}
+
+const props = defineProps<LuTabPanelProps>();
 
 const activeTab = inject<Ref<string | number | undefined>>("lu-tabs-active");
 
