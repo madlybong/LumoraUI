@@ -275,7 +275,7 @@ These are surface-agnostic structural building blocks. Use them inside any shell
 | `LuBottomSheet` | Mobile-friendly bottom drawer with drag-dismiss support |
 | `LuToast` | Transient non-blocking notification portals via `useLuToast()` |
 | `LuChip` / `LuChipGroup` | Compact interactive selection and tag filtering components |
-| `LuAccordion` | Exclusive single or multi-expandable grouped collapsible panels |
+| `LuAccordion` | Grouped collapsibles with exclusive-open mode. **Note:** Use `variant="ghost"` for sidebar usage to remove borders and padding. |
 
 ---
 
