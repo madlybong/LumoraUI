@@ -4,6 +4,15 @@
 
 ---
 
+## [0.9.2] — 2026-06-20
+
+### Documentation
+- Updated `CONSUMER_GUIDE.md` with explicit details on using `LuAccordion` `variant="ghost"` for sidebar usage.
+- Synchronized repository agent documentation and showcase guidelines with latest v0.8.0 zero-raw-HTML adherence policies.
+
+
+---
+
 ## [0.9.1] — 2026-06-20
 
 ### Added
