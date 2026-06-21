@@ -17,6 +17,14 @@ import { computed } from "vue";
 
 defineOptions({ name: "LuDesktopStatusBar" });
 
+/**
+ * Bottom status bar for desktop shell.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw `<footer>` tags or Tailwind flex rows for the main status bar.
+ * - Always use `LuDesktopStatusBar` placed inside the `statusbar` slot of `LuDesktopShell`.
+ * - Leverage `left`, `center`, and `right` slots for automatic alignment.
+ */
 const props = defineProps<{ 
   variant?: "default";
 }>();

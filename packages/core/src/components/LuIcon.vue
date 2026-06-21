@@ -17,6 +17,10 @@ import { useLumoraConfig } from "../context";
 
 /**
  * Renders an icon from the configured icon pack.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw SVGs or external icon components directly. Always use `<LuIcon>`.
+ * - To style icon colors, inherit text color by placing it in a container, or use `class="text-[color]"`.
  */
 interface LuIconProps {
   /** Visual variant. Resolves to BEM modifier `lu-icon--{variant}`. */

@@ -47,7 +47,7 @@ describe("LuList family", () => {
       }
     });
 
-    expect(wrapper.classes()).toContain("cursor-pointer");
+    expect(wrapper.classes()).toContain("lu-list-item--clickable");
     expect(wrapper.attributes("tabindex")).toBe("0");
 
     await wrapper.trigger("click");
@@ -69,7 +69,7 @@ describe("LuList family", () => {
       }
     });
 
-    expect(wrapper.classes()).not.toContain("cursor-pointer");
+    expect(wrapper.classes()).not.toContain("lu-list-item--clickable");
     expect(wrapper.attributes("tabindex")).toBeUndefined();
 
     await wrapper.trigger("click");

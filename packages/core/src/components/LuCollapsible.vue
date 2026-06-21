@@ -16,6 +16,13 @@
 <script setup lang="ts">
 import { computed, ref, watch, inject } from "vue";
 
+/**
+ * Collapsible section or Accordion item.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ Do NOT add a `class` prop with Tailwind utilities to style padding/margin.
+ * - This component serves as both standalone `<LuCollapsible>` and `<LuAccordionItem>` when inside `<LuAccordion>`.
+ */
 const props = defineProps<{
   variant?: string;
   modelValue?: boolean;

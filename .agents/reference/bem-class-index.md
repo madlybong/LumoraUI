@@ -22,7 +22,8 @@ Use this index to target components when styling or overriding themes inside the
 
 | Component | Root Class | Modifiers | Purpose |
 |:---|:---|:---|:---|
-| `LuStack` | `.lu-stack` | `--vertical`, `--horizontal`, `--container` | Flex stacks and main max-width page container blocks |
+| `LuStack` | `.lu-stack` | `--vertical`, `--horizontal`, <del>`--container`</del> | Flex stacks |
+| `LuContainer` | `.lu-container` | `--sm`, `--md`, `--lg`, `--xl`, `--fluid` | Main max-width responsive page container blocks |
 | `LuDock` | `.lu-dock` | `--vertical`, `--horizontal` | View docking frames |
 | `LuDockItem` | `.lu-dock-item` | `--top`, `--bottom`, `--left`, `--right`, `--fill` | Multi-directional dock regions |
 | `LuFixed` | `.lu-fixed` | none | Layout panels that cannot stretch or shrink |

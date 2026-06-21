@@ -239,7 +239,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
   <div :class="skinContainer">
     <!-- Toolbar -->
     <div :class="skinToolbar">
-      <div class="flex items-center gap-3">
+      <div class="lu-data-grid__toolbar">
         <!-- Search input (left) -->
         <input
           v-if="searchable"
@@ -266,7 +266,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
         </template>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="lu-data-grid__pagination-bar">
         <slot name="toolbar-end">
           <LuButton variant="ghost" size="sm" @click="emit('export', { format: 'csv' })">
             <LuIcon name="download" :size="14" />
@@ -277,7 +277,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
     </div>
 
     <!-- Loading overlay -->
-    <div v-if="loading" class="flex items-center gap-3">
+    <div v-if="loading" class="lu-data-grid__loading-row">
       <LuSpinner variant="primary" />
       <LuText variant="muted">Loading…</LuText>
     </div>
@@ -308,7 +308,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
                 :style="isFrozen(colIdx) ? { left: frozenLeft(colIdx) } : undefined"
                 @click="handleSort(col.key, col.sortable)"
               >
-                <div class="flex items-center gap-1">
+                <div class="lu-data-grid__sort-indicator">
                   <LuText variant="grid-header">{{ col.label }}</LuText>
                   <span v-if="sortable && col.sortable" :class="sortIconVariant(col.key)">
                     <LuIcon :name="sortIconName(col.key)" :size="12" />
@@ -394,7 +394,7 @@ const totalCount = computed(() => props.total ?? filteredData.value.length);
                     <input
                       v-if="isEditing(item.row, col)"
                       v-model="editingValue"
-                      :class="['w-full h-8 px-2 text-sm rounded border focus:outline-none', skinErrorInput]"
+                      :class="['lu-data-grid__inline-edit-input', skinErrorInput]"
                       @blur="commitEdit(item.row, col)"
                       @keydown.enter="commitEdit(item.row, col)"
                       @keydown.escape="editingCell = null"

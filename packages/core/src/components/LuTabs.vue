@@ -9,6 +9,10 @@ import { computed, provide, ref, watch } from "vue";
 
 /**
  * Container for a tabbed interface. Manages active tab state via provide/inject.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw `<div>` lists or Tailwind border tricks to build tabs.
+ * - Always compose using `<LuTabs>`, `<LuTabList>`, `<LuTabTrigger>`, and `<LuTabPanel>`.
  */
 interface LuTabsProps {
   /** Visual variant. Resolves to BEM modifier `lu-tabs--{variant}`. */

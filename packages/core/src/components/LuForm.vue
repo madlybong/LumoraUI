@@ -23,7 +23,10 @@ import { LuFormContextKey } from "./LuForm.types";
 /**
  * Form wrapper component providing validation context.
  *
- * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER build complex manual validation logic with raw HTML forms.
+ * - Always use `<LuForm>` to wrap inputs and leverage the built-in validation system.
+ * - Use `LuForm` context to disable nested fields (`disabled` prop).
  */
 interface LuFormProps {
   /** Validation rules mapping field names to validators. */

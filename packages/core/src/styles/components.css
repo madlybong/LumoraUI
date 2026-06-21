@@ -179,6 +179,7 @@
   }
 
   /* Nav link — sidebar navigation items */
+
   .lu-link--nav {
     display: flex; align-items: center; gap: var(--lu-space-2);
     width: 100%; padding: var(--lu-space-1) var(--lu-space-2);
@@ -331,6 +332,7 @@
     flex-shrink: 0;
     color: var(--lu-color-text-muted);
   }
+  .lu-input__prepend { min-width: 2.25rem; }
 
   /* Icon-only zones: fixed width so the icon is centered nicely */
   .lu-input__prepend:has(> .lu-input__icon),
@@ -826,5 +828,24 @@
     font-size: 0.625rem; opacity: 0.9;
     font-weight: var(--lu-font-medium); margin-top: 0.125rem;
   }
+
+  /* ── Raw HTML Audit BEM Fixes ─────────────────────────────────────────── */
+  .lu-select__root { position: relative; display: block; width: 100%; }
+  .lu-list-item--clickable { cursor: pointer; }
+  .lu-kanban__card-body { display: flex; flex-direction: column; gap: var(--lu-space-2); }
+  .lu-data-grid__toolbar { display: flex; align-items: center; gap: var(--lu-space-3); }
+  .lu-data-grid__pagination-bar { display: flex; align-items: center; gap: var(--lu-space-2); }
+  .lu-data-grid__loading-row { display: flex; align-items: center; gap: var(--lu-space-3); }
+  .lu-data-grid__sort-indicator { display: flex; align-items: center; gap: var(--lu-space-1); }
+  .lu-command-palette__item-body { display: flex; flex-direction: column; flex: 1; }
+  .lu-command-palette__item-shortcuts { display: flex; }
+  .lu-command-palette__footer-hint { display: flex; }
+  .lu-file-upload__browse-link { color: var(--lu-color-primary); text-decoration: underline; }
+  .lu-media-gallery__lightbox-icon { color: #fff; }
+  .lu-media-gallery__overlay-badge { position: absolute; top: var(--lu-space-4); left: var(--lu-space-4); }
+  .lu-date-range-picker__icon { color: var(--lu-color-text-muted); }
+  .lu-date-range-picker__inputs { display: flex; gap: var(--lu-space-3); }
+  .lu-data-grid__inline-edit-input { width: 100%; height: 2rem; padding: 0 0.5rem; font-size: var(--lu-text-sm); border-radius: var(--lu-radius-2); border: 1px solid var(--lu-color-border); outline: none; }
+  .lu-data-grid__inline-edit-input:focus { border-color: var(--lu-color-border-focus); box-shadow: 0 0 0 1px var(--lu-color-border-focus); }
 
 }

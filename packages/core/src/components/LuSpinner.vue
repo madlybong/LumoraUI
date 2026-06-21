@@ -5,6 +5,13 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Loading spinner component.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw SVGs or CSS spin animations for loading states.
+ * - Always use `<LuSpinner>` to indicate background work.
+ */
 const props = defineProps<{
   variant?: string;
 }>();

@@ -7,20 +7,23 @@
 
     <!-- Scrollable nav content -->
     <template #content>
-      <LuAccordion variant="ghost" multiple v-model="openSections">
+      <LuScroll>
+        <LuAccordion variant="ghost" multiple v-model="openSections">
         <LuCollapsible 
           v-for="section in navTree" 
           :key="section.title" 
           :value="section.title"
         >
           <template #trigger="{ isOpen }">
-            <LuIcon v-if="section.icon" :name="section.icon" class="w-3 h-3 text-zinc-400 dark:text-zinc-500 shrink-0" />
-            <LuText variant="label">{{ section.title }}</LuText>
-            <LuIcon
-              name="chevron-down"
-              class="w-3.5 h-3.5 ml-auto text-zinc-400 transition-transform duration-200"
-              :class="{ 'rotate-180': isOpen }"
-            />
+            <LuStack direction="horizontal" align="center" justify="start" pad="0" :gap="3" class="w-full">
+              <LuIcon v-if="section.icon" :name="section.icon" class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 shrink-0" />
+              <LuText variant="label">{{ section.title }}</LuText>
+              <LuIcon
+                name="chevron-down"
+                class="w-3.5 h-3.5 ml-auto text-zinc-400 transition-transform duration-200"
+                :class="{ 'rotate-180': isOpen }"
+              />
+            </LuStack>
           </template>
           <template #content>
             <LuList class="pb-2">
@@ -52,13 +55,14 @@
                   <template v-if="item.icon" #leading>
                     <LuIcon :name="item.icon" class="w-3.5 h-3.5 opacity-60" />
                   </template>
-                  {{ item.label }}
+                  <LuText>{{ item.label }}</LuText>
                 </LuListItem>
               </template>
             </LuList>
           </template>
         </LuCollapsible>
       </LuAccordion>
+      </LuScroll>
     </template>
 
     <!-- Sticky footer: version badge + GitHub link -->
@@ -79,7 +83,7 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import { LuDesktopSidebar, LuAccordion, LuCollapsible, LuList, LuListItem, LuIcon, LuText, LuBadge, LuStack, LuLink } from '@astrake/lumora-ui';
+import { LuDesktopSidebar, LuAccordion, LuCollapsible, LuList, LuListItem, LuIcon, LuText, LuBadge, LuStack, LuLink, LuScroll } from '@astrake/lumora-ui';
 import { useRoute } from 'vue-router';
 import { navTree } from '../composables/useNavTree';
 import DocsSearch from './DocsSearch.vue';

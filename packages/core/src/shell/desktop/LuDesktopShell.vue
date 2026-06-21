@@ -19,6 +19,10 @@ defineOptions({ name: "LuDesktopShell" });
 
 /**
  * Root container for desktop applications.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use Tailwind `flex`, `grid`, or `h-screen` for the application root.
+ * - Always use `LuDesktopShell` to host top-level desktop structure.
  * 
  * @slots
  * - `topbar`: Place `LuDesktopTopBar` here

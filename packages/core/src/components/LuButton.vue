@@ -19,7 +19,13 @@
     ]"
     @click="emit('click', $event)"
   >
-    <span class="lu-button__content"><slot /></span>
+    <span v-if="$slots.icon" class="lu-button__icon">
+      <slot name="icon" />
+    </span>
+    <span v-if="$slots.default" class="lu-button__content"><slot /></span>
+    <span v-if="$slots.trailingIcon" class="lu-button__icon lu-button__icon--trailing">
+      <slot name="trailingIcon" />
+    </span>
     <span v-if="loading" class="lu-button__spinner">
       <slot name="loading">
         <LuSpinner class="lu-spinner--md" />
@@ -37,8 +43,11 @@ defineOptions({ inheritAttrs: false });
 /**
  * Action button. Renders as `<button>`, `<a>`, or `<RouterLink>` depending on props.
  *
- * ⛔ Do NOT add a `class` prop with Tailwind utilities — visual theming is done
- * exclusively via `--lu-*` CSS custom properties in your consumer stylesheet.
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ Do NOT add a `class` prop with Tailwind utilities (e.g., `w-full`, `mt-4`).
+ * - To fill width, use `<LuButton full>`.
+ * - To add margin, wrap in `<LuStack>` or a custom BEM container, do NOT apply margin classes directly.
+ * - Visual theming is done exclusively via `--lu-*` CSS custom properties.
  *
  * @example
  * <LuButton variant="primary" @click="save">Save</LuButton>

@@ -128,15 +128,15 @@ const displayLabel = computed(() => {
       :aria-expanded="isOpen"
       @click="isOpen = !isOpen"
     >
-      <LuIcon name="calendar" :size="15" class="text-zinc-400" />
+      <LuIcon name="calendar" :size="15" class="lu-date-range-picker__icon" />
       <LuText>{{ displayLabel }}</LuText>
-      <LuIcon name="chevron-down" :size="14" class="ml-2" />
+      <LuIcon name="chevron-down" :size="14" style="margin-left: 0.5rem;" />
     </button>
 
     <!-- Dropdown -->
     <Transition name="lu-slide-down">
       <div v-if="isOpen" :class="['lu-date-range-picker__dropdown']">
-        <div class="flex gap-3">
+        <div class="lu-date-range-picker__inputs">
           <!-- Presets -->
           <nav :class="['lu-date-range-presets']" aria-label="Date presets">
             <button

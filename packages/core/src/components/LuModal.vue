@@ -51,7 +51,11 @@ import LuButton from "./LuButton.vue";
 /**
  * Overlay dialog modal. Renders via Vue `<Teleport>` to body.
  *
- * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use Tailwind `fixed inset-0` or manual z-index to build modals.
+ * - Always use `<LuModal>` with `v-model`.
+ * - For size, use `variant="sm"`, `variant="md"`, `variant="lg"`.
+ * - Do NOT pass raw Tailwind classes for padding/margins.
  */
 interface LuModalProps {
   /** Controls visibility of the modal. Use `v-model` to bind. */

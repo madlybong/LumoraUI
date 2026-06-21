@@ -33,8 +33,11 @@ import { computed } from "vue";
 
 /**
  * Slide-out drawer overlay panel.
- * 
- * ⛔ Do NOT add a `class` prop with Tailwind utilities.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER build custom slide-out menus with Tailwind `translate-x` and fixed positioning.
+ * - Always use `<LuDrawer>` with `v-model`.
+ * - Leverage `position="left" | "right" | "top" | "bottom"`.
  */
 interface LuDrawerProps {
   /** Controls visibility. Use `v-model`. */

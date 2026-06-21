@@ -1,16 +1,13 @@
 <template>
-  <LuStack direction="vertical" ref="searchContainer" class="relative">
+  <LuStack direction="vertical" ref="searchContainer" class="relative" :pad="0">
     <LuInput 
       v-model="query"
       variant="default" 
-      placeholder="Search documentation..." 
+      placeholder="Search documentation..."
+      prepend-icon="search"
       @focus="isFocused = true"
       @keydown.escape="isFocused = false"
-    >
-      <template #prepend>
-        <LuIcon name="search" class="w-4 h-4" />
-      </template>
-    </LuInput>
+    />
 
     <!-- Dropdown Results -->
     <div

@@ -102,7 +102,7 @@ const skinItemRemove = computed(() => `lu-file-upload__item-remove`);
       />
       <LuIcon name="upload-cloud" :size="28" :class="['lu-file-upload__icon']" />
       <LuText variant="body">
-        <slot name="label">Drop files here or <span class="text-rose-600 dark:text-rose-400 underline">browse</span></slot>
+        <slot name="label">Drop files here or <span class="lu-file-upload__browse-link">browse</span></slot>
       </LuText>
       <LuText variant="caption" v-if="hint || maxSize">
         {{ hint ?? (maxSize ? `Max ${formatBytes(maxSize)} per file` : '') }}

@@ -19,6 +19,11 @@ defineOptions({ name: "LuDesktopTopBar" });
 
 /**
  * Horizontal top navigation bar for desktop shell.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw `<header>` tags or Tailwind flex rows for the main topbar.
+ * - Always use `LuDesktopTopBar` placed inside the `topbar` slot of `LuDesktopShell`.
+ * - Leverage `left`, `center`, and `right` slots for automatic alignment.
  * 
  * @slots
  * - `left`: Left-aligned items (brand, menu toggle)

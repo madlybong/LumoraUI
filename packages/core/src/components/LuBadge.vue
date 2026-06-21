@@ -8,6 +8,11 @@
 import { computed } from "vue";
 /**
  * A small visual badge for count numbers or status tags.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw `<span>` tags with background/text colors for badges.
+ * - Use `LuBadge` for small un-closeable status chips.
+ * - For interactive or closable chips, use `<LuChip>`.
  */
 interface LuBadgeProps {
   /** Visual variant. Resolves to BEM modifier `lu-badge--{variant}`. */

@@ -95,21 +95,21 @@ function onDrop(toColumn: KanbanColumn, toIndex: number) {
           >
             <slot name="card" :card="card" :column="column">
               <!-- Default card body -->
-              <div class="flex flex-col gap-2">
+              <div class="lu-kanban__card-body">
                 <LuText variant="body" :class="['lu-kanban__card-title']">
                   {{ card.title }}
                 </LuText>
 
-                <LuText v-if="card.description" variant="caption" class="line-clamp-2">
+                <LuText v-if="card.description" variant="caption" class="lu-kanban__card-description">
                   {{ card.description }}
                 </LuText>
 
-                <div v-if="card.priority || card.dueDate || card.tags?.length" class="flex">
+                <div v-if="card.priority || card.dueDate || card.tags?.length" class="lu-kanban__card-footer">
                   <LuBadge v-if="card.priority" :variant="priorityVariant[card.priority]">
                     {{ card.priority }}
                   </LuBadge>
                   <LuBadge v-for="tag in card.tags" :key="tag" variant="secondary">{{ tag }}</LuBadge>
-                  <LuText v-if="card.dueDate" variant="caption" class="ml-auto flex gap-1">
+                  <LuText v-if="card.dueDate" variant="caption" class="lu-kanban__card-due-date">
                     <LuIcon name="calendar" :size="11" />
                     {{ card.dueDate }}
                   </LuText>

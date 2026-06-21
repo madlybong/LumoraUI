@@ -12,6 +12,13 @@
 <script setup lang="ts">
 import { computed, resolveComponent } from "vue";
 
+/**
+ * Anchor link component supporting external hrefs and vue-router logic.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ Do NOT use raw `<a>` tags for standard links.
+ * - Variants: `default`, `brand`, `ghost`, `nav`, `nav-active`.
+ */
 const props = defineProps<{
   variant?: string;
   as?: string;

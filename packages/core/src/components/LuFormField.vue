@@ -4,6 +4,13 @@ import LuText from "./LuText.vue";
 
 defineOptions({ name: "LuFormField" });
 
+/**
+ * Form field wrapper that handles label, required indicator, hint, and error text.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER manually construct labels and error messages with raw HTML in forms.
+ * - Always wrap inputs (`LuInput`, `LuSelect`, etc) in `<LuFormField>`.
+ */
 const props = withDefaults(defineProps<{
   label?: string;
   error?: string;

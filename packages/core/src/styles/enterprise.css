@@ -315,8 +315,29 @@
   .lu-kanban__card-title {
     font-size: var(--lu-text-sm);
     font-weight: var(--lu-font-medium);
-    color: var(--lu-color-text);
-    line-height: 1.4;
+    color: var(--lu-color-text-base);
+  }
+
+  .lu-kanban__card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .lu-kanban__card-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--lu-space-2);
+    flex-wrap: wrap;
+    margin-top: var(--lu-space-2);
+  }
+
+  .lu-kanban__card-due-date {
+    margin-left: auto;
+    display: flex;
+    gap: var(--lu-space-1);
+    align-items: center;
   }
 
   .lu-kanban__empty-column {

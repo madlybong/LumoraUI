@@ -23,7 +23,11 @@ import { computed, useSlots } from "vue";
 defineOptions({ name: "LuDesktopSidebar" });
 
 /**
- * Vertical sidebar navigation for desktop shell.
+ * Application sidebar, rendering left-aligned navigation.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ NEVER use raw `<aside>` tags or Tailwind `w-64 border-r` for sidebars.
+ * - Always use `LuDesktopSidebar` placed inside the `sidebar` slot of `LuDesktopShell`.
  * 
  * @slots
  * - `header`: Sticky top area (e.g., brand, search)

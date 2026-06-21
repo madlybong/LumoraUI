@@ -100,7 +100,7 @@ const skinLightboxClose = computed(() => `lu-lightbox__close`);
           loading="lazy"
         />
         <div :class="skinItemOverlay">
-          <LuIcon v-if="lightbox" name="expand" :size="18" class="text-white" />
+          <LuIcon v-if="lightbox" name="expand" :size="18" class="lu-media-gallery__lightbox-icon" />
           <button
             v-if="deletable"
             type="button"
@@ -176,7 +176,7 @@ const skinLightboxClose = computed(() => `lu-lightbox__close`);
 
           <!-- Counter -->
           <LuText
-            class="absolute top-4 left-4"
+            class="lu-media-gallery__overlay-badge"
           >
             {{ lightboxIndex + 1 }} / {{ items.length }}
           </LuText>

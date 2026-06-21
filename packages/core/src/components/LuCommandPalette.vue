@@ -158,12 +158,12 @@ const skinFooter = computed(() => `lu-command-palette__footer`);
                     :size="15"
                     :class="['lu-command-palette__item-icon']"
                   />
-                  <div class="flex flex-col flex-1">
+                  <div class="lu-command-palette__item-body">
                     <LuText variant="body" :class="['lu-command-palette__item-label']">{{ item.label }}</LuText>
                     <LuText v-if="item.description" variant="caption" class="truncate">{{ item.description }}</LuText>
                   </div>
                   <!-- Keyboard shortcut -->
-                  <div v-if="item.shortcut?.length" class="flex">
+                  <div v-if="item.shortcut?.length" class="lu-command-palette__item-shortcuts">
                     <kbd
                       v-for="k in item.shortcut"
                       :key="k"
@@ -179,13 +179,13 @@ const skinFooter = computed(() => `lu-command-palette__footer`);
 
           <!-- Footer keyboard hint -->
           <div :class="skinFooter">
-            <LuText variant="caption" class="flex">
+            <LuText variant="caption" class="lu-command-palette__footer-hint">
               <kbd :class="['lu-command-palette__kbd']">↑↓</kbd> Navigate
             </LuText>
-            <LuText variant="caption" class="flex">
+            <LuText variant="caption" class="lu-command-palette__footer-hint">
               <kbd :class="['lu-command-palette__kbd']">↵</kbd> Select
             </LuText>
-            <LuText variant="caption" class="flex">
+            <LuText variant="caption" class="lu-command-palette__footer-hint">
               <kbd :class="['lu-command-palette__kbd']">Esc</kbd> Close
             </LuText>
           </div>

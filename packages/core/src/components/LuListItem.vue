@@ -5,7 +5,7 @@
       itemSkin,
       active && activeSkin,
       disabled && disabledSkin,
-      (clickable && !disabled) && 'cursor-pointer'
+      (clickable && !disabled) && 'lu-list-item--clickable'
     ]"
     :tabindex="(clickable && !disabled) ? 0 : undefined"
     @click="handleClick"
@@ -27,7 +27,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-
+/**
+ * List item component for use inside `<LuList>` or standalone.
+ *
+ * 🤖 **AI Agent Usage Notes (Zero-Raw-HTML Adherence)**:
+ * - ⛔ Do NOT add raw Tailwind classes for padding/margins.
+ * - Use `leading` and `trailing` slots for icons and actions.
+ */
 const props = withDefaults(defineProps<{
   as?: string;
   active?: boolean;

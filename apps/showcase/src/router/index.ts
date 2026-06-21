@@ -59,6 +59,7 @@ import LuChipDoc from '../views/docs/components/LuChipDoc.vue';
 import LuAccordionDoc from '../views/docs/components/LuAccordionDoc.vue';
 
 // Layout
+import LuContainerDoc from '../views/docs/layout/LuContainerDoc.vue';
 import LuStackDoc from '../views/docs/layout/LuStackDoc.vue';
 import LuDockDoc from '../views/docs/layout/LuDockDoc.vue';
 import LuSplitDoc from '../views/docs/layout/LuSplitDoc.vue';
@@ -144,7 +145,8 @@ export const router = createRouter({
     { path: '/docs/components/chip', component: LuChipDoc },
     { path: '/docs/components/accordion', component: LuAccordionDoc },
 
-    { path: '/docs/layout', redirect: '/docs/layout/stack' },
+    { path: '/docs/layout', redirect: '/docs/layout/container' },
+    { path: '/docs/layout/container', component: LuContainerDoc },
     { path: '/docs/layout/stack', component: LuStackDoc },
     { path: '/docs/layout/dock', component: LuDockDoc },
     { path: '/docs/layout/split', component: LuSplitDoc },

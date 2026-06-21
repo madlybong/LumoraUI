@@ -3,9 +3,28 @@
   .lu-stack              { display: flex; padding: var(--lu-space-4); }
   .lu-stack--vertical    { flex-direction: column; }
   .lu-stack--horizontal  { flex-direction: row; }
+  /* DEPRECATED: Use LuContainer instead */
   .lu-stack--container   {
     flex-direction: column; width: 100%; max-width: 48rem; margin-inline: auto;
     min-height: 100%; gap: var(--lu-space-10); padding: var(--lu-space-8) var(--lu-space-10);
+  }
+
+  /* ── LuContainer ──────────────────────────────────────────────────────────── */
+  .lu-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--lu-space-6);   /* 1.5rem gutter on all sizes */
+  }
+  /* Size variants — max-width tokens */
+  .lu-container--sm   { max-width: 40rem;  }   /* 640px  — tight prose / modals */
+  .lu-container--md   { max-width: 56rem;  }   /* 896px  — medium content */
+  .lu-container--lg   { max-width: 72rem;  }   /* 1152px — documentation default */
+  .lu-container--xl   { max-width: 88rem;  }   /* 1408px — wide dashboard */
+  .lu-container--fluid{ max-width: 100%;   }   /* no constraint */
+
+  /* Responsive gutter tightening on small viewports */
+  @media (max-width: 640px) {
+    .lu-container { padding-inline: var(--lu-space-4); }
   }
 
   /* ── LuDock ─────────────────────────────────────────────────────────────── */

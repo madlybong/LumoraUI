@@ -1,7 +1,7 @@
 <template>
   <LuDesktopTopBar>
     <template #left>
-      <LuStack direction="horizontal" class="items-center gap-2">
+      <LuStack direction="horizontal" class="items-center gap-2" pad="0">
         <LuLink to="/" variant="brand" class="flex items-center gap-2">
           <LuIcon name="layout-grid" class="h-5 w-5 text-rose-500" />
           <LuText as="span" variant="brand-label">Lumora UI</LuText>
@@ -11,7 +11,7 @@
     </template>
     
     <template #right>
-      <LuStack direction="horizontal" class="items-center gap-3">
+      <LuStack direction="horizontal" class="items-center gap-3" pad="0">
         <ThemeToggle />
         <LuDivider variant="vertical" class="h-5" />
         <LuLink href="https://github.com/madlybong/lumora-ui" target="_blank" variant="ghost" class="p-1.5 -m-1.5">

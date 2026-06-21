@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" ref="containerRef">
+  <div class="lu-select__root" ref="containerRef">
     <button
       type="button"
       :class="[resolvedSkin, error ? errorSkin : '']"

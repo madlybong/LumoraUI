@@ -115,9 +115,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     overflow-y: auto;
-    padding: var(--lu-space-2, 0.5rem) var(--lu-space-2, 0.5rem);
+    padding-block: var(--lu-space-1, 0.25rem);
+    padding-inline: 0;
     min-height: 0;
   }
 

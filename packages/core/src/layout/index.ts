@@ -1,4 +1,5 @@
 import LuStack from "./LuStack.vue";
+import LuContainer from "./LuContainer.vue";
 import LuGrid from "./LuGrid.vue";
 import LuDock from "./LuDock.vue";
 import LuDockItem from "./LuDockItem.vue";
@@ -12,6 +13,7 @@ import LuOverlay from "./LuOverlay.vue";
 
 export {
   LuStack,
+  LuContainer,
   LuGrid,
   LuDock,
   LuDockItem,

@@ -25,6 +25,7 @@ export const navTree: NavSection[] = [
     title: 'Layout',
     icon: 'layout-template',
     items: [
+      { label: 'LuContainer', path: '/docs/layout/container', icon: 'box' },
       { label: 'LuStack', path: '/docs/layout/stack', icon: 'layers' },
       { label: 'LuGrid', path: '/docs/layout/grid', icon: 'grid-2x2' },
       { label: 'LuDock', path: '/docs/layout/dock', icon: 'panel-top' },
