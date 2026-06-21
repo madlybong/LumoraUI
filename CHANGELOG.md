@@ -4,6 +4,25 @@
 
 ---
 
+## [0.10.0] — 2026-06-21
+
+### Added
+
+- Added `LuContainer` component for fluid container widths.
+- Added `#icon` and `#trailingIcon` slots to `LuButton` for standard icon support.
+
+### Fixed
+
+- Overhauled layout primitives.
+- Fixed layout alignment in `DocsSidebar`.
+- Removed raw CSS padding styles (`pad="2"`, `justify="between"`) from list structures and improved BEM usage.
+
+### Documentation
+
+- Synced showcase and consumer layout documentation for Auruvi usage context.
+
+---
+
 ## [0.9.2] — 2026-06-20
 
 ### Documentation
